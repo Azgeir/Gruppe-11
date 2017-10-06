@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class CommandWords
 {
-    private HashMap<String, CommandWord> validCommands;
+    private HashMap<String, CommandWord> validCommands;//test
 
     public CommandWords()
     {
