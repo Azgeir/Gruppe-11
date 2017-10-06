@@ -7,13 +7,12 @@ package worldofzuul;
 
 /**
  *
- * @author Aske Wulf
+ * @author Simon
  */
-// This class starts the game by creating an instance of the Game class.
-public class Starter {
-    public static void main(String[] args){
-        Game start = new Game();
-        start.play();
+class Item {
+
+    String getName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
