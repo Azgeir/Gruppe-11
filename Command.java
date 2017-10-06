@@ -4,8 +4,11 @@ package worldofzuul;
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+<<<<<<< HEAD
 
 //This is a test
+=======
+>>>>>>> 0b2ecb10011faa18b52f22cc4ded9fe35ec68fe9
 public class Command
 {
     private CommandWord commandWord;
