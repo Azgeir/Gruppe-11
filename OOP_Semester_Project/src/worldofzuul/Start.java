@@ -15,6 +15,8 @@ public class Start {
         Game testGame = new Game();
         
         testGame.play();
+        System.out.println("this is a test");
+        System.out.println("this is also a test");
         
     }
     
