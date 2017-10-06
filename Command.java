@@ -5,6 +5,7 @@ package worldofzuul;
  * @version 2006.03.30
  */
 
+//This is a test
 public class Command
 {
     private CommandWord commandWord;
