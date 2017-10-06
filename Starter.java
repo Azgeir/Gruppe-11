@@ -9,6 +9,7 @@ package worldofzuul;
  *
  * @author Aske Wulf
  */
+// This class starts the game by creating an instance of the Game class.
 public class Starter {
     public static void main(String[] args){
         Game start = new Game();
