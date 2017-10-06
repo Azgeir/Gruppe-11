@@ -7,4 +7,4 @@ The hostile NPC, the monster, moves throughout the spacestation at the same pace
 The game has 9 rooms currently, not counting the escape pod, which is a win-condition.
 There are also smaller rooms between the rooms, counting as hallways. This puts us way above the 12 room recommendation, but the hallways dont have anything interactive in them.
 You start the game in the computer room of the spacestation, with the monster starting in the dorm room.
-The patch 1 branch contains a game class which is updated with the actual rooms of the space station. 
+
