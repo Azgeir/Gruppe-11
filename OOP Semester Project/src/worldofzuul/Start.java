@@ -21,6 +21,7 @@ public class Start {
         Game testGame = new Game();
         
         testGame.play();
+        System.out.println("test");
     }
     
 }
