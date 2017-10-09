@@ -11,8 +11,8 @@ package worldofzuul;
  */
 public class Starter {
     public static void main(String[] args){
-        Game start = new Game();
-        start.play();
+        Game game = new Game();
+        game.play();
     }
     
 }

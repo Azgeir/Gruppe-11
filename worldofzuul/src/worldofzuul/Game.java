@@ -35,7 +35,8 @@ public class Game
      
         //Declare hallways between rooms
         Room HallwayStorageComputer, HallwayComputerBio, HallwayBioControl, HallwayControlDock, HallwayDockPhysics, HallwayPhysicsDorm, HallwayDormMed,  HallwayMedStorage; 
-                
+         
+        //Initialize the hallways between the outer rooms
         HallwayStorageComputer = new Room("in the hallway between the storage and computer rooms");
         HallwayComputerBio = new Room("in the hallway between the storage room and the biology laboratory");
         HallwayBioControl = new Room("in the hallway between the biology laboratory and the control room");
@@ -48,6 +49,7 @@ public class Game
         //Declare hallways connected to the reactor
         Room HallwayReactorBio, HallwayReactorControl, HallwayReactorDock, HallwayReactorPhysics, HallwayReactorDorm, HallwayReactorMed, HallwayReactorStorage, HallwayReactorComputer;
         
+        //Initialize the hallways connected to the reactor
         HallwayReactorBio = new Room("in the hallway between the reactor and the biology laboratory");
         HallwayReactorControl = new Room("in the hallway between the reactor and the control room");
         HallwayReactorDock = new Room("in the hallway between the reactor and the dock");
@@ -108,7 +110,7 @@ public class Game
         HallwayReactorComputer.setExit("computer", Computer);
         
         
-        //Sets the possible exits to each room
+        //Sets the possible exits for each room
         Biolab.setExit("computer", HallwayComputerBio);
         Biolab.setExit("control", HallwayBioControl);
         Biolab.setExit("reactor", HallwayReactorBio);
@@ -156,8 +158,6 @@ public class Game
         Reactor.setExit("storage", HallwayReactorStorage);
         
         
-        
-        
         //Sets the current room to "computer"
         currentRoom = Computer;
     }
@@ -181,7 +181,7 @@ public class Game
     {
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("World of Zuul is a new, incredibly boring adventure game. Not joking here");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
@@ -217,8 +217,9 @@ public class Game
 
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("You are on a spacestation, conducting experiments for the good of the human race.");
+        System.out.println("Something hit the spacestation, and you now have to save yourself and any possible survivors.");
+        System.out.println("The escape pod is in the dock, and is the only way to get off the spacestation");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
