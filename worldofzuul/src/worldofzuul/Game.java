@@ -8,7 +8,7 @@ public class Game
 {
     //test
     //thats all folks
-    //thats
+    //thats + that
     private Parser parser;
     private Room currentRoom;
         
