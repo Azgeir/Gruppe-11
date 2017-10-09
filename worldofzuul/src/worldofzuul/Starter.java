@@ -7,8 +7,12 @@ package worldofzuul;
 
 /**
  *
- * @author HCHB
+ * @author Aske Wulf
  */
-public class Derp {
-    //nroiorg
+public class Starter {
+    public static void main(String[] args){
+        Game game = new Game();
+        game.play();
+    }
+    
 }
