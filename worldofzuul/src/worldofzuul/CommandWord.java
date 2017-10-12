@@ -10,7 +10,8 @@ public enum CommandWord
 {
     // Available commands:
     GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), PICKUP("pickup"),
-    DROP("drop"), STAY("stay"), LOOKAROUND("lookaround");
+    DROP("drop"), STAY("stay"), LOOKAROUND("lookaround"), PEEK("peek"),
+    USE("use");
     
     // Command string of the command.
     private String commandString;

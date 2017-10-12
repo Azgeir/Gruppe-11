@@ -11,12 +11,14 @@ public class Command
     // Data fields:
     private CommandWord commandWord; // The command's command word
     private String secondWord; // The second word of the command
+    private String thirdWord; // The third word of the command
 
     // This constructor creates a Command with the specified command word and second word
-    public Command(CommandWord commandWord, String secondWord)
+    public Command(CommandWord commandWord, String secondWord, String thirdWord)
     {
         this.commandWord = commandWord;
         this.secondWord = secondWord;
+        this.thirdWord = thirdWord;
     }
 
     // This method returns the command word of the command.
@@ -30,7 +32,12 @@ public class Command
     {
         return secondWord;
     }
-
+    
+    //this method returns the third word of the command
+    public String getThirdWord()
+    {
+        return thirdWord;
+    }
     // This method returns true if the command word is unknown.
     public boolean isUnknown()
     {
@@ -41,6 +48,11 @@ public class Command
     public boolean hasSecondWord()
     {
         return (secondWord != null);
+    }
+    //this method returns true if the command has a third word
+    public boolean hasThirdWord()
+    {
+        return (thirdWord != null);
     }
 }
 
