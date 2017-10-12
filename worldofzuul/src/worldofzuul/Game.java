@@ -6,7 +6,7 @@ package worldofzuul;
  */
 public class Game 
 {
-
+    // Data fields:
     private Parser parser;
     private Room currentRoom;
         
@@ -16,7 +16,8 @@ public class Game
         createRooms();
         parser = new Parser();
     }
-
+    
+    // This method creates the rooms of the game.
     private void createRooms()
     {
         //Declare the rooms
