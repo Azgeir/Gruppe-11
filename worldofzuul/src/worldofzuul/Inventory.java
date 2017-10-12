@@ -58,8 +58,14 @@ public class Inventory {
     
     public void removeItem(Item item){
         //Checks if the inventory has the parsed item and if it does, removes it
-        if (inventory.containsKey(item.getName()))
-            inventory.remove(item.getName());
+        if (inventory.containsKey(item.getName())){
+            if (inventory.get(item.getName()).contains(item))
+                inventory.get(item.getName()).remove(item);
+            
+            if (inventory.get(item.getName()).isEmpty())
+                inventory.remove(item.getName());               
+        }
+        
         else
             System.out.println("You dont have that item");
     }
@@ -73,8 +79,8 @@ public class Inventory {
             //Calculates the total weight of the inventory, one list at a time
             //stack = entry.getValue().size(); Not sure if this is important xD
             //System.out.println(stack);
-            for (Item i: entry.getValue()){
-                total += i.getWeight();
+            for (Item item: entry.getValue()){
+                total += item.getWeight();
                 //System.out.println(total);
             }
         }
