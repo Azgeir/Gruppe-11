@@ -29,6 +29,7 @@ public class Inventory {
     //value for integers
     public Inventory(){
         maxWeight = Integer.MAX_VALUE;
+        inventory = new HashMap<>();
     }
     
     public void addItem(Item i){
