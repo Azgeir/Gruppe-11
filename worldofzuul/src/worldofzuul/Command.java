@@ -33,12 +33,13 @@ public class Command
         return secondWord;
     }
     
-    //this method returns the third word of the command
+    // This method returns the third word of the command
     public String getThirdWord()
     {
         return thirdWord;
     }
-    // This method returns true if the command word is unknown.
+    
+// This method returns true if the command word is unknown.
     public boolean isUnknown()
     {
         return (commandWord == CommandWord.UNKNOWN);
@@ -49,7 +50,8 @@ public class Command
     {
         return (secondWord != null);
     }
-    //this method returns true if the command has a third word
+    
+    // This method returns true if the command has a third word
     public boolean hasThirdWord()
     {
         return (thirdWord != null);
