@@ -9,6 +9,7 @@ package worldofzuul;
  *
  * @author Aske Wulf
  */
+
 // This class starts the game.
 public class Starter {
     // Main method
@@ -18,5 +19,4 @@ public class Starter {
         // Call the play method on game.
         game.play();
     }
-    
 }
