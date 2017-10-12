@@ -5,14 +5,25 @@
  */
 package worldofzuul;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Aske Wulf
  */
 public class Starter {
     public static void main(String[] args){
-        Game game = new Game();
-        game.play();
+        
+        boolean playAgain;
+        Scanner input = new Scanner(System.in);
+        
+        do {
+            Game game = new Game();
+            game.play();
+            System.out.println("Do you want to play again?\n Enter true or false");
+            playAgain = input.nextBoolean();
+            
+        } while (playAgain);
     }
     
 }
