@@ -14,7 +14,7 @@ import java.util.Set;
  * @author Aske Wulf
  */
 public class Inventory {
-    HashMap<String, ArrayList<Item>> inventory; //Declares the hashmap "inventory"
+    private HashMap<String, ArrayList<Item>> inventory; //Declares the hashmap "inventory"
     private int stack; //The amount of duplicate items, eg. 2 vials
     private int maxWeight; //The maximum weight, mostly used for the player
     private int totalWeight; //The current weight of the inventory
