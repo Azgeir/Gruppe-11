@@ -32,34 +32,34 @@ public class Inventory {
         inventory = new HashMap<>();
     }
     
-    public void addItem(Item i){
+    public void addItem(Item item){
         //The first (outer) if statement checks if the item would put the
         //current weight of the inventory above the maximum weight and prints
         // "You cannot carry that" if it would.
-        if ((totalWeight +i.getWeight()) < maxWeight ){
+        if ((totalWeight +item.getWeight()) < maxWeight ){
             //The inner if statement checks if the inventory has an ArrayList for that
             //exact item and if it doesnt, creates one and adds the item.
             //It just adds the item to the list if the list already exists
-            if (!inventory.containsKey(i.getName())){
+            if (!inventory.containsKey(item.getName())){
                 ArrayList<Item> list = new ArrayList<>();
-                inventory.put(i.getName(), list);
-                list.add(i);
-                System.out.println("Added " + i.getName() + " to the inventory");
+                inventory.put(item.getName(), list);
+                list.add(item);
+                System.out.println("Added " + item.getName() + " to the inventory");
                 //System.out.println(list.size());
             }
             else{
-                inventory.get(i.getName()).add(i);
-                System.out.println("Added " + i.getName() + " to the inventory");
+                inventory.get(item.getName()).add(item);
+                System.out.println("Added " + item.getName() + " to the inventory");
             }
         }
         else   
             System.out.println("You cannot carry that");
     }
     
-    public void removeItem(Item i){
+    public void removeItem(Item item){
         //Checks if the inventory has the parsed item and if it does, removes it
-        if (inventory.containsKey(i.getName()))
-            inventory.remove(i.getName());
+        if (inventory.containsKey(item.getName()))
+            inventory.remove(item.getName());
         else
             System.out.println("You dont have that item");
     }
