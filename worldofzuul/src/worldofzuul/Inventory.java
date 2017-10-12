@@ -32,7 +32,8 @@ public class Inventory {
         inventory = new HashMap<>();
     }
     
-    public void addItem(Item item){
+    //Changed it to return true if successfully added the item and false otherwise
+    public boolean addItem(Item item){
         //The first (outer) if statement checks if the item would put the
         //current weight of the inventory above the maximum weight and prints
         // "You cannot carry that" if it would.
@@ -45,15 +46,18 @@ public class Inventory {
                 inventory.put(item.getName(), list);
                 list.add(item);
                 System.out.println("Added " + item.getName() + " to the inventory");
+                return true;
                 //System.out.println(list.size());
             }
             else{
                 inventory.get(item.getName()).add(item);
                 System.out.println("Added " + item.getName() + " to the inventory");
+                return true;
             }
         }
         else   
             System.out.println("You cannot carry that");
+        return false;
     }
     
     public void removeItem(Item item){
@@ -65,10 +69,22 @@ public class Inventory {
             if (inventory.get(item.getName()).isEmpty())
                 inventory.remove(item.getName());               
         }
-        
         else
             System.out.println("You dont have that item");
     }
+    
+    // iterates all items in the ArrayList corresponding to the key itemName,
+    // when an element in the ArrayList is found that isn't null it is returned
+    public Item getItem(String itemName){
+        Item returnItem = null;
+        for (Item item : this.inventory.get(itemName)){
+            if (item != null){
+                returnItem = item;
+            }
+        }
+        return returnItem;
+    }
+    
     //This method calculates the total weight of the inventory
     public int getTotalWeight(){
         //Creates a set with the entries of the hashmap
