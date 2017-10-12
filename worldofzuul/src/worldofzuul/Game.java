@@ -4,12 +4,15 @@ package worldofzuul;
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+
+// This class runs the main functionality of the game.
 public class Game 
 {
     // Data fields:
     private Parser parser;
-    private Room currentRoom;
-        
+    private Room currentRoom; // Possibly move this to character class
+    
+    // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() 
     {
         //Create all rooms by calling the createRooms method
@@ -20,10 +23,10 @@ public class Game
     // This method creates the rooms of the game.
     private void createRooms()
     {
-        //Declare the rooms
+        // Declare the rooms
         Room Biolab, Computer, Storage, Medbay, Dorm, PhysicsLab, Dock, Control, Reactor, Pod;
       
-        //Initialize the rooms
+        // Initialize the rooms
         Biolab = new Room("in the biology laboratory");
         Computer = new Room("in the computer room");
         Storage = new Room("in the storage room");
@@ -35,10 +38,10 @@ public class Game
         Reactor = new Room("near the reactor");
         Pod = new Room("in the escape pod");
      
-        //Declare hallways between rooms
+        // Declare hallways between rooms
         Room HallwayStorageComputer, HallwayComputerBio, HallwayBioControl, HallwayControlDock, HallwayDockPhysics, HallwayPhysicsDorm, HallwayDormMed,  HallwayMedStorage; 
          
-        //Initialize the hallways between the outer rooms
+        // Initialize the hallways between the outer rooms
         HallwayStorageComputer = new Room("in the hallway between the storage and computer rooms");
         HallwayComputerBio = new Room("in the hallway between the storage room and the biology laboratory");
         HallwayBioControl = new Room("in the hallway between the biology laboratory and the control room");
@@ -48,10 +51,10 @@ public class Game
         HallwayDormMed = new Room("in the hallway between the dormitory and the medical bay");
         HallwayMedStorage = new Room("in the hallway between the medical bay and the storage room");
         
-        //Declare hallways connected to the reactor
+        // Declare hallways connected to the reactor
         Room HallwayReactorBio, HallwayReactorControl, HallwayReactorDock, HallwayReactorPhysics, HallwayReactorDorm, HallwayReactorMed, HallwayReactorStorage, HallwayReactorComputer;
         
-        //Initialize the hallways connected to the reactor
+        // Initialize the hallways connected to the reactor
         HallwayReactorBio = new Room("in the hallway between the reactor and the biology laboratory");
         HallwayReactorControl = new Room("in the hallway between the reactor and the control room");
         HallwayReactorDock = new Room("in the hallway between the reactor and the dock");
@@ -61,7 +64,7 @@ public class Game
         HallwayReactorStorage = new Room("in the hallway between the reactor and the storage room");
         HallwayReactorComputer = new Room("in the hallway between the reactor and the computer room");
         
-        //Sets possible exits for each hallway
+        // Set possible exits for hallways between rooms
         HallwayStorageComputer.setExit("storage", Storage);
         HallwayStorageComputer.setExit("computer", Computer);
         
@@ -86,7 +89,7 @@ public class Game
         HallwayMedStorage.setExit("medbay", Medbay);
         HallwayMedStorage.setExit("storage", Storage);
         
-        //Sets possible exits for hallways from the reactor
+        // Set possible exits for hallways from the reactor
         HallwayReactorBio.setExit("reactor", Reactor);
         HallwayReactorBio.setExit("biolab", Biolab);
         
@@ -111,13 +114,11 @@ public class Game
         HallwayReactorComputer.setExit("reactor", Reactor);
         HallwayReactorComputer.setExit("computer", Computer);
         
-        
-        //Sets the possible exits for each room
+        // Set the possible exits for each room
         Biolab.setExit("computer", HallwayComputerBio);
         Biolab.setExit("control", HallwayBioControl);
         Biolab.setExit("reactor", HallwayReactorBio);
         
-
         Control.setExit("biolab", HallwayBioControl);
         Control.setExit("dock", HallwayControlDock);
         Control.setExit("reactor", HallwayReactorControl);
@@ -149,7 +150,7 @@ public class Game
         
         Pod.setExit("dock", Dock);
         
-        //Sets the exits for the reactor room
+        // Set the exits for the reactor room
         Reactor.setExit("computer", HallwayReactorComputer);
         Reactor.setExit("biolab", HallwayReactorBio);
         Reactor.setExit("control", HallwayReactorControl);
@@ -159,65 +160,74 @@ public class Game
         Reactor.setExit("medbay", HallwayReactorMed);
         Reactor.setExit("storage", HallwayReactorStorage);
         
-        
-        //Sets the current room to "computer"
+        // Set the current room to "computer" (Possibly moved to character class)
         currentRoom = Computer;
     }
 
-    
+    // This method plays the game
     public void play() 
     {            
-        //Calls the printWelcome method to show a brief introduction to the game
+        // Call the printWelcome method to show a brief introduction to the game
         printWelcome();
         
-        //Checks if the player is still playing
+        // Check if the player is still playing
         boolean finished = false;
-        while (! finished) {
+        // As long as game is not finished, get and process user commands
+        while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
+        // Print goodbye message when user exits game.
         System.out.println("Thank you for playing.  Good bye.");
     }
 
+    // This method prints the welcome message.
     private void printWelcome()
     {
+        // Print welcome message
         System.out.println();
         System.out.println("Welcome to Escape Pod!");
         System.out.println("You are a Software engineer in a space station, and the emergency alarm have just gone off, you must find"
                 + "the other crew members, find out what is going on and find the escape pod if necessary");
         System.out.println("Type '" + CommandWord.HELP + "' for more information about controls and the game.");
         System.out.println();
+        // Description of current room of the player, including available exits.
         System.out.println(currentRoom.getLongDescription());
     }
 
+    // This method processes the command of the player (returns true if player wants to quit)
     private boolean processCommand(Command command) 
     {
-        //Assumes the player wants to continue playing
+        // Assume the player wants to continue playing
         boolean wantToQuit = false;
 
-        //Gets the commandword and executes an if-else statement
+        // Create instance of CommandWord using the command word of the specified command (from Parser)
         CommandWord commandWord = command.getCommandWord();
 
-        //checks if the input equals any of the defined commands
-        //and prints an "error" if it doesnt
+        // Check if the input equals any of the defined commands and print an "error" if it does not
         if(commandWord == CommandWord.UNKNOWN) {
             System.out.println("I don't know what you mean...");
             return false;
         }
         
-        //Executes the command if the input matches
+        // Execute the command if the input matches a valid command
+        // If command is "help" print the help message
         if (commandWord == CommandWord.HELP) {
             printHelp();
         }
+        // If command is "go", call goRoom method
         else if (commandWord == CommandWord.GO) {
             goRoom(command);
         }
+        // If command is "quit", change value of wantToQuit to true
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
+        // Return boolean value (false = continue playing; true = quit game)
         return wantToQuit;
     }
 
+    // This method prints a help message, including available commands
     private void printHelp() 
     {
         System.out.println("You are on a spacestation, conducting experiments for the good of the human race.");
@@ -228,32 +238,41 @@ public class Game
         parser.showCommands();
     }
 
+    // This method changes the value of current room based on the specified command.
     private void goRoom(Command command) 
     {
+        // If the command does not have a second word (specifying direction), print error message and exit method.
         if(!command.hasSecondWord()) {
             System.out.println("Go where?");
             return;
         }
 
+        // If the command has a second word, assign second word to "direction".
         String direction = command.getSecondWord();
 
+        // Assign the Room in the specified direction to "nextRoom"
         Room nextRoom = currentRoom.getExit(direction);
 
+        // If "nextRoom" is null, print an error message.
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
+        // If "nextRoom" is not null, change currentRoom to nextRoom, and print description of the new room.
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
     }
 
+    // This method quits the game
     private boolean quit(Command command) 
     {
+        // If the "quit" command has a second word, print error message and exit method.
         if(command.hasSecondWord()) {
             System.out.println("Quit what?");
             return false;
         }
+        // If the command has no second word, return "true", which causes the game to end.
         else {
             return true;
         }
