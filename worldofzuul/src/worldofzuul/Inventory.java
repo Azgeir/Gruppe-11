@@ -34,7 +34,7 @@ public class Inventory {
     public void addItem(Item i){
         //The first (outer) if statement checks if the item would put the
         //current weight of the inventory above the maximum weight and prints
-        // "You cant carry that" if it would.
+        // "You cannot carry that" if it would.
         if ((totalWeight +i.getWeight()) < maxWeight ){
             //The inner if statement checks if the inventory has an ArrayList for that
             //exact item and if it doesnt, creates one and adds the item.
@@ -52,7 +52,7 @@ public class Inventory {
             }
         }
         else   
-            System.out.println("You cant carry that");
+            System.out.println("You cannot carry that");
     }
     
     public void removeItem(Item i){
