@@ -22,6 +22,10 @@ public class Item {
         this.name = name;
     }
     
+    // This is an empty no-arg constructor
+    public Item() {    
+    }
+    
     // This method returns the weight of the item
     public int getWeight() {
         return this.weight;
