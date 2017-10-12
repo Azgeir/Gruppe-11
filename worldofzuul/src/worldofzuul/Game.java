@@ -1,5 +1,7 @@
 package worldofzuul;
  
+import java.util.ArrayList;
+
  /**
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
@@ -11,6 +13,8 @@ public class Game
     // Data fields:
     private Parser parser;
     private Room currentRoom; // Possibly move this to character class
+    private ArrayList<Character> characters = new ArrayList<>();
+    private Character currentCharacter;
     
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() 
@@ -18,6 +22,7 @@ public class Game
         //Create all rooms by calling the createRooms method
         createRooms();
         parser = new Parser();
+        createCharacter();
     }
     
     // This method creates the rooms of the game.
@@ -163,6 +168,11 @@ public class Game
         // Set the current room to "computer" (Possibly moved to character class)
         currentRoom = Computer;
     }
+    private void createCharacter(){
+        this.characters.add(new Hero());
+        this.characters.add(new Zuul());
+        this.characters.add(new TechDude());
+    }
 
     // This method plays the game
     public void play() 
@@ -174,6 +184,7 @@ public class Game
         boolean finished = false;
         // As long as game is not finished, get and process user commands
         while (!finished) {
+            this.currentCharacter = this.chooseCharacter();
             Command command = parser.getCommand();
             finished = processCommand(command);
         }
@@ -217,7 +228,7 @@ public class Game
         }
         // If command is "go", call goRoom method
         else if (commandWord == CommandWord.GO) {
-            goRoom(command);
+//            goRoom(command);
         }
         // If command is "quit", change value of wantToQuit to true
         else if (commandWord == CommandWord.QUIT) {
@@ -238,31 +249,51 @@ public class Game
         parser.showCommands();
     }
 
-    // This method changes the value of current room based on the specified command.
-    private void goRoom(Command command) 
-    {
-        // If the command does not have a second word (specifying direction), print error message and exit method.
-        if(!command.hasSecondWord()) {
-            System.out.println("Go where?");
-            return;
+    //iterates over the different characters to determine whos turn it is
+    // if two have the same initiative the breaker is who is defined first in the
+    // ArrayList
+    private Character chooseCharacter(){
+        Character currentCharacter = null;
+        double minInitiative = Integer.MAX_VALUE;
+        boolean characterChosen = false; 
+        for(Character character : characters){
+            if (minInitiative>character.getCharacterInitiative()){
+                minInitiative = character.getCharacterInitiative();
+                currentCharacter = character;
+                characterChosen = true;
+            }
         }
-
-        // If the command has a second word, assign second word to "direction".
-        String direction = command.getSecondWord();
-
-        // Assign the Room in the specified direction to "nextRoom"
-        Room nextRoom = currentRoom.getExit(direction);
-
-        // If "nextRoom" is null, print an error message.
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        }
-        // If "nextRoom" is not null, change currentRoom to nextRoom, and print description of the new room.
-        else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
-        }
+        
+        return currentCharacter;
     }
+    
+
+
+// This method changes the value of current room based on the specified command.
+//    private void goRoom(Command command) 
+//    {
+//        // If the command does not have a second word (specifying direction), print error message and exit method.
+//        if(!command.hasSecondWord()) {
+//            System.out.println("Go where?");
+//            return;
+//        }
+//
+//        // If the command has a second word, assign second word to "direction".
+//        String direction = command.getSecondWord();
+//
+//        // Assign the Room in the specified direction to "nextRoom"
+//        Room nextRoom = currentRoom.getExit(direction);
+//
+//        // If "nextRoom" is null, print an error message.
+//        if (nextRoom == null) {
+//            System.out.println("There is no door!");
+//        }
+//        // If "nextRoom" is not null, change currentRoom to nextRoom, and print description of the new room.
+//        else {
+//            currentRoom = nextRoom;
+//            System.out.println(currentRoom.getLongDescription());
+//        }
+//    }
 
     // This method quits the game
     private boolean quit(Command command) 
