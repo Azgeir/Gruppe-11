@@ -27,7 +27,7 @@ public class Character {
         
     }
     
-    // just copied from sourcecode Game.goRoom
+    //£ just copied from sourcecode Game.goRoom
     public void go(Command command){
         if(!command.hasSecondWord()) {
             System.out.println("Go where?");
@@ -45,12 +45,44 @@ public class Character {
             this.currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
-        this.characterInitiative += 5;
+        this.characterInitiative += 5*this.speedFactor;
     }
     
     //£
     public void stay(Command command){
-        this.characterInitiative += 5;
+        this.characterInitiative += 5*this.speedFactor;
+    }
+
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+
+    public double getCharacterInitiative() {
+        return characterInitiative;
+    }
+
+    public void setCharacterInitiative(double characterInitiative) {
+        this.characterInitiative = characterInitiative;
+    }
+
+    public double getSpeedFactor() {
+        return speedFactor;
+    }
+
+    public void setSpeedFactor(double speedFactor) {
+        this.speedFactor = speedFactor;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
     }
     
     
