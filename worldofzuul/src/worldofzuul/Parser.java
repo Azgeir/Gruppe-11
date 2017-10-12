@@ -33,6 +33,7 @@ public class Parser
         // Set words 1 and 2 to null
         String word1 = null;
         String word2 = null;
+        String word3 = null;
 
         // Print "> " to prompt user input
         System.out.print("> ");
@@ -48,11 +49,15 @@ public class Parser
             // If the input line has a second word, assign it to word2
             if(tokenizer.hasNext()) {
                 word2 = tokenizer.next();
+                //if the input line has a third word assign it to word3
+                if(tokenizer.hasNext()) {
+                    word3 = tokenizer.next();
+                }
             }
         }
 
         // Create a Command object based on words 1 and 2, and return the command.
-        return new Command(commands.getCommandWord(word1), word2);
+        return new Command(commands.getCommandWord(word1), word2, word3);
     }
 
     // This method prints the available commands.
