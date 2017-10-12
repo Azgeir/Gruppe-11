@@ -49,9 +49,11 @@ public class Hero extends Character {
             }
         }
         
+        this.speedFactorCalculation();
         this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }
     
+    //£
     public void dropItem(Command command){
         String itemName = command.getSecondWord();
         Item item = this.inventory.getItem(itemName);
@@ -67,6 +69,9 @@ public class Hero extends Character {
         else {
             System.out.println("You don't have sush an item");
         }
+        
+        this.speedFactorCalculation();
+        this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }
     
     public void lookAround(Command command){
@@ -81,7 +86,6 @@ public class Hero extends Character {
         
     }
     
-    
     public int use(Command command){
         
         System.out.println("The use method cannot be used");
@@ -89,7 +93,12 @@ public class Hero extends Character {
     }
     
     public void seeInventory(Command command){
-        
+        this.inventory.showItems();
+    }
+    
+    private void speedFactorCalculation(){
+        double newSpeedFactor = 1+(this.inventory.getTotalWeight()/this.inventory.getMaxWeight())/2;
+        this.setSpeedFactor(newSpeedFactor);
     }
     
 }

@@ -119,4 +119,10 @@ public class Inventory {
         }   
         
     }
+
+    public int getMaxWeight() {
+        return maxWeight;
+    }
+    
+    
 }
