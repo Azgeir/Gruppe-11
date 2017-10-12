@@ -8,8 +8,9 @@ package worldofzuul;
 // This enum class defines the available command words.
 public enum CommandWord
 {
+    // Available commands:
     GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?");
-   
+    
     // Command string of the command.
     private String commandString;
     
