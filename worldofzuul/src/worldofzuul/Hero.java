@@ -22,7 +22,14 @@ public class Hero extends Character {
         this.inventory = new Inventory(100);
     }
     
-    public Hero(int health, int capacity){
+    public Hero(Room currentRoom){
+        super(currentRoom);
+        this.health = 10;
+        this.inventory = new Inventory(100);
+    }
+    
+    public Hero(int health, int capacity, Room currentRoom){
+        this(currentRoom);
         this.health = health;
         this.inventory = new Inventory(capacity);
     }

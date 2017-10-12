@@ -1,6 +1,7 @@
 package worldofzuul;
  
 import java.util.ArrayList;
+import java.util.HashMap;
 
  /**
  * @author  Michael Kolling and David J. Barnes
@@ -12,17 +13,17 @@ public class Game
 {
     // Data fields:
     private Parser parser;
-    private Room currentRoom; // Possibly move this to character class
     private ArrayList<Character> characters = new ArrayList<>();
     private Character currentCharacter;
+    private HashMap<String,Room> characterCurrentRooms = new HashMap<>();
     
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() 
     {
         //Create all rooms by calling the createRooms method
         createRooms();
-        parser = new Parser();
         createCharacter();
+        parser = new Parser();
     }
     
     // This method creates the rooms of the game.
@@ -166,12 +167,14 @@ public class Game
         Reactor.setExit("storage", HallwayReactorStorage);
         
         // Set the current room to "computer" (Possibly moved to character class)
-        currentRoom = Computer;
+        characterCurrentRooms.put("Computer",Computer);
+        characterCurrentRooms.put("Control",Control);
+        characterCurrentRooms.put("Dorm",Dorm);
     }
     private void createCharacter(){
-        this.characters.add(new Hero());
-        this.characters.add(new Zuul());
-        this.characters.add(new TechDude());
+        this.characters.add(new Hero(characterCurrentRooms.get("Computer")));
+        this.characters.add(new Zuul(characterCurrentRooms.get("Dorm")));
+        this.characters.add(new TechDude(characterCurrentRooms.get("Control")));
     }
 
     // This method plays the game
@@ -203,8 +206,8 @@ public class Game
         System.out.println("Type '" + CommandWord.HELP + "' for more information about controls and the game.");
         System.out.println();
         // Description of current room of the player, including available exits.
-        System.out.println(currentRoom.getLongDescription());
-    }
+        System.out.println(characterCurrentRooms.get("Dorm").getLongDescription());
+}
 
     // This method processes the command of the player (returns true if player wants to quit)
     private boolean processCommand(Command command) 

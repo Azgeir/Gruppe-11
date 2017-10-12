@@ -11,14 +11,26 @@ package worldofzuul;
  */
 public class TechDude extends Character {
     
-    private boolean hasMetHero;
-    private int health;
+    private boolean hasMetHero = false;
+    private int health = 10;
     private Character hero;
     
     //£ health
     public TechDude(){
-        this.hasMetHero = false;
-        this.health = 10;
+   
+    }
+    
+    public TechDude(Room currentRoom){
+        super(currentRoom);
+}
+    
+    public TechDude(Room currentRoom, double speedFactor){
+        super(speedFactor, currentRoom);
+    }
+    
+    public TechDude(Room currentRoom, double speedFactor, int health){
+        this(currentRoom, speedFactor);
+        this.health = health;
     }
     
     /* overrides the original method because TechDude don't change room according to 

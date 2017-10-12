@@ -14,7 +14,15 @@ public class Zuul extends Character {
     private Room previousRoom;
     
     public Zuul(){
-        this.previousRoom = null;
+        
+    }
+    
+    public Zuul(Room currentRoom){
+        super(currentRoom);
+    }
+    
+    public Zuul(Room currentRoom, double speedFactor){
+        super(speedFactor, currentRoom);
     }
     
     /*£
