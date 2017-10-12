@@ -6,9 +6,7 @@ package worldofzuul;
  */
 public class Game 
 {
-    //test
-    //thats all folks
-    //thats + that
+
     private Parser parser;
     private Room currentRoom;
         
