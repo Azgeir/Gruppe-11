@@ -19,6 +19,8 @@ public class Inventory {
     private int maxWeight; //The maximum weight, mostly used for the player
     private int totalWeight; //The current weight of the inventory
     
+    //Constructor for the inventory, with the maximum weight as a parameter
+    //and initializes the hashmap
     public Inventory(int newMaxWeight){
         maxWeight = newMaxWeight;
         inventory = new HashMap<>();
@@ -52,8 +54,6 @@ public class Inventory {
         else   
             System.out.println("You cant carry that");
     }
-    //Constructor for the inventory, with the maximum weight as a parameter
-    //and initializes the hashmap
     
     public void removeItem(Item i){
         //Checks if the inventory has the parsed item and if it does, removes it
