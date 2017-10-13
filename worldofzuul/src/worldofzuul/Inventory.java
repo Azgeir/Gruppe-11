@@ -105,25 +105,24 @@ public class Inventory {
         totalWeight = total;
         return total;
     }
-    public void showItems(){
+    public String showItems(){
         //System.out.println("Trying to show items");
         //Creates a set with the entries of the hashmap
+        String returnString = "";
         Set<HashMap.Entry<String, ArrayList<Item>>> entrySet = inventory.entrySet();
         for (HashMap.Entry<String, ArrayList<Item>> entry: entrySet){
             stack = entry.getValue().size();//Checks the length of each itemlist
             //System.out.println(stack); 
             //System.out.println("I'm in the loop");
             //Prints the name of each list and the length of the list
-            System.out.println("You currently have " + stack + " " + entry.getKey() + 
-                ((stack > 1)?"s":""));
-            
-        }   
-        
+            returnString += stack + " " + entry.getKey() + 
+                ((stack > 1)?"s":"") + "\n";
+        }
+        return returnString;
     }
 
     public int getMaxWeight() {
         return maxWeight;
     }
-    
     
 }
