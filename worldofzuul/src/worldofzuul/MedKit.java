@@ -17,11 +17,13 @@ public class MedKit extends Item {
     
     // (£)This constructor creates an instance of MedKit with a specified health amount
     public MedKit(int healthAmount) {
+        super(5, "MedKit", "heal yourself.");
         this.healthAmount = healthAmount;
     }
     
     // (£)This constructor creates an instance of MedKit with a default health amount
     public MedKit() {
+        super(5, "MedKit", "heal yourself.");
         this.healthAmount = 5;
     }
     
