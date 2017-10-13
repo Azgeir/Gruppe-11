@@ -10,7 +10,8 @@ import java.util.Map;
  * @author HCHB
  */
 public class Hero extends Character {
-    
+
+    static int getInitiative;    
     private int health = 10;
     private Inventory inventory;
     

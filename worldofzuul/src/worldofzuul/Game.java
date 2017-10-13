@@ -16,9 +16,9 @@ public class Game {
     // ArrayList is chosen because it allows us to know which character is chosen when the initiative is the same.
     private ArrayList<Character> characters = new ArrayList<>();
     private Character currentCharacter;
-    private HashMap<String,Room> characterCurrentRooms = new HashMap<>();
+    private HashMap<String, Room> characterCurrentRooms = new HashMap<>();
     private Room winConditionRoom;
-    
+
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() {
         //Create all rooms by calling the createRooms method
@@ -73,58 +73,58 @@ public class Game {
         // Set possible exits for hallways between rooms
         hallwayStorageComputer.setExit("storage", storage, false);
         hallwayStorageComputer.setExit("computer", computerRoom, false);
-        
+
         hallwayComputerBiology.setExit("computer", computerRoom, false);
         hallwayComputerBiology.setExit("biolab", biologyLaboratory, false);
-        
+
         hallwayBiologyControl.setExit("control", controlRoom, false);
         hallwayBiologyControl.setExit("biolab", biologyLaboratory, false);
-        
-        hallwayControlDock.setExit("control", controlRoom,false);
+
+        hallwayControlDock.setExit("control", controlRoom, false);
         hallwayControlDock.setExit("dock", dock, false);
-        
+
         hallwayDockPhysics.setExit("physicslab", physicsLaboratory, false);
         hallwayDockPhysics.setExit("dock", dock, false);
-        
+
         hallwayPhysicsDormitory.setExit("physicslab", physicsLaboratory, false);
         hallwayPhysicsDormitory.setExit("dorm", dormitory, false);
-        
+
         hallwayDormitoryMedical.setExit("medbay", medicalBay, false);
         hallwayDormitoryMedical.setExit("dorm", dormitory, false);
-        
+
         hallwayMedicalStorage.setExit("medbay", medicalBay, false);
         hallwayMedicalStorage.setExit("storage", storage, false);
-        
+
         // Set possible exits for hallways from the reactor
         hallwayReactorBiology.setExit("reactor", reactor, false);
         hallwayReactorBiology.setExit("biolab", biologyLaboratory, false);
-        
+
         hallwayReactorControl.setExit("reactor", reactor, false);
         hallwayReactorControl.setExit("control", controlRoom, false);
-        
+
         hallwayReactorDock.setExit("reactor", reactor, false);
         hallwayReactorDock.setExit("dock", dock, false);
-        
+
         hallwayReactorPhysics.setExit("reactor", reactor, false);
         hallwayReactorPhysics.setExit("physics lab", physicsLaboratory, false);
-        
+
         hallwayReactorDormitory.setExit("reactor", reactor, false);
         hallwayReactorDormitory.setExit("dorm", dormitory, false);
-        
+
         hallwayReactorMedical.setExit("reactor", reactor, false);
         hallwayReactorMedical.setExit("medbay", medicalBay, false);
-        
+
         hallwayReactorStorage.setExit("reactor", reactor, false);
         hallwayReactorStorage.setExit("storage", storage, false);
-        
+
         hallwayReactorComputer.setExit("reactor", reactor, false);
         hallwayReactorComputer.setExit("computer", computerRoom, false);
-        
+
         // Set the possible exits for each room
         biologyLaboratory.setExit("computer", hallwayComputerBiology, false);
         biologyLaboratory.setExit("control", hallwayBiologyControl, false);
         biologyLaboratory.setExit("reactor", hallwayReactorBiology, false);
-        
+
         controlRoom.setExit("biolab", hallwayBiologyControl, false);
         controlRoom.setExit("dock", hallwayControlDock, false);
         controlRoom.setExit("reactor", hallwayReactorControl, false);
@@ -137,7 +137,7 @@ public class Game {
         physicsLaboratory.setExit("dock", hallwayDockPhysics, false);
         physicsLaboratory.setExit("dorm", hallwayPhysicsDormitory, false);
         physicsLaboratory.setExit("reactor", hallwayReactorPhysics, false);
-        
+
         dormitory.setExit("physicslab", hallwayPhysicsDormitory, false);
         dormitory.setExit("medbay", hallwayDormitoryMedical, false);
         dormitory.setExit("reactor", hallwayReactorDormitory, false);
@@ -145,17 +145,17 @@ public class Game {
         medicalBay.setExit("dorm", hallwayDormitoryMedical, false);
         medicalBay.setExit("storage", hallwayMedicalStorage, false);
         medicalBay.setExit("reactor", hallwayReactorMedical, false);
-        
+
         storage.setExit("medbay", hallwayMedicalStorage, false);
         storage.setExit("computer", hallwayStorageComputer, false);
         storage.setExit("reactor", hallwayReactorStorage, false);
-        
+
         computerRoom.setExit("storage", hallwayStorageComputer, false);
         computerRoom.setExit("biolab", hallwayComputerBiology, false);
         computerRoom.setExit("reactor", hallwayReactorComputer, false);
-        
+
         escapePod.setExit("dock", dock, false);
-        
+
         // Set the exits for the reactor room
         reactor.setExit("computer", hallwayReactorComputer, false);
         reactor.setExit("biolab", hallwayReactorBiology, false);
@@ -165,16 +165,17 @@ public class Game {
         reactor.setExit("dorm", hallwayReactorDormitory, false);
         reactor.setExit("medbay", hallwayReactorMedical, false);
         reactor.setExit("storage", hallwayReactorStorage, false);
-        
+
         // Set the current room to "computer" (Possibly moved to character class)
         characterCurrentRooms.put("Computer", computerRoom);
         characterCurrentRooms.put("Control", controlRoom);
         characterCurrentRooms.put("Dorm", dormitory);
         winConditionRoom = escapePod;
+   //     dormitory.setHasZuul = true;
     }
-    
+
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
-    private void createCharacter(){
+    private void createCharacter() {
         this.characters.add(new Hero(characterCurrentRooms.get("Computer")));
         this.characters.add(new Zuul(characterCurrentRooms.get("Dorm")));
         this.characters.add(new TechDude(characterCurrentRooms.get("Control")));
@@ -192,7 +193,7 @@ public class Game {
             this.currentCharacter = this.chooseCharacter();
             Command command = parser.getCommand();
             finished = processCommand(command);
-            
+
             finished = winTest();
         }
         // Print goodbye message when user exits game.
@@ -309,53 +310,52 @@ public class Game {
             return true;
         }
     }
-    
-    private void printStopMessage(String reason){
-        
-        if (reason == "win"){
+
+    private void printStopMessage(String reason) {
+
+        if (reason == "win") {
             double point = pointCalculation();
             System.out.println("Congratulations, you won the game");
-            System.out.printf("You got %f.2 points \n ",point);
-        }
-        else if (reason == "lose"){
+            System.out.printf("You got %f.2 points \n ", point);
+        } else if (reason == "lose") {
             System.out.println("You died and therefore lost the game");
-        }
-        else {
+        } else {
             System.out.println("You quit the current instance of the game");
         }
     }
+
     //£
-    private double pointCalculation(){
-        
-        Hero hero = (Hero)(characters.get(0));
+    private double pointCalculation() {
+
+        Hero hero = (Hero) (characters.get(0));
         USB usb;
         HashSet<String> pointSet = new HashSet<>();
-        
-        for (int i = 1 ; i<4 ; i++){
+
+        for (int i = 1; i < 4; i++) {
             String name = "USB " + i;
-            usb = (USB)hero.getInventory().getItem(name);
-            if (usb != null){
+            usb = (USB) hero.getInventory().getItem(name);
+            if (usb != null) {
                 if (usb.getDataType() != null) {
                     System.out.println("You got the " + usb.getDataType() + " data");
                     pointSet.add(usb.getDataType());
                 }
             }
         }
-        
-        double point = (pointSet.size()*5+5)*(1+(5/(hero.getCharacterInitiative()+5)));
+
+        double point = (pointSet.size() * 5 + 5) * (1 + (5 / (hero.getCharacterInitiative() + 5)));
         return point;
     }
-    
-    private boolean winTest(){
+
+    private boolean winTest() {
         boolean finished = false;
-        if(characters.get(0).getCurrentRoom().equals(winConditionRoom)){
+        if (characters.get(0).getCurrentRoom().equals(winConditionRoom)) {
             finished = true;
-            printStopMessage("win");
+            printStopMessage("congratulation you escaped the space station, you won");
         }
         return finished;
     }
 
-    public boolean lose() {
+    private boolean lose() {
         boolean sameRoom = false;
         boolean zuulHadTurn = false;
 
@@ -375,12 +375,21 @@ public class Game {
         if ((sameRoom && currentCharacter == characters.get(0) && zuulHadTurn == true)
                 && characters.get(0).getCharacterInitiative() < (characters.
                 get(1).getCharacterInitiative() + 10)) {
-            printStopMessage("lose");
+            printStopMessage("you were caught and killed by the monster, you lost");
             return true;
         } else {
             return false;
         }
-      //      if (countdown )
+
     }
 
+    boolean TimerLose() {
+        double MaxInititative = Double.MAX_VALUE;
+        if (Hero.getInitiative > MaxInititative) {
+            printStopMessage("the reactor overloaded and blew up the spacestation, you lost");
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
