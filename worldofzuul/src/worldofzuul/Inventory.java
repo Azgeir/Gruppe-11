@@ -70,7 +70,7 @@ public class Inventory {
                 inventory.remove(item.getName());               
         }
         else
-            System.out.println("You dont have that item");
+            System.out.println("You don't have that item");
     }
     
     // iterates all items in the ArrayList corresponding to the key itemName,
