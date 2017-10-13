@@ -18,7 +18,7 @@ public class USB extends Item {
     
     // (£) This constructor creates an empty USB with default name and weight(?)
     public USB () {
-        super(1, "USB");
+        super(1, "USB", "do something");
         this.hasData = false;
         this.dataType = null;
     }
