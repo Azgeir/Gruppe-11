@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package worldofzuul;
-
+import java.util.Map;
 /**
  *
  * @author HCHB
@@ -95,7 +95,7 @@ public class Hero extends Character {
     public void seeInventory(Command command){
         this.inventory.showItems();
     }
-    
+        
     private void speedFactorCalculation(){
         double newSpeedFactor = 1+(this.inventory.getTotalWeight()/this.inventory.getMaxWeight())/2;
         this.setSpeedFactor(newSpeedFactor);
