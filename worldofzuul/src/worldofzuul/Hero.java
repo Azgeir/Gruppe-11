@@ -86,8 +86,32 @@ public class Hero extends Character {
         this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }
     
+    //£ should monster be called zuul
     public void peek(Command command){
         
+        String direction = command.getSecondWord();
+        
+        boolean zuulNearby = false;
+        for (Room neighbor : this.getCurrentRoom().getExits().values()){
+            if (neighbor.getHasZuul()){
+                System.out.println("Zuul is " + neighbor.getShortDescription());
+                zuulNearby = true;
+            }
+        }
+        
+        if (this.getCurrentRoom().getExits().keySet().size()>2){
+            Room neighbor = this.getCurrentRoom().getExit(direction);
+            if(neighbor.getExit(direction).getHasZuul()){
+                System.out.println("Zuul is " + neighbor.getExit(direction).getShortDescription());
+                zuulNearby = true;
+            }
+        }
+         
+         if (!zuulNearby){
+             System.out.println("There is no Zuul nearby");
+         }
+         
+         this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }
     
     public void lock(Command command){
