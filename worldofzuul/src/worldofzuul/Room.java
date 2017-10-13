@@ -42,11 +42,13 @@ public class Room
 
     // This method sets an available exit from the room with a specified 
     // direction string.
-    public void setExit(String direction, Room neighbor) 
+    public void setExit(String direction, Room neighbor, boolean locked) 
     {
         // Add exit to HashMap of exits
         exits.put(direction, neighbor);
+        lockedExits.put(direction, locked);
     }
+    
 
     // This method returns a short description of the room.
     public String getShortDescription()
