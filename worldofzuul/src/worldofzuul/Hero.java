@@ -67,7 +67,7 @@ public class Hero extends Character {
             }
         }
         else {
-            System.out.println("You don't have sush an item");
+            System.out.println("You don't have such an item");
         }
         
         this.speedFactorCalculation();

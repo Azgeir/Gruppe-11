@@ -66,11 +66,12 @@ public class Inventory {
             if (inventory.get(item.getName()).contains(item))
                 inventory.get(item.getName()).remove(item);
             
+            //Removes the key if the ArrayList is empty
             if (inventory.get(item.getName()).isEmpty())
                 inventory.remove(item.getName());               
         }
         else
-            System.out.println("You dont have that item");
+            System.out.println("You don't have that item");
     }
     
     // iterates all items in the ArrayList corresponding to the key itemName,

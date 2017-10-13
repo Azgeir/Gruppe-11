@@ -13,6 +13,7 @@ public class Game
 {
     // Data fields:
     private Parser parser;
+    // ArrayList is chosen because it allows us to know which character is chosen when the initiative is the same.
     private ArrayList<Character> characters = new ArrayList<>();
     private Character currentCharacter;
     private HashMap<String,Room> characterCurrentRooms = new HashMap<>();
@@ -201,8 +202,10 @@ public class Game
         // Print welcome message
         System.out.println();
         System.out.println("Welcome to Escape Pod!");
-        System.out.println("You are a Software engineer in a space station, and the emergency alarm have just gone off, you must find"
-                + "the other crew members, find out what is going on and find the escape pod if necessary");
+        System.out.println("\nYou are a Software engineer in a space station, and\n" +
+                "the emergency alarm have just gone off, you must find\n" +
+                "the other crew members, find out what is going on and\n" +
+                "find the escape pod if necessary.\n");
         System.out.println("Type '" + CommandWord.HELP + "' for more information about controls and the game.");
         System.out.println();
         // Description of current room of the player, including available exits.
