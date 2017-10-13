@@ -42,4 +42,9 @@ public class Item {
     public void use() {
         System.out.println("You use the " + this.name + " to " + this.useDescription);
     }
+    
+    // This method returns a description of the possible use of the item
+    public void getDescription() {
+        System.out.println("This is a " + this.name + ". You can use this to " + this.useDescription);
+    }
 }
