@@ -86,7 +86,18 @@ public class Hero extends Character {
     }
     
     public void peek(Command command){
+         /*
+        add zuul bolean in Room
+        call this.currentRoom.exit
         
+        for (exit.keyset){
+        hasZuul = currentroom1
+        hasZuul = currentroom2
+        hasZuul = rurrentroom3
+        }
+        if (keyset.size<3)
+        hasZuul = rurrentroom(direction.neighboor()
+        */
     }
     
     public void lock(Command command){
