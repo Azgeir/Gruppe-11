@@ -167,9 +167,9 @@ public class Game {
         reactor.setExit("storage", HallwayReactorStorage, false);
         
         // Set the current room to "computer" (Possibly moved to character class)
-        characterCurrentRooms.put("Computer",computerRoom);
-        characterCurrentRooms.put("Control",controlRoom);
-        characterCurrentRooms.put("Dorm",dormitory);
+        characterCurrentRooms.put("Computer", computerRoom);
+        characterCurrentRooms.put("Control", controlRoom);
+        characterCurrentRooms.put("Dorm", dormitory);
         winConditionRoom = escapePod;
     }
     
