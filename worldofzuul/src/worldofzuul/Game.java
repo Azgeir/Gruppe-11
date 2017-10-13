@@ -375,7 +375,7 @@ public class Game {
         if ((sameRoom && currentCharacter == characters.get(0) && zuulHadTurn == true)
                 && characters.get(0).getCharacterInitiative() < (characters.
                 get(1).getCharacterInitiative() + 10)) {
-            System.out.println("You lose");
+            printStopMessage("lose");
             return true;
         } else {
             return false;
