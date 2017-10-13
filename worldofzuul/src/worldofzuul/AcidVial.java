@@ -17,6 +17,7 @@ public class AcidVial extends Item {
     
     // (£) This constructor creates an acid vial with a specified damage amount
     public AcidVial(int damageAmount) {
+        super(5, "acid vial", "attack something.");
         this.damageAmount = damageAmount;
     }
     

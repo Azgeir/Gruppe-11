@@ -37,7 +37,7 @@ public class Hero extends Character {
         String itemName = command.getSecondWord();
         Item item = this.getCurrentRoom().getInventory().getItem(itemName);
         if (item == null){
-            System.out.println("The room doesn't contain that item");
+            System.out.println("The room doesn't contain that item.");
         }
         else{
             boolean itemAdded = this.inventory.addItem(item);
