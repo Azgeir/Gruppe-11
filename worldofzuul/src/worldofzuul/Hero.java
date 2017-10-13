@@ -6,7 +6,7 @@
 package worldofzuul;
 
 import java.util.Map;
-
+import java.util.Scanner;
 /**
  *
  * @author HCHB
@@ -135,6 +135,42 @@ public class Hero extends Character {
 
     public Inventory getInventory() {
         return inventory;
-    } 
+    }
+    
+    @Override
+    public Command getCommand(CommandWords commands) {
+        // Declare a String variable for the input
+        String inputLine;
+        
+        Scanner reader = new Scanner(System.in);
+        
+        // Set words 1 and 2 to null
+        String word1 = null;
+        String word2 = null;
+        String word3 = null;
 
+        // Print "> " to prompt user input
+        System.out.print("> ");
+
+        // Use Scanner to read input line from user
+        inputLine = reader.nextLine();
+
+        // Create a Scanner called tokenizer based on inputLine
+        Scanner tokenizer = new Scanner(inputLine);
+        // If the input line has a first word, assign it to word1
+        if(tokenizer.hasNext()) {
+            word1 = tokenizer.next();
+            // If the input line has a second word, assign it to word2
+            if(tokenizer.hasNext()) {
+                word2 = tokenizer.next();
+                //if the input line has a third word assign it to word3
+                if(tokenizer.hasNext()) {
+                    word3 = tokenizer.next();
+                }
+            }
+        }
+
+        // Create a Command object based on words 1 and 2, and return the command.
+        return new Command(commands.getCommandWord(word1), word2, word3);
+    }
 }

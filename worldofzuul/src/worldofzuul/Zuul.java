@@ -5,6 +5,8 @@
  */
 package worldofzuul;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author HCHB
@@ -51,6 +53,31 @@ public class Zuul extends Character {
         this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }
     
-    
+    @Override
+    public Command getCommand(CommandWords commands) {
+        // Set words 1, 2 and 3 to null
+        String word1 = null;
+        String word2 = null;
+        String word3 = null;
+        
+        ArrayList<String> exits = new ArrayList(this.getCurrentRoom().getExits().keySet());
+        
+        
+        int numberMoveActions = exits.size()+1;
+        int action = (int)(Math.random()*numberMoveActions);
+                
+        exits.add("stay");    
+        
+        if (numberMoveActions != (action+1)){
+            word1 = "go";
+            word2 = exits.get(action);
+        }
+        else {
+            word1 = exits.get(action);
+        }
+        
+        // Create a Command object based on words 1 and 2, and return the command.
+        return new Command(commands.getCommandWord(word1), word2, word3);
+    }
     
 }

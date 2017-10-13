@@ -49,5 +49,24 @@ public class TechDude extends Character {
         this.hero = hero;
     }
     
-    
+    @Override
+    public Command getCommand(CommandWords commands) {
+        // Declare a String variable for the input
+        String inputLine;
+        String word1, word2, word3;
+        
+       if (this.hasMetHero = false){
+           word1 = "stay";
+           word2 = null;
+           word3 = null;
+           return new Command(commands.getCommandWord(word1), word2, word3);
+       }
+       else {
+           word1 = "go";
+           word2 = null;
+           word3 = null;
+           return new Command(commands.getCommandWord(word1), word2, word3);
+           
+       }
+    }
 }
