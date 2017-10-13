@@ -2,6 +2,7 @@ package worldofzuul;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -15,8 +16,9 @@ public class Game {
     // ArrayList is chosen because it allows us to know which character is chosen when the initiative is the same.
     private ArrayList<Character> characters = new ArrayList<>();
     private Character currentCharacter;
-    private HashMap<String, Room> characterCurrentRooms = new HashMap<>();
-
+    private HashMap<String,Room> characterCurrentRooms = new HashMap<>();
+    private Room winConditionRoom;
+    
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() {
         //Create all rooms by calling the createRooms method
@@ -69,108 +71,110 @@ public class Game {
         HallwayReactorComputer = new Room("in the hallway between the reactor and the computer room");
 
         // Set possible exits for hallways between rooms
-        HallwayStorageComputer.setExit("storage", Storage);
-        HallwayStorageComputer.setExit("computer", Computer);
-
-        HallwayComputerBio.setExit("computer", Computer);
-        HallwayComputerBio.setExit("biolab", Biolab);
-
-        HallwayBioControl.setExit("control", Control);
-        HallwayBioControl.setExit("biolab", Biolab);
-
-        HallwayControlDock.setExit("control", Control);
-        HallwayControlDock.setExit("dock", Dock);
-
-        HallwayDockPhysics.setExit("physicslab", PhysicsLab);
-        HallwayDockPhysics.setExit("dock", Dock);
-
-        HallwayPhysicsDorm.setExit("physicslab", PhysicsLab);
-        HallwayPhysicsDorm.setExit("dorm", Dorm);
-
-        HallwayDormMed.setExit("medbay", Medbay);
-        HallwayDormMed.setExit("dorm", Dorm);
-
-        HallwayMedStorage.setExit("medbay", Medbay);
-        HallwayMedStorage.setExit("storage", Storage);
-
+        HallwayStorageComputer.setExit("storage", Storage, false);
+        HallwayStorageComputer.setExit("computer", Computer, false);
+        
+        HallwayComputerBio.setExit("computer", Computer, false);
+        HallwayComputerBio.setExit("biolab", Biolab, false);
+        
+        HallwayBioControl.setExit("control", Control, false);
+        HallwayBioControl.setExit("biolab", Biolab, false);
+        
+        HallwayControlDock.setExit("control", Control,false);
+        HallwayControlDock.setExit("dock", Dock, false);
+        
+        HallwayDockPhysics.setExit("physicslab", PhysicsLab, false);
+        HallwayDockPhysics.setExit("dock", Dock, false);
+        
+        HallwayPhysicsDorm.setExit("physicslab", PhysicsLab, false);
+        HallwayPhysicsDorm.setExit("dorm", Dorm, false);
+        
+        HallwayDormMed.setExit("medbay", Medbay, false);
+        HallwayDormMed.setExit("dorm", Dorm, false);
+        
+        HallwayMedStorage.setExit("medbay", Medbay, false);
+        HallwayMedStorage.setExit("storage", Storage, false);
+        
         // Set possible exits for hallways from the reactor
-        HallwayReactorBio.setExit("reactor", Reactor);
-        HallwayReactorBio.setExit("biolab", Biolab);
-
-        HallwayReactorControl.setExit("reactor", Reactor);
-        HallwayReactorControl.setExit("control", Control);
-
-        HallwayReactorDock.setExit("reactor", Reactor);
-        HallwayReactorDock.setExit("dock", Dock);
-
-        HallwayReactorPhysics.setExit("reactor", Reactor);
-        HallwayReactorPhysics.setExit("physics lab", PhysicsLab);
-
-        HallwayReactorDorm.setExit("reactor", Reactor);
-        HallwayReactorDorm.setExit("dorm", Dorm);
-
-        HallwayReactorMed.setExit("reactor", Reactor);
-        HallwayReactorMed.setExit("medbay", Medbay);
-
-        HallwayReactorStorage.setExit("reactor", Reactor);
-        HallwayReactorStorage.setExit("storage", Storage);
-
-        HallwayReactorComputer.setExit("reactor", Reactor);
-        HallwayReactorComputer.setExit("computer", Computer);
-
+        HallwayReactorBio.setExit("reactor", Reactor, false);
+        HallwayReactorBio.setExit("biolab", Biolab, false);
+        
+        HallwayReactorControl.setExit("reactor", Reactor, false);
+        HallwayReactorControl.setExit("control", Control, false);
+        
+        HallwayReactorDock.setExit("reactor", Reactor, false);
+        HallwayReactorDock.setExit("dock", Dock, false);
+        
+        HallwayReactorPhysics.setExit("reactor", Reactor, false);
+        HallwayReactorPhysics.setExit("physics lab", PhysicsLab, false);
+        
+        HallwayReactorDorm.setExit("reactor", Reactor, false);
+        HallwayReactorDorm.setExit("dorm", Dorm, false);
+        
+        HallwayReactorMed.setExit("reactor", Reactor, false);
+        HallwayReactorMed.setExit("medbay", Medbay, false);
+        
+        HallwayReactorStorage.setExit("reactor", Reactor, false);
+        HallwayReactorStorage.setExit("storage", Storage, false);
+        
+        HallwayReactorComputer.setExit("reactor", Reactor, false);
+        HallwayReactorComputer.setExit("computer", Computer, false);
+        
         // Set the possible exits for each room
-        Biolab.setExit("computer", HallwayComputerBio);
-        Biolab.setExit("control", HallwayBioControl);
-        Biolab.setExit("reactor", HallwayReactorBio);
+        Biolab.setExit("computer", HallwayComputerBio, false);
+        Biolab.setExit("control", HallwayBioControl, false);
+        Biolab.setExit("reactor", HallwayReactorBio, false);
+        
+        Control.setExit("biolab", HallwayBioControl, false);
+        Control.setExit("dock", HallwayControlDock, false);
+        Control.setExit("reactor", HallwayReactorControl, false);
 
-        Control.setExit("biolab", HallwayBioControl);
-        Control.setExit("dock", HallwayControlDock);
-        Control.setExit("reactor", HallwayReactorControl);
+        Dock.setExit("control", HallwayControlDock, false);
+        Dock.setExit("physicslab", HallwayDockPhysics, false);
+        Dock.setExit("reactor", HallwayReactorDock, false);
+        Dock.setExit("pod", Pod, false);
 
-        Dock.setExit("control", HallwayControlDock);
-        Dock.setExit("physicslab", HallwayDockPhysics);
-        Dock.setExit("reactor", HallwayReactorDock);
-        Dock.setExit("pod", Pod);
+        PhysicsLab.setExit("dock", HallwayDockPhysics, false);
+        PhysicsLab.setExit("dorm", HallwayPhysicsDorm, false);
+        PhysicsLab.setExit("reactor", HallwayReactorPhysics, false);
+        
+        Dorm.setExit("physicslab", HallwayPhysicsDorm, false);
+        Dorm.setExit("medbay", HallwayDormMed, false);
+        Dorm.setExit("reactor", HallwayReactorDorm, false);
 
-        PhysicsLab.setExit("dock", HallwayDockPhysics);
-        PhysicsLab.setExit("dorm", HallwayPhysicsDorm);
-        PhysicsLab.setExit("reactor", HallwayReactorPhysics);
-
-        Dorm.setExit("physicslab", HallwayPhysicsDorm);
-        Dorm.setExit("medbay", HallwayDormMed);
-        Dorm.setExit("reactor", HallwayReactorDorm);
-
-        Medbay.setExit("dorm", HallwayDormMed);
-        Medbay.setExit("storage", HallwayMedStorage);
-        Medbay.setExit("reactor", HallwayReactorMed);
-
-        Storage.setExit("medbay", HallwayMedStorage);
-        Storage.setExit("computer", HallwayStorageComputer);
-        Storage.setExit("reactor", HallwayReactorStorage);
-
-        Computer.setExit("storage", HallwayStorageComputer);
-        Computer.setExit("biolab", HallwayComputerBio);
-        Computer.setExit("reactor", HallwayReactorComputer);
-
-        Pod.setExit("dock", Dock);
-
+        Medbay.setExit("dorm", HallwayDormMed, false);
+        Medbay.setExit("storage", HallwayMedStorage, false);
+        Medbay.setExit("reactor", HallwayReactorMed, false);
+        
+        Storage.setExit("medbay", HallwayMedStorage, false);
+        Storage.setExit("computer", HallwayStorageComputer, false);
+        Storage.setExit("reactor", HallwayReactorStorage, false);
+        
+        Computer.setExit("storage", HallwayStorageComputer, false);
+        Computer.setExit("biolab", HallwayComputerBio, false);
+        Computer.setExit("reactor", HallwayReactorComputer, false);
+        
+        Pod.setExit("dock", Dock, false);
+        
         // Set the exits for the reactor room
-        Reactor.setExit("computer", HallwayReactorComputer);
-        Reactor.setExit("biolab", HallwayReactorBio);
-        Reactor.setExit("control", HallwayReactorControl);
-        Reactor.setExit("dock", HallwayReactorDock);
-        Reactor.setExit("physicslab", HallwayReactorPhysics);
-        Reactor.setExit("dorm", HallwayReactorDorm);
-        Reactor.setExit("medbay", HallwayReactorMed);
-        Reactor.setExit("storage", HallwayReactorStorage);
-
+        Reactor.setExit("computer", HallwayReactorComputer, false);
+        Reactor.setExit("biolab", HallwayReactorBio, false);
+        Reactor.setExit("control", HallwayReactorControl, false);
+        Reactor.setExit("dock", HallwayReactorDock, false);
+        Reactor.setExit("physicslab", HallwayReactorPhysics, false);
+        Reactor.setExit("dorm", HallwayReactorDorm, false);
+        Reactor.setExit("medbay", HallwayReactorMed, false);
+        Reactor.setExit("storage", HallwayReactorStorage, false);
+        
         // Set the current room to "computer" (Possibly moved to character class)
-        characterCurrentRooms.put("Computer", Computer);
-        characterCurrentRooms.put("Control", Control);
-        characterCurrentRooms.put("Dorm", Dorm);
+        characterCurrentRooms.put("Computer",Computer);
+        characterCurrentRooms.put("Control",Control);
+        characterCurrentRooms.put("Dorm",Dorm);
+        winConditionRoom = Pod;
     }
-
-    private void createCharacter() {
+    
+    // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
+    private void createCharacter(){
         this.characters.add(new Hero(characterCurrentRooms.get("Computer")));
         this.characters.add(new Zuul(characterCurrentRooms.get("Dorm")));
         this.characters.add(new TechDude(characterCurrentRooms.get("Control")));
@@ -188,6 +192,8 @@ public class Game {
             this.currentCharacter = this.chooseCharacter();
             Command command = parser.getCommand();
             finished = processCommand(command);
+            
+            finished = winTest();
         }
         // Print goodbye message when user exits game.
         System.out.println("Thank you for playing.  Good bye.");
@@ -299,8 +305,54 @@ public class Game {
             return false;
         } // If the command has no second word, return "true", which causes the game to end.
         else {
+            printStopMessage("quit");
             return true;
         }
+    }
+    
+    private void printStopMessage(String reason){
+        
+        if (reason == "win"){
+            double point = pointCalculation();
+            System.out.println("Congratulations, you won the game");
+            System.out.printf("You got %f.2 points \n ",point);
+        }
+        else if (reason == "lose"){
+            System.out.println("You died and terefore lost the game");
+        }
+        else {
+            System.out.println("You quit the current instance of the game");
+        }
+    }
+    //£
+    private double pointCalculation(){
+        
+        Hero hero = (Hero)(characters.get(0));
+        USB usb;
+        HashSet<String> pointSet = new HashSet<>();
+        
+        for (int i = 1 ; i<4 ; i++){
+            String name = "USB " + i;
+            usb = (USB)hero.getInventory().getItem(name);
+            if (usb != null){
+                if (usb.getDataType() != null) {
+                    System.out.println("You got the " + usb.getDataType() + " data");
+                    pointSet.add(usb.getDataType());
+                }
+            }
+        }
+        
+        double point = (pointSet.size()*5+5)*(1+(5/(hero.getCharacterInitiative()+5)));
+        return point;
+    }
+    
+    private boolean winTest(){
+        boolean finished = false;
+        if(characters.get(0).getCurrentRoom().equals(winConditionRoom)){
+            finished = true;
+            printStopMessage("win");
+        }
+        return finished;
     }
 
     public boolean lose() {
