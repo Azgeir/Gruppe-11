@@ -18,9 +18,10 @@ public class Item {
     private String useDescription; // Describes how the item is used
     
     // This constructor creates an item with the specified weight and name
-    public Item(int weight, String name) {
+    public Item(int weight, String name, String useDescription) {
         this.weight = weight;
         this.name = name;
+        this.useDescription = useDescription;
     }
     
     // This is an empty no-arg constructor
