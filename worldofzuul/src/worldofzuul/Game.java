@@ -30,19 +30,19 @@ public class Game {
     // This method creates the rooms of the game.
     private void createRooms() {
         // Declare the rooms
-        Room biolab, computerRoom, storage, medicalBay, dormitory, PhysicsLab, Dock, Control, Reactor, Pod;
+        Room biologyLaboratory, computerRoom, storage, medicalBay, dormitory, physicsLaboratory, dock, controlRoom, reactor, escapePod;
 
         // Initialize the rooms
-        biolab = new Room("in the biology laboratory");
+        biologyLaboratory = new Room("in the biology laboratory");
         computerRoom = new Room("in the computer room");
         storage = new Room("in the storage room");
         medicalBay = new Room("in the medical bay");
         dormitory = new Room("in the dormitory");
-        PhysicsLab = new Room("in the physics laboratory");
-        Dock = new Room("in the dock");
-        Control = new Room("in the control room");
-        Reactor = new Room("near the reactor");
-        Pod = new Room("in the escape pod");
+        physicsLaboratory = new Room("in the physics laboratory");
+        dock = new Room("in the dock");
+        controlRoom = new Room("in the control room");
+        reactor = new Room("near the reactor");
+        escapePod = new Room("in the escape pod");
 
         // Declare hallways between rooms
         Room HallwayStorageComputer, HallwayComputerBio, HallwayBioControl, HallwayControlDock, HallwayDockPhysics, HallwayPhysicsDorm, HallwayDormMed, HallwayMedStorage;
@@ -75,18 +75,18 @@ public class Game {
         HallwayStorageComputer.setExit("computer", computerRoom, false);
         
         HallwayComputerBio.setExit("computer", computerRoom, false);
-        HallwayComputerBio.setExit("biolab", biolab, false);
+        HallwayComputerBio.setExit("biolab", biologyLaboratory, false);
         
-        HallwayBioControl.setExit("control", Control, false);
-        HallwayBioControl.setExit("biolab", biolab, false);
+        HallwayBioControl.setExit("control", controlRoom, false);
+        HallwayBioControl.setExit("biolab", biologyLaboratory, false);
         
-        HallwayControlDock.setExit("control", Control,false);
-        HallwayControlDock.setExit("dock", Dock, false);
+        HallwayControlDock.setExit("control", controlRoom,false);
+        HallwayControlDock.setExit("dock", dock, false);
         
-        HallwayDockPhysics.setExit("physicslab", PhysicsLab, false);
-        HallwayDockPhysics.setExit("dock", Dock, false);
+        HallwayDockPhysics.setExit("physicslab", physicsLaboratory, false);
+        HallwayDockPhysics.setExit("dock", dock, false);
         
-        HallwayPhysicsDorm.setExit("physicslab", PhysicsLab, false);
+        HallwayPhysicsDorm.setExit("physicslab", physicsLaboratory, false);
         HallwayPhysicsDorm.setExit("dorm", dormitory, false);
         
         HallwayDormMed.setExit("medbay", medicalBay, false);
@@ -96,47 +96,47 @@ public class Game {
         HallwayMedStorage.setExit("storage", storage, false);
         
         // Set possible exits for hallways from the reactor
-        HallwayReactorBio.setExit("reactor", Reactor, false);
-        HallwayReactorBio.setExit("biolab", biolab, false);
+        HallwayReactorBio.setExit("reactor", reactor, false);
+        HallwayReactorBio.setExit("biolab", biologyLaboratory, false);
         
-        HallwayReactorControl.setExit("reactor", Reactor, false);
-        HallwayReactorControl.setExit("control", Control, false);
+        HallwayReactorControl.setExit("reactor", reactor, false);
+        HallwayReactorControl.setExit("control", controlRoom, false);
         
-        HallwayReactorDock.setExit("reactor", Reactor, false);
-        HallwayReactorDock.setExit("dock", Dock, false);
+        HallwayReactorDock.setExit("reactor", reactor, false);
+        HallwayReactorDock.setExit("dock", dock, false);
         
-        HallwayReactorPhysics.setExit("reactor", Reactor, false);
-        HallwayReactorPhysics.setExit("physics lab", PhysicsLab, false);
+        HallwayReactorPhysics.setExit("reactor", reactor, false);
+        HallwayReactorPhysics.setExit("physics lab", physicsLaboratory, false);
         
-        HallwayReactorDorm.setExit("reactor", Reactor, false);
+        HallwayReactorDorm.setExit("reactor", reactor, false);
         HallwayReactorDorm.setExit("dorm", dormitory, false);
         
-        HallwayReactorMed.setExit("reactor", Reactor, false);
+        HallwayReactorMed.setExit("reactor", reactor, false);
         HallwayReactorMed.setExit("medbay", medicalBay, false);
         
-        HallwayReactorStorage.setExit("reactor", Reactor, false);
+        HallwayReactorStorage.setExit("reactor", reactor, false);
         HallwayReactorStorage.setExit("storage", storage, false);
         
-        HallwayReactorComputer.setExit("reactor", Reactor, false);
+        HallwayReactorComputer.setExit("reactor", reactor, false);
         HallwayReactorComputer.setExit("computer", computerRoom, false);
         
         // Set the possible exits for each room
-        biolab.setExit("computer", HallwayComputerBio, false);
-        biolab.setExit("control", HallwayBioControl, false);
-        biolab.setExit("reactor", HallwayReactorBio, false);
+        biologyLaboratory.setExit("computer", HallwayComputerBio, false);
+        biologyLaboratory.setExit("control", HallwayBioControl, false);
+        biologyLaboratory.setExit("reactor", HallwayReactorBio, false);
         
-        Control.setExit("biolab", HallwayBioControl, false);
-        Control.setExit("dock", HallwayControlDock, false);
-        Control.setExit("reactor", HallwayReactorControl, false);
+        controlRoom.setExit("biolab", HallwayBioControl, false);
+        controlRoom.setExit("dock", HallwayControlDock, false);
+        controlRoom.setExit("reactor", HallwayReactorControl, false);
 
-        Dock.setExit("control", HallwayControlDock, false);
-        Dock.setExit("physicslab", HallwayDockPhysics, false);
-        Dock.setExit("reactor", HallwayReactorDock, false);
-        Dock.setExit("pod", Pod, false);
+        dock.setExit("control", HallwayControlDock, false);
+        dock.setExit("physicslab", HallwayDockPhysics, false);
+        dock.setExit("reactor", HallwayReactorDock, false);
+        dock.setExit("pod", escapePod, false);
 
-        PhysicsLab.setExit("dock", HallwayDockPhysics, false);
-        PhysicsLab.setExit("dorm", HallwayPhysicsDorm, false);
-        PhysicsLab.setExit("reactor", HallwayReactorPhysics, false);
+        physicsLaboratory.setExit("dock", HallwayDockPhysics, false);
+        physicsLaboratory.setExit("dorm", HallwayPhysicsDorm, false);
+        physicsLaboratory.setExit("reactor", HallwayReactorPhysics, false);
         
         dormitory.setExit("physicslab", HallwayPhysicsDorm, false);
         dormitory.setExit("medbay", HallwayDormMed, false);
@@ -154,23 +154,23 @@ public class Game {
         computerRoom.setExit("biolab", HallwayComputerBio, false);
         computerRoom.setExit("reactor", HallwayReactorComputer, false);
         
-        Pod.setExit("dock", Dock, false);
+        escapePod.setExit("dock", dock, false);
         
         // Set the exits for the reactor room
-        Reactor.setExit("computer", HallwayReactorComputer, false);
-        Reactor.setExit("biolab", HallwayReactorBio, false);
-        Reactor.setExit("control", HallwayReactorControl, false);
-        Reactor.setExit("dock", HallwayReactorDock, false);
-        Reactor.setExit("physicslab", HallwayReactorPhysics, false);
-        Reactor.setExit("dorm", HallwayReactorDorm, false);
-        Reactor.setExit("medbay", HallwayReactorMed, false);
-        Reactor.setExit("storage", HallwayReactorStorage, false);
+        reactor.setExit("computer", HallwayReactorComputer, false);
+        reactor.setExit("biolab", HallwayReactorBio, false);
+        reactor.setExit("control", HallwayReactorControl, false);
+        reactor.setExit("dock", HallwayReactorDock, false);
+        reactor.setExit("physicslab", HallwayReactorPhysics, false);
+        reactor.setExit("dorm", HallwayReactorDorm, false);
+        reactor.setExit("medbay", HallwayReactorMed, false);
+        reactor.setExit("storage", HallwayReactorStorage, false);
         
         // Set the current room to "computer" (Possibly moved to character class)
         characterCurrentRooms.put("Computer",computerRoom);
-        characterCurrentRooms.put("Control",Control);
+        characterCurrentRooms.put("Control",controlRoom);
         characterCurrentRooms.put("Dorm",dormitory);
-        winConditionRoom = Pod;
+        winConditionRoom = escapePod;
     }
     
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
