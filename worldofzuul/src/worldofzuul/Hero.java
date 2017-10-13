@@ -37,7 +37,7 @@ public class Hero extends Character {
         String itemName = command.getSecondWord();
         Item item = this.getCurrentRoom().getInventory().getItem(itemName);
         if (item == null){
-            System.out.println("The room doesn't contain that item");
+            System.out.println("The room doesn't contain that item.");
         }
         else{
             boolean itemAdded = this.inventory.addItem(item);
@@ -74,8 +74,15 @@ public class Hero extends Character {
         this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }
     
+    // £ Initiative
     public void lookAround(Command command){
-        
+        // Print hero's inventory
+        System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
+        // Print detailed description of room
+        System.out.println(this.getCurrentRoom().getDetailedDescription());
+        // Print status of exits
+        System.out.println(this.getCurrentRoom().getLockedExitString());
+        this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }
     
     public void peek(Command command){
@@ -100,5 +107,10 @@ public class Hero extends Character {
         double newSpeedFactor = 1+(this.inventory.getTotalWeight()/this.inventory.getMaxWeight())/2;
         this.setSpeedFactor(newSpeedFactor);
     }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+    
     
 }

@@ -25,7 +25,7 @@ public class Starter {
         do {
             // Call the play method on game.
             game.play();
-            System.out.println("Do you want to play again?\n Enter true or false");
+            System.out.print("Do you want to play again?\nEnter true or false: ");
             playAgain = input.nextBoolean();
             
         } while (playAgain);
