@@ -74,6 +74,7 @@ public class Hero extends Character {
         this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }
     
+    // £ Initiative
     public void lookAround(Command command){
         // Print hero's inventory
         System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
@@ -81,6 +82,7 @@ public class Hero extends Character {
         System.out.println(this.getCurrentRoom().getDetailedDescription());
         // Print status of exits
         System.out.println(this.getCurrentRoom().getLockedExitString());
+        this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }
     
     public void peek(Command command){
