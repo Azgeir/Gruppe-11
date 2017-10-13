@@ -16,6 +16,7 @@ public class Room
 {
     // Data fields:
     private String description; // Description of room
+    private String detailedDescription; // This description is called when player looks around
     private HashMap<String, Room> exits; // Available exits from room
     private Inventory inventory; // The place Items are sotred in the room
 
@@ -28,6 +29,12 @@ public class Room
         exits = new HashMap<String, Room>();
         // creates a inventory in the room with the sandard capacity (int max value)
         this.inventory = new Inventory();
+        this.detailedDescription = "You are in a hallway.";
+    }
+    
+    public Room(String description, String detailedDescription){
+        this(description);
+        this.detailedDescription = detailedDescription;
     }
 
     // This method sets an available exit from the room with a specified 
@@ -49,7 +56,12 @@ public class Room
     {
         return "You are " + description + ".\n" + getExitString();
     }
-
+    
+    // This method returns the detailed description
+    public String getDetailedDescription() {
+        return this.detailedDescription;
+    }
+    
     // This method returns a string with the available exits.
     private String getExitString()
     {
@@ -72,8 +84,5 @@ public class Room
     public Inventory getInventory() {
         return inventory;
     }
-
-    
-    
 }
 
