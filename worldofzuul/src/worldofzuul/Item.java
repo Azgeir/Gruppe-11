@@ -15,7 +15,7 @@ public class Item {
     // Data fields:
     private int weight; // The weight of the item
     private String name; // The name of the item
-    String useDescription; // Describes how the item is used
+    private String useDescription; // Describes how the item is used
     
     // This constructor creates an item with the specified weight and name
     public Item(int weight, String name) {
