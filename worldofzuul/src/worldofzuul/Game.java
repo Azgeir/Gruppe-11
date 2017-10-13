@@ -203,7 +203,7 @@ public class Game
         System.out.println();
         System.out.println("Welcome to Escape Pod!");
         System.out.println("\nYou are a Software engineer in a space station, and\n" +
-                "the emergency alarm have just gone off, you must find\n" +
+                "the emergency alarm has just gone off. You must find\n" +
                 "the other crew members, find out what is going on and\n" +
                 "find the escape pod if necessary.\n");
         System.out.println("Type '" + CommandWord.HELP + "' for more information about controls and the game.");
