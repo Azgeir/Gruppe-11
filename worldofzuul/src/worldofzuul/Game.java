@@ -197,10 +197,7 @@ public class Game
             Command command = parser.getCommand();
             finished = processCommand(command);
             
-            if(characters.get(0).getCurrentRoom().equals(winConditionRoom)){
-                finished = true;
-                printStopMessage("win");
-            }
+            finished = winTest();
         }
         // Print goodbye message when user exits game.
         System.out.println("Thank you for playing.  Good bye.");
@@ -361,5 +358,14 @@ public class Game
         
         double point = (pointSet.size()*5+5)*(1+(5/(hero.getCharacterInitiative()+5)));
         return point;
+    }
+    
+    private boolean winTest(){
+        boolean finished = false;
+        if(characters.get(0).getCurrentRoom().equals(winConditionRoom)){
+            finished = true;
+            printStopMessage("win");
+        }
+        return finished;
     }
 }
