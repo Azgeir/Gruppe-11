@@ -7,6 +7,8 @@ package worldofzuul;
 
 import java.util.Map;
 import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map.Entry;
 /**
  *
  * @author HCHB
@@ -110,9 +112,29 @@ public class Hero extends Character {
 
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
-
+    // all locks in the next room (if hallway) are locked, and then open the one thats supposed to be open
+    // because then we don't need to risk manipulating the exitlocked hashmaps keys
     public void lock(Command command) {
-
+        String direction = command.getSecondWord();
+        HashMap<String,Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
+                
+                lockedExits.put(direction, Boolean.TRUE);
+        
+        if (lockedExits.keySet().size() > 2){
+            HashMap<String, Boolean> nextRoomLocks = this.getCurrentRoom().getExits().get(direction).getLockedExits();
+            for (Entry<String, Boolean> door : nextRoomLocks.entrySet()){
+                door.setValue(Boolean.TRUE);
+            }
+            nextRoomLocks.put(direction, Boolean.FALSE);
+        }
+        else {
+            HashMap<String,Boolean> temp = new HashMap<>();
+            //for (){
+            //    this.getCurrentRoom().getExit(direction).getLockedExits().p;
+           // }
+           
+            
+        }
     }
 
     public void unlock(Command command) {
