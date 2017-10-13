@@ -22,7 +22,7 @@ public class MedKit extends Item {
     
     // (£)This constructor creates an instance of MedKit with a default health amount
     public MedKit() {
-        this.healthAmount = 50;
+        this.healthAmount = 5;
     }
     
     // This method returns the health amount of the MedKit

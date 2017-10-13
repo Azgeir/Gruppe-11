@@ -10,35 +10,35 @@ package worldofzuul;
  * @author HCHB
  */
 public class Character {
-    
+
     /*
     Initiative needs to be double because the speedfactor
     is a double
     Direction is needed for locking doors and peeking
-    */
+     */
     private Room currentRoom;
     private double characterInitiative;
     private double speedFactor;
     private String direction;
-    
-    public Character(){
+
+    public Character() {
         this.characterInitiative = 0;
         this.speedFactor = 1;
     }
-    
-    public Character (Room currentRoom){
+
+    public Character(Room currentRoom) {
         this();
         this.currentRoom = currentRoom;
     }
-    
-    public Character(double speedFactor, Room currentRoom){
+
+    public Character(double speedFactor, Room currentRoom) {
         this(currentRoom);
         this.speedFactor = speedFactor;
     }
-    
+
     //£ just copied from sourcecode Game.goRoom
-    public void go(Command command){
-        if(!command.hasSecondWord()) {
+    public void go(Command command) {
+        if (!command.hasSecondWord()) {
             System.out.println("Go where?");
             return;
         }
@@ -49,17 +49,16 @@ public class Character {
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
-        }
-        else {
+        } else {
             this.currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
-        this.characterInitiative += 5*this.speedFactor;
+        this.characterInitiative += 5 * this.speedFactor;
     }
-    
+
     //£
-    public void stay(Command command){
-        this.characterInitiative += 5*this.speedFactor;
+    public void stay(Command command) {
+        this.characterInitiative += 5 * this.speedFactor;
     }
 
     public Room getCurrentRoom() {
@@ -93,7 +92,5 @@ public class Character {
     public void setDirection(String direction) {
         this.direction = direction;
     }
-    
-    
-    
+
 }
