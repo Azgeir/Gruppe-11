@@ -2,6 +2,7 @@ package worldofzuul;
  
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
  /**
  * @author  Michael Kolling and David J. Barnes
@@ -17,6 +18,7 @@ public class Game
     private ArrayList<Character> characters = new ArrayList<>();
     private Character currentCharacter;
     private HashMap<String,Room> characterCurrentRooms = new HashMap<>();
+    private Room winConditionRoom;
     
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() 
@@ -171,6 +173,7 @@ public class Game
         characterCurrentRooms.put("Computer",Computer);
         characterCurrentRooms.put("Control",Control);
         characterCurrentRooms.put("Dorm",Dorm);
+        winConditionRoom = Pod;
     }
     private void createCharacter(){
         this.characters.add(new Hero(characterCurrentRooms.get("Computer")));
@@ -191,6 +194,11 @@ public class Game
             this.currentCharacter = this.chooseCharacter();
             Command command = parser.getCommand();
             finished = processCommand(command);
+            
+            if(characters.get(0).getCurrentRoom().equals(winConditionRoom)){
+                finished = true;
+                printStopMessage("win");
+            }
         }
         // Print goodbye message when user exits game.
         System.out.println("Thank you for playing.  Good bye.");
@@ -312,7 +320,44 @@ public class Game
         }
         // If the command has no second word, return "true", which causes the game to end.
         else {
+            printStopMessage("quit");
             return true;
         }
+    }
+    
+    private void printStopMessage(String reason){
+        
+        if (reason == "win"){
+            double point = pointCalculation();
+            System.out.println("Congratulations, you won the game");
+            System.out.printf("You got %f.2 points \n ",point);
+        }
+        else if (reason == "lose"){
+            System.out.println("You died and terefore lost the game");
+        }
+        else {
+            System.out.println("You quit the current instance of the game");
+        }
+    }
+    //£
+    private double pointCalculation(){
+        
+        Hero hero = (Hero)(characters.get(0));
+        USB usb;
+        HashSet<String> pointSet = new HashSet<>();
+        
+        for (int i = 1 ; i<4 ; i++){
+            String name = "USB " + i;
+            usb = (USB)hero.getInventory().getItem(name);
+            if (usb != null){
+                if (usb.getDataType() != null) {
+                    System.out.println("You got the " + usb.getDataType() + " data");
+                    pointSet.add(usb.getDataType());
+                }
+            }
+        }
+        
+        double point = (pointSet.size()*5+5)*(1+(5/(hero.getCharacterInitiative()+5)));
+        return point;
     }
 }

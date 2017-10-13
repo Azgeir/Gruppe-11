@@ -100,5 +100,10 @@ public class Hero extends Character {
         double newSpeedFactor = 1+(this.inventory.getTotalWeight()/this.inventory.getMaxWeight())/2;
         this.setSpeedFactor(newSpeedFactor);
     }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+    
     
 }
