@@ -45,17 +45,17 @@ public class Game {
         escapePod = new Room("in the escape pod");
 
         // Declare hallways between rooms
-        Room HallwayStorageComputer, HallwayComputerBio, HallwayBioControl, HallwayControlDock, HallwayDockPhysics, HallwayPhysicsDorm, HallwayDormMed, HallwayMedStorage;
+        Room hallwayStorageComputer, hallwayComputerBiology, hallwayBiologyControl, hallwayControlDock, hallwayDockPhysics, hallwayPhysicsDormitory, hallwayDormitoryMedical, hallwayMedicalStorage;
 
         // Initialize the hallways between the outer rooms
-        HallwayStorageComputer = new Room("in the hallway between the storage and computer rooms");
-        HallwayComputerBio = new Room("in the hallway between the storage room and the biology laboratory");
-        HallwayBioControl = new Room("in the hallway between the biology laboratory and the control room");
-        HallwayControlDock = new Room("in the hallway between the control room and the dock");
-        HallwayDockPhysics = new Room("in the hallway between the dock and the physics laboratory");
-        HallwayPhysicsDorm = new Room("in the hallway between the physics laboratory and the dormitory");
-        HallwayDormMed = new Room("in the hallway between the dormitory and the medical bay");
-        HallwayMedStorage = new Room("in the hallway between the medical bay and the storage room");
+        hallwayStorageComputer = new Room("in the hallway between the storage and computer rooms");
+        hallwayComputerBiology = new Room("in the hallway between the storage room and the biology laboratory");
+        hallwayBiologyControl = new Room("in the hallway between the biology laboratory and the control room");
+        hallwayControlDock = new Room("in the hallway between the control room and the dock");
+        hallwayDockPhysics = new Room("in the hallway between the dock and the physics laboratory");
+        hallwayPhysicsDormitory = new Room("in the hallway between the physics laboratory and the dormitory");
+        hallwayDormitoryMedical = new Room("in the hallway between the dormitory and the medical bay");
+        hallwayMedicalStorage = new Room("in the hallway between the medical bay and the storage room");
 
         // Declare hallways connected to the reactor
         Room HallwayReactorBio, HallwayReactorControl, HallwayReactorDock, HallwayReactorPhysics, HallwayReactorDorm, HallwayReactorMed, HallwayReactorStorage, HallwayReactorComputer;
@@ -71,29 +71,29 @@ public class Game {
         HallwayReactorComputer = new Room("in the hallway between the reactor and the computer room");
 
         // Set possible exits for hallways between rooms
-        HallwayStorageComputer.setExit("storage", storage, false);
-        HallwayStorageComputer.setExit("computer", computerRoom, false);
+        hallwayStorageComputer.setExit("storage", storage, false);
+        hallwayStorageComputer.setExit("computer", computerRoom, false);
         
-        HallwayComputerBio.setExit("computer", computerRoom, false);
-        HallwayComputerBio.setExit("biolab", biologyLaboratory, false);
+        hallwayComputerBiology.setExit("computer", computerRoom, false);
+        hallwayComputerBiology.setExit("biolab", biologyLaboratory, false);
         
-        HallwayBioControl.setExit("control", controlRoom, false);
-        HallwayBioControl.setExit("biolab", biologyLaboratory, false);
+        hallwayBiologyControl.setExit("control", controlRoom, false);
+        hallwayBiologyControl.setExit("biolab", biologyLaboratory, false);
         
-        HallwayControlDock.setExit("control", controlRoom,false);
-        HallwayControlDock.setExit("dock", dock, false);
+        hallwayControlDock.setExit("control", controlRoom,false);
+        hallwayControlDock.setExit("dock", dock, false);
         
-        HallwayDockPhysics.setExit("physicslab", physicsLaboratory, false);
-        HallwayDockPhysics.setExit("dock", dock, false);
+        hallwayDockPhysics.setExit("physicslab", physicsLaboratory, false);
+        hallwayDockPhysics.setExit("dock", dock, false);
         
-        HallwayPhysicsDorm.setExit("physicslab", physicsLaboratory, false);
-        HallwayPhysicsDorm.setExit("dorm", dormitory, false);
+        hallwayPhysicsDormitory.setExit("physicslab", physicsLaboratory, false);
+        hallwayPhysicsDormitory.setExit("dorm", dormitory, false);
         
-        HallwayDormMed.setExit("medbay", medicalBay, false);
-        HallwayDormMed.setExit("dorm", dormitory, false);
+        hallwayDormitoryMedical.setExit("medbay", medicalBay, false);
+        hallwayDormitoryMedical.setExit("dorm", dormitory, false);
         
-        HallwayMedStorage.setExit("medbay", medicalBay, false);
-        HallwayMedStorage.setExit("storage", storage, false);
+        hallwayMedicalStorage.setExit("medbay", medicalBay, false);
+        hallwayMedicalStorage.setExit("storage", storage, false);
         
         // Set possible exits for hallways from the reactor
         HallwayReactorBio.setExit("reactor", reactor, false);
@@ -121,37 +121,37 @@ public class Game {
         HallwayReactorComputer.setExit("computer", computerRoom, false);
         
         // Set the possible exits for each room
-        biologyLaboratory.setExit("computer", HallwayComputerBio, false);
-        biologyLaboratory.setExit("control", HallwayBioControl, false);
+        biologyLaboratory.setExit("computer", hallwayComputerBiology, false);
+        biologyLaboratory.setExit("control", hallwayBiologyControl, false);
         biologyLaboratory.setExit("reactor", HallwayReactorBio, false);
         
-        controlRoom.setExit("biolab", HallwayBioControl, false);
-        controlRoom.setExit("dock", HallwayControlDock, false);
+        controlRoom.setExit("biolab", hallwayBiologyControl, false);
+        controlRoom.setExit("dock", hallwayControlDock, false);
         controlRoom.setExit("reactor", HallwayReactorControl, false);
 
-        dock.setExit("control", HallwayControlDock, false);
-        dock.setExit("physicslab", HallwayDockPhysics, false);
+        dock.setExit("control", hallwayControlDock, false);
+        dock.setExit("physicslab", hallwayDockPhysics, false);
         dock.setExit("reactor", HallwayReactorDock, false);
         dock.setExit("pod", escapePod, false);
 
-        physicsLaboratory.setExit("dock", HallwayDockPhysics, false);
-        physicsLaboratory.setExit("dorm", HallwayPhysicsDorm, false);
+        physicsLaboratory.setExit("dock", hallwayDockPhysics, false);
+        physicsLaboratory.setExit("dorm", hallwayPhysicsDormitory, false);
         physicsLaboratory.setExit("reactor", HallwayReactorPhysics, false);
         
-        dormitory.setExit("physicslab", HallwayPhysicsDorm, false);
-        dormitory.setExit("medbay", HallwayDormMed, false);
+        dormitory.setExit("physicslab", hallwayPhysicsDormitory, false);
+        dormitory.setExit("medbay", hallwayDormitoryMedical, false);
         dormitory.setExit("reactor", HallwayReactorDorm, false);
 
-        medicalBay.setExit("dorm", HallwayDormMed, false);
-        medicalBay.setExit("storage", HallwayMedStorage, false);
+        medicalBay.setExit("dorm", hallwayDormitoryMedical, false);
+        medicalBay.setExit("storage", hallwayMedicalStorage, false);
         medicalBay.setExit("reactor", HallwayReactorMed, false);
         
-        storage.setExit("medbay", HallwayMedStorage, false);
-        storage.setExit("computer", HallwayStorageComputer, false);
+        storage.setExit("medbay", hallwayMedicalStorage, false);
+        storage.setExit("computer", hallwayStorageComputer, false);
         storage.setExit("reactor", HallwayReactorStorage, false);
         
-        computerRoom.setExit("storage", HallwayStorageComputer, false);
-        computerRoom.setExit("biolab", HallwayComputerBio, false);
+        computerRoom.setExit("storage", hallwayStorageComputer, false);
+        computerRoom.setExit("biolab", hallwayComputerBiology, false);
         computerRoom.setExit("reactor", HallwayReactorComputer, false);
         
         escapePod.setExit("dock", dock, false);
