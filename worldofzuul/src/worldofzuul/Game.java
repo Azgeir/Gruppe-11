@@ -175,6 +175,8 @@ public class Game
         characterCurrentRooms.put("Dorm",Dorm);
         winConditionRoom = Pod;
     }
+    
+    // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
     private void createCharacter(){
         this.characters.add(new Hero(characterCurrentRooms.get("Computer")));
         this.characters.add(new Zuul(characterCurrentRooms.get("Dorm")));
