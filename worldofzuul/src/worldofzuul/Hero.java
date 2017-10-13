@@ -75,7 +75,10 @@ public class Hero extends Character {
     }
     
     public void lookAround(Command command){
-        
+        // Print hero's inventory
+        // Print detailed description of room
+        System.out.println(this.getCurrentRoom().getDetailedDescription());
+        // Print exit string
     }
     
     public void peek(Command command){

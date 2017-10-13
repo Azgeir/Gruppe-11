@@ -18,6 +18,7 @@ public class Room
     private String description; // Description of room
     private String detailedDescription; // This description is called when player looks around
     private HashMap<String, Room> exits; // Available exits from room
+    private HashMap<String, Boolean> lockedExits; // List if exits are locked (true = locked, false = unlocked)
     private Inventory inventory; // The place Items are sotred in the room
 
     // This constructor creates a Room with a specified description string.
@@ -27,6 +28,7 @@ public class Room
         this.description = description;
         // Create HashMap for exits
         exits = new HashMap<String, Room>();
+        lockedExits = new HashMap<String, Boolean>();
         // creates a inventory in the room with the sandard capacity (int max value)
         this.inventory = new Inventory();
         this.detailedDescription = "You are in a hallway.";
