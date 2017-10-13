@@ -103,5 +103,22 @@ public class Room
         }
         return returnString;
     }
+
+    public void setHasZuul(boolean hasZuul) {
+        this.hasZuul = hasZuul;
+    }
+
+    public HashMap<String, Room> getExits() {
+        return exits;
+    }
+
+    public boolean getHasZuul() {
+        return hasZuul;
+    }
+    
+    
+    
+    
+    
     
 }
