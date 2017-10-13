@@ -76,7 +76,7 @@ public class Hero extends Character {
     
     public void lookAround(Command command){
         // Print hero's inventory
-        
+        System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
         // Print detailed description of room
         System.out.println(this.getCurrentRoom().getDetailedDescription());
         // Print status of exits
