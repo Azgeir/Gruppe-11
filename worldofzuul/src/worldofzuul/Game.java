@@ -30,14 +30,14 @@ public class Game {
     // This method creates the rooms of the game.
     private void createRooms() {
         // Declare the rooms
-        Room biolab, computer, Storage, Medbay, Dorm, PhysicsLab, Dock, Control, Reactor, Pod;
+        Room biolab, computerRoom, storage, medicalBay, dormitory, PhysicsLab, Dock, Control, Reactor, Pod;
 
         // Initialize the rooms
         biolab = new Room("in the biology laboratory");
-        computer = new Room("in the computer room");
-        Storage = new Room("in the storage room");
-        Medbay = new Room("in the medical bay");
-        Dorm = new Room("in the dormitory");
+        computerRoom = new Room("in the computer room");
+        storage = new Room("in the storage room");
+        medicalBay = new Room("in the medical bay");
+        dormitory = new Room("in the dormitory");
         PhysicsLab = new Room("in the physics laboratory");
         Dock = new Room("in the dock");
         Control = new Room("in the control room");
@@ -71,10 +71,10 @@ public class Game {
         HallwayReactorComputer = new Room("in the hallway between the reactor and the computer room");
 
         // Set possible exits for hallways between rooms
-        HallwayStorageComputer.setExit("storage", Storage, false);
-        HallwayStorageComputer.setExit("computer", computer, false);
+        HallwayStorageComputer.setExit("storage", storage, false);
+        HallwayStorageComputer.setExit("computer", computerRoom, false);
         
-        HallwayComputerBio.setExit("computer", computer, false);
+        HallwayComputerBio.setExit("computer", computerRoom, false);
         HallwayComputerBio.setExit("biolab", biolab, false);
         
         HallwayBioControl.setExit("control", Control, false);
@@ -87,13 +87,13 @@ public class Game {
         HallwayDockPhysics.setExit("dock", Dock, false);
         
         HallwayPhysicsDorm.setExit("physicslab", PhysicsLab, false);
-        HallwayPhysicsDorm.setExit("dorm", Dorm, false);
+        HallwayPhysicsDorm.setExit("dorm", dormitory, false);
         
-        HallwayDormMed.setExit("medbay", Medbay, false);
-        HallwayDormMed.setExit("dorm", Dorm, false);
+        HallwayDormMed.setExit("medbay", medicalBay, false);
+        HallwayDormMed.setExit("dorm", dormitory, false);
         
-        HallwayMedStorage.setExit("medbay", Medbay, false);
-        HallwayMedStorage.setExit("storage", Storage, false);
+        HallwayMedStorage.setExit("medbay", medicalBay, false);
+        HallwayMedStorage.setExit("storage", storage, false);
         
         // Set possible exits for hallways from the reactor
         HallwayReactorBio.setExit("reactor", Reactor, false);
@@ -109,16 +109,16 @@ public class Game {
         HallwayReactorPhysics.setExit("physics lab", PhysicsLab, false);
         
         HallwayReactorDorm.setExit("reactor", Reactor, false);
-        HallwayReactorDorm.setExit("dorm", Dorm, false);
+        HallwayReactorDorm.setExit("dorm", dormitory, false);
         
         HallwayReactorMed.setExit("reactor", Reactor, false);
-        HallwayReactorMed.setExit("medbay", Medbay, false);
+        HallwayReactorMed.setExit("medbay", medicalBay, false);
         
         HallwayReactorStorage.setExit("reactor", Reactor, false);
-        HallwayReactorStorage.setExit("storage", Storage, false);
+        HallwayReactorStorage.setExit("storage", storage, false);
         
         HallwayReactorComputer.setExit("reactor", Reactor, false);
-        HallwayReactorComputer.setExit("computer", computer, false);
+        HallwayReactorComputer.setExit("computer", computerRoom, false);
         
         // Set the possible exits for each room
         biolab.setExit("computer", HallwayComputerBio, false);
@@ -138,21 +138,21 @@ public class Game {
         PhysicsLab.setExit("dorm", HallwayPhysicsDorm, false);
         PhysicsLab.setExit("reactor", HallwayReactorPhysics, false);
         
-        Dorm.setExit("physicslab", HallwayPhysicsDorm, false);
-        Dorm.setExit("medbay", HallwayDormMed, false);
-        Dorm.setExit("reactor", HallwayReactorDorm, false);
+        dormitory.setExit("physicslab", HallwayPhysicsDorm, false);
+        dormitory.setExit("medbay", HallwayDormMed, false);
+        dormitory.setExit("reactor", HallwayReactorDorm, false);
 
-        Medbay.setExit("dorm", HallwayDormMed, false);
-        Medbay.setExit("storage", HallwayMedStorage, false);
-        Medbay.setExit("reactor", HallwayReactorMed, false);
+        medicalBay.setExit("dorm", HallwayDormMed, false);
+        medicalBay.setExit("storage", HallwayMedStorage, false);
+        medicalBay.setExit("reactor", HallwayReactorMed, false);
         
-        Storage.setExit("medbay", HallwayMedStorage, false);
-        Storage.setExit("computer", HallwayStorageComputer, false);
-        Storage.setExit("reactor", HallwayReactorStorage, false);
+        storage.setExit("medbay", HallwayMedStorage, false);
+        storage.setExit("computer", HallwayStorageComputer, false);
+        storage.setExit("reactor", HallwayReactorStorage, false);
         
-        computer.setExit("storage", HallwayStorageComputer, false);
-        computer.setExit("biolab", HallwayComputerBio, false);
-        computer.setExit("reactor", HallwayReactorComputer, false);
+        computerRoom.setExit("storage", HallwayStorageComputer, false);
+        computerRoom.setExit("biolab", HallwayComputerBio, false);
+        computerRoom.setExit("reactor", HallwayReactorComputer, false);
         
         Pod.setExit("dock", Dock, false);
         
@@ -167,9 +167,9 @@ public class Game {
         Reactor.setExit("storage", HallwayReactorStorage, false);
         
         // Set the current room to "computer" (Possibly moved to character class)
-        characterCurrentRooms.put("Computer",computer);
+        characterCurrentRooms.put("Computer",computerRoom);
         characterCurrentRooms.put("Control",Control);
-        characterCurrentRooms.put("Dorm",Dorm);
+        characterCurrentRooms.put("Dorm",dormitory);
         winConditionRoom = Pod;
     }
     
