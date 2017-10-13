@@ -4,6 +4,7 @@ package worldofzuul;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map.Entry;
 
 
 /**
@@ -86,5 +87,17 @@ public class Room
     public Inventory getInventory() {
         return inventory;
     }
-}
 
+    public HashMap<String, Boolean> getLockedExits() {
+        return lockedExits;
+    }
+    
+    public String getLockedExitString() {
+        String returnString = "The status of the exits:\n";
+        for (Entry<String, Boolean> exit : lockedExits.entrySet()) {
+            returnString += exit.getKey() + ": " + ((exit.getValue())?"locked\n":"open\n");
+        }
+        return returnString;
+    }
+    
+}
