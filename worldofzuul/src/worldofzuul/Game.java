@@ -234,6 +234,7 @@ public class Game
         }
         // If command is "go", call goRoom method
         else if (commandWord == CommandWord.GO) {
+            this.currentCharacter.go(command);
 //            goRoom(command);
         }
         // If command is "quit", change value of wantToQuit to true

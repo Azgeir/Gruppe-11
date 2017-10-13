@@ -15,6 +15,7 @@ public class Item {
     // Data fields:
     private int weight; // The weight of the item
     private String name; // The name of the item
+    String useDescription; // Describes how the item is used
     
     // This constructor creates an item with the specified weight and name
     public Item(int weight, String name) {
@@ -34,5 +35,10 @@ public class Item {
     // This method returns the name of the item
     public String getName() {
         return this.name;
+    }
+    
+    // This method prints a description of how the item is used
+    public void use() {
+        System.out.println("You use the " + this.name + " for " + this.useDescription);
     }
 }
