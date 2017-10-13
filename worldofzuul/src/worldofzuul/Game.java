@@ -191,7 +191,7 @@ public class Game {
         // As long as game is not finished, get and process user commands
         while (!finished) {
             this.currentCharacter = this.chooseCharacter();
-            Command command = parser.getCommand();
+            Command command = parser.getCommand(this.currentCharacter);
             finished = processCommand(command);
 
             finished = winTest();
@@ -273,31 +273,6 @@ public class Game {
         return currentCharacter;
     }
 
-// This method changes the value of current room based on the specified command.
-//    private void goRoom(Command command) 
-//    {
-//        // If the command does not have a second word (specifying direction), print error message and exit method.
-//        if(!command.hasSecondWord()) {
-//            System.out.println("Go where?");
-//            return;
-//        }
-//
-//        // If the command has a second word, assign second word to "direction".
-//        String direction = command.getSecondWord();
-//
-//        // Assign the Room in the specified direction to "nextRoom"
-//        Room nextRoom = currentRoom.getExit(direction);
-//
-//        // If "nextRoom" is null, print an error message.
-//        if (nextRoom == null) {
-//            System.out.println("There is no door!");
-//        }
-//        // If "nextRoom" is not null, change currentRoom to nextRoom, and print description of the new room.
-//        else {
-//            currentRoom = nextRoom;
-//            System.out.println(currentRoom.getLongDescription());
-//        }
-//    }
     // This method quits the game
     private boolean quit(Command command) {
         // If the "quit" command has a second word, print error message and exit method.

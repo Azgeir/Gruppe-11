@@ -92,5 +92,13 @@ public class Character {
     public void setDirection(String direction) {
         this.direction = direction;
     }
+    
+    public Command getCommand(CommandWords commands){
+        
+        String word1 = null;
+        String word2 = null;
+        String word3 = null;
+        return new Command(commands.getCommandWord(word1), word2, word3);
+    }
 
 }
