@@ -40,6 +40,6 @@ public class Item {
     
     // This method prints a description of how the item is used
     public void use() {
-        System.out.println("You use the " + this.name + " for " + this.useDescription);
+        System.out.println("You use the " + this.name + " to " + this.useDescription);
     }
 }
