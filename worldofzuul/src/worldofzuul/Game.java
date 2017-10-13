@@ -318,7 +318,7 @@ public class Game {
             System.out.printf("You got %f.2 points \n ",point);
         }
         else if (reason == "lose"){
-            System.out.println("You died and terefore lost the game");
+            System.out.println("You died and therefore lost the game");
         }
         else {
             System.out.println("You quit the current instance of the game");
