@@ -385,7 +385,7 @@ public class Game {
 
     boolean TimerLose() {
         double MaxInititative = Double.MAX_VALUE;
-        if (Hero.getInitiative > MaxInititative) {
+        if (characters.get(0).getCharacterInitiative() > MaxInititative) {
             printStopMessage("the reactor overloaded and blew up the spacestation, you lost");
             return true;
         } else {
