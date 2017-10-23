@@ -34,7 +34,6 @@ public class Zuul extends Character {
     @Override
     public void go(Command command){
         if(!command.hasSecondWord()) {
-            System.out.println("Go where?");
             return;
         }
 
@@ -43,12 +42,10 @@ public class Zuul extends Character {
         Room nextRoom = this.getCurrentRoom().getExit(direction);
 
         if (nextRoom == null) {
-            System.out.println("There is no door!");
         }
         else {
             this.previousRoom = this.getCurrentRoom();
             this.setCurrentRoom(nextRoom);
-            System.out.println(this.getCurrentRoom().getLongDescription());
         }
         this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }

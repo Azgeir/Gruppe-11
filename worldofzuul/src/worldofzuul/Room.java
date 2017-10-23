@@ -22,7 +22,6 @@ public class Room
     private HashMap<String, Boolean> lockedExits; // List if exits are locked (true = locked, false = unlocked)
     private Inventory inventory; // The place Items are sotred in the room
     private boolean hasZuul;
-    boolean setHasZuul;
 
     // This constructor creates a Room with a specified description string.
     public Room(String description) 

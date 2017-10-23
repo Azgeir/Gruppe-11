@@ -171,7 +171,7 @@ public class Game {
         characterCurrentRooms.put("Control", controlRoom);
         characterCurrentRooms.put("Dorm", dormitory);
         winConditionRoom = escapePod;
-        dormitory.setHasZuul = true;
+        dormitory.setHasZuul(true);
     }
 
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
@@ -212,7 +212,7 @@ public class Game {
         System.out.println("Type '" + CommandWord.HELP + "' for more information about controls and the game.");
         System.out.println();
         // Description of current room of the player, including available exits.
-        System.out.println(characterCurrentRooms.get("Dorm").getLongDescription());
+        System.out.println(characterCurrentRooms.get("Computer").getLongDescription());
     }
 
     // This method processes the command of the player (returns true if player wants to quit)
@@ -241,6 +241,9 @@ public class Game {
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
+        else if (commandWord == commandWord.STAY) {
+            this.currentCharacter.stay(command);
+        }
         // Return boolean value (false = continue playing; true = quit game)
         return wantToQuit;
     }
@@ -261,12 +264,10 @@ public class Game {
     private Character chooseCharacter() {
         Character currentCharacter = null;
         double minInitiative = Integer.MAX_VALUE;
-        boolean characterChosen = false;
         for (Character character : characters) {
             if (minInitiative > character.getCharacterInitiative()) {
                 minInitiative = character.getCharacterInitiative();
                 currentCharacter = character;
-                characterChosen = true;
             }
         }
 

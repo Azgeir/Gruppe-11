@@ -55,7 +55,7 @@ public class TechDude extends Character {
         String inputLine;
         String word1, word2, word3;
         
-       if (this.hasMetHero = false){
+       if (this.hasMetHero == false){
            word1 = "stay";
            word2 = null;
            word3 = null;
