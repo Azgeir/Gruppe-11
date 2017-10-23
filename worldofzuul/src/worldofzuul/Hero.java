@@ -75,7 +75,7 @@ public class Hero extends Character {
     }
 
     // £ Initiative
-    public void lookAround(Command command) {
+    public void look(Command command) {
         // Print hero's inventory
         System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
         // Print detailed description of room

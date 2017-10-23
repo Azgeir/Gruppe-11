@@ -10,7 +10,7 @@ public enum CommandWord
 {
     // Available commands:
     GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), PICKUP("pickup"),
-    DROP("drop"), STAY("stay"), LOOKAROUND("lookaround"), PEEK("peek"),
+    DROP("drop"), STAY("stay"), LOOK("look"), PEEK("peek"),
     USE("use"), LOCK("lock"), UNLOCK("unlock");
     
     // Command string of the command.
