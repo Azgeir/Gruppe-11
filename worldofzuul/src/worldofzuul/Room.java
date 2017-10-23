@@ -55,6 +55,11 @@ public class Room
         this.name = roomName;
     }
 
+    public String getName() {
+        return name;
+    }
+    
+
     // This method sets an available exit from the room with a specified 
     // direction string.
     public void setExit(String direction, Room neighbor, boolean locked) 
