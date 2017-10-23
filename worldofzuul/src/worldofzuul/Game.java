@@ -244,6 +244,30 @@ public class Game {
         else if (commandWord == commandWord.STAY) {
             this.currentCharacter.stay(command);
         }
+        else if (commandWord == CommandWord.PICKUP) {
+            
+        }
+        else if (commandWord == CommandWord.DROP) {
+            
+        }
+        else if (commandWord == CommandWord.STAY) {
+            
+        }
+        else if (commandWord == CommandWord.LOOK) {
+            
+        }
+        else if (commandWord == CommandWord.PEEK) {
+            
+        }
+        else if (commandWord == CommandWord.USE) {
+            
+        }
+        else if (commandWord == CommandWord.LOCK) {
+            
+        }
+        else if (commandWord == CommandWord.UNLOCK) {
+            
+        }
         // Return boolean value (false = continue playing; true = quit game)
         return wantToQuit;
     }

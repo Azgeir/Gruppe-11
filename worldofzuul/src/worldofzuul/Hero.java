@@ -119,7 +119,7 @@ public class Hero extends Character {
         HashMap<String,Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
         String getName = this.getCurrentRoom().getName();        
                 lockedExits.put(direction, Boolean.TRUE);
-        
+        // first try at creating a lock funktion
         if (lockedExits.keySet().size() > 2){
             HashMap<String, Boolean> nextRoomLocks = this.getCurrentRoom().getExits().get(direction).getLockedExits();
             for (Entry<String, Boolean> door : nextRoomLocks.entrySet()){
@@ -130,10 +130,9 @@ public class Hero extends Character {
         else {
             HashMap<String,Boolean> temp = new HashMap<>();
             
-            
         }
     }
-
+    
     public void unlock(Command command) {
         
     }
