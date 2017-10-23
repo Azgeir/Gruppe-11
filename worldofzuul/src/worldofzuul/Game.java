@@ -250,9 +250,6 @@ public class Game {
         else if (commandWord == CommandWord.DROP) {
             
         }
-        else if (commandWord == CommandWord.STAY) {
-            
-        }
         else if (commandWord == CommandWord.LOOK) {
             
         }
