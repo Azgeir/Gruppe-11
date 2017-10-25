@@ -23,6 +23,7 @@ public class Room
     private Inventory inventory; // The place Items are sotred in the room
     private boolean hasZuul; // checks if the room has the monster
     private String name; // Name of the room
+    private HashMap<String,Boolean> hasCharacter = new HashMap<>();
     
     // This constructor creates a Room with a specified description string.
     public Room(String description) 
@@ -36,23 +37,19 @@ public class Room
         this.inventory = new Inventory();
         this.detailedDescription = "You are in a hallway.";
         this.hasZuul = false;
+        this.hasCharacter.put("Hero", false);
+        this.hasCharacter.put("Zuul", false);
+        this.hasCharacter.put("TechDude", false);
     }
     
-  /*  public Room(String description, String detailedDescription){
-        this(description);
-        this.detailedDescription = detailedDescription;
-    }*/
-    
     public Room(String description, String roomName) {
-        // Set description
-        this.description = description;
-        // Create HashMap for exits
-        exits = new HashMap<String, Room>();
-        lockedExits = new HashMap<String, Boolean>();
-        // creates a inventory in the room with the sandard capacity (int max value)
-        this.inventory = new Inventory();
-        this.hasZuul = false;
+        this(description);
         this.name = roomName;
+    }
+    
+    public Room(String description,String roomName, String detailedDescription){
+        this(description,roomName);
+        this.detailedDescription = detailedDescription;
     }
 
     public String getName() {
@@ -134,7 +131,13 @@ public class Room
         return hasZuul;
     }
     
+    public boolean getHasCharacter(String character){
+        return this.hasCharacter.get(character);
+    }
     
+    public void setHasCharacter(String character, boolean presence){
+        hasCharacter.put(character, presence);
+    }
     
     
     

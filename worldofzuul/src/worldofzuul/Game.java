@@ -171,7 +171,9 @@ public class Game {
         characterCurrentRooms.put("Control", controlRoom);
         characterCurrentRooms.put("Dorm", dormitory);
         winConditionRoom = escapePod;
-        dormitory.setHasZuul(true);
+        dormitory.setHasCharacter("Zuul", true);
+        computerRoom.setHasCharacter("Hero", true);
+        controlRoom.setHasCharacter("TechDude", true);
     }
 
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
