@@ -37,6 +37,7 @@ public class Hero extends Character {
     }
 
     //£
+    @Override
     public void pickUp(Command command) {
         String itemName = command.getSecondWord();
         Item item = this.getCurrentRoom().getInventory().getItem(itemName);
@@ -56,6 +57,7 @@ public class Hero extends Character {
     }
 
     //£
+    @Override
     public void dropItem(Command command) {
         String itemName = command.getSecondWord();
         Item item = this.inventory.getItem(itemName);
@@ -75,6 +77,7 @@ public class Hero extends Character {
     }
 
     // £ Initiative
+    @Override
     public void look(Command command) {
         // Print hero's inventory
         System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
@@ -86,6 +89,7 @@ public class Hero extends Character {
     }
 
     //£ should monster be called zuul
+    @Override
     public void peek(Command command) {
 
         String direction = command.getSecondWord();
@@ -114,8 +118,11 @@ public class Hero extends Character {
     }
     // all locks in the next room (if hallway) are locked, and then open the one thats supposed to be open
     // because then we don't need to risk manipulating the exitlocked hashmaps keys
+    @Override
     public void lock(Command command) {
         String direction = command.getSecondWord();
+        String nextRoom = command.getSecondWord();
+        
         HashMap<String,Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
         String getName = this.getCurrentRoom().getName();        
                 lockedExits.put(direction, Boolean.TRUE);
@@ -133,9 +140,11 @@ public class Hero extends Character {
         }
     }
     
+    @Override
     public void unlock(Command command) {
         
     }
+    @Override
     public int use(Command command) {
 
         System.out.println("The use method cannot be used");

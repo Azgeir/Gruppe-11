@@ -253,25 +253,25 @@ public class Game {
             this.currentCharacter.stay(command);
         }
         else if (commandWord == CommandWord.PICKUP) {
-            
+            characters.get(0).pickUp(command);
         }
         else if (commandWord == CommandWord.DROP) {
-            
+            characters.get(0).dropItem(command);            
         }
         else if (commandWord == CommandWord.LOOK) {
-            
+            characters.get(0).look(command);
         }
         else if (commandWord == CommandWord.PEEK) {
-            
+            characters.get(0).peek(command);
         }
         else if (commandWord == CommandWord.USE) {
-            
+            characters.get(0).use(command);
         }
         else if (commandWord == CommandWord.LOCK) {
-            
+            characters.get(0).lock(command);
         }
         else if (commandWord == CommandWord.UNLOCK) {
-            
+            characters.get(0).unlock(command);
         }
         // Return boolean value (false = continue playing; true = quit game)
         return wantToQuit;
