@@ -59,20 +59,25 @@ public class Zuul extends Character {
         String word2 = null;
         String word3 = null;
         
-        ArrayList<String> exits = new ArrayList(this.getCurrentRoom().getExits().keySet());
-        
-        
-        int numberMoveActions = exits.size()+1;
-        int action = (int)(Math.random()*numberMoveActions);
-                
-        exits.add("stay");    
-        
-        if (numberMoveActions != (action+1)){
-            word1 = "go";
-            word2 = exits.get(action);
+        if (this.getCurrentRoom().getHasCharacter("Hero")) {
+            word1 = "Stay";
         }
         else {
-            word1 = exits.get(action);
+            ArrayList<String> exits = new ArrayList(this.getCurrentRoom().getExits().keySet());
+            
+            
+            int numberMoveActions = exits.size()+1;
+            int action = (int)(Math.random()*numberMoveActions);
+            
+            exits.add("stay");
+            
+            if (numberMoveActions != (action+1)){
+                word1 = "go";
+                word2 = exits.get(action);
+            }
+            else {
+                word1 = exits.get(action);
+            }
         }
         
         // Create a Command object based on words 1 and 2, and return the command.
