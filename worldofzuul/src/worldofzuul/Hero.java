@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
 /**
  *
  * @author HCHB
@@ -25,8 +26,8 @@ public class Hero extends Character {
         this.inventory = new Inventory(100);
     }
 
-    public Hero(Room currentRoom,String name) {
-        super(currentRoom,name);
+    public Hero(Room currentRoom, String name) {
+        super(currentRoom, name);
         this.inventory = new Inventory(100);
     }
 
@@ -116,34 +117,24 @@ public class Hero extends Character {
 
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
+
     // all locks in the next room (if hallway) are locked, and then open the one thats supposed to be open
     // because then we don't need to risk manipulating the exitlocked hashmaps keys
     @Override
     public void lock(Command command) {
         String direction = command.getSecondWord();
-        String nextRoom = command.getSecondWord();
-        
-        HashMap<String,Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
-        String getName = this.getCurrentRoom().getName();        
-                lockedExits.put(direction, Boolean.TRUE);
-        // first try at creating a lock funktion
-        if (lockedExits.keySet().size() > 2){
-            HashMap<String, Boolean> nextRoomLocks = this.getCurrentRoom().getExits().get(direction).getLockedExits();
-            for (Entry<String, Boolean> door : nextRoomLocks.entrySet()){
-                door.setValue(Boolean.TRUE);
-            }
-            nextRoomLocks.put(direction, Boolean.FALSE);
-        }
-        else {
-            HashMap<String,Boolean> temp = new HashMap<>();
-            
-        }
+        boolean lock = true;
+        this.lockUnlock(direction, lock);
+
     }
-    
+
     @Override
     public void unlock(Command command) {
-        
+        String direction = command.getSecondWord();
+        boolean lock = false;
+        this.lockUnlock(direction, lock);
     }
+
     @Override
     public int use(Command command) {
 
@@ -163,14 +154,14 @@ public class Hero extends Character {
     public Inventory getInventory() {
         return inventory;
     }
-    
+
     @Override
     public Command getCommand(CommandWords commands) {
         // Declare a String variable for the input
         String inputLine;
-        
+
         Scanner reader = new Scanner(System.in);
-        
+
         // Set words 1 and 2 to null
         String word1 = null;
         String word2 = null;
@@ -185,13 +176,13 @@ public class Hero extends Character {
         // Create a Scanner called tokenizer based on inputLine
         Scanner tokenizer = new Scanner(inputLine);
         // If the input line has a first word, assign it to word1
-        if(tokenizer.hasNext()) {
+        if (tokenizer.hasNext()) {
             word1 = tokenizer.next();
             // If the input line has a second word, assign it to word2
-            if(tokenizer.hasNext()) {
+            if (tokenizer.hasNext()) {
                 word2 = tokenizer.next();
                 //if the input line has a third word assign it to word3
-                if(tokenizer.hasNext()) {
+                if (tokenizer.hasNext()) {
                     word3 = tokenizer.next();
                 }
             }
@@ -199,5 +190,27 @@ public class Hero extends Character {
 
         // Create a Command object based on words 1 and 2, and return the command.
         return new Command(commands.getCommandWord(word1), word2, word3);
+    }
+
+    private void lockUnlock(String direction, boolean lock) {
+
+        HashMap<String, Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
+        String getName = this.getCurrentRoom().getName();
+        lockedExits.put(direction, Boolean.TRUE);
+        // first try at creating a lock funktion
+        if (lockedExits.keySet().size() > 2) {
+            this.getCurrentRoom().getLockedExits().put(direction, lock);
+            this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
+
+        } else {
+            this.getCurrentRoom().getLockedExits().put(direction, lock);
+
+            HashMap<String, Boolean> templockExits = new HashMap<>();
+            templockExits.putAll(this.getCurrentRoom().getLockedExits());
+            templockExits.remove(direction);
+            String direction2 = (String) templockExits.keySet().toArray()[0];
+            this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
+
+        }
     }
 }
