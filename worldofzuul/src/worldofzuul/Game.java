@@ -318,7 +318,7 @@ public class Game {
 
         if (reason == "win") {
             double point = pointCalculation();
-            System.out.println("Congratulations, you won the game");
+            System.out.println("Congratulation you escaped the space station, you won");
             System.out.printf("You got %f.2 points \n ", point);
         } 
         else if (reason == "lose") {
@@ -358,7 +358,7 @@ public class Game {
         boolean finished = false;
         if (characters.get(0).getCurrentRoom().equals(winConditionRoom)) {
             finished = true;
-            printStopMessage("congratulation you escaped the space station, you won");
+            printStopMessage("win");
         }
         return finished;
     }

@@ -78,11 +78,14 @@ public class Inventory {
     // when an element in the ArrayList is found that isn't null it is returned
     public Item getItem(String itemName){
         Item returnItem = null;
-        for (Item item : this.inventory.get(itemName)){
+        if (this.inventory.size()!=0) {
+            for (Item item : this.inventory.get(itemName)){
             if (item != null){
                 returnItem = item;
             }
         }
+        }
+        
         return returnItem;
     }
     
