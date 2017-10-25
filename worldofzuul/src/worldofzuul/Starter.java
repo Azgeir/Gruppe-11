@@ -11,23 +11,26 @@ import java.util.Scanner;
  *
  * @author Aske Wulf
  */
-
 // This class starts the game.
 public class Starter {
+
     // Main method
-    public static void main(String[] args){
+    public static void main(String[] args) {
         // Create an instance of Game.
-        
         boolean playAgain;
-        Scanner input = new Scanner(System.in);
-        
+
         do {
+            Scanner input = new Scanner(System.in);
+            playAgain = false;
             // Call the play method on game
             Game game = new Game();
             game.play();
-            System.out.print("Do you want to play again?\nEnter true or false: ");
-            playAgain = input.nextBoolean();
-            
+            System.out.print("Enter true if you want to continue\n");
+
+            if (input.hasNextBoolean() == true) {
+                playAgain = true;
+            }
+
         } while (playAgain);
     }
 }
