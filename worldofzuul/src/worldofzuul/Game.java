@@ -194,7 +194,9 @@ public class Game {
             Command command = parser.getCommand(this.currentCharacter);
             finished = processCommand(command);
             
-            finished = lose();
+            if (!finished) {
+                finished = lose();
+            }
             if (!finished) {
                 finished = winTest();
             }
