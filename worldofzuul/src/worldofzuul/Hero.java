@@ -121,6 +121,8 @@ public class Hero extends Character {
     @Override
     public void lock(Command command) {
         String direction = command.getSecondWord();
+        String nextRoom = command.getSecondWord();
+        
         HashMap<String,Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
         String getName = this.getCurrentRoom().getName();        
                 lockedExits.put(direction, Boolean.TRUE);
