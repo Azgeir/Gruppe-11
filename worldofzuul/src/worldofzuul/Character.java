@@ -56,7 +56,31 @@ public class Character {
         this.characterInitiative += 5 * this.speedFactor;
     }
 
-    //£
+    public void pickUp(Command command) {
+        System.out.println("This does nothing");
+    }
+
+    public void dropItem(Command command) {
+        System.out.println("This does nothing");
+    }
+    
+    public void look(Command command) {
+        System.out.println("This does nothing");
+    }
+    public void peek(Command command) {
+        System.out.println("This does nothing");
+    }
+    public int use(Command command) {
+        System.out.println("This does nothing");
+        return -1;
+    }
+    public void lock(Command command) {
+        System.out.println("This does nothing");
+    }
+    public void unlock(Command command) {
+        System.out.println("This does nothing");
+    }
+        //£
     public void stay(Command command) {
         this.characterInitiative += 5 * this.speedFactor;
     }
@@ -92,9 +116,9 @@ public class Character {
     public void setDirection(String direction) {
         this.direction = direction;
     }
-    
-    public Command getCommand(CommandWords commands){
-        
+
+    public Command getCommand(CommandWords commands) {
+
         String word1 = null;
         String word2 = null;
         String word3 = null;
