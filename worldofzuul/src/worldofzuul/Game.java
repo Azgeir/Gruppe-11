@@ -33,16 +33,16 @@ public class Game {
         Room biologyLaboratory, computerRoom, storage, medicalBay, dormitory, physicsLaboratory, dock, controlRoom, reactor, escapePod;
 
         // Initialize the rooms
-        biologyLaboratory = new Room("in the biology laboratory");
-        computerRoom = new Room("in the computer room");
-        storage = new Room("in the storage room");
-        medicalBay = new Room("in the medical bay");
-        dormitory = new Room("in the dormitory");
-        physicsLaboratory = new Room("in the physics laboratory");
-        dock = new Room("in the dock");
-        controlRoom = new Room("in the control room");
-        reactor = new Room("near the reactor");
-        escapePod = new Room("in the escape pod");
+        biologyLaboratory = new Room("in the biology laboratory", "biolab");
+        computerRoom = new Room("in the computer room", "computer");
+        storage = new Room("in the storage room", "storage");
+        medicalBay = new Room("in the medical bay", "medbay");
+        dormitory = new Room("in the dormitory", "dorm");
+        physicsLaboratory = new Room("in the physics laboratory", "physicslab");
+        dock = new Room("in the dock", "dock");
+        controlRoom = new Room("in the control room", "control");
+        reactor = new Room("near the reactor", "reactor");
+        escapePod = new Room("in the escape pod", "pod");
 
         // Declare hallways between rooms
         Room hallwayStorageComputer, hallwayComputerBiology, hallwayBiologyControl, hallwayControlDock, hallwayDockPhysics, hallwayPhysicsDormitory, hallwayDormitoryMedical, hallwayMedicalStorage;
@@ -247,6 +247,27 @@ public class Game {
         }
         else if (commandWord == commandWord.STAY) {
             this.currentCharacter.stay(command);
+        }
+        else if (commandWord == CommandWord.PICKUP) {
+            
+        }
+        else if (commandWord == CommandWord.DROP) {
+            
+        }
+        else if (commandWord == CommandWord.LOOK) {
+            
+        }
+        else if (commandWord == CommandWord.PEEK) {
+            
+        }
+        else if (commandWord == CommandWord.USE) {
+            
+        }
+        else if (commandWord == CommandWord.LOCK) {
+            
+        }
+        else if (commandWord == CommandWord.UNLOCK) {
+            
         }
         // Return boolean value (false = continue playing; true = quit game)
         return wantToQuit;

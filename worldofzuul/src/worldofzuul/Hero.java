@@ -75,7 +75,7 @@ public class Hero extends Character {
     }
 
     // £ Initiative
-    public void lookAround(Command command) {
+    public void look(Command command) {
         // Print hero's inventory
         System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
         // Print detailed description of room
@@ -117,9 +117,9 @@ public class Hero extends Character {
     public void lock(Command command) {
         String direction = command.getSecondWord();
         HashMap<String,Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
-                
+        String getName = this.getCurrentRoom().getName();        
                 lockedExits.put(direction, Boolean.TRUE);
-        
+        // first try at creating a lock funktion
         if (lockedExits.keySet().size() > 2){
             HashMap<String, Boolean> nextRoomLocks = this.getCurrentRoom().getExits().get(direction).getLockedExits();
             for (Entry<String, Boolean> door : nextRoomLocks.entrySet()){
@@ -129,14 +129,10 @@ public class Hero extends Character {
         }
         else {
             HashMap<String,Boolean> temp = new HashMap<>();
-            //for (){
-            //    this.getCurrentRoom().getExit(direction).getLockedExits().p;
-           // }
-           
             
         }
     }
-
+    
     public void unlock(Command command) {
         
     }
