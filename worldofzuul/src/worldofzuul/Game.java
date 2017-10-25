@@ -319,7 +319,7 @@ public class Game {
         if (reason == "win") {
             double point = pointCalculation();
             System.out.println("Congratulation you escaped the space station, you won");
-            System.out.printf("You got %f.2 points \n ", point);
+            System.out.printf("You got %1.2f points \n ", point);
         } 
         else if (reason == "lose") {
             System.out.println("You were caught and killed by the monster, you lost");
