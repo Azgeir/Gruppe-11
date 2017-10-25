@@ -204,8 +204,6 @@ public class Game {
             }
             
         }
-        // Print goodbye message when user exits game.
-        System.out.println("Thank you for playing.  Good bye.");
     }
 
     // This method prints the welcome message.

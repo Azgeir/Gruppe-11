@@ -20,24 +20,25 @@ public class Starter {
         boolean playAgain;
 
         do {
-            
+
             playAgain = false;
             // Call the play method on game
             Game game = new Game();
             game.play();
-            
+            System.out.println("Do you want to play again?");
+
             boolean correctInput = false;
             do {
                 Scanner input = new Scanner(System.in);
-                System.out.print("Enter true if you want to continue\n");
-                if (input.hasNextBoolean() == true) {
+                System.out.println("Enter 'true' to continue or 'false' to quit. ");
+                if (input.hasNextBoolean()) {
                     playAgain = input.nextBoolean();
                     correctInput = true;
                 }
-                
-                
-            }while (!correctInput);
-            
+
+            } while (!correctInput);
+
         } while (playAgain);
+        System.out.println("Thank you for playing. Goodbye");
     }
 }
