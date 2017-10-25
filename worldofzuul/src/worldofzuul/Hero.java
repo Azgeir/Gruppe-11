@@ -25,13 +25,13 @@ public class Hero extends Character {
         this.inventory = new Inventory(100);
     }
 
-    public Hero(Room currentRoom) {
-        super(currentRoom);
+    public Hero(Room currentRoom,String name) {
+        super(currentRoom,name);
         this.inventory = new Inventory(100);
     }
 
-    public Hero(int health, int capacity, Room currentRoom) {
-        this(currentRoom);
+    public Hero(int health, int capacity, Room currentRoom, String name) {
+        this(currentRoom, name);
         this.health = health;
         this.inventory = new Inventory(capacity);
     }
@@ -92,7 +92,7 @@ public class Hero extends Character {
 
         boolean zuulNearby = false;
         for (Room neighbor : this.getCurrentRoom().getExits().values()) {
-            if (neighbor.getHasZuul()) {
+            if (neighbor.getHasCharacter("Zuul")) {
                 System.out.println("Zuul is " + neighbor.getShortDescription());
                 zuulNearby = true;
             }
@@ -100,7 +100,7 @@ public class Hero extends Character {
 
         if (this.getCurrentRoom().getExits().keySet().size() > 2) {
             Room neighbor = this.getCurrentRoom().getExit(direction);
-            if (neighbor.getExit(direction).getHasZuul()) {
+            if (neighbor.getExit(direction).getHasCharacter("Zuul")) {
                 System.out.println("Zuul is " + neighbor.getExit(direction).getShortDescription());
                 zuulNearby = true;
             }

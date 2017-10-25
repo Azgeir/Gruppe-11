@@ -19,12 +19,12 @@ public class Zuul extends Character {
         
     }
     
-    public Zuul(Room currentRoom){
-        super(currentRoom);
+    public Zuul(Room currentRoom, String name){
+        super(currentRoom, name);
     }
     
-    public Zuul(Room currentRoom, double speedFactor){
-        super(speedFactor, currentRoom);
+    public Zuul(Room currentRoom, String name, double speedFactor){
+        super(currentRoom, name, speedFactor);
     }
     
     /*£
@@ -45,7 +45,9 @@ public class Zuul extends Character {
         }
         else {
             this.previousRoom = this.getCurrentRoom();
+            this.getCurrentRoom().setHasCharacter(this.getName(), false);
             this.setCurrentRoom(nextRoom);
+            this.getCurrentRoom().setHasCharacter(this.getName(), true);
         }
         this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }

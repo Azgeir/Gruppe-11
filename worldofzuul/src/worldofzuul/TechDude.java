@@ -20,16 +20,16 @@ public class TechDude extends Character {
    
     }
     
-    public TechDude(Room currentRoom){
-        super(currentRoom);
+    public TechDude(Room currentRoom, String name){
+        super(currentRoom, name);
 }
     
-    public TechDude(Room currentRoom, double speedFactor){
-        super(speedFactor, currentRoom);
+    public TechDude(Room currentRoom,String name, double speedFactor){
+        super(currentRoom, name, speedFactor);
     }
     
-    public TechDude(Room currentRoom, double speedFactor, int health){
-        this(currentRoom, speedFactor);
+    public TechDude(Room currentRoom, String name, double speedFactor, int health){
+        this(currentRoom, name, speedFactor);
         this.health = health;
     }
     
@@ -39,7 +39,9 @@ public class TechDude extends Character {
     */
     @Override
     public void go(Command command){
+        this.getCurrentRoom().setHasCharacter(this.getName(), false);
         this.setCurrentRoom(this.hero.getCurrentRoom());
+        this.getCurrentRoom().setHasCharacter(this.getName(), true);
         this.setCharacterInitiative(this.getCharacterInitiative()+5*super.getSpeedFactor());
     }
     

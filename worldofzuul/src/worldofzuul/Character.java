@@ -20,19 +20,21 @@ public class Character {
     private double characterInitiative;
     private double speedFactor;
     private String direction;
+    private String name;
 
     public Character() {
         this.characterInitiative = 0;
         this.speedFactor = 1;
     }
 
-    public Character(Room currentRoom) {
+    public Character(Room currentRoom, String name) {
         this();
         this.currentRoom = currentRoom;
+        this.name = name;
     }
 
-    public Character(double speedFactor, Room currentRoom) {
-        this(currentRoom);
+    public Character(Room currentRoom, String name, double speedFactor) {
+        this(currentRoom, name);
         this.speedFactor = speedFactor;
     }
 
@@ -50,7 +52,9 @@ public class Character {
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
+            this.getCurrentRoom().setHasCharacter(this.name, false);
             this.currentRoom = nextRoom;
+            this.getCurrentRoom().setHasCharacter(this.name, true);
             System.out.println(currentRoom.getLongDescription());
         }
         this.characterInitiative += 5 * this.speedFactor;
@@ -101,4 +105,9 @@ public class Character {
         return new Command(commands.getCommandWord(word1), word2, word3);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    
 }

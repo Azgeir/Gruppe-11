@@ -178,9 +178,9 @@ public class Game {
 
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
     private void createCharacter() {
-        this.characters.add(new Hero(characterCurrentRooms.get("Computer")));
-        this.characters.add(new Zuul(characterCurrentRooms.get("Dorm")));
-        this.characters.add(new TechDude(characterCurrentRooms.get("Control")));
+        this.characters.add(new Hero(characterCurrentRooms.get("Computer"), "Hero"));
+        this.characters.add(new Zuul(characterCurrentRooms.get("Dorm"),"Zuul"));
+        this.characters.add(new TechDude(characterCurrentRooms.get("Control"),"TechDude"));
     }
 
     // This method plays the game

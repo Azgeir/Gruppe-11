@@ -21,9 +21,8 @@ public class Room
     private HashMap<String, Room> exits; // Available exits from room
     private HashMap<String, Boolean> lockedExits; // List if exits are locked (true = locked, false = unlocked)
     private Inventory inventory; // The place Items are sotred in the room
-    private boolean hasZuul; // checks if the room has the monster
     private String name; // Name of the room
-    private HashMap<String,Boolean> hasCharacter = new HashMap<>();
+    private HashMap<String,Boolean> hasCharacter = new HashMap<>(); // checks if the room has the different charactersr
     
     // This constructor creates a Room with a specified description string.
     public Room(String description) 
@@ -36,7 +35,6 @@ public class Room
         // creates a inventory in the room with the sandard capacity (int max value)
         this.inventory = new Inventory();
         this.detailedDescription = "You are in a hallway.";
-        this.hasZuul = false;
         this.hasCharacter.put("Hero", false);
         this.hasCharacter.put("Zuul", false);
         this.hasCharacter.put("TechDude", false);
@@ -119,18 +117,10 @@ public class Room
         return returnString;
     }
 
-    public void setHasZuul(boolean hasZuul) {
-        this.hasZuul = hasZuul;
-    }
-
     public HashMap<String, Room> getExits() {
         return exits;
     }
-
-    public boolean getHasZuul() {
-        return hasZuul;
-    }
-    
+  
     public boolean getHasCharacter(String character){
         return this.hasCharacter.get(character);
     }
