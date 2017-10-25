@@ -19,12 +19,12 @@ public class Zuul extends Character {
         
     }
     
-    public Zuul(Room currentRoom){
-        super(currentRoom);
+    public Zuul(Room currentRoom, String name){
+        super(currentRoom, name);
     }
     
-    public Zuul(Room currentRoom, double speedFactor){
-        super(speedFactor, currentRoom);
+    public Zuul(Room currentRoom, String name, double speedFactor){
+        super(currentRoom, name, speedFactor);
     }
     
     /*£
@@ -45,7 +45,9 @@ public class Zuul extends Character {
         }
         else {
             this.previousRoom = this.getCurrentRoom();
+            this.getCurrentRoom().setHasCharacter(this.getName(), false);
             this.setCurrentRoom(nextRoom);
+            this.getCurrentRoom().setHasCharacter(this.getName(), true);
         }
         this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }
@@ -57,20 +59,25 @@ public class Zuul extends Character {
         String word2 = null;
         String word3 = null;
         
-        ArrayList<String> exits = new ArrayList(this.getCurrentRoom().getExits().keySet());
-        
-        
-        int numberMoveActions = exits.size()+1;
-        int action = (int)(Math.random()*numberMoveActions);
-                
-        exits.add("stay");    
-        
-        if (numberMoveActions != (action+1)){
-            word1 = "go";
-            word2 = exits.get(action);
+        if (this.getCurrentRoom().getHasCharacter("Hero")) {
+            word1 = "Stay";
         }
         else {
-            word1 = exits.get(action);
+            ArrayList<String> exits = new ArrayList(this.getCurrentRoom().getExits().keySet());
+            
+            
+            int numberMoveActions = exits.size()+1;
+            int action = (int)(Math.random()*numberMoveActions);
+            
+            exits.add("stay");
+            
+            if (numberMoveActions != (action+1)){
+                word1 = "go";
+                word2 = exits.get(action);
+            }
+            else {
+                word1 = exits.get(action);
+            }
         }
         
         // Create a Command object based on words 1 and 2, and return the command.
