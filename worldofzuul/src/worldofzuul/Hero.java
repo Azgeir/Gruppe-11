@@ -118,21 +118,22 @@ public class Hero extends Character {
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
 
-    // all locks in the next room (if hallway) are locked, and then open the one thats supposed to be open
-    // because then we don't need to risk manipulating the exitlocked hashmaps keys
+    //£
     @Override
     public void lock(Command command) {
         String direction = command.getSecondWord();
         boolean lock = true;
         this.lockUnlock(direction, lock);
-
+        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
 
+    //£
     @Override
     public void unlock(Command command) {
         String direction = command.getSecondWord();
         boolean lock = false;
         this.lockUnlock(direction, lock);
+        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
 
     @Override
@@ -210,7 +211,6 @@ public class Hero extends Character {
             templockExits.remove(direction);
             String direction2 = (String) templockExits.keySet().toArray()[0];
             this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
-
         }
     }
 }
