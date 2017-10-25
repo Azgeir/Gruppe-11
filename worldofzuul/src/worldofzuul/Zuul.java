@@ -60,7 +60,7 @@ public class Zuul extends Character {
         String word3 = null;
         
         if (this.getCurrentRoom().getHasCharacter("Hero")) {
-            word1 = "Stay";
+            word1 = "stay";
         }
         else {
             ArrayList<String> exits = new ArrayList(this.getCurrentRoom().getExits().keySet());

@@ -18,6 +18,8 @@ public class Game {
     private Character currentCharacter;
     private HashMap<String, Room> characterCurrentRooms = new HashMap<>();
     private Room winConditionRoom;
+    private boolean sameRoom = false;
+    private boolean zuulHadTurn = false;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() {
@@ -362,33 +364,30 @@ public class Game {
         }
         return finished;
     }
-
+    
     private boolean lose() {
-        boolean sameRoom = false;
-        boolean zuulHadTurn = false;
 
-        if (characters.get(0).getCurrentRoom().equals(characters.get(1).
-                getCurrentRoom()) && currentCharacter == characters.get(0)) {
+        if (characters.get(0).getCurrentRoom().getHasCharacter("Zuul")
+                && currentCharacter.equals(characters.get(0))) {
             sameRoom = true;
-        } else if (characters.get(0).getCurrentRoom().equals(characters.get(1).
-                getCurrentRoom()) && currentCharacter == characters.get(1)) {
+        } else if (characters.get(1).getCurrentRoom().getHasCharacter("Hero")
+                && currentCharacter.equals(characters.get(1))) {
             sameRoom = true;
             zuulHadTurn = true;
         } else if (currentCharacter != characters.get(0) && !(characters.get(0).
-                getCurrentRoom().equals(characters.get(1).getCurrentRoom()))) {
+                getCurrentRoom().getHasCharacter("Zuul"))) {
             sameRoom = false;
             zuulHadTurn = false;
         }
-
-        if ((sameRoom && currentCharacter == characters.get(0) && zuulHadTurn == true)
+        
+        if ((sameRoom && currentCharacter.equals(characters.get(0)) && zuulHadTurn)
                 && characters.get(0).getCharacterInitiative() < (characters.
-                get(1).getCharacterInitiative() + 10)) {
+                        get(1).getCharacterInitiative() + 10)) {
             printStopMessage("lose");
             return true;
         } else {
             return false;
         }
-
     }
 
     boolean TimerLose() {
