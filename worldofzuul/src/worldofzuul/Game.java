@@ -193,8 +193,12 @@ public class Game {
             this.currentCharacter = this.chooseCharacter();
             Command command = parser.getCommand(this.currentCharacter);
             finished = processCommand(command);
-
-            finished = winTest();
+            
+            finished = lose();
+            if (!finished) {
+                finished = winTest();
+            }
+            
         }
         // Print goodbye message when user exits game.
         System.out.println("Thank you for playing.  Good bye.");
@@ -293,9 +297,14 @@ public class Game {
             double point = pointCalculation();
             System.out.println("Congratulations, you won the game");
             System.out.printf("You got %f.2 points \n ", point);
-        } else if (reason == "lose") {
-            System.out.println("You died and therefore lost the game");
-        } else {
+        } 
+        else if (reason == "lose") {
+            System.out.println("You were caught and killed by the monster, you lost");
+        } 
+        else if (reason == "timer"){
+            System.out.println("The reactor overloaded and blew up the spacestation, you lost");
+        }
+        else {
             System.out.println("You quit the current instance of the game");
         }
     }
@@ -351,7 +360,7 @@ public class Game {
         if ((sameRoom && currentCharacter == characters.get(0) && zuulHadTurn == true)
                 && characters.get(0).getCharacterInitiative() < (characters.
                 get(1).getCharacterInitiative() + 10)) {
-            printStopMessage("you were caught and killed by the monster, you lost");
+            printStopMessage("lose");
             return true;
         } else {
             return false;
@@ -362,7 +371,7 @@ public class Game {
     boolean TimerLose() {
         double MaxInititative = Double.MAX_VALUE;
         if (characters.get(0).getCharacterInitiative() > MaxInititative) {
-            printStopMessage("the reactor overloaded and blew up the spacestation, you lost");
+            printStopMessage("timer");
             return true;
         } else {
             return false;

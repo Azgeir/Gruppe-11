@@ -17,13 +17,13 @@ public class Starter {
     // Main method
     public static void main(String[] args){
         // Create an instance of Game.
-        Game game = new Game();
         
         boolean playAgain;
         Scanner input = new Scanner(System.in);
         
         do {
-            // Call the play method on game.
+            // Call the play method on game
+            Game game = new Game();
             game.play();
             System.out.print("Do you want to play again?\nEnter true or false: ");
             playAgain = input.nextBoolean();
