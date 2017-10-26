@@ -39,8 +39,9 @@ public class Item {
     }
     
     // This method prints a description of how the item is used
-    public void use() {
+    public double use(Character currentCharacter) {
         System.out.println("You use the " + this.name + " to " + this.useDescription);
+        return 0;
     }
     
     // This method returns a description of the possible use of the item

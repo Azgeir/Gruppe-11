@@ -14,9 +14,9 @@ public class Game {
     // Data fields:
     private Parser parser;
     // ArrayList is chosen because it allows us to know which character is chosen when the initiative is the same.
-    private ArrayList<Character> characters = new ArrayList<>();
+    private ArrayList<Character> characters = new ArrayList<>(); // This is an arraylist because it offer a simple way to break an initiative tie in a predefined way
     private Character currentCharacter;
-    private HashMap<String, Room> characterCurrentRooms = new HashMap<>();
+    private HashMap<String, Room> characterStartRooms = new HashMap<>();
     private Room winConditionRoom;
     private boolean sameRoom = false;
     private boolean zuulHadTurn = false;
@@ -170,20 +170,23 @@ public class Game {
         reactor.setExit("storage", hallwayReactorStorage, false);
 
         // Set the current room to "computer" (Possibly moved to character class)
-        characterCurrentRooms.put("Computer", computerRoom);
-        characterCurrentRooms.put("Control", controlRoom);
-        characterCurrentRooms.put("Dorm", dormitory);
+        characterStartRooms.put("Computer", computerRoom);
+        characterStartRooms.put("Control", controlRoom);
+        characterStartRooms.put("Dorm", dormitory);
         winConditionRoom = escapePod;
         dormitory.setHasCharacter("Zuul", true);
         computerRoom.setHasCharacter("Hero", true);
         controlRoom.setHasCharacter("TechDude", true);
+        computerRoom.getInventory().addItem(new USB(1));
+        computerRoom.getInventory().addItem(new AcidVial(5));
+        computerRoom.getInventory().addItem(new MedKit());
     }
 
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
     private void createCharacter() {
-        this.characters.add(new Hero(characterCurrentRooms.get("Computer"), "Hero"));
-        this.characters.add(new Zuul(characterCurrentRooms.get("Dorm"),"Zuul"));
-        this.characters.add(new TechDude(characterCurrentRooms.get("Control"),"TechDude"));
+        this.characters.add(new Hero(characterStartRooms.get("Computer"), "Hero"));
+        this.characters.add(new Zuul(characterStartRooms.get("Dorm"),"Zuul"));
+        this.characters.add(new TechDude(characterStartRooms.get("Control"),"TechDude"));
     }
 
     // This method plays the game
@@ -229,7 +232,7 @@ public class Game {
         System.out.println("Type '" + CommandWord.HELP + "' for more information about controls and the game.");
         System.out.println();
         // Description of current room of the player, including available exits.
-        System.out.println(characterCurrentRooms.get("Computer").getLongDescription());
+        System.out.println(characterStartRooms.get("Computer").getLongDescription());
     }
 
     // This method processes the command of the player (returns true if player wants to quit)
@@ -277,7 +280,9 @@ public class Game {
                 this.currentCharacter.peek(command);
                 break;
             case USE:
-                this.currentCharacter.use(command);
+                double zuulInitiativeChange = this.currentCharacter.use(command);
+                Character zuul = this.characters.get(1);
+                zuul.setCharacterInitiative(zuul.getCharacterInitiative()+zuulInitiativeChange);
                 break;
             case LOCK:
                 this.currentCharacter.lock(command);

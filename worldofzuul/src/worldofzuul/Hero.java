@@ -158,11 +158,28 @@ public class Hero extends Character {
         }
     }
 
+    //£
     @Override
-    public int use(Command command) {
-
-        System.out.println("The use method cannot be used");
-        return -1;
+    public double use(Command command) {
+        
+        if (command.hasSecondWord()) {
+            String itemName = command.getSecondWord();
+            Item item = this.getInventory().getItem(itemName);
+            if (item != null) {
+                double initiativeReduction = item.use(this);
+                this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+                return initiativeReduction;
+            }
+            else {
+                this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+                System.out.println("You don't have any such item");
+            }
+        }
+        else {
+            System.out.println("You have to select something to use");
+        }
+        
+        return 0;
     }
 
     //£ characterInitiative
@@ -243,17 +260,34 @@ public class Hero extends Character {
     public double activate(Command command){
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
         
-        if (this.getCurrentRoom().getName().equals("reactor")) {
-            if (this.getCurrentRoom().getHasCharacter("TechDude")) {
-                return (this.getCharacterInitiative()+50);
-            }
-            else {
-                System.out.println("You need the TechDude to do this");
+        if (command.getSecondWord().equals("reactor")) {
+            if (this.getCurrentRoom().getName().equals("reactor")) {
+                if (this.getCurrentRoom().getHasCharacter("TechDude")) {
+                    return (this.getCharacterInitiative()+50);
+                }
+                else {
+                    System.out.println("You need the TechDude to do this");
+                    return Double.MAX_VALUE;
+                }
+            } else {
+                System.out.println("There is no reactor in this room");
                 return Double.MAX_VALUE;
             }
         } else {
-            System.out.println("There is no reactor in this room");
+            System.out.println("Activate what?");
             return Double.MAX_VALUE;
         }
+        
+        
     }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    
+    
 }

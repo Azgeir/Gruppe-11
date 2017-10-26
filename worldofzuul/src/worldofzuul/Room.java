@@ -34,7 +34,7 @@ public class Room
         lockedExits = new HashMap<String, Boolean>();
         // creates a inventory in the room with the sandard capacity (int max value)
         this.inventory = new Inventory();
-        this.detailedDescription = "You are in a hallway.";
+        this.detailedDescription = "You are in a hallway, there isn't really anything in here.";
         this.hasCharacter.put("Hero", false);
         this.hasCharacter.put("Zuul", false);
         this.hasCharacter.put("TechDude", false);

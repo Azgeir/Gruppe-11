@@ -17,8 +17,8 @@ public class USB extends Item {
     private String dataType; // Indicates the type of data: biology, physics, monster, or null (for empty USB)
     
     // (£) This constructor creates an empty USB with default name and weight(?)
-    public USB () {
-        super(1, "USB", "do something");
+    public USB (int number) {
+        super(1, "USB"+number, "do something");
         this.hasData = false;
         this.dataType = null;
     }
@@ -41,5 +41,30 @@ public class USB extends Item {
     // This method sets the value of dataType
     public void setDataType(String dataType) {
         this.dataType = dataType;
+    }
+    
+    @Override
+    public double use(Character currentCharacter){
+        String roomName = currentCharacter.getCurrentRoom().getName();
+        
+        if (roomName.equals("biolab")) {
+            this.hasData = true;
+            this.dataType = "bio";
+            System.out.println("Important biological experimental data was saved. The USB is now full");
+        }
+        else if (roomName.equals("physicslab")){
+            this.hasData = true;
+            this.dataType = "physics";
+            System.out.println("Important physics experimental data was saved. The USB is now full");
+        }
+        else if (roomName.equals("control")){
+            this.hasData = true;
+            this.dataType = "control" ;
+            System.out.println("Survailiance records of the Zuul infestation was optained. The USB is now full");
+        }
+        else {
+            System.out.println("There is nowhere to obtain useful data in this room");
+        }
+        return 0;
     }
 }

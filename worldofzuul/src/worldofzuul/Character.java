@@ -80,7 +80,7 @@ public class Character {
     public void peek(Command command) {
         System.out.println("This does nothing");
     }
-    public int use(Command command) {
+    public double use(Command command) {
         System.out.println("This does nothing");
         return -1;
     }
