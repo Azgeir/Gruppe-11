@@ -79,11 +79,15 @@ public class Inventory {
     public Item getItem(String itemName){
         Item returnItem = null;
         if (this.inventory.size()!=0) {
-            for (Item item : this.inventory.get(itemName)){
-            if (item != null){
-                returnItem = item;
+            if (this.inventory.containsKey(itemName)){
+                for (Item item : this.inventory.get(itemName)){
+                    if (item != null){
+                        returnItem = item;
+                    }
+                }
             }
-        }
+            else {
+            }
         }
         
         return returnItem;
