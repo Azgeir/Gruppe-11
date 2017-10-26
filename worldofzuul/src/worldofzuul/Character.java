@@ -141,7 +141,7 @@ public class Character {
     
     //£
     public double activate(Command Command){
-        this.characterInitiative += 5;
+        this.characterInitiative += 5*this.speedFactor;
         
         if (this instanceof Hero){
             if (this.currentRoom.getName().equals("reactor")) {
