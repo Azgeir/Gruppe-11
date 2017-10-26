@@ -43,7 +43,7 @@ public class Zuul extends Character {
 
         if (nextRoom == null) {
         }
-        else if (!this.getCurrentRoom().getLockedExit(direction)){
+        else if (this.getCurrentRoom().getLockedExit(direction)){
         }
         else {
             this.previousRoom = this.getCurrentRoom();
