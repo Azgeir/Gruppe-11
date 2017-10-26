@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import static worldofzuul.CommandWord.UNKNOWN;
 
 /**
  *
@@ -123,8 +124,19 @@ public class Hero extends Character {
     public void lock(Command command) {
         String direction = command.getSecondWord();
         boolean lock = true;
-        this.lockUnlock(direction, lock);
-        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+        boolean directionExists = false;
+        
+        for (String exit : this.getCurrentRoom().getExits().keySet()){
+            if (direction.equals(exit)){
+                this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+                this.lockUnlock(direction, lock);
+            directionExists = true;
+            }
+        }
+        if (!directionExists) {
+            System.out.println("there isn't any exit by that name");
+            
+        }
     }
 
     //£
@@ -132,8 +144,19 @@ public class Hero extends Character {
     public void unlock(Command command) {
         String direction = command.getSecondWord();
         boolean lock = false;
-        this.lockUnlock(direction, lock);
-        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+        boolean directionExists = false;
+        
+        for (String exit : this.getCurrentRoom().getExits().keySet()){
+            if (direction.equals(exit)){
+                this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+                this.lockUnlock(direction, lock);
+            directionExists = true;
+            }
+        }
+        if (!directionExists) {
+            System.out.println("there isn't any exit by that name");
+            
+        }
     }
 
     @Override
