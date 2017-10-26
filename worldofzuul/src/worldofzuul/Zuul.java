@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Zuul extends Character {
     
-    private Room previousRoom;
+    private String previousRoomName;
     
     public Zuul(){
         
@@ -46,11 +46,15 @@ public class Zuul extends Character {
         else if (this.getCurrentRoom().getLockedExit(direction)){
         }
         else {
-            this.previousRoom = this.getCurrentRoom();
+            String roomName = this.getCurrentRoom().getName();
+            if (roomName != null) {
+                this.previousRoomName = roomName;
+            }
             this.getCurrentRoom().setHasCharacter(this.getName(), false);
             this.setCurrentRoom(nextRoom);
             this.getCurrentRoom().setHasCharacter(this.getName(), true);
         }
+        System.out.println("Zuul " + this.getCurrentRoom().getShortDescription());
         this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }
     
@@ -67,6 +71,7 @@ public class Zuul extends Character {
         else {
             ArrayList<String> exits = new ArrayList(this.getCurrentRoom().getExits().keySet());
             
+            exits.remove(this.previousRoomName);
             
             int numberMoveActions = exits.size()+1;
             int action = (int)(Math.random()*numberMoveActions);

@@ -109,7 +109,7 @@ public class Game {
         hallwayReactorDock.setExit("dock", dock, false);
 
         hallwayReactorPhysics.setExit("reactor", reactor, false);
-        hallwayReactorPhysics.setExit("physics lab", physicsLaboratory, false);
+        hallwayReactorPhysics.setExit("physicslab", physicsLaboratory, false);
 
         hallwayReactorDormitory.setExit("reactor", reactor, false);
         hallwayReactorDormitory.setExit("dorm", dormitory, false);
