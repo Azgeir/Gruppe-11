@@ -13,8 +13,6 @@ import java.util.Scanner;
  */
 // This class starts the game.
 public class Starter {
-    
-    // test of reconnecting netbeans to github account
 
     // Main method
     public static void main(String[] args) {
