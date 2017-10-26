@@ -138,6 +138,13 @@ public class Character {
     public String getName() {
         return name;
     }
+    
+    public void activate(){
+        
+    }
+    
+    public void meetHero(Character hero){
+    }
 
     
 }

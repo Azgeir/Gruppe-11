@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map.Entry;
-import static worldofzuul.CommandWord.UNKNOWN;
 
 /**
  *

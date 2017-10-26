@@ -195,6 +195,11 @@ public class Game {
         // As long as game is not finished, get and process user commands
         while (!finished) {
             this.currentCharacter = this.chooseCharacter();
+            if (this.currentCharacter.equals(this.characters.get(2)) &&
+                    (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
+                    && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
+                this.currentCharacter.meetHero(this.characters.get(0));
+            }
             Command command = parser.getCommand(this.currentCharacter);
             finished = processCommand(command);
             
@@ -237,41 +242,50 @@ public class Game {
             return false;
         }
 
-        // Execute the command if the input matches a valid command
+        if (null != commandWord) // Execute the command if the input matches a valid command
         // If command is "help" print the help message
-        if (commandWord == CommandWord.HELP) {
-            printHelp();
-        } // If command is "go", call goRoom method
-        else if (commandWord == CommandWord.GO) {
-            this.currentCharacter.go(command);
+        switch (commandWord) {
+        // If command is "go", call goRoom method
+            case HELP:
+                printHelp();
+                break;
+        // If command is "quit", change value of wantToQuit to true
+            case GO:
+                this.currentCharacter.go(command);
 //            goRoom(command);
-        } // If command is "quit", change value of wantToQuit to true
-        else if (commandWord == CommandWord.QUIT) {
-            wantToQuit = quit(command);
-        }
-        else if (commandWord == commandWord.STAY) {
-            this.currentCharacter.stay(command);
-        }
-        else if (commandWord == CommandWord.PICKUP) {
-            characters.get(0).pickUp(command);
-        }
-        else if (commandWord == CommandWord.DROP) {
-            characters.get(0).dropItem(command);            
-        }
-        else if (commandWord == CommandWord.LOOK) {
-            characters.get(0).look(command);
-        }
-        else if (commandWord == CommandWord.PEEK) {
-            characters.get(0).peek(command);
-        }
-        else if (commandWord == CommandWord.USE) {
-            characters.get(0).use(command);
-        }
-        else if (commandWord == CommandWord.LOCK) {
-            characters.get(0).lock(command);
-        }
-        else if (commandWord == CommandWord.UNLOCK) {
-            characters.get(0).unlock(command);
+                break;
+            case QUIT:
+                wantToQuit = quit(command);
+                break;
+            case STAY:
+                this.currentCharacter.stay(command);
+                break;
+            case PICKUP:
+                this.currentCharacter.pickUp(command);
+                break;
+            case DROP:
+                this.currentCharacter.dropItem(command);
+                break;
+            case LOOK:
+                this.currentCharacter.look(command);
+                break;
+            case PEEK:
+                this.currentCharacter.peek(command);
+                break;
+            case USE:
+                this.currentCharacter.use(command);
+                break;
+            case LOCK:
+                this.currentCharacter.lock(command);
+                break;
+            case UNLOCK:
+                this.currentCharacter.unlock(command);
+                break;
+            case ACTIVATE:
+//                this.currentCharacter.(command);
+                break;
+            default:
+                break;
         }
         // Return boolean value (false = continue playing; true = quit game)
         return wantToQuit;

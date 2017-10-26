@@ -46,6 +46,7 @@ public class TechDude extends Character {
     }
     
     // Helps in defining what commands should be chosen when it's the TechDudes turn
+    @Override
     public void meetHero(Character hero){
         this.hasMetHero = true;
         this.hero = hero;
