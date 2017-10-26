@@ -51,12 +51,18 @@ public class Character {
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
-        } else {
+        } 
+        else if (this.getCurrentRoom().getLockedExit(direction)){
+            System.out.println("This exit is locked, you can't get through");
+        }
+        else {
             this.getCurrentRoom().setHasCharacter(this.name, false);
             this.currentRoom = nextRoom;
             this.getCurrentRoom().setHasCharacter(this.name, true);
             System.out.println(currentRoom.getLongDescription());
         }
+        
+        
         this.characterInitiative += 5 * this.speedFactor;
     }
 

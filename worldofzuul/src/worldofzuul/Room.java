@@ -100,6 +100,10 @@ public class Room
     {
         return exits.get(direction);
     }
+    
+    public boolean getLockedExit(String direction){
+        return this.lockedExits.get(direction);
+    }
 
     public Inventory getInventory() {
         return inventory;
