@@ -20,6 +20,7 @@ public class Game {
     private Room winConditionRoom;
     private boolean sameRoom = false;
     private boolean zuulHadTurn = false;
+    private double MaxInititative = Double.MAX_VALUE;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() {
@@ -207,6 +208,9 @@ public class Game {
                 finished = lose();
             }
             if (!finished) {
+                finished = TimerLose();
+            }
+            if (!finished) {
                 finished = winTest();
             }
             
@@ -282,7 +286,7 @@ public class Game {
                 this.currentCharacter.unlock(command);
                 break;
             case ACTIVATE:
-//                this.currentCharacter.(command);
+                this.MaxInititative = this.currentCharacter.activate(command);
                 break;
             default:
                 break;
@@ -405,7 +409,7 @@ public class Game {
     }
 
     boolean TimerLose() {
-        double MaxInititative = Double.MAX_VALUE;
+        
         if (characters.get(0).getCharacterInitiative() > MaxInititative) {
             printStopMessage("timer");
             return true;

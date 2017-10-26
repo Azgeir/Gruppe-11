@@ -165,8 +165,10 @@ public class Hero extends Character {
         return -1;
     }
 
+    //£ characterInitiative
     public void seeInventory(Command command) {
         this.inventory.showItems();
+        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
 
     private void speedFactorCalculation() {
@@ -233,6 +235,25 @@ public class Hero extends Character {
             templockExits.remove(direction);
             String direction2 = (String) templockExits.keySet().toArray()[0];
             this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
+        }
+    }
+    
+    //£
+    @Override
+    public double activate(Command command){
+        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+        
+        if (this.getCurrentRoom().getName().equals("reactor")) {
+            if (this.getCurrentRoom().getHasCharacter("TechDude")) {
+                return (this.getCharacterInitiative()+50);
+            }
+            else {
+                System.out.println("You need the TechDude to do this");
+                return Double.MAX_VALUE;
+            }
+        } else {
+            System.out.println("There is no reactor in this room");
+            return Double.MAX_VALUE;
         }
     }
 }

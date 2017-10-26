@@ -139,8 +139,25 @@ public class Character {
         return name;
     }
     
-    public void activate(){
+    //£
+    public double activate(Command Command){
+        this.characterInitiative += 5;
         
+        if (this instanceof Hero){
+            if (this.currentRoom.getName().equals("reactor")) {
+                if (this.currentRoom.getHasCharacter("TechDude")) {
+                    return (this.characterInitiative+50);
+                }
+                else {
+                    System.out.println("You need the TechDude to do this");
+                    return Double.MAX_VALUE;
+                }
+            } else {
+                System.out.println("There is no reactor in this room");
+                return Double.MAX_VALUE;
+            }
+        }
+        return Double.MAX_VALUE;
     }
     
     public void meetHero(Character hero){
