@@ -134,7 +134,7 @@ public class Hero extends Character {
             }
         }
         if (!directionExists) {
-            System.out.println("there isn't any door in that direction");
+            System.out.println("there isn't any exit by that name");
             
         }
     }
@@ -154,7 +154,7 @@ public class Hero extends Character {
             }
         }
         if (!directionExists) {
-            System.out.println("there isn't any door in that direction");
+            System.out.println("there isn't any exit by that name");
             
         }
     }
