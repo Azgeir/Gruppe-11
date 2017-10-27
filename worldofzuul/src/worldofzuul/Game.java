@@ -99,7 +99,9 @@ public class Game {
         hallwayMedicalStorage = new Room("in the hallway between the medical bay and the storage room");
 
         // Declare hallways connected to the reactor
-        Room hallwayReactorBiology, hallwayReactorControl, hallwayReactorDock, hallwayReactorPhysics, hallwayReactorDormitory, hallwayReactorMedical, hallwayReactorStorage, hallwayReactorComputer;
+        Room hallwayReactorBiology, hallwayReactorControl, hallwayReactorDock,
+            hallwayReactorPhysics, hallwayReactorDormitory, hallwayReactorMedical,
+            hallwayReactorStorage, hallwayReactorComputer;
 
         // Initialize the hallways connected to the reactor
         hallwayReactorBiology = new Room("in the hallway between the reactor and the biology laboratory");
