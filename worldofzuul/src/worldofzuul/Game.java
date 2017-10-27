@@ -202,7 +202,7 @@ public class Game {
     public void play() {
         // Call the printWelcome method to show a brief introduction to the game
         printWelcome();
-
+        this.currentCharacter = this.chooseCharacter();
         // Check if the player is still playing
         boolean finished = false;
         // As long as game is not finished, get and process user commands
@@ -214,6 +214,7 @@ public class Game {
             // Process command
             finished = processCommand(command);
             // Check if player lost game because they met Zuul
+            
             if (!finished) {
                 finished = lose();
             }
@@ -224,6 +225,9 @@ public class Game {
             // Check if player won game
             if (!finished) {
                 finished = winTest();
+            }
+            if (!finished) {
+                finished = healthTest();
             }
         }
     }
@@ -379,6 +383,10 @@ public class Game {
         else if (reason == "timer"){
             System.out.println("The reactor overloaded and blew up the spacestation. You lost.");
         }
+        // if the player dies due to low health
+        else if (reason == "health") {
+            System.out.println("You died due to extensive wound.");
+        }
         // If player exits the game without losing or winning.
         else {
             System.out.println("You quit the current instance of the game.");
@@ -479,13 +487,28 @@ public class Game {
     }
     
     private void techDudeMeetHero(){
-        this.currentCharacter = this.chooseCharacter();
-            // Check if current character is tech dude and the current room contains hero and tech dude.
+        // Check if current character is tech dude and the current room contains hero and tech dude.
             if (this.currentCharacter.equals(this.characters.get(2)) &&
                     (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
                     && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
                 // Set that tech dude has met the hero
                 this.currentCharacter.meetHero(this.characters.get(0));
             }
+    }
+    
+    private boolean healthTest(){
+        if (this.currentCharacter.equals(this.characters.get(0))) {
+            Hero tempCharacter = (Hero)this.currentCharacter;
+            if (tempCharacter.getHealth() <= 0){
+                printStopMessage("health");
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
 }
