@@ -250,6 +250,8 @@ public class Game {
                 room.getInventory().addItem(new AcidVial(5, 50), 10);
                 break;
             case "computer":
+                room.getInventory().addItem(new USB(3));
+                room.getInventory().addItem(new USB(2));
                 room.getInventory().addItem(new USB(1));
                 room.getInventory().addItem(new AcidVial(5, 50), 3);
                 room.getInventory().addItem(new MedKit());
