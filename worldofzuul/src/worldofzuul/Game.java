@@ -386,9 +386,9 @@ public class Game {
                 break;
             // If command is "use", call use() method on current character and change Zuul's initiative
             case USE:
-                double zuulInitiativeChange = this.currentCharacter.use(command);
+                double zuulInitiativeReduction = this.currentCharacter.use(command);
                 Character zuul = this.characters.get(1);
-                zuul.setCharacterInitiative(zuul.getCharacterInitiative()+zuulInitiativeChange);
+                zuul.setCharacterInitiative(zuul.getCharacterInitiative()+zuulInitiativeReduction);
                 break;
             // If command is "lock", call lock() command on current character
             case LOCK:
@@ -535,6 +535,7 @@ public class Game {
     // This method tests if the player has lost
     private boolean lose() {
         // If player is in same room as Zuul, and player is current character, set sameRoom to true
+
         if (characters.get(0).getCurrentRoom().getHasCharacter("Zuul")
                 && currentCharacter.equals(characters.get(0))) {
             sameRoom = true;
@@ -555,8 +556,8 @@ public class Game {
         // and zuulHadTurn is true, and player's initiative is less than Zuul's initiative + 10,
         // print lose message and return true
         if ((sameRoom && currentCharacter.equals(characters.get(0)) && zuulHadTurn)
-                && characters.get(0).getCharacterInitiative() > (characters.
-                        get(1).getCharacterInitiative() + 10)) {
+                && characters.get(0).getCharacterInitiative() > characters.
+                        get(1).getCharacterInitiative()) {
             printStopMessage("lose");
             return true;
         }
