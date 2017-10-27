@@ -40,7 +40,12 @@ public class Game {
         Room biologyLaboratory, computerRoom, storage, medicalBay, dormitory, physicsLaboratory, dock, controlRoom, reactor, escapePod;
 
         // Initialize the rooms
-        biologyLaboratory = new Room("in the biology laboratory", "biolab");
+        biologyLaboratory = new Room("in the biology laboratory", "biolab",
+            ("You are in the biology laboratory. On the table to your right\n" +
+            "there is a row of microscopes, and the shelf above contains a\n" +
+            "collection of test tubes with liquids of different colours.\n" +
+            "In the corner of the room there is a computer. Maybe you'll be\n" +
+            "able to save some of the research."));
         computerRoom = new Room("in the computer room", "computer");
         storage = new Room("in the storage room", "storage");
         medicalBay = new Room("in the medical bay", "medbay");
