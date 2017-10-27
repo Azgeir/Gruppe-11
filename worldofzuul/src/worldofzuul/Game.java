@@ -37,22 +37,52 @@ public class Game {
     // This method creates the rooms of the game.
     private void createRooms() {
         // Declare the rooms
-        Room biologyLaboratory, computerRoom, storage, medicalBay, dormitory, physicsLaboratory, dock, controlRoom, reactor, escapePod;
+        Room biologyLaboratory, computerRoom, storage, medicalBay, dormitory, 
+            physicsLaboratory, dock, controlRoom, reactor, escapePod;
 
-        // Initialize the rooms
-        biologyLaboratory = new Room("in the biology laboratory", "biolab");
+        // Initialize the biology laboratory
+        biologyLaboratory = new Room("in the biology laboratory", "biolab",
+            ("You are in the biology laboratory. On the table to your right\n" +
+            "there is a row of microscopes, and the shelf above contains a\n" +
+            "collection of test tubes with liquids of different colours.\n" +
+            "In the corner of the room there is a computer. Maybe you'll be\n" +
+            "able to save some of the research.\n"));
+        
+        // Initialise the computer room
         computerRoom = new Room("in the computer room", "computer");
+        
+        // Initialise the storage room
         storage = new Room("in the storage room", "storage");
+        
+        // Initialise the medical bay
         medicalBay = new Room("in the medical bay", "medbay");
+        
+        // Initialise the dormitory
         dormitory = new Room("in the dormitory", "dorm");
-        physicsLaboratory = new Room("in the physics laboratory", "physicslab");
+        
+        // Initialise the physics laboratory
+        physicsLaboratory = new Room("in the physics laboratory", "physicslab",
+            "You are in the physics laboratory. The room is filled with various\n" +
+            "equipment. On a table nearby, you see a Helmholtz coil, and on your\n" +
+            "right, there is a mass spectrometer. In the corner of the room, you\n" +
+            "see a computer. Maybe you'll be able to save some of the research.");
+        
+        // Initialise the dock
         dock = new Room("in the dock", "dock");
+        
+        // Initialise the control room
         controlRoom = new Room("in the control room", "control");
+        
+        // Initialise the reactor
         reactor = new Room("near the reactor", "reactor");
+        
+        // Initialise the escape pod
         escapePod = new Room("in the escape pod", "pod");
 
         // Declare hallways between rooms
-        Room hallwayStorageComputer, hallwayComputerBiology, hallwayBiologyControl, hallwayControlDock, hallwayDockPhysics, hallwayPhysicsDormitory, hallwayDormitoryMedical, hallwayMedicalStorage;
+        Room hallwayStorageComputer, hallwayComputerBiology, hallwayBiologyControl, 
+            hallwayControlDock, hallwayDockPhysics, hallwayPhysicsDormitory, 
+            hallwayDormitoryMedical, hallwayMedicalStorage;
 
         // Initialize the hallways between the outer rooms
         hallwayStorageComputer = new Room("in the hallway between the storage and computer rooms");
