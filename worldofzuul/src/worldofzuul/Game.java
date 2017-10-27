@@ -228,6 +228,23 @@ public class Game {
     private void fillRoom(Room room) {
         switch (room.getName()) {
             case "biolab":
+                room.getInventory().addItem(new Item(5, "notebook"));
+                room.getInventory().addItem(new Item(30, "microscope"), 3);
+                room.getInventory().addItem(new Item(200, "DNA-sequencing-machine"));
+                room.getInventory().addItem(new Item(150, "incubator"), 2);
+                room.getInventory().addItem(new Item(200, "refridgerator"), 2);
+                room.getInventory().addItem(new Item(20, "animal-cell-model"));
+                room.getInventory().addItem(new Item(20, "plant-cell-model"));
+                room.getInventory().addItem(new Item(25, "water-sampler"));
+                room.getInventory().addItem(new Item(25, "air-sampler"));
+                room.getInventory().addItem(new Item(5, "methylene-blue-solution"), 10);
+                room.getInventory().addItem(new Item(5, "Gram's-iodine-solution"), 10);
+                room.getInventory().addItem(new Item(5, "pipette"), 20);
+                room.getInventory().addItem(new Item(5, "microscope-slide"), 10);
+                room.getInventory().addItem(new Item(5, "cell-lysis-solution"), 5);
+                room.getInventory().addItem(new Item(5, "test-tube"), 20);
+                room.getInventory().addItem(new Item(5, "DNA-precipitate-solution"), 5);
+                room.getInventory().addItem(new Item(150, "centrifuge"), 2);
                 break;
             case "computer":
                 room.getInventory().addItem(new USB(1));
