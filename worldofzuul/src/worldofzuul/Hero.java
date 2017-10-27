@@ -85,13 +85,28 @@ public class Hero extends Character {
     //Gives the player a detailed description of the items and the possibilities of a room
     @Override
     public void look(Command command) {
-        // Print detailed description of room
-        System.out.println(this.getCurrentRoom().getDetailedDescription());
-        // Print inventory of current room
-        System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
-        // Print status of exits
-        System.out.println(this.getCurrentRoom().getLockedExitString());
-        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+        
+        if (command.hasSecondWord()) {
+            String direction = command.getSecondWord();
+            if (direction.equals("around")) {
+                // Print detailed description of room
+                System.out.println(this.getCurrentRoom().getDetailedDescription());
+                // Print inventory of current room
+                System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
+                // Print status of exits
+                System.out.println(this.getCurrentRoom().getLockedExitString());
+                this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+            }
+            else if (direction.equals("inventory")) {
+                System.out.println("There is the following in your inventory:\n" + this.getInventory().showItems());
+                this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+            }
+            else{
+                System.out.println("There is no such direction to look.");
+            }
+        } else {
+            System.out.println("Look where");
+        }
     }
 
     //Checks whatever Zuul is in the next room and gives feedback if it is or isn't
