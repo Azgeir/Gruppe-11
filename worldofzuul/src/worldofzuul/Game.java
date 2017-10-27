@@ -58,14 +58,18 @@ public class Game {
         medicalBay = new Room("in the medical bay", "medbay");
         
         // Initialise the dormitory
-        dormitory = new Room("in the dormitory", "dorm");
+        dormitory = new Room("in the dormitory", "dorm",
+            "You are in the dormitory. This is where you used to sleep and\n" +
+            "relax with your colleagues. Sadly, this is also where the monster\n" +
+            "arrived. You see the corpses of your beloved colleagues scattered\n" +
+            "around the room.\n");
         
         // Initialise the physics laboratory
         physicsLaboratory = new Room("in the physics laboratory", "physicslab",
             "You are in the physics laboratory. The room is filled with various\n" +
             "equipment. On a table nearby, you see a Helmholtz coil, and on your\n" +
             "right, there is a mass spectrometer. In the corner of the room, you\n" +
-            "see a computer. Maybe you'll be able to save some of the research.");
+            "see a computer. Maybe you'll be able to save some of the research.\n");
         
         // Initialise the dock
         dock = new Room("in the dock", "dock");
