@@ -256,6 +256,13 @@ public class Game {
                 room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
                 room.getInventory().addItem(new Item(10, "computer-mouse"), 10);
                 room.getInventory().addItem(new Item(20, "keyboard"), 10);
+                room.getInventory().addItem(new Item(20, "accelerator board"), 3);
+                room.getInventory().addItem(new Item(1, "chip"), 20);
+                room.getInventory().addItem(new Item(150, "data-terminal"));
+                room.getInventory().addItem(new Item(20, "hard-disk"), 5);
+                room.getInventory().addItem(new Item(20, "motherboard"), 3);
+                room.getInventory().addItem(new Item(150, "printer"));
+                room.getInventory().addItem(new Item(150, "scanner"));
                 break;
             case "storage":
                 room.getInventory().addItem(new Item(150, "box"), 30);
