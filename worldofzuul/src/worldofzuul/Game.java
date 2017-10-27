@@ -320,7 +320,6 @@ public class Game {
             // Process command
             finished = processCommand(command);
             // Check if player lost game because they met Zuul
-            
             if (!finished) {
                 finished = lose();
             }
