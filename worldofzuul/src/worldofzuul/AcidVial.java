@@ -21,6 +21,8 @@ public class AcidVial extends Item {
         super(5, "acidvial", "attack something.");
         this.damageAmount = damageAmount;
         this.initiativeReduction = initiativeReduction;
+    }
+
     public AcidVial(int damageAmount) {
         super(5, "acidvial", "attack something."); // Calls constructor for superclass
         this.damageAmount = damageAmount; // Sets damage amount

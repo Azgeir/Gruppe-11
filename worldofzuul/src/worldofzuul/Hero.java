@@ -5,6 +5,7 @@
  */
 package worldofzuul;
 
+// Imports:
 import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
@@ -14,14 +15,18 @@ import java.util.Map.Entry;
  *
  * @author HCHB
  */
+
+// This class represents the player
 public class Hero extends Character {
 
-    private int health = 10;
-    private Inventory inventory;
+    // Data fields:
+    private int health = 10; // Hero's health
+    private Inventory inventory; // Hero's inventory
 
     /*
     £
      */
+    // This constructor creates a Hero with an inventory of size 100.
     public Hero() {
         this.inventory = new Inventory(100);
     }
