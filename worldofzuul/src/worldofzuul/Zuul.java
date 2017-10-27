@@ -54,7 +54,7 @@ public class Zuul extends Character {
             this.setCurrentRoom(nextRoom);
             this.getCurrentRoom().setHasCharacter(this.getName(), true);
         }
-        System.out.println("Zuul " + this.getCurrentRoom().getShortDescription());
+        //System.out.println("Zuul is " + this.getCurrentRoom().getShortDescription());
         this.setCharacterInitiative(this.getCharacterInitiative()+5*this.getSpeedFactor());
     }
     
