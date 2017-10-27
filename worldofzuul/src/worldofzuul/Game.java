@@ -242,6 +242,17 @@ public class Game {
             case "medbay":
                 break;
             case "dorm":
+                room.getInventory().addItem(new Item(5, "dehydrated-food"), 50);
+                room.getInventory().addItem(new Item(200, "bed"), 20);
+                room.getInventory().addItem(new Item(10, "pillow"), 20);
+                room.getInventory().addItem(new Item(20, "duvet"), 20);
+                room.getInventory().addItem(new Item(200, "corpse"), 10);
+                room.getInventory().addItem(new Item(200, "couch"));
+                room.getInventory().addItem(new Item(200, "table"), 2);
+                room.getInventory().addItem(new Item(200, "bookcase"));
+                room.getInventory().addItem(new Item(10, "book"), 100);
+                room.getInventory().addItem(new Item(150, "desk"), 2);
+                room.getInventory().addItem(new Item(50, "chair"), 6);
                 break;
             case "physicslab":
                 break;
