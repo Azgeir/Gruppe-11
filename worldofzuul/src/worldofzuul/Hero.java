@@ -161,7 +161,7 @@ public class Hero extends Character {
         boolean zuulNearby = false;
         
         if (this.getCurrentRoom().getHasCharacter("Zuul")) {
-            System.out.println("Zuul is this room you idiot");
+            System.out.println("Zuul is in this room you idiot");
         }
         
         if (this.getCurrentRoom().getExit(direction) != null) {
