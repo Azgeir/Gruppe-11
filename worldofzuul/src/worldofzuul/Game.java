@@ -623,12 +623,12 @@ public class Game {
     
     private void techDudeMeetHero(){
         // Check if current character is tech dude and the current room contains hero and tech dude.
-            if (this.currentCharacter.equals(this.characters.get(2)) &&
-                    (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
-                    && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
-                // Set that tech dude has met the hero
-                this.currentCharacter.meetHero(this.characters.get(0));
-            }
+        if (this.currentCharacter.equals(this.characters.get(2)) &&
+                (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
+                && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
+            // Set that tech dude has met the hero
+            this.currentCharacter.meetHero(this.characters.get(0));
+        }
     }
     
     // This method checks whether or not the player has died because of low health.
