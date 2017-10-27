@@ -34,7 +34,7 @@ public class Room
         lockedExits = new HashMap<String, Boolean>();
         // Create an inventory in the room with the standard capacity (int max value)
         this.inventory = new Inventory();
-        this.detailedDescription = "You are in a hallway, there isn't really anything in here.";
+        this.detailedDescription = "You are in a hallway. There isn't really anything interesting here.";
         this.hasCharacter.put("Hero", false);
         this.hasCharacter.put("Zuul", false);
         this.hasCharacter.put("TechDude", false);
