@@ -45,7 +45,7 @@ public class Game {
             "there is a row of microscopes, and the shelf above contains a\n" +
             "collection of test tubes with liquids of different colours.\n" +
             "In the corner of the room there is a computer. Maybe you'll be\n" +
-            "able to save some of the research."));
+            "able to save some of the research.\n"));
         computerRoom = new Room("in the computer room", "computer");
         storage = new Room("in the storage room", "storage");
         medicalBay = new Room("in the medical bay", "medbay");
