@@ -226,6 +226,9 @@ public class Game {
         computerRoom.getInventory().addItem(new AcidVial(5, 50));
         computerRoom.getInventory().addItem(new AcidVial(5, 50));
         computerRoom.getInventory().addItem(new MedKit());
+        computerRoom.getInventory().addItem(new Item(150, "computer monitor"), 10);
+        computerRoom.getInventory().addItem(new Item(10, "computer mouse"), 10);
+        computerRoom.getInventory().addItem(new Item(20, "keyboard"), 10);
     }
 
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
@@ -415,7 +418,7 @@ public class Game {
             // Calculate earned points
             double point = pointCalculation();
             System.out.println("Congratulations, you escaped the space station. You won.");
-            System.out.printf("You got %1.2f points\n ", point);
+            System.out.printf("You got %1.2f points\n", point);
         } 
         // If the player is killed by Zuul, print message
         else if (reason == "lose") {
