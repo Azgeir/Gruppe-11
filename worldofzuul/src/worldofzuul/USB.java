@@ -43,27 +43,33 @@ public class USB extends Item {
         this.dataType = dataType;
     }
     
+    // This method is called when the player uses the usb
     @Override
     public double use(Character currentCharacter){
+        // Set roomName to current room of the character
         String roomName = currentCharacter.getCurrentRoom().getName();
         
+        // If current room is "biolab", add bio data to the USB.
         if (roomName.equals("biolab")) {
             this.hasData = true;
             this.dataType = "bio";
-            System.out.println("Important biological experimental data was saved. The USB is now full");
+            System.out.println("Important biological experimental data was saved. The USB is now full.");
         }
+        // If current room is "physicslab", add physics data to the USB.
         else if (roomName.equals("physicslab")){
             this.hasData = true;
             this.dataType = "physics";
-            System.out.println("Important physics experimental data was saved. The USB is now full");
+            System.out.println("Important physics experimental data was saved. The USB is now full.");
         }
+        // If current room is "control", add control data to the USB.
         else if (roomName.equals("control")){
             this.hasData = true;
             this.dataType = "control" ;
-            System.out.println("Survailiance records of the Zuul infestation was optained. The USB is now full");
+            System.out.println("Surveillance records of the Zuul infestation was optained. The USB is now full.");
         }
+        // If current room is not "biolab", "physicslab" or "control", print error.
         else {
-            System.out.println("There is nowhere to obtain useful data in this room");
+            System.out.println("There is nowhere to obtain useful data in this room.");
         }
         return 0;
     }
