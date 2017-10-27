@@ -226,42 +226,35 @@ public class Game {
 
     // This method initialises the inventory of the given room
     private void fillRoom(Room room) {
-        // Add items to biolab
-        if (room.getName().equals("biolab")) {
-            // Add items
-        }
-        // Add items to computer room
-        else if (room.getName().equals("computer")) {
-            room.getInventory().addItem(new USB(1));
-            room.getInventory().addItem(new AcidVial(5, 50), 3);
-            room.getInventory().addItem(new MedKit());
-            room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
-            room.getInventory().addItem(new Item(10, "computer-mouse"), 10);
-            room.getInventory().addItem(new Item(20, "keyboard"), 10);
-        }
-        else if (room.getName().equals("storage")) {
-            // Add items
-        }
-        else if (room.getName().equals("medbay")) {
-            // Add items
-        }
-        else if (room.getName().equals("dorm")) {
-            // Add items
-        }
-        else if (room.getName().equals("physicslab")) {
-            // Add items
-        }
-        else if (room.getName().equals("dock")) {
-            // Add items
-        }
-        else if (room.getName().equals("control")) {
-            // Add items
-        }
-        else if (room.getName().equals("reactor")) {
-            // Add items
-        }
-        else if (room.getName().equals("pod")) {
-            // Add items
+        switch (room.getName()) {
+            case "biolab":
+                break;
+            case "computer":
+                room.getInventory().addItem(new USB(1));
+                room.getInventory().addItem(new AcidVial(5, 50), 3);
+                room.getInventory().addItem(new MedKit());
+                room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
+                room.getInventory().addItem(new Item(10, "computer-mouse"), 10);
+                room.getInventory().addItem(new Item(20, "keyboard"), 10);
+                break;
+            case "storage":
+                break;
+            case "medbay":
+                break;
+            case "dorm":
+                break;
+            case "physicslab":
+                break;
+            case "dock":
+                break;
+            case "control":
+                break;
+            case "reactor":
+                break;
+            case "pod":
+                break;
+            default:
+                break;
         }
     }
 
