@@ -166,9 +166,9 @@ public class Game {
         biologyLaboratory.setExit("control", hallwayBiologyControl, false);
         biologyLaboratory.setExit("reactor", hallwayReactorBiology, false);
 
-        controlRoom.setExit("biolab", hallwayBiologyControl, false);
-        controlRoom.setExit("dock", hallwayControlDock, false);
-        controlRoom.setExit("reactor", hallwayReactorControl, false);
+        controlRoom.setExit("biolab", hallwayBiologyControl, true);
+        controlRoom.setExit("dock", hallwayControlDock, true);
+        controlRoom.setExit("reactor", hallwayReactorControl, true);
 
         dock.setExit("control", hallwayControlDock, false);
         dock.setExit("physicslab", hallwayDockPhysics, false);
