@@ -488,4 +488,5 @@ public class Game {
                 this.currentCharacter.meetHero(this.characters.get(0));
             }
     }
+    
 }
