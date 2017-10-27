@@ -228,6 +228,7 @@ public class Game {
         computerRoom.getInventory().addItem(new MedKit());
         computerRoom.getInventory().addItem(new Item(150, "computer monitor"), 10);
         computerRoom.getInventory().addItem(new Item(10, "computer mouse"), 10);
+        computerRoom.getInventory().addItem(new Item(20, "keyboard"), 10);
     }
 
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
