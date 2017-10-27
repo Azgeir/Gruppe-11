@@ -50,24 +50,33 @@ public class Hero extends Character {
             if (command.hasThirdWord()) {
                 int number = Integer.parseInt(command.getThirdWord());
                 int numberAdded = 0;
+                int numberNonExisting = 0;
          
                 Item item = this.getCurrentRoom().getInventory().getItem(itemName);
                 if (item == null) {
                     System.out.println("The room doesn't contain that item.");
                 } else {
                     for (int i = 0; i < number; i++) {
-                        boolean itemAdded = this.inventory.addItem(item);
-                        if (itemAdded) {
-                            numberAdded++;
-                            this.getCurrentRoom().getInventory().removeItem(item);
+                        item = this.getCurrentRoom().getInventory().getItem(itemName);
+                        if (item == null){
+                            numberNonExisting++;
                         } else {
+                            boolean itemAdded = this.inventory.addItem(item);
+                            if (itemAdded) {
+                                numberAdded++;
+                                this.getCurrentRoom().getInventory().removeItem(item);
+                            } else {
+                            }
                         }
                     }
                     if (numberAdded == 0){
                         System.out.println("You can't carry any of that");
                     }
-                    else if (numberAdded < number){
+                    else if ((numberAdded < number) && (numberNonExisting == 0) ){
                         System.out.println("You could only pickup " + numberAdded + " " + itemName);
+                    }
+                    else if (numberNonExisting>0 && (numberNonExisting+numberAdded)==number){
+                        System.out.println("You picked up " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in this room");
                     }
                     else {
                         System.out.println("You picked up " + number + " " + itemName);
