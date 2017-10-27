@@ -1,5 +1,5 @@
 package worldofzuul;
-
+// Imports:
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,6 +8,7 @@ import java.util.HashSet;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+
 // This class runs the main functionality of the game.
 public class Game {
 
@@ -26,7 +27,9 @@ public class Game {
     public Game() {
         //Create all rooms by calling the createRooms method
         createRooms();
+        // Create the characters by calling the createCharacter() method
         createCharacter();
+        // Create a parser
         parser = new Parser();
     }
 
@@ -173,10 +176,16 @@ public class Game {
         characterStartRooms.put("Computer", computerRoom);
         characterStartRooms.put("Control", controlRoom);
         characterStartRooms.put("Dorm", dormitory);
+        
+        // Set the value of the win condition
         winConditionRoom = escapePod;
+        
+        // Set the initial positions of Zuul, hero, and tech dude
         dormitory.setHasCharacter("Zuul", true);
         computerRoom.setHasCharacter("Hero", true);
         controlRoom.setHasCharacter("TechDude", true);
+        
+        // Add items to the inventory of the computer room
         computerRoom.getInventory().addItem(new USB(1));
         computerRoom.getInventory().addItem(new AcidVial(5));
         computerRoom.getInventory().addItem(new MedKit());
@@ -198,25 +207,31 @@ public class Game {
         boolean finished = false;
         // As long as game is not finished, get and process user commands
         while (!finished) {
+            // Select current character
             this.currentCharacter = this.chooseCharacter();
+            // Check if current character is tech dude and the current room contains hero and tech dude.
             if (this.currentCharacter.equals(this.characters.get(2)) &&
                     (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
                     && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
+                // Set that tech dude has met the hero
                 this.currentCharacter.meetHero(this.characters.get(0));
             }
+            // Get command from parser
             Command command = parser.getCommand(this.currentCharacter);
+            // Process command
             finished = processCommand(command);
-            
+            // Check if player lost game because they met Zuul
             if (!finished) {
                 finished = lose();
             }
+            // Check if player lost game because of reactor
             if (!finished) {
-                finished = TimerLose();
+                finished = timerLose();
             }
+            // Check if player won game
             if (!finished) {
                 finished = winTest();
             }
-            
         }
     }
 
@@ -252,47 +267,57 @@ public class Game {
         if (null != commandWord) // Execute the command if the input matches a valid command
         // If command is "help" print the help message
         switch (commandWord) {
-        // If command is "go", call goRoom method
+            // If command is "help", print help message
             case HELP:
                 printHelp();
                 break;
-        // If command is "quit", change value of wantToQuit to true
+            // If command is "go", call go() method on current character
             case GO:
                 this.currentCharacter.go(command);
-//            goRoom(command);
                 break;
+            // If command is "quit", call quit() method (returns true, if player wants to quit)
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+            // If command is "stay", call stay() method on current character
             case STAY:
                 this.currentCharacter.stay(command);
                 break;
+            // If command is "pickup", call pickup() method on current character
             case PICKUP:
                 this.currentCharacter.pickUp(command);
                 break;
+            // If command is "drop", call dropItem() method on current character
             case DROP:
                 this.currentCharacter.dropItem(command);
                 break;
+            // If command is "look", call look() method on current character
             case LOOK:
                 this.currentCharacter.look(command);
                 break;
+            // If command is "peek", call peek() method on current character
             case PEEK:
                 this.currentCharacter.peek(command);
                 break;
+            // If command is "use", call use() method on current character and change Zuul's initiative
             case USE:
                 double zuulInitiativeChange = this.currentCharacter.use(command);
                 Character zuul = this.characters.get(1);
                 zuul.setCharacterInitiative(zuul.getCharacterInitiative()+zuulInitiativeChange);
                 break;
+            // If command is "lock", call lock() command on current character
             case LOCK:
                 this.currentCharacter.lock(command);
                 break;
+            // If command is "unlock", call unlock() command on current character
             case UNLOCK:
                 this.currentCharacter.unlock(command);
                 break;
+            // If command is "activate", set MaxInitiative to the return value of the activate() method
             case ACTIVATE:
                 this.MaxInititative = this.currentCharacter.activate(command);
                 break;
+            // If command does not match any of the options, break.
             default:
                 break;
         }
@@ -310,8 +335,8 @@ public class Game {
         parser.showCommands();
     }
 
-    //iterates over the different characters to determine whos turn it is
-    // if two have the same initiative the breaker is who is defined first in the
+    // This method iterates over the different characters to determine whose turn it is.
+    // If two characters have the same initiative, the breaker is who is defined first in the
     // ArrayList
     private Character chooseCharacter() {
         Character currentCharacter = null;
@@ -413,7 +438,7 @@ public class Game {
         }
     }
 
-    boolean TimerLose() {
+    boolean timerLose() {
         
         if (characters.get(0).getCharacterInitiative() > MaxInititative) {
             printStopMessage("timer");
