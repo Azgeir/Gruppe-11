@@ -259,7 +259,7 @@ public class Hero extends Character {
         }
     }
     
-    //£
+    //use this command to start the countdown timer for bonus points (by blowing up the reactor)
     @Override
     public double activate(Command command){
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
