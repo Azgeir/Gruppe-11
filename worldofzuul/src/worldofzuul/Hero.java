@@ -294,22 +294,23 @@ public class Hero extends Character {
         if (command.getSecondWord().equals("reactor")) {
             if (this.getCurrentRoom().getName().equals("reactor")) {
                 if (this.getCurrentRoom().getHasCharacter("TechDude")) {
+                    
                     return (this.getCharacterInitiative()+50);
-                }
-                else {
+                
+               } else if(!command.hasSecondWord()) {
+                System.out.println("Activate what?");
+                return Double.MAX_VALUE;
+            } else {
                     System.out.println("You need the TechDude to do this");
                     return Double.MAX_VALUE;
-                }
+            }
             } else {
                 System.out.println("There is no reactor in this room");
                 return Double.MAX_VALUE;
             }
-        } else {
-            System.out.println("Activate what?");
-            return Double.MAX_VALUE;
+
         }
-        
-        
+        return 0; 
     }
 
     public int getHealth() {
