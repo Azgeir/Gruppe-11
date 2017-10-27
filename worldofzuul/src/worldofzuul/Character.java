@@ -116,7 +116,7 @@ public class Character {
         System.out.println("This does nothing");
     }
     
-    //£
+    // (£) This method increases the character's initiative
     public void stay(Command command) {
         this.characterInitiative += 5 * this.speedFactor;
     }
@@ -174,21 +174,29 @@ public class Character {
         return name;
     }
     
-    //£
-    public double activate(Command Command){
+    // (£) This method is overridden in the Hero class
+    public double activate(Command Command) {
+        // Increase the character's initiative
         this.characterInitiative += 5*this.speedFactor;
         
+        // Check if the character is an instance of Hero
         if (this instanceof Hero){
+            // Check if the character is in the reactor
             if (this.currentRoom.getName().equals("reactor")) {
+                // Check if the tech dude is in the current room
                 if (this.currentRoom.getHasCharacter("TechDude")) {
+                    // Return increased character initiative
                     return (this.characterInitiative+50);
                 }
+                // If tech dude is not in current room, print error
                 else {
-                    System.out.println("You need the TechDude to do this");
+                    System.out.println("You need the TechDude to do this.");
                     return Double.MAX_VALUE;
                 }
-            } else {
-                System.out.println("There is no reactor in this room");
+            }
+            // If the character is not in the reactor, print error message
+            else {
+                System.out.println("There is no reactor in this room.");
                 return Double.MAX_VALUE;
             }
         }
