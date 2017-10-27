@@ -296,21 +296,21 @@ public class Hero extends Character {
                 if (this.getCurrentRoom().getHasCharacter("TechDude")) {
                     System.out.println("You activated the reactor. The spacestation will selfdestruct in 10 turns");
                     return (this.getCharacterInitiative()+50);
-                }
-                else {
+                
+               } else if(!command.hasSecondWord()) {
+                System.out.println("Activate what?");
+                return Double.MAX_VALUE;
+            } else {
                     System.out.println("You need the TechDude to do this");
                     return Double.MAX_VALUE;
-                }
+            }
             } else {
                 System.out.println("There is no reactor in this room");
                 return Double.MAX_VALUE;
             }
-        } else {
-            System.out.println("Activate what?");
-            return Double.MAX_VALUE;
+
         }
-        
-        
+        return 0; 
     }
 
     public int getHealth() {
