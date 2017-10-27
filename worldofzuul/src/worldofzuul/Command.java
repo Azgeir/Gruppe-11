@@ -39,7 +39,7 @@ public class Command
         return thirdWord;
     }
     
-// This method returns true if the command word is unknown.
+    // This method returns true if the command word is unknown.
     public boolean isUnknown()
     {
         return (commandWord == CommandWord.UNKNOWN);
