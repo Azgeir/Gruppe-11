@@ -24,6 +24,12 @@ public class Item {
         this.useDescription = useDescription;
     }
     
+    // This constructor creates an item with the specified weight and name
+    public Item(int weight, String name) {
+        this.weight = weight;
+        this.name = name;
+    }
+    
     // This is an empty no-arg constructor
     public Item() {    
     }
