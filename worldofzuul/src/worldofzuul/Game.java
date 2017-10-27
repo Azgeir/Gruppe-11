@@ -239,7 +239,7 @@ public class Game {
                 break;
             case "storage":
                 room.getInventory().addItem(new Item(150, "box"), 30);
-                room.getInventory().addItem(new Item(225, "bed"), 10);
+                room.getInventory().addItem(new Item(150, "bed"), 15);
                 room.getInventory().addItem(new Item(75, "electronics"), 25);
                 room.getInventory().addItem(new Item(135, "solarpanel"), 15);
                 room.getInventory().addItem(new Item(2, "hammer"), 13);
@@ -249,6 +249,19 @@ public class Game {
                 room.getInventory().addItem(new Item(150, "nailgun"), 8);
                 break;
             case "medbay":
+                room.getInventory().addItem(new AcidVial(5, 50), 7);
+                room.getInventory().addItem(new MedKit());
+                room.getInventory().addItem(new Item(1, "syringe"), 17);
+                room.getInventory().addItem(new Item(2, "pills"), 29);
+                room.getInventory().addItem(new Item(6, "glass"), 49);
+                room.getInventory().addItem(new Item(20, "book"), 200);
+                room.getInventory().addItem(new Item(9, "coat"), 19);
+                room.getInventory().addItem(new Item(250, "bed"), 25);
+                room.getInventory().addItem(new Item(7, "sheet"), 30);
+                room.getInventory().addItem(new Item(4, "pilow"), 30);
+                room.getInventory().addItem(new Item(350, "desk"), 8);
+                room.getInventory().addItem(new Item(15, "display-skeleton"), 5);
+                room.getInventory().addItem(new Item(200, "corpse"), 21);
                 break;
             case "dorm":
                 room.getInventory().addItem(new Item(5, "dehydrated-food"), 50);
