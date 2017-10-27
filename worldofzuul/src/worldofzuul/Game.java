@@ -417,6 +417,7 @@ public class Game {
         if (reason == "win") {
             // Calculate earned points
             double point = pointCalculation();
+            System.out.println("Tech dude: Good job mate, I knew we would make it!");
             System.out.println("Congratulations, you escaped the space station. You won.");
             System.out.printf("You got %1.2f points\n", point);
         } 
@@ -426,6 +427,7 @@ public class Game {
         } 
         // If player is killed by reactor, print message
         else if (reason == "timer"){
+            System.out.println("Tech dude: Good run mate see ya on the other side");
             System.out.println("The reactor overloaded and blew up the spacestation. You lost.");
         }
         // if the player dies due to low health
@@ -538,9 +540,6 @@ public class Game {
                     && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
                 // Set that tech dude has met the hero
                 this.currentCharacter.meetHero(this.characters.get(0));
-                System.out.println("Tech dude: Oy mate what is happening");
-                System.out.println("we need to get that qurantine lifted so we can get out of here");
-                System.out.println("ill follow you");
             }
     }
     
