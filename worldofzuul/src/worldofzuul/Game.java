@@ -256,13 +256,6 @@ public class Game {
                 room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
                 room.getInventory().addItem(new Item(10, "computer-mouse"), 10);
                 room.getInventory().addItem(new Item(20, "keyboard"), 10);
-                room.getInventory().addItem(new Item(20, "accelerator board"), 3);
-                room.getInventory().addItem(new Item(1, "chip"), 20);
-                room.getInventory().addItem(new Item(150, "data-terminal"));
-                room.getInventory().addItem(new Item(20, "hard-disk"), 5);
-                room.getInventory().addItem(new Item(20, "motherboard"), 3);
-                room.getInventory().addItem(new Item(150, "printer"));
-                room.getInventory().addItem(new Item(150, "scanner"));
                 break;
             case "storage":
                 room.getInventory().addItem(new Item(150, "box"), 30);
@@ -274,6 +267,7 @@ public class Game {
                 room.getInventory().addItem(new Item(3, "crowbar"), 7);
                 room.getInventory().addItem(new Item(110, "plasma-saw"), 6);
                 room.getInventory().addItem(new Item(150, "nailgun"), 8);
+                room.getInventory().addItem(new Item(200, "railgun"), 2);
                 break;
             case "medbay":
                 room.getInventory().addItem(new AcidVial(5, 50), 7);
@@ -288,7 +282,7 @@ public class Game {
                 room.getInventory().addItem(new Item(4, "pilow"), 30);
                 room.getInventory().addItem(new Item(350, "desk"), 8);
                 room.getInventory().addItem(new Item(15, "display-skeleton"), 5);
-                room.getInventory().addItem(new Item(200, "corpse"), 21);
+                room.getInventory().addItem(new Item(200, "corpse"), 3);
                 break;
             case "dorm":
                 room.getInventory().addItem(new Item(5, "dehydrated-food"), 50);
@@ -306,6 +300,12 @@ public class Game {
             case "physicslab":
                 break;
             case "dock":
+                room.getInventory().addItem(new Item(200, "crate"), 30);
+                room.getInventory().addItem(new Item(500, "fuel station"), 1);
+                room.getInventory().addItem(new Item(50, "barrel"), 40);
+                room.getInventory().addItem(new Item(35, "baggage"), 10);
+                room.getInventory().addItem(new Item(150, "computer-moniter"), 15);
+                room.getInventory().addItem(new Item(200, "corpse"), 2);
                 break;
             case "control":
                 break;
