@@ -221,18 +221,60 @@ public class Game {
         controlRoom.setHasCharacter("TechDude", true);
         
         // Add items to the inventory of the rooms
+        this.fillRoom(biologyLaboratory);
         this.fillRoom(computerRoom);
+        this.fillRoom(storage);
+        this.fillRoom(medicalBay);
+        this.fillRoom(dormitory);
+        this.fillRoom(physicsLaboratory);
+        this.fillRoom(dock);
+        this.fillRoom(controlRoom);
+        this.fillRoom(reactor);
+        this.fillRoom(escapePod);
     }
 
     // This method initialises the inventory of the given room
     private void fillRoom(Room room) {
-        if (room.getName().equals("computer")) {
-            room.getInventory().addItem(new USB(1));
-            room.getInventory().addItem(new AcidVial(5, 50), 3);
-            room.getInventory().addItem(new MedKit());
-            room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
-            room.getInventory().addItem(new Item(10, "computer-mouse"), 10);
-            room.getInventory().addItem(new Item(20, "keyboard"), 10);
+        switch (room.getName()) {
+            case "biolab":
+                break;
+            case "computer":
+                room.getInventory().addItem(new USB(1));
+                room.getInventory().addItem(new AcidVial(5, 50), 3);
+                room.getInventory().addItem(new MedKit());
+                room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
+                room.getInventory().addItem(new Item(10, "computer-mouse"), 10);
+                room.getInventory().addItem(new Item(20, "keyboard"), 10);
+                break;
+            case "storage":
+                break;
+            case "medbay":
+                break;
+            case "dorm":
+                room.getInventory().addItem(new Item(5, "dehydrated-food"), 50);
+                room.getInventory().addItem(new Item(200, "bed"), 20);
+                room.getInventory().addItem(new Item(10, "pillow"), 20);
+                room.getInventory().addItem(new Item(20, "duvet"), 20);
+                room.getInventory().addItem(new Item(200, "corpse"), 10);
+                room.getInventory().addItem(new Item(200, "couch"));
+                room.getInventory().addItem(new Item(200, "table"), 2);
+                room.getInventory().addItem(new Item(200, "bookcase"));
+                room.getInventory().addItem(new Item(10, "book"), 100);
+                room.getInventory().addItem(new Item(150, "desk"), 2);
+                room.getInventory().addItem(new Item(50, "chair"), 6);
+                break;
+            case "physicslab":
+                break;
+            case "dock":
+                break;
+            case "control":
+                break;
+            case "reactor":
+                break;
+            case "pod":
+                break;
+            default:
+                break;
         }
     }
 
@@ -465,7 +507,7 @@ public class Game {
         // Check for the 3 different USBs
         for (int i = 1; i < 4; i++) {
             // Set name of USB
-            String name = "USB " + i;
+            String name = "USB" + i;
             // Set usb to the specified USB item in the player's inventory
             usb = (USB)hero.getInventory().getItem(name);
             // If the specified USB is in the player's inventory...
