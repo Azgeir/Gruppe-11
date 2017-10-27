@@ -221,16 +221,7 @@ public class Game {
         controlRoom.setHasCharacter("TechDude", true);
         
         // Add items to the inventory of the rooms
-        this.fillRoom(biologyLaboratory);
         this.fillRoom(computerRoom);
-        this.fillRoom(storage);
-        this.fillRoom(medicalBay);
-        this.fillRoom(dormitory);
-        this.fillRoom(physicsLaboratory);
-        this.fillRoom(dock);
-        this.fillRoom(controlRoom);
-        this.fillRoom(reactor);
-        this.fillRoom(escapePod);
     }
 
     // This method initialises the inventory of the given room
@@ -247,6 +238,15 @@ public class Game {
                 room.getInventory().addItem(new Item(20, "keyboard"), 10);
                 break;
             case "storage":
+                room.getInventory().addItem(new Item(150, "box"), 30);
+                room.getInventory().addItem(new Item(225, "bed"), 10);
+                room.getInventory().addItem(new Item(75, "electronics"), 25);
+                room.getInventory().addItem(new Item(135, "solarpanel"), 15);
+                room.getInventory().addItem(new Item(2, "hammer"), 13);
+                room.getInventory().addItem(new Item(5, "saw"), 9);
+                room.getInventory().addItem(new Item(3, "crowbar"), 7);
+                room.getInventory().addItem(new Item(110, "plasma-saw"), 6);
+                room.getInventory().addItem(new Item(150, "nailgun"), 8);
                 break;
             case "medbay":
                 break;
@@ -469,11 +469,7 @@ public class Game {
             System.out.printf("You got %1.2f points\n", point);
         } 
         // If the player is killed by Zuul, print message
-        else if (reason == "lose") {  
-            if (characters.get(0).getCurrentRoom().getHasCharacter("TechDude")
-                && currentCharacter.equals(characters.get(0))) {
-                System.out.println("AAAAARRHRHRHRHH!");
-        }
+        else if (reason == "lose") {
             System.out.println("You were caught and killed by the monster. You lost.");
         } 
         // If player is killed by reactor, print message
@@ -487,10 +483,6 @@ public class Game {
         }
         // If player exits the game without losing or winning.
         else {
-            if (characters.get(0).getCurrentRoom().getHasCharacter("TechDude")
-                && currentCharacter.equals(characters.get(0))) {
-                System.out.println("Tech dude: Oy where you going mate");
-        }
             System.out.println("You quit the current instance of the game.");
         }
     }
