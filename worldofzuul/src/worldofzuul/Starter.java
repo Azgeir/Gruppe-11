@@ -30,7 +30,7 @@ public class Starter {
             boolean correctInput = false;
             do {
                 Scanner input = new Scanner(System.in);
-                System.out.println("Enter 'true' to continue or 'false' to quit. ");
+                System.out.print("Enter 'true' to continue or 'false' to quit.\n> ");
                 if (input.hasNextBoolean()) {
                     playAgain = input.nextBoolean();
                     correctInput = true;
