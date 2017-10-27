@@ -67,8 +67,10 @@ public class Zuul extends Character {
         
         if (this.getCurrentRoom().getHasCharacter("Hero")) {
             word1 = "stay";
+            // This sets word1 to have the value/command 'stay' for the player
         }
         else {
+            // This creates a array list based on the rooms and where the commands changes the payers position
             ArrayList<String> exits = new ArrayList(this.getCurrentRoom().getExits().keySet());
             
             exits.remove(this.previousRoomName);
