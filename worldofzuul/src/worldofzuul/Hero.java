@@ -155,34 +155,39 @@ public class Hero extends Character {
     //Checks whatever Zuul is in the next room and gives feedback if it is or isn't
     @Override
     public void peek(Command command) {
-
+        
         String direction = command.getSecondWord();
-
+        
         boolean zuulNearby = false;
         
         if (this.getCurrentRoom().getHasCharacter("Zuul")) {
             System.out.println("Zuul is in this room you idiot");
         }
         
-        for (Room neighbor : this.getCurrentRoom().getExits().values()) {
-            if (neighbor.getHasCharacter("Zuul")) {
-                System.out.println("Zuul is " + neighbor.getShortDescription());
-                zuulNearby = true;
+        if (this.getCurrentRoom().getExit(direction) != null) {
+            for (Room neighbor : this.getCurrentRoom().getExits().values()) {
+                if (neighbor.getHasCharacter("Zuul")) {
+                    System.out.println("Zuul is " + neighbor.getShortDescription());
+                    zuulNearby = true;
+                }
+            }
+            
+            if (this.getCurrentRoom().getExits().keySet().size() > 2) {
+                Room neighbor = this.getCurrentRoom().getExit(direction);
+                if (neighbor.getExit(direction).getHasCharacter("Zuul")) {
+                    System.out.println("Zuul is " + neighbor.getExit(direction).getShortDescription());
+                    zuulNearby = true;
+                }
+            }
+            
+            if (!zuulNearby) {
+                System.out.println("There is no Zuul nearby");
             }
         }
-
-        if (this.getCurrentRoom().getExits().keySet().size() > 2) {
-            Room neighbor = this.getCurrentRoom().getExit(direction);
-            if (neighbor.getExit(direction).getHasCharacter("Zuul")) {
-                System.out.println("Zuul is " + neighbor.getExit(direction).getShortDescription());
-                zuulNearby = true;
-            }
+        else {
+            System.out.println("There is no direction by that name");
         }
-
-        if (!zuulNearby) {
-            System.out.println("There is no Zuul nearby");
-        }
-
+        
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
 
@@ -278,7 +283,11 @@ public class Hero extends Character {
         String word1 = null;
         String word2 = null;
         String word3 = null;
-
+        
+        if (this.getCurrentRoom().getHasCharacter("Zuul")){
+            System.out.println("The Zuul is in this room");
+        }
+        
         // Print "> " to prompt user input
         System.out.print("> ");
 
