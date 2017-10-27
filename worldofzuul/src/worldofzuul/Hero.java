@@ -37,7 +37,7 @@ public class Hero extends Character {
         this.inventory = new Inventory(capacity);
     }
 
-    //£
+    //Transfers an Item from the rooms inventory to the characters inventory
     @Override
     public void pickUp(Command command) {
         String itemName = command.getSecondWord();
@@ -57,7 +57,7 @@ public class Hero extends Character {
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
 
-    //£
+    //Transfers an item from the characters inventory to the rooms
     @Override
     public void dropItem(Command command) {
         String itemName = command.getSecondWord();
@@ -77,7 +77,7 @@ public class Hero extends Character {
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
 
-    // £ Initiative
+    //Gives the player a detailed description of the items and the possibilities of a room
     @Override
     public void look(Command command) {
         // Print inventory of current room
@@ -89,7 +89,7 @@ public class Hero extends Character {
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
 
-    //£ should monster be called zuul
+    //Checks whatever Zuul is in the next room and gives feedback if it is or isn't
     @Override
     public void peek(Command command) {
 
