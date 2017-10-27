@@ -84,10 +84,10 @@ public class Hero extends Character {
     //Gives the player a detailed description of the items and the possibilities of a room
     @Override
     public void look(Command command) {
-        // Print inventory of current room
-        System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
         // Print detailed description of room
         System.out.println(this.getCurrentRoom().getDetailedDescription());
+        // Print inventory of current room
+        System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
         // Print status of exits
         System.out.println(this.getCurrentRoom().getLockedExitString());
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
@@ -300,14 +300,14 @@ public class Hero extends Character {
                 } else {
                     System.out.println("You need the TechDude to do this");
                     return Double.MAX_VALUE;
-                }
+            }
             } else {
                 System.out.println("There is no reactor in this room");
                 return Double.MAX_VALUE;
             }
 
         }
-        return 0;
+        return 0; 
     }
 
     public int getHealth() {
