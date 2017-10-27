@@ -444,33 +444,43 @@ public class Game {
                 && currentCharacter.equals(characters.get(0))) {
             sameRoom = true;
         }
-        // 
+        // If Zuul is in the same room as the player, and Zuul is the current character, set sameRoom and zuulHadTurn to true
         else if (characters.get(1).getCurrentRoom().getHasCharacter("Hero")
                 && currentCharacter.equals(characters.get(1))) {
             sameRoom = true;
             zuulHadTurn = true;
-        } else if (currentCharacter != characters.get(0) && !(characters.get(0).
+        }
+        // If current character is not player, and Zuul is not in player's current room, set sameRoom and zuulHadTurn to false
+        else if (currentCharacter != characters.get(0) && !(characters.get(0).
                 getCurrentRoom().getHasCharacter("Zuul"))) {
             sameRoom = false;
             zuulHadTurn = false;
         }
-        
+        // If player and Zuul are in the same room, and current character is player,
+        // and zuulHadTurn is true, and player's initiative is less than Zuul's initiative + 10,
+        // print lose message and return true
         if ((sameRoom && currentCharacter.equals(characters.get(0)) && zuulHadTurn)
                 && characters.get(0).getCharacterInitiative() > (characters.
                         get(1).getCharacterInitiative() + 10)) {
             printStopMessage("lose");
             return true;
-        } else {
+        }
+        // Else, return false
+        else {
             return false;
         }
     }
 
+    // This method tests if the player loses because of the reactor
     boolean timerLose() {
-        
+        // If player's initiative is greater than maxInitiative, print lose 
+        // message based on "timer" and return true.
         if (characters.get(0).getCharacterInitiative() > maxInititative) {
             printStopMessage("timer");
             return true;
-        } else {
+        }
+        // Else, return false
+        else {
             return false;
         }
     }
