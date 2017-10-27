@@ -178,7 +178,7 @@ public class Game {
         computerRoom.setHasCharacter("Hero", true);
         controlRoom.setHasCharacter("TechDude", true);
         computerRoom.getInventory().addItem(new USB(1));
-        computerRoom.getInventory().addItem(new AcidVial(5));
+        computerRoom.getInventory().addItem(new AcidVial(5, 50));
         computerRoom.getInventory().addItem(new MedKit());
     }
 
@@ -404,7 +404,7 @@ public class Game {
         }
         
         if ((sameRoom && currentCharacter.equals(characters.get(0)) && zuulHadTurn)
-                && characters.get(0).getCharacterInitiative() < (characters.
+                && characters.get(0).getCharacterInitiative() > (characters.
                         get(1).getCharacterInitiative() + 10)) {
             printStopMessage("lose");
             return true;
