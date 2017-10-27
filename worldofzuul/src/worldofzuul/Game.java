@@ -220,12 +220,53 @@ public class Game {
         computerRoom.setHasCharacter("Hero", true);
         controlRoom.setHasCharacter("TechDude", true);
         
-        // Add items to the inventory of the computer room
-        computerRoom.getInventory().addItem(new USB(1));
-        computerRoom.getInventory().addItem(new AcidVial(5, 50));
-        computerRoom.getInventory().addItem(new AcidVial(5, 50));
-        computerRoom.getInventory().addItem(new AcidVial(5, 50));
-        computerRoom.getInventory().addItem(new MedKit());
+        // Add items to the inventory of the rooms
+        this.fillRoom(computerRoom);
+    }
+
+    // This method initialises the inventory of the given room
+    private void fillRoom(Room room) {
+        switch (room.getName()) {
+            case "biolab":
+                break;
+            case "computer":
+                room.getInventory().addItem(new USB(1));
+                room.getInventory().addItem(new AcidVial(5, 50), 3);
+                room.getInventory().addItem(new MedKit());
+                room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
+                room.getInventory().addItem(new Item(10, "computer-mouse"), 10);
+                room.getInventory().addItem(new Item(20, "keyboard"), 10);
+                break;
+            case "storage":
+                break;
+            case "medbay":
+                break;
+            case "dorm":
+                room.getInventory().addItem(new Item(5, "dehydrated-food"), 50);
+                room.getInventory().addItem(new Item(200, "bed"), 20);
+                room.getInventory().addItem(new Item(10, "pillow"), 20);
+                room.getInventory().addItem(new Item(20, "duvet"), 20);
+                room.getInventory().addItem(new Item(200, "corpse"), 10);
+                room.getInventory().addItem(new Item(200, "couch"));
+                room.getInventory().addItem(new Item(200, "table"), 2);
+                room.getInventory().addItem(new Item(200, "bookcase"));
+                room.getInventory().addItem(new Item(10, "book"), 100);
+                room.getInventory().addItem(new Item(150, "desk"), 2);
+                room.getInventory().addItem(new Item(50, "chair"), 6);
+                break;
+            case "physicslab":
+                break;
+            case "dock":
+                break;
+            case "control":
+                break;
+            case "reactor":
+                break;
+            case "pod":
+                break;
+            default:
+                break;
+        }
     }
 
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
@@ -414,6 +455,7 @@ public class Game {
         if (reason == "win") {
             // Calculate earned points
             double point = pointCalculation();
+            System.out.println("Tech dude: Good job mate, I knew we would make it!");
             System.out.println("Congratulations, you escaped the space station. You won.");
             System.out.printf("You got %1.2f points\n", point);
         } 
@@ -423,6 +465,7 @@ public class Game {
         } 
         // If player is killed by reactor, print message
         else if (reason == "timer"){
+            System.out.println("Tech dude: Good run mate see ya on the other side");
             System.out.println("The reactor overloaded and blew up the spacestation. You lost.");
         }
         // if the player dies due to low health
