@@ -228,23 +228,6 @@ public class Game {
     private void fillRoom(Room room) {
         switch (room.getName()) {
             case "biolab":
-                room.getInventory().addItem(new Item(5, "notebook"));
-                room.getInventory().addItem(new Item(30, "microscope"), 3);
-                room.getInventory().addItem(new Item(200, "DNA-sequencing-machine"));
-                room.getInventory().addItem(new Item(150, "incubator"), 2);
-                room.getInventory().addItem(new Item(200, "refridgerator"), 2);
-                room.getInventory().addItem(new Item(20, "animal-cell-model"));
-                room.getInventory().addItem(new Item(20, "plant-cell-model"));
-                room.getInventory().addItem(new Item(25, "water-sampler"));
-                room.getInventory().addItem(new Item(25, "air-sampler"));
-                room.getInventory().addItem(new Item(5, "methylene-blue-solution"), 10);
-                room.getInventory().addItem(new Item(5, "Gram's-iodine-solution"), 10);
-                room.getInventory().addItem(new Item(5, "pipette"), 20);
-                room.getInventory().addItem(new Item(5, "microscope-slide"), 10);
-                room.getInventory().addItem(new Item(5, "cell-lysis-solution"), 5);
-                room.getInventory().addItem(new Item(5, "test-tube"), 20);
-                room.getInventory().addItem(new Item(5, "DNA-precipitate-solution"), 5);
-                room.getInventory().addItem(new Item(150, "centrifuge"), 2);
                 break;
             case "computer":
                 room.getInventory().addItem(new USB(1));
@@ -256,7 +239,7 @@ public class Game {
                 break;
             case "storage":
                 room.getInventory().addItem(new Item(150, "box"), 30);
-                room.getInventory().addItem(new Item(225, "bed"), 10);
+                room.getInventory().addItem(new Item(150, "bed"), 15);
                 room.getInventory().addItem(new Item(75, "electronics"), 25);
                 room.getInventory().addItem(new Item(135, "solarpanel"), 15);
                 room.getInventory().addItem(new Item(2, "hammer"), 13);
@@ -266,6 +249,19 @@ public class Game {
                 room.getInventory().addItem(new Item(150, "nailgun"), 8);
                 break;
             case "medbay":
+                room.getInventory().addItem(new AcidVial(5, 50), 7);
+                room.getInventory().addItem(new MedKit());
+                room.getInventory().addItem(new Item(1, "syringe"), 17);
+                room.getInventory().addItem(new Item(2, "pills"), 29);
+                room.getInventory().addItem(new Item(6, "glass"), 49);
+                room.getInventory().addItem(new Item(20, "book"), 200);
+                room.getInventory().addItem(new Item(9, "coat"), 19);
+                room.getInventory().addItem(new Item(250, "bed"), 25);
+                room.getInventory().addItem(new Item(7, "sheet"), 30);
+                room.getInventory().addItem(new Item(4, "pilow"), 30);
+                room.getInventory().addItem(new Item(350, "desk"), 8);
+                room.getInventory().addItem(new Item(15, "display-skeleton"), 5);
+                room.getInventory().addItem(new Item(200, "corpse"), 21);
                 break;
             case "dorm":
                 room.getInventory().addItem(new Item(5, "dehydrated-food"), 50);
@@ -281,7 +277,6 @@ public class Game {
                 room.getInventory().addItem(new Item(50, "chair"), 6);
                 break;
             case "physicslab":
-                room.getInventory().addItem(new Item(50, "Helmholtz-coil"));
                 break;
             case "dock":
                 break;
@@ -320,6 +315,7 @@ public class Game {
             // Process command
             finished = processCommand(command);
             // Check if player lost game because they met Zuul
+            
             if (!finished) {
                 finished = lose();
             }
