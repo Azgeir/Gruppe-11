@@ -188,6 +188,8 @@ public class Game {
         // Add items to the inventory of the computer room
         computerRoom.getInventory().addItem(new USB(1));
         computerRoom.getInventory().addItem(new AcidVial(5, 50));
+        computerRoom.getInventory().addItem(new AcidVial(5, 50));
+        computerRoom.getInventory().addItem(new AcidVial(5, 50));
         computerRoom.getInventory().addItem(new MedKit());
     }
 

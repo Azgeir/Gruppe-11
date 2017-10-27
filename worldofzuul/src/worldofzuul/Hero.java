@@ -15,7 +15,6 @@ import java.util.Map.Entry;
  *
  * @author HCHB
  */
-
 // This class represents the player
 public class Hero extends Character {
 
@@ -129,18 +128,18 @@ public class Hero extends Character {
         String direction = command.getSecondWord();
         boolean lock = true;
         boolean directionExists = false;
-        
-        for (String exit : this.getCurrentRoom().getExits().keySet()){
-            if (direction.equals(exit)){
+
+        for (String exit : this.getCurrentRoom().getExits().keySet()) {
+            if (direction.equals(exit)) {
                 this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
                 this.lockUnlock(direction, lock);
-            directionExists = true;
+                directionExists = true;
             }
         }
         // If there isnt any door that matches the secondWord then this is print
         if (!directionExists) {
             System.out.println("there isn't any exit by that name");
-            
+
         }
     }
 
@@ -150,25 +149,25 @@ public class Hero extends Character {
         String direction = command.getSecondWord();
         boolean lock = false;
         boolean directionExists = false;
-        
-        for (String exit : this.getCurrentRoom().getExits().keySet()){
-            if (direction.equals(exit)){
+
+        for (String exit : this.getCurrentRoom().getExits().keySet()) {
+            if (direction.equals(exit)) {
                 this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
                 this.lockUnlock(direction, lock);
-            directionExists = true;
+                directionExists = true;
             }
         }
         // If there isnt any door that matches the secondWord then this is print
         if (!directionExists) {
             System.out.println("there isn't any exit by that name");
-            
+
         }
     }
 
     //Command for using an Item in your inventory
     @Override
     public double use(Command command) {
-        
+
         if (command.hasSecondWord()) {
             String itemName = command.getSecondWord();
             Item item = this.getInventory().getItem(itemName);
@@ -176,16 +175,14 @@ public class Hero extends Character {
                 double initiativeReduction = item.use(this);
                 this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
                 return initiativeReduction;
-            }
-            else {
+            } else {
                 this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
                 System.out.println("You don't have any such item");
             }
-        }
-        else {
+        } else {
             System.out.println("You have to select something to use");
         }
-        
+
         return 0;
     }
 
@@ -240,11 +237,11 @@ public class Hero extends Character {
         // Create a Command object based on words 1 and 2, and return the command.
         return new Command(commands.getCommandWord(word1), word2, word3);
     }
-    
+
     //Method for locking and unlocking, first lockUnlock the first door(direction) you call
     // then get the next rooms exits and lockUnlock the direction towards currentRoom of the character
     private void lockUnlock(String direction, boolean lock) {
-        
+
         HashMap<String, Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
         String getName = this.getCurrentRoom().getName();
         lockedExits.put(direction, Boolean.TRUE);
@@ -253,30 +250,29 @@ public class Hero extends Character {
                 if (lockedExits.keySet().size() > 2) {
                     this.getCurrentRoom().getLockedExits().put(direction, lock);
                     this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
-                    
+
                 } else {
                     this.getCurrentRoom().getLockedExits().put(direction, lock);
-                    
+
                     HashMap<String, Boolean> templockExits = new HashMap<>();
                     templockExits.putAll(this.getCurrentRoom().getLockedExits());
                     templockExits.remove(direction);
                     String direction2 = (String) templockExits.keySet().toArray()[0];
                     this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
                 }
-                
-            }
-            else{
+
+            } else {
                 System.out.println("The station is under quarentine and you therefore can't open the door.\n Perhaps you could find something or someone to force it open");
             }
-            
+
         } else {
             if (lockedExits.keySet().size() > 2) {
                 this.getCurrentRoom().getLockedExits().put(direction, lock);
                 this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
-                
+
             } else {
                 this.getCurrentRoom().getLockedExits().put(direction, lock);
-                
+
                 HashMap<String, Boolean> templockExits = new HashMap<>();
                 templockExits.putAll(this.getCurrentRoom().getLockedExits());
                 templockExits.remove(direction);
@@ -285,32 +281,33 @@ public class Hero extends Character {
             }
         }
     }
-    
+
     //use this command to start the countdown timer for bonus points (by blowing up the reactor)
     @Override
-    public double activate(Command command){
+    public double activate(Command command) {
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
-        
+
         if (command.getSecondWord().equals("reactor")) {
             if (this.getCurrentRoom().getName().equals("reactor")) {
                 if (this.getCurrentRoom().getHasCharacter("TechDude")) {
+
                     System.out.println("You activated the reactor. The spacestation will selfdestruct in 10 turns");
-                    return (this.getCharacterInitiative()+50);
-                
-               } else if(!command.hasSecondWord()) {
-                System.out.println("Activate what?");
-                return Double.MAX_VALUE;
-            } else {
+                    return (this.getCharacterInitiative() + 50);
+
+                } else if (!command.hasSecondWord()) {
+                    System.out.println("Activate what?");
+                    return Double.MAX_VALUE;
+                } else {
                     System.out.println("You need the TechDude to do this");
                     return Double.MAX_VALUE;
-            }
+                }
             } else {
                 System.out.println("There is no reactor in this room");
                 return Double.MAX_VALUE;
             }
 
         }
-        return 0; 
+        return 0;
     }
 
     public int getHealth() {
