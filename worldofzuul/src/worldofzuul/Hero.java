@@ -44,19 +44,54 @@ public class Hero extends Character {
     //Transfers an Item from the rooms inventory to the characters inventory
     @Override
     public void pickUp(Command command) {
-        String itemName = command.getSecondWord();
-        Item item = this.getCurrentRoom().getInventory().getItem(itemName);
-        if (item == null) {
-            System.out.println("The room doesn't contain that item.");
-        } else {
-            boolean itemAdded = this.inventory.addItem(item);
-            if (itemAdded) {
-                this.getCurrentRoom().getInventory().removeItem(item);
+        
+        if (command.hasSecondWord()) {
+            String itemName = command.getSecondWord();
+            if (command.hasThirdWord()) {
+                int number = Integer.parseInt(command.getThirdWord());
+                int numberAdded = 0;
+         
+                Item item = this.getCurrentRoom().getInventory().getItem(itemName);
+                if (item == null) {
+                    System.out.println("The room doesn't contain that item.");
+                } else {
+                    for (int i = 0; i < number; i++) {
+                        boolean itemAdded = this.inventory.addItem(item);
+                        if (itemAdded) {
+                            numberAdded++;
+                            this.getCurrentRoom().getInventory().removeItem(item);
+                        } else {
+                        }
+                    }
+                    if (numberAdded == 0){
+                        System.out.println("You can't carry any of that");
+                    }
+                    else if (numberAdded < number){
+                        System.out.println("You could only pickup " + numberAdded + " " + itemName);
+                    }
+                    else {
+                        System.out.println("You picked up " + number + " " + itemName);
+                    }
+                }
             } else {
-                System.out.println("You can't carry that much");
+                Item item = this.getCurrentRoom().getInventory().getItem(itemName);
+                if (item == null) {
+                    System.out.println("The room doesn't contain that item.");
+                } else {
+                    boolean itemAdded = this.inventory.addItem(item);
+                    System.out.println("You picked up " + item.getName());
+                    if (itemAdded) {
+                        this.getCurrentRoom().getInventory().removeItem(item);
+                    } else {
+                        System.out.println("You can't carry that much");
+                    }
+                }
             }
         }
-
+        else {
+            System.out.println("Pickup what?");
+        }
+        
         this.speedFactorCalculation();
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
