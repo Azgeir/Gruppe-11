@@ -231,6 +231,11 @@ public class Game {
         computerRoom.getInventory().addItem(new Item(20, "keyboard"), 10);
     }
 
+    // This method initialises the inventory of the given room
+    private void fillRoom(Room room) {
+        
+    }
+
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
     private void createCharacter() {
         this.characters.add(new Hero(characterStartRooms.get("Computer"), "Hero"));
