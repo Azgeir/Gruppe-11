@@ -1,5 +1,5 @@
 package worldofzuul;
-
+// Imports:
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,6 +8,7 @@ import java.util.HashSet;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+
 // This class runs the main functionality of the game.
 public class Game {
 
@@ -20,13 +21,15 @@ public class Game {
     private Room winConditionRoom;
     private boolean sameRoom = false;
     private boolean zuulHadTurn = false;
-    private double MaxInititative = Double.MAX_VALUE;
+    private double maxInititative = Double.MAX_VALUE;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() {
         //Create all rooms by calling the createRooms method
         createRooms();
+        // Create the characters by calling the createCharacter() method
         createCharacter();
+        // Create a parser
         parser = new Parser();
     }
 
@@ -173,10 +176,16 @@ public class Game {
         characterStartRooms.put("Computer", computerRoom);
         characterStartRooms.put("Control", controlRoom);
         characterStartRooms.put("Dorm", dormitory);
+        
+        // Set the value of the win condition
         winConditionRoom = escapePod;
+        
+        // Set the initial positions of Zuul, hero, and tech dude
         dormitory.setHasCharacter("Zuul", true);
         computerRoom.setHasCharacter("Hero", true);
         controlRoom.setHasCharacter("TechDude", true);
+        
+        // Add items to the inventory of the computer room
         computerRoom.getInventory().addItem(new USB(1));
         computerRoom.getInventory().addItem(new AcidVial(5));
         computerRoom.getInventory().addItem(new MedKit());
@@ -198,25 +207,31 @@ public class Game {
         boolean finished = false;
         // As long as game is not finished, get and process user commands
         while (!finished) {
+            // Select current character
             this.currentCharacter = this.chooseCharacter();
+            // Check if current character is tech dude and the current room contains hero and tech dude.
             if (this.currentCharacter.equals(this.characters.get(2)) &&
                     (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
                     && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
+                // Set that tech dude has met the hero
                 this.currentCharacter.meetHero(this.characters.get(0));
             }
+            // Get command from parser
             Command command = parser.getCommand(this.currentCharacter);
+            // Process command
             finished = processCommand(command);
-            
+            // Check if player lost game because they met Zuul
             if (!finished) {
                 finished = lose();
             }
+            // Check if player lost game because of reactor
             if (!finished) {
-                finished = TimerLose();
+                finished = timerLose();
             }
+            // Check if player won game
             if (!finished) {
                 finished = winTest();
             }
-            
         }
     }
 
@@ -252,47 +267,57 @@ public class Game {
         if (null != commandWord) // Execute the command if the input matches a valid command
         // If command is "help" print the help message
         switch (commandWord) {
-        // If command is "go", call goRoom method
+            // If command is "help", print help message
             case HELP:
                 printHelp();
                 break;
-        // If command is "quit", change value of wantToQuit to true
+            // If command is "go", call go() method on current character
             case GO:
                 this.currentCharacter.go(command);
-//            goRoom(command);
                 break;
+            // If command is "quit", call quit() method (returns true, if player wants to quit)
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+            // If command is "stay", call stay() method on current character
             case STAY:
                 this.currentCharacter.stay(command);
                 break;
+            // If command is "pickup", call pickup() method on current character
             case PICKUP:
                 this.currentCharacter.pickUp(command);
                 break;
+            // If command is "drop", call dropItem() method on current character
             case DROP:
                 this.currentCharacter.dropItem(command);
                 break;
+            // If command is "look", call look() method on current character
             case LOOK:
                 this.currentCharacter.look(command);
                 break;
+            // If command is "peek", call peek() method on current character
             case PEEK:
                 this.currentCharacter.peek(command);
                 break;
+            // If command is "use", call use() method on current character and change Zuul's initiative
             case USE:
                 double zuulInitiativeChange = this.currentCharacter.use(command);
                 Character zuul = this.characters.get(1);
                 zuul.setCharacterInitiative(zuul.getCharacterInitiative()+zuulInitiativeChange);
                 break;
+            // If command is "lock", call lock() command on current character
             case LOCK:
                 this.currentCharacter.lock(command);
                 break;
+            // If command is "unlock", call unlock() command on current character
             case UNLOCK:
                 this.currentCharacter.unlock(command);
                 break;
+            // If command is "activate", set MaxInitiative to the return value of the activate() method
             case ACTIVATE:
-                this.MaxInititative = this.currentCharacter.activate(command);
+                this.maxInititative = this.currentCharacter.activate(command);
                 break;
+            // If command does not match any of the options, break.
             default:
                 break;
         }
@@ -304,25 +329,29 @@ public class Game {
     private void printHelp() {
         System.out.println("You are on a spacestation, conducting experiments for the good of the human race.");
         System.out.println("Something hit the spacestation, and you now have to save yourself and any possible survivors.");
-        System.out.println("The escape pod is in the dock, and is the only way to get off the spacestation");
+        System.out.println("The escape pod is in the dock, and it is the only way to get off the spacestation");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
     }
 
-    //iterates over the different characters to determine whos turn it is
-    // if two have the same initiative the breaker is who is defined first in the
+    // This method iterates over the different characters to determine whose turn it is.
+    // If two characters have the same initiative, the breaker is who is defined first in the
     // ArrayList
     private Character chooseCharacter() {
+        // Set current character to null
         Character currentCharacter = null;
+        // Set minInitiative to maximum integer value
         double minInitiative = Integer.MAX_VALUE;
+        // Traverse all characters
         for (Character character : characters) {
+            // Select character with the lowest initiative
             if (minInitiative > character.getCharacterInitiative()) {
                 minInitiative = character.getCharacterInitiative();
                 currentCharacter = character;
             }
         }
-
+        // Return the selected character
         return currentCharacter;
     }
 
@@ -332,93 +361,126 @@ public class Game {
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
             return false;
-        } // If the command has no second word, return "true", which causes the game to end.
+        }
+        // If the command has no second word, return "true", which causes the game to end.
         else {
             printStopMessage("quit");
             return true;
         }
     }
 
+    // This method prints a stop message depending on the reason string
     private void printStopMessage(String reason) {
-
+        // If the player won the game, print message specifying the total points earned
         if (reason == "win") {
+            // Calculate earned points
             double point = pointCalculation();
-            System.out.println("Congratulations you escaped the space station, you won");
-            System.out.printf("You got %1.2f points \n", point);
+            System.out.println("Congratulations, you escaped the space station. You won.");
+            System.out.printf("You got %1.2f points\n ", point);
         } 
+        // If the player is killed by Zuul, print message
         else if (reason == "lose") {
-            System.out.println("You were caught and killed by the monster, you lost");
+            System.out.println("You were caught and killed by the monster. You lost.");
         } 
+        // If player is killed by reactor, print message
         else if (reason == "timer"){
-            System.out.println("The reactor overloaded and blew up the spacestation, you lost");
+            System.out.println("The reactor overloaded and blew up the spacestation. You lost.");
         }
+        // If player exits the game without losing or winning.
         else {
-            System.out.println("You quit the current instance of the game");
+            System.out.println("You quit the current instance of the game.");
         }
     }
 
-    //£
+    // (£) This method calculates the points earned by the player
     private double pointCalculation() {
-
-        Hero hero = (Hero) (characters.get(0));
+        // Set hero to the Hero character
+        Hero hero = (Hero)(characters.get(0));
+        // Declare usb
         USB usb;
+        // Create hash set for points
         HashSet<String> pointSet = new HashSet<>();
 
+        // Check for the 3 different USBs
         for (int i = 1; i < 4; i++) {
+            // Set name of USB
             String name = "USB " + i;
-            usb = (USB) hero.getInventory().getItem(name);
+            // Set usb to the specified USB item in the player's inventory
+            usb = (USB)hero.getInventory().getItem(name);
+            // If the specified USB is in the player's inventory...
             if (usb != null) {
+                // If the specified USB has data stored on it...
                 if (usb.getDataType() != null) {
+                    // Print the data type collected
                     System.out.println("You got the " + usb.getDataType() + " data");
+                    // Add value to pointSet
                     pointSet.add(usb.getDataType());
                 }
             }
         }
 
+        // Calculate earned points
         double point = (pointSet.size() * 5 + 5) * (1 + (5 / (hero.getCharacterInitiative() + 5)));
         return point;
     }
 
+    // This method tests if the game is won
     private boolean winTest() {
+        // Set finished to false
         boolean finished = false;
+        // If the player is in the escape pod, set finished to true and print win message
         if (characters.get(0).getCurrentRoom().equals(winConditionRoom)) {
             finished = true;
             printStopMessage("win");
         }
+        // Return value of finished (true if player has won)
         return finished;
     }
     
+    // This method tests if the player has lost
     private boolean lose() {
-
+        // If player is in same room as Zuul, and player is current character, set sameRoom to true
         if (characters.get(0).getCurrentRoom().getHasCharacter("Zuul")
                 && currentCharacter.equals(characters.get(0))) {
             sameRoom = true;
-        } else if (characters.get(1).getCurrentRoom().getHasCharacter("Hero")
+        }
+        // If Zuul is in the same room as the player, and Zuul is the current character, set sameRoom and zuulHadTurn to true
+        else if (characters.get(1).getCurrentRoom().getHasCharacter("Hero")
                 && currentCharacter.equals(characters.get(1))) {
             sameRoom = true;
             zuulHadTurn = true;
-        } else if (currentCharacter != characters.get(0) && !(characters.get(0).
+        }
+        // If current character is not player, and Zuul is not in player's current room, set sameRoom and zuulHadTurn to false
+        else if (currentCharacter != characters.get(0) && !(characters.get(0).
                 getCurrentRoom().getHasCharacter("Zuul"))) {
             sameRoom = false;
             zuulHadTurn = false;
         }
-        
+        // If player and Zuul are in the same room, and current character is player,
+        // and zuulHadTurn is true, and player's initiative is less than Zuul's initiative + 10,
+        // print lose message and return true
         if ((sameRoom && currentCharacter.equals(characters.get(0)) && zuulHadTurn)
                 && characters.get(0).getCharacterInitiative() < (characters.
                         get(1).getCharacterInitiative() + 10)) {
             printStopMessage("lose");
             return true;
-        } else {
+        }
+        // Else, return false
+        else {
             return false;
         }
     }
 
-    boolean TimerLose() {
-        
-        if (characters.get(0).getCharacterInitiative() > MaxInititative) {
+    // This method tests if the player loses because of the reactor
+    boolean timerLose() {
+        // If player's initiative is greater than maxInitiative, print lose 
+        // message based on "timer" and return true.
+        if (characters.get(0).getCharacterInitiative() > maxInititative) {
             printStopMessage("timer");
             return true;
-        } else {
+        }
+        // Else, return false
+        else {
             return false;
         }
     }

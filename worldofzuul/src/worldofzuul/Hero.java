@@ -80,7 +80,7 @@ public class Hero extends Character {
     // £ Initiative
     @Override
     public void look(Command command) {
-        // Print hero's inventory
+        // Print inventory of current room
         System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
         // Print detailed description of room
         System.out.println(this.getCurrentRoom().getDetailedDescription());
@@ -118,7 +118,7 @@ public class Hero extends Character {
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
 
-    //£
+    //This command is used to lock a door
     @Override
     public void lock(Command command) {
         String direction = command.getSecondWord();
@@ -132,13 +132,14 @@ public class Hero extends Character {
             directionExists = true;
             }
         }
+        // If there isnt any door that matches the secondWord then this is print
         if (!directionExists) {
             System.out.println("there isn't any exit by that name");
             
         }
     }
 
-    //£
+    //This command is used to unlock a door
     @Override
     public void unlock(Command command) {
         String direction = command.getSecondWord();
@@ -152,13 +153,14 @@ public class Hero extends Character {
             directionExists = true;
             }
         }
+        // If there isnt any door that matches the secondWord then this is print
         if (!directionExists) {
             System.out.println("there isn't any exit by that name");
             
         }
     }
 
-    //£
+    //Command for using an Item in your inventory
     @Override
     public double use(Command command) {
         
@@ -233,13 +235,15 @@ public class Hero extends Character {
         // Create a Command object based on words 1 and 2, and return the command.
         return new Command(commands.getCommandWord(word1), word2, word3);
     }
-
+    
+    //Method for locking and unlocking, first lockUnlock the first door(direction) you call
+    // then get the next rooms exits and lockUnlock the direction towards currentRoom of the character
     private void lockUnlock(String direction, boolean lock) {
 
         HashMap<String, Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
         String getName = this.getCurrentRoom().getName();
         lockedExits.put(direction, Boolean.TRUE);
-        // first try at creating a lock funktion
+        
         if (lockedExits.keySet().size() > 2) {
             this.getCurrentRoom().getLockedExits().put(direction, lock);
             this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
@@ -255,7 +259,7 @@ public class Hero extends Character {
         }
     }
     
-    //£
+    //use this command to start the countdown timer for bonus points (by blowing up the reactor)
     @Override
     public double activate(Command command){
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
