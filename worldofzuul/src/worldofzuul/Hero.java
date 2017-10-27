@@ -263,6 +263,7 @@ public class Hero extends Character {
         if (command.getSecondWord().equals("reactor")) {
             if (this.getCurrentRoom().getName().equals("reactor")) {
                 if (this.getCurrentRoom().getHasCharacter("TechDude")) {
+                    System.out.println("You activated the reactor. It will detonate in 10 turns");
                     return (this.getCharacterInitiative()+50);
                 }
                 else {
