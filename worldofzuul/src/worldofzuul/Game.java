@@ -188,6 +188,8 @@ public class Game {
         // Add items to the inventory of the computer room
         computerRoom.getInventory().addItem(new USB(1));
         computerRoom.getInventory().addItem(new AcidVial(5, 50));
+        computerRoom.getInventory().addItem(new AcidVial(5, 50));
+        computerRoom.getInventory().addItem(new AcidVial(5, 50));
         computerRoom.getInventory().addItem(new MedKit());
     }
 
@@ -202,12 +204,13 @@ public class Game {
     public void play() {
         // Call the printWelcome method to show a brief introduction to the game
         printWelcome();
-        this.currentCharacter = this.chooseCharacter();
         // Check if the player is still playing
         boolean finished = false;
         // As long as game is not finished, get and process user commands
         while (!finished) {
             // Select current character
+            this.currentCharacter = this.chooseCharacter();
+            // checks if the TechDude has met the Hero
             techDudeMeetHero();
             // Get command from parser
             Command command = parser.getCommand(this.currentCharacter);
