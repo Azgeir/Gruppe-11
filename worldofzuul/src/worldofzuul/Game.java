@@ -22,6 +22,7 @@ public class Game {
     private boolean sameRoom = false;
     private boolean zuulHadTurn = false;
     private double maxInititative = Double.MAX_VALUE;
+    private boolean reactorActivated = false;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() {
@@ -315,7 +316,11 @@ public class Game {
                 break;
             // If command is "activate", set MaxInitiative to the return value of the activate() method
             case ACTIVATE:
-                this.maxInititative = this.currentCharacter.activate(command);
+                double newInitiative = this.currentCharacter.activate(command);
+                if (this.maxInititative == Double.MAX_VALUE){ 
+                    reactorActivated = true;
+                    this.maxInititative = newInitiative;
+                }
                 break;
             // If command does not match any of the options, break.
             default:
@@ -424,7 +429,7 @@ public class Game {
         }
 
         // Calculate earned points
-        double point = (pointSet.size() * 5 + 5) * (1 + (5 / (hero.getCharacterInitiative() + 5)));
+        double point = (pointSet.size() * 5 + 5) * (1 + ((reactorActivated)?5:0) + (5 / (hero.getCharacterInitiative() + 5)));
         return point;
     }
 
