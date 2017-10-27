@@ -386,7 +386,7 @@ public class Game {
             // Calculate earned points
             double point = pointCalculation();
             System.out.println("Congratulations, you escaped the space station. You won.");
-            System.out.printf("You got %1.2f points\n ", point);
+            System.out.printf("You got %1.2f points\n", point);
         } 
         // If the player is killed by Zuul, print message
         else if (reason == "lose") {
