@@ -37,7 +37,8 @@ public class Game {
     // This method creates the rooms of the game.
     private void createRooms() {
         // Declare the rooms
-        Room biologyLaboratory, computerRoom, storage, medicalBay, dormitory, physicsLaboratory, dock, controlRoom, reactor, escapePod;
+        Room biologyLaboratory, computerRoom, storage, medicalBay, dormitory, 
+            physicsLaboratory, dock, controlRoom, reactor, escapePod;
 
         // Initialize the rooms
         biologyLaboratory = new Room("in the biology laboratory", "biolab",
