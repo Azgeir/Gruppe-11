@@ -169,7 +169,7 @@ public class Game {
         dock.setExit("control", hallwayControlDock, false);
         dock.setExit("physicslab", hallwayDockPhysics, false);
         dock.setExit("reactor", hallwayReactorDock, false);
-        dock.setExit("pod", escapePod, false);
+        dock.setExit("pod", escapePod, true);
 
         physicsLaboratory.setExit("dock", hallwayDockPhysics, false);
         physicsLaboratory.setExit("dorm", hallwayPhysicsDormitory, false);
