@@ -84,22 +84,23 @@ public class Zuul extends Character {
                 exits.remove(this.previousRoomName);    
             }
             
-            if (stayCounter<stayCounterMax) {
+            if (stayCounter<stayCounterMax || exits.size()==0) {
                 exits.add("stay");
             }
             
             int numberMoveActions = exits.size();
             int action = (int)(Math.random()*numberMoveActions);
             
-            if (numberMoveActions != (action+1)){
+            if (exits.get(action).equals("stay")) {
+                word1 = exits.get(action);
+                stayCounter++;
+            }
+            else {
                 word1 = "go";
                 word2 = exits.get(action);
                 stayCounter = 0;
             }
-            else {
-                word1 = exits.get(action);
-                stayCounter++;
-            }
+            
         }
         
         // Create a Command object based on words 1 and 2, and return the command.
