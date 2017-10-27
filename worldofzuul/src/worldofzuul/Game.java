@@ -427,7 +427,11 @@ public class Game {
             System.out.printf("You got %1.2f points\n", point);
         } 
         // If the player is killed by Zuul, print message
-        else if (reason == "lose") {
+        else if (reason == "lose") {  
+            if (characters.get(0).getCurrentRoom().getHasCharacter("TechDude")
+                && currentCharacter.equals(characters.get(0))) {
+                System.out.println("AAAAARRHRHRHRHH!");
+        }
             System.out.println("You were caught and killed by the monster. You lost.");
         } 
         // If player is killed by reactor, print message
@@ -441,6 +445,10 @@ public class Game {
         }
         // If player exits the game without losing or winning.
         else {
+            if (characters.get(0).getCurrentRoom().getHasCharacter("TechDude")
+                && currentCharacter.equals(characters.get(0))) {
+                System.out.println("Tech dude: Oy where you going mate");
+        }
             System.out.println("You quit the current instance of the game.");
         }
     }
