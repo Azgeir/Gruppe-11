@@ -535,6 +535,7 @@ public class Game {
                     && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
                 // Set that tech dude has met the hero
                 this.currentCharacter.meetHero(this.characters.get(0));
+                System.out.println("Oy mate what is happening");
             }
     }
     
