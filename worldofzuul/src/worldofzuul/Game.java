@@ -120,10 +120,10 @@ public class Game {
         hallwayComputerBiology.setExit("computer", computerRoom, false);
         hallwayComputerBiology.setExit("biolab", biologyLaboratory, false);
 
-        hallwayBiologyControl.setExit("control", controlRoom, false);
+        hallwayBiologyControl.setExit("control", controlRoom, true);
         hallwayBiologyControl.setExit("biolab", biologyLaboratory, false);
 
-        hallwayControlDock.setExit("control", controlRoom, false);
+        hallwayControlDock.setExit("control", controlRoom, true);
         hallwayControlDock.setExit("dock", dock, false);
 
         hallwayDockPhysics.setExit("physicslab", physicsLaboratory, false);
@@ -143,7 +143,7 @@ public class Game {
         hallwayReactorBiology.setExit("biolab", biologyLaboratory, false);
 
         hallwayReactorControl.setExit("reactor", reactor, false);
-        hallwayReactorControl.setExit("control", controlRoom, false);
+        hallwayReactorControl.setExit("control", controlRoom, true);
 
         hallwayReactorDock.setExit("reactor", reactor, false);
         hallwayReactorDock.setExit("dock", dock, false);
@@ -273,16 +273,12 @@ public class Game {
                 room.getInventory().addItem(new AcidVial(5, 50), 7);
                 room.getInventory().addItem(new MedKit());
                 room.getInventory().addItem(new Item(1, "syringe"), 17);
-                room.getInventory().addItem(new Item(2, "pills"), 29);
+                room.getInventory().addItem(new Item(2, "pill"), 29);
                 room.getInventory().addItem(new Item(6, "glass"), 49);
                 room.getInventory().addItem(new Item(20, "book"), 200);
                 room.getInventory().addItem(new Item(9, "coat"), 19);
-                room.getInventory().addItem(new Item(250, "bed"), 25);
-                room.getInventory().addItem(new Item(7, "sheet"), 30);
-                room.getInventory().addItem(new Item(4, "pilow"), 30);
                 room.getInventory().addItem(new Item(350, "desk"), 8);
                 room.getInventory().addItem(new Item(15, "display-skeleton"), 5);
-                room.getInventory().addItem(new Item(200, "corpse"), 3);
                 break;
             case "dorm":
                 room.getInventory().addItem(new Item(5, "dehydrated-food"), 50);
