@@ -159,6 +159,11 @@ public class Hero extends Character {
         String direction = command.getSecondWord();
 
         boolean zuulNearby = false;
+        
+        if (this.getCurrentRoom().getHasCharacter("Zuul")) {
+            System.out.println("Zuul is this room you idiot");
+        }
+        
         for (Room neighbor : this.getCurrentRoom().getExits().values()) {
             if (neighbor.getHasCharacter("Zuul")) {
                 System.out.println("Zuul is " + neighbor.getShortDescription());
