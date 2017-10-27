@@ -499,7 +499,7 @@ public class Game {
         // Check for the 3 different USBs
         for (int i = 1; i < 4; i++) {
             // Set name of USB
-            String name = "USB " + i;
+            String name = "USB" + i;
             // Set usb to the specified USB item in the player's inventory
             usb = (USB)hero.getInventory().getItem(name);
             // If the specified USB is in the player's inventory...
