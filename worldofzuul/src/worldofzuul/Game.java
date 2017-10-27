@@ -187,7 +187,7 @@ public class Game {
         
         // Add items to the inventory of the computer room
         computerRoom.getInventory().addItem(new USB(1));
-        computerRoom.getInventory().addItem(new AcidVial(5));
+        computerRoom.getInventory().addItem(new AcidVial(5, 50));
         computerRoom.getInventory().addItem(new MedKit());
     }
 
@@ -460,7 +460,7 @@ public class Game {
         // and zuulHadTurn is true, and player's initiative is less than Zuul's initiative + 10,
         // print lose message and return true
         if ((sameRoom && currentCharacter.equals(characters.get(0)) && zuulHadTurn)
-                && characters.get(0).getCharacterInitiative() < (characters.
+                && characters.get(0).getCharacterInitiative() > (characters.
                         get(1).getCharacterInitiative() + 10)) {
             printStopMessage("lose");
             return true;

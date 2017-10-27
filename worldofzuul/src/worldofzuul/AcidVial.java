@@ -17,6 +17,12 @@ public class AcidVial extends Item {
     private double initiativeReduction;
     
     // (£) This constructor creates an acid vial with a specified damage amount
+    public AcidVial(int damageAmount, int initiativeReduction) {
+        super(5, "acidvial", "attack something.");
+        this.damageAmount = damageAmount;
+        this.initiativeReduction = initiativeReduction;
+    }
+
     public AcidVial(int damageAmount) {
         super(5, "acidvial", "attack something."); // Calls constructor for superclass
         this.damageAmount = damageAmount; // Sets damage amount
@@ -25,6 +31,7 @@ public class AcidVial extends Item {
     // (£) This constructor creates an acid vial with a default damage amount
     public AcidVial() {
         this.damageAmount = 5;
+        this.initiativeReduction = 15;
     }
     
     // This method returns the damage amount of the acid vial.
