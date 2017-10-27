@@ -246,6 +246,8 @@ public class Game {
                 room.getInventory().addItem(new Item(5, "cell-lysis-solution"), 10);
                 room.getInventory().addItem(new Item(5, "DNA-precipitate-solution"), 10);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
+                room.getInventory().addItem(new Item(75, "centrifuge"), 2);
+                room.getInventory().addItem(new AcidVial(5, 50), 10);
                 break;
             case "computer":
                 room.getInventory().addItem(new USB(1));
@@ -265,6 +267,7 @@ public class Game {
                 room.getInventory().addItem(new Item(3, "crowbar"), 7);
                 room.getInventory().addItem(new Item(110, "plasma-saw"), 6);
                 room.getInventory().addItem(new Item(150, "nailgun"), 8);
+                room.getInventory().addItem(new Item(200, "railgun"), 2);
                 break;
             case "medbay":
                 room.getInventory().addItem(new AcidVial(5, 50), 7);
@@ -279,7 +282,7 @@ public class Game {
                 room.getInventory().addItem(new Item(4, "pilow"), 30);
                 room.getInventory().addItem(new Item(350, "desk"), 8);
                 room.getInventory().addItem(new Item(15, "display-skeleton"), 5);
-                room.getInventory().addItem(new Item(200, "corpse"), 21);
+                room.getInventory().addItem(new Item(200, "corpse"), 3);
                 break;
             case "dorm":
                 room.getInventory().addItem(new Item(5, "dehydrated-food"), 50);
@@ -297,6 +300,12 @@ public class Game {
             case "physicslab":
                 break;
             case "dock":
+                room.getInventory().addItem(new Item(200, "crate"), 30);
+                room.getInventory().addItem(new Item(500, "fuel station"), 1);
+                room.getInventory().addItem(new Item(50, "barrel"), 40);
+                room.getInventory().addItem(new Item(35, "baggage"), 10);
+                room.getInventory().addItem(new Item(150, "computer-moniter"), 15);
+                room.getInventory().addItem(new Item(200, "corpse"), 2);
                 break;
             case "control":
                 break;
@@ -614,17 +623,22 @@ public class Game {
     
     private void techDudeMeetHero(){
         // Check if current character is tech dude and the current room contains hero and tech dude.
-            if (this.currentCharacter.equals(this.characters.get(2)) &&
-                    (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
-                    && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
-                // Set that tech dude has met the hero
-                this.currentCharacter.meetHero(this.characters.get(0));
-            }
+        if (this.currentCharacter.equals(this.characters.get(2)) &&
+                (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
+                && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
+            // Set that tech dude has met the hero
+            this.currentCharacter.meetHero(this.characters.get(0));
+        }
     }
     
+    // This method checks whether or not the player has died because of low health.
     private boolean healthTest(){
+        // Check if current player is hero
         if (this.currentCharacter.equals(this.characters.get(0))) {
+            // Set tempCharacter to current character
             Hero tempCharacter = (Hero)this.currentCharacter;
+            // If player's health is less than or equal to zero, print "health"
+            // lose message and return true.
             if (tempCharacter.getHealth() <= 0){
                 printStopMessage("health");
                 return true;
