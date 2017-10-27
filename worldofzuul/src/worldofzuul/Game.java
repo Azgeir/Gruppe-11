@@ -80,7 +80,9 @@ public class Game {
         escapePod = new Room("in the escape pod", "pod");
 
         // Declare hallways between rooms
-        Room hallwayStorageComputer, hallwayComputerBiology, hallwayBiologyControl, hallwayControlDock, hallwayDockPhysics, hallwayPhysicsDormitory, hallwayDormitoryMedical, hallwayMedicalStorage;
+        Room hallwayStorageComputer, hallwayComputerBiology, hallwayBiologyControl, 
+            hallwayControlDock, hallwayDockPhysics, hallwayPhysicsDormitory, 
+            hallwayDormitoryMedical, hallwayMedicalStorage;
 
         // Initialize the hallways between the outer rooms
         hallwayStorageComputer = new Room("in the hallway between the storage and computer rooms");
