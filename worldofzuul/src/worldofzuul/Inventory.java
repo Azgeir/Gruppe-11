@@ -47,16 +47,14 @@ public class Inventory {
                 ArrayList<Item> list = new ArrayList<>();
                 inventory.put(item.getName(), list);
                 list.add(item);
-                System.out.println("Added " + item.getName() + " to the inventory");
                 return true;
                 //System.out.println(list.size());
             } else {
                 inventory.get(item.getName()).add(item);
-                System.out.println("Added " + item.getName() + " to the inventory");
                 return true;
             }
-        } else {
-            System.out.println("You cannot carry that");
+        }
+        else {
         }
         return false;
     }
