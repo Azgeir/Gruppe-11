@@ -21,7 +21,7 @@ public class Game {
     private Room winConditionRoom;
     private boolean sameRoom = false;
     private boolean zuulHadTurn = false;
-    private double MaxInititative = Double.MAX_VALUE;
+    private double maxInititative = Double.MAX_VALUE;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() {
@@ -315,7 +315,7 @@ public class Game {
                 break;
             // If command is "activate", set MaxInitiative to the return value of the activate() method
             case ACTIVATE:
-                this.MaxInititative = this.currentCharacter.activate(command);
+                this.maxInititative = this.currentCharacter.activate(command);
                 break;
             // If command does not match any of the options, break.
             default:
@@ -329,7 +329,7 @@ public class Game {
     private void printHelp() {
         System.out.println("You are on a spacestation, conducting experiments for the good of the human race.");
         System.out.println("Something hit the spacestation, and you now have to save yourself and any possible survivors.");
-        System.out.println("The escape pod is in the dock, and is the only way to get off the spacestation");
+        System.out.println("The escape pod is in the dock, and it is the only way to get off the spacestation");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -339,15 +339,19 @@ public class Game {
     // If two characters have the same initiative, the breaker is who is defined first in the
     // ArrayList
     private Character chooseCharacter() {
+        // Set current character to null
         Character currentCharacter = null;
+        // Set minInitiative to maximum integer value
         double minInitiative = Integer.MAX_VALUE;
+        // Traverse all characters
         for (Character character : characters) {
+            // Select character with the lowest initiative
             if (minInitiative > character.getCharacterInitiative()) {
                 minInitiative = character.getCharacterInitiative();
                 currentCharacter = character;
             }
         }
-
+        // Return the selected character
         return currentCharacter;
     }
 
@@ -357,42 +361,55 @@ public class Game {
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
             return false;
-        } // If the command has no second word, return "true", which causes the game to end.
+        }
+        // If the command has no second word, return "true", which causes the game to end.
         else {
             printStopMessage("quit");
             return true;
         }
     }
 
+    // This method prints a stop message depending on the reason string
     private void printStopMessage(String reason) {
-
+        // If the player won the game, print message specifying the total points earned
         if (reason == "win") {
+            // Calculate earned points
             double point = pointCalculation();
-            System.out.println("Congratulation you escaped the space station, you won");
-            System.out.printf("You got %1.2f points \n ", point);
+            System.out.println("Congratulations, you escaped the space station. You won.");
+            System.out.printf("You got %1.2f points\n ", point);
         } 
+        // If the player is killed by Zuul, print message
         else if (reason == "lose") {
-            System.out.println("You were caught and killed by the monster, you lost");
+            System.out.println("You were caught and killed by the monster. You lost.");
         } 
+        // If player is killed by reactor, print message
         else if (reason == "timer"){
-            System.out.println("The reactor overloaded and blew up the spacestation, you lost");
+            System.out.println("The reactor overloaded and blew up the spacestation. You lost.");
         }
+        // If player exits the game without losing or winning.
         else {
-            System.out.println("You quit the current instance of the game");
+            System.out.println("You quit the current instance of the game.");
         }
     }
 
-    //£
+    // (£) This method calculates the points earned by the player
     private double pointCalculation() {
-
-        Hero hero = (Hero) (characters.get(0));
+        // Set hero to the Hero character
+        Hero hero = (Hero)(characters.get(0));
+        // Declare usb
         USB usb;
+        // Create hash set for points
         HashSet<String> pointSet = new HashSet<>();
 
+        // Check for the 3 different USBs
         for (int i = 1; i < 4; i++) {
+            // Set name of USB
             String name = "USB " + i;
-            usb = (USB) hero.getInventory().getItem(name);
+            // Set usb to the specified USB item in the player's inventory
+            usb = (USB)hero.getInventory().getItem(name);
+            // If the specified USB is in the player's inventory...
             if (usb != null) {
+                // If the specified USB has data stored on it...
                 if (usb.getDataType() != null) {
                     System.out.println("You got the " + usb.getDataType() + " data");
                     pointSet.add(usb.getDataType());
@@ -440,7 +457,7 @@ public class Game {
 
     boolean timerLose() {
         
-        if (characters.get(0).getCharacterInitiative() > MaxInititative) {
+        if (characters.get(0).getCharacterInitiative() > maxInititative) {
             printStopMessage("timer");
             return true;
         } else {
