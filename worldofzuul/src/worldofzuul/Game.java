@@ -50,7 +50,11 @@ public class Game {
         storage = new Room("in the storage room", "storage");
         medicalBay = new Room("in the medical bay", "medbay");
         dormitory = new Room("in the dormitory", "dorm");
-        physicsLaboratory = new Room("in the physics laboratory", "physicslab");
+        physicsLaboratory = new Room("in the physics laboratory", "physicslab",
+            "You are in the physics laboratory. The room is filled with various\n" +
+            "equipment. On a table nearby, you see a Helmholtz coil, and on your\n" +
+            "right, there is a mass spectrometer. In the corner of the room, you\n" +
+            "see a computer. Maybe you'll be able to save some of the research.");
         dock = new Room("in the dock", "dock");
         controlRoom = new Room("in the control room", "control");
         reactor = new Room("near the reactor", "reactor");
