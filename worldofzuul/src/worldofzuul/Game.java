@@ -221,7 +221,16 @@ public class Game {
         controlRoom.setHasCharacter("TechDude", true);
         
         // Add items to the inventory of the rooms
+        this.fillRoom(biologyLaboratory);
         this.fillRoom(computerRoom);
+        this.fillRoom(storage);
+        this.fillRoom(medicalBay);
+        this.fillRoom(dormitory);
+        this.fillRoom(physicsLaboratory);
+        this.fillRoom(dock);
+        this.fillRoom(controlRoom);
+        this.fillRoom(reactor);
+        this.fillRoom(escapePod);
     }
 
     // This method initialises the inventory of the given room
