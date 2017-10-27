@@ -208,14 +208,7 @@ public class Game {
         // As long as game is not finished, get and process user commands
         while (!finished) {
             // Select current character
-            this.currentCharacter = this.chooseCharacter();
-            // Check if current character is tech dude and the current room contains hero and tech dude.
-            if (this.currentCharacter.equals(this.characters.get(2)) &&
-                    (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
-                    && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
-                // Set that tech dude has met the hero
-                this.currentCharacter.meetHero(this.characters.get(0));
-            }
+            techDudeMeetHero();
             // Get command from parser
             Command command = parser.getCommand(this.currentCharacter);
             // Process command
@@ -483,5 +476,16 @@ public class Game {
         else {
             return false;
         }
+    }
+    
+    private void techDudeMeetHero(){
+        this.currentCharacter = this.chooseCharacter();
+            // Check if current character is tech dude and the current room contains hero and tech dude.
+            if (this.currentCharacter.equals(this.characters.get(2)) &&
+                    (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
+                    && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
+                // Set that tech dude has met the hero
+                this.currentCharacter.meetHero(this.characters.get(0));
+            }
     }
 }

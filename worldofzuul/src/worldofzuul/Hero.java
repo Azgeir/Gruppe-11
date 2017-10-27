@@ -244,23 +244,45 @@ public class Hero extends Character {
     //Method for locking and unlocking, first lockUnlock the first door(direction) you call
     // then get the next rooms exits and lockUnlock the direction towards currentRoom of the character
     private void lockUnlock(String direction, boolean lock) {
-
+        
         HashMap<String, Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
         String getName = this.getCurrentRoom().getName();
         lockedExits.put(direction, Boolean.TRUE);
-        
-        if (lockedExits.keySet().size() > 2) {
-            this.getCurrentRoom().getLockedExits().put(direction, lock);
-            this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
-
+        if (direction.equals("pod")) {
+            if (this.getCurrentRoom().getHasCharacter("TechDude")) {
+                if (lockedExits.keySet().size() > 2) {
+                    this.getCurrentRoom().getLockedExits().put(direction, lock);
+                    this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
+                    
+                } else {
+                    this.getCurrentRoom().getLockedExits().put(direction, lock);
+                    
+                    HashMap<String, Boolean> templockExits = new HashMap<>();
+                    templockExits.putAll(this.getCurrentRoom().getLockedExits());
+                    templockExits.remove(direction);
+                    String direction2 = (String) templockExits.keySet().toArray()[0];
+                    this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
+                }
+                
+            }
+            else{
+                System.out.println("The station is under quarentine and you therefore can't open the door.\n Perhahps you could something or someone to force it open");
+            }
+            
         } else {
-            this.getCurrentRoom().getLockedExits().put(direction, lock);
-
-            HashMap<String, Boolean> templockExits = new HashMap<>();
-            templockExits.putAll(this.getCurrentRoom().getLockedExits());
-            templockExits.remove(direction);
-            String direction2 = (String) templockExits.keySet().toArray()[0];
-            this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
+            if (lockedExits.keySet().size() > 2) {
+                this.getCurrentRoom().getLockedExits().put(direction, lock);
+                this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
+                
+            } else {
+                this.getCurrentRoom().getLockedExits().put(direction, lock);
+                
+                HashMap<String, Boolean> templockExits = new HashMap<>();
+                templockExits.putAll(this.getCurrentRoom().getLockedExits());
+                templockExits.remove(direction);
+                String direction2 = (String) templockExits.keySet().toArray()[0];
+                this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
+            }
         }
     }
     
