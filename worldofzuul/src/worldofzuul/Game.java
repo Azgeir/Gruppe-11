@@ -471,12 +471,16 @@ public class Game {
         }
     }
 
+    // This method tests if the player loses because of the reactor
     boolean timerLose() {
-        
+        // If player's initiative is greater than maxInitiative, print lose 
+        // message based on "timer" and return true.
         if (characters.get(0).getCharacterInitiative() > maxInititative) {
             printStopMessage("timer");
             return true;
-        } else {
+        }
+        // Else, return false
+        else {
             return false;
         }
     }
