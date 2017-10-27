@@ -203,6 +203,7 @@ public class Hero extends Character {
                 this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
                 this.lockUnlock(direction, lock);
                 directionExists = true;
+                System.out.println("You locked the door");
             }
         }
         // If there isnt any door that matches the secondWord then this is print
@@ -224,6 +225,7 @@ public class Hero extends Character {
                 this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
                 this.lockUnlock(direction, lock);
                 directionExists = true;
+                System.out.println("You unlocked the door");
             }
         }
         // If there isnt any door that matches the secondWord then this is print
