@@ -266,7 +266,7 @@ public class Hero extends Character {
                 
             }
             else{
-                System.out.println("The station is under quarentine and you therefore can't open the door.\n Perhahps you could something or someone to force it open");
+                System.out.println("The station is under quarentine and you therefore can't open the door.\n Perhaps you could find something or someone to force it open");
             }
             
         } else {
