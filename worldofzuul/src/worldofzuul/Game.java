@@ -246,6 +246,7 @@ public class Game {
                 room.getInventory().addItem(new Item(5, "cell-lysis-solution"), 10);
                 room.getInventory().addItem(new Item(5, "DNA-precipitate-solution"), 10);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
+                room.getInventory().addItem(new Item(75, "centrifuge"), 2);
                 break;
             case "computer":
                 room.getInventory().addItem(new USB(1));
