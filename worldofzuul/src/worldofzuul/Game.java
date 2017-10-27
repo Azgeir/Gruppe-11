@@ -220,20 +220,20 @@ public class Game {
         computerRoom.setHasCharacter("Hero", true);
         controlRoom.setHasCharacter("TechDude", true);
         
-        // Add items to the inventory of the computer room
-        computerRoom.getInventory().addItem(new USB(1));
-        computerRoom.getInventory().addItem(new AcidVial(5, 50));
-        computerRoom.getInventory().addItem(new AcidVial(5, 50));
-        computerRoom.getInventory().addItem(new AcidVial(5, 50));
-        computerRoom.getInventory().addItem(new MedKit());
-        computerRoom.getInventory().addItem(new Item(150, "computer-monitor"), 10);
-        computerRoom.getInventory().addItem(new Item(10, "computer-mouse"), 10);
-        computerRoom.getInventory().addItem(new Item(20, "keyboard"), 10);
+        // Add items to the inventory of the rooms
+        this.fillRoom(computerRoom);
     }
 
     // This method initialises the inventory of the given room
     private void fillRoom(Room room) {
-        
+        if (room.getName().equals("computer")) {
+            room.getInventory().addItem(new USB(1));
+            room.getInventory().addItem(new AcidVial(5, 50), 3);
+            room.getInventory().addItem(new MedKit());
+            room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
+            room.getInventory().addItem(new Item(10, "computer-mouse"), 10);
+            room.getInventory().addItem(new Item(20, "keyboard"), 10);
+        }
     }
 
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
