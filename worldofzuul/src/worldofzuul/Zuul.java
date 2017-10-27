@@ -16,6 +16,7 @@ public class Zuul extends Character {
     private String previousRoomName;
     private ArrayList<String> triedLockedExits = new ArrayList<>();
     private int stayCounter = 0;
+    private int stayCounterMax = 1;
     
     public Zuul(){
         
@@ -77,16 +78,18 @@ public class Zuul extends Character {
             // This creates a array list based on the rooms and where the commands changes the payers position
             ArrayList<String> exits = new ArrayList(this.getCurrentRoom().getExits().keySet());
             
+            exits.removeAll(triedLockedExits);
+            
             if (exits.size()!=1) {
                 exits.remove(this.previousRoomName);    
             }
             
-            exits.removeAll(triedLockedExits);
+            if (stayCounter<stayCounterMax) {
+                exits.add("stay");
+            }
             
-            int numberMoveActions = exits.size()+1;
+            int numberMoveActions = exits.size();
             int action = (int)(Math.random()*numberMoveActions);
-            
-            exits.add("stay");
             
             if (numberMoveActions != (action+1)){
                 word1 = "go";
@@ -95,9 +98,7 @@ public class Zuul extends Character {
             }
             else {
                 word1 = exits.get(action);
-                if (numberMoveActions != 1) {
-                    stayCounter++;
-                }
+                stayCounter++;
             }
         }
         

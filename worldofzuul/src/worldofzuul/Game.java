@@ -310,6 +310,10 @@ public class Game {
             case "reactor":
                 break;
             case "pod":
+                room.getInventory().addItem(new MedKit());
+                room.getInventory().addItem(new Item(5, "dehydrated-food"), 5);
+                room.getInventory().addItem(new Item(2, "hammer"), 2);
+                room.getInventory().addItem(new Item(2, "scredriver"), 2);
                 break;
             default:
                 break;
