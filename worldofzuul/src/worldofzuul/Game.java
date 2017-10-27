@@ -281,6 +281,7 @@ public class Game {
                 room.getInventory().addItem(new Item(50, "chair"), 6);
                 break;
             case "physicslab":
+                room.getInventory().addItem(new Item(50, "Helmholtz-coil"));
                 break;
             case "dock":
                 break;
