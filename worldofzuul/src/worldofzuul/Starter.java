@@ -39,6 +39,6 @@ public class Starter {
             } while (!correctInput);
 
         } while (playAgain);
-        System.out.println("Thank you for playing. Goodbye");
+        System.out.println("Thank you for playing. Goodbye.");
     }
 }
