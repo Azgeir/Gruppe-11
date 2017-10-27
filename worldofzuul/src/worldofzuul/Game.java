@@ -465,7 +465,7 @@ public class Game {
             printStopMessage("lose");
             return true;
         }
-        // Else return false
+        // Else, return false
         else {
             return false;
         }
