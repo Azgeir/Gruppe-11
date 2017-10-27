@@ -160,7 +160,7 @@ public class Hero extends Character {
         }
     }
 
-    //£
+    //Command for using an Item in your inventory
     @Override
     public double use(Command command) {
         
