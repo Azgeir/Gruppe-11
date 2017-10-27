@@ -411,31 +411,41 @@ public class Game {
             if (usb != null) {
                 // If the specified USB has data stored on it...
                 if (usb.getDataType() != null) {
+                    // Print the data type collected
                     System.out.println("You got the " + usb.getDataType() + " data");
+                    // Add value to pointSet
                     pointSet.add(usb.getDataType());
                 }
             }
         }
 
+        // Calculate earned points
         double point = (pointSet.size() * 5 + 5) * (1 + (5 / (hero.getCharacterInitiative() + 5)));
         return point;
     }
 
+    // This method tests if the game is won
     private boolean winTest() {
+        // Set finished to false
         boolean finished = false;
+        // If the player is in the escape pod, set finished to true and print win message
         if (characters.get(0).getCurrentRoom().equals(winConditionRoom)) {
             finished = true;
             printStopMessage("win");
         }
+        // Return value of finished (true if player has won)
         return finished;
     }
     
+    // This method tests if the player has lost
     private boolean lose() {
-
+        // If player is in same room as Zuul, and player is current character, set sameRoom to true
         if (characters.get(0).getCurrentRoom().getHasCharacter("Zuul")
                 && currentCharacter.equals(characters.get(0))) {
             sameRoom = true;
-        } else if (characters.get(1).getCurrentRoom().getHasCharacter("Hero")
+        }
+        // 
+        else if (characters.get(1).getCurrentRoom().getHasCharacter("Hero")
                 && currentCharacter.equals(characters.get(1))) {
             sameRoom = true;
             zuulHadTurn = true;
