@@ -631,9 +631,14 @@ public class Game {
             }
     }
     
+    // This method checks whether or not the player has died because of low health.
     private boolean healthTest(){
+        // Check if current player is hero
         if (this.currentCharacter.equals(this.characters.get(0))) {
+            // Set tempCharacter to current character
             Hero tempCharacter = (Hero)this.currentCharacter;
+            // If player's health is less than or equal to zero, print "health"
+            // lose message and return true.
             if (tempCharacter.getHealth() <= 0){
                 printStopMessage("health");
                 return true;
