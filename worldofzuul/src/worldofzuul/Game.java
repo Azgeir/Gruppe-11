@@ -288,6 +288,8 @@ public class Game {
                 room.getInventory().addItem(new AccessCard());
                 break;
             case "storage":
+                room.getInventory().addItem(new AcidVial(5, 50), 5);
+                room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(150, "box"), 30);
                 room.getInventory().addItem(new Item(150, "bed"), 15);
                 room.getInventory().addItem(new Item(75, "electronics"), 25);
@@ -324,6 +326,19 @@ public class Game {
                 room.getInventory().addItem(new Item(50, "chair"), 6);
                 break;
             case "physicslab":
+                room.getInventory().addItem(new AcidVial(5, 50), 7);
+                room.getInventory().addItem(new MedKit(), 10);
+                room.getInventory().addItem(new Item(5, "test tube"), 20);
+                room.getInventory().addItem(new Item(2, "coat"), 10);
+                room.getInventory().addItem(new Item(2, "knive"), 10);
+                room.getInventory().addItem(new Item(1, "syringe"), 15);
+                room.getInventory().addItem(new Item(350, "desk"), 2);
+                room.getInventory().addItem(new Item(50, "chair"), 10);
+                room.getInventory().addItem(new Item(75, "computer"), 5);
+                room.getInventory().addItem(new Item(200, "table"), 4);
+                room.getInventory().addItem(new Item(2, "quantum- eqqiupment"), 29);
+                room.getInventory().addItem(new Item(5, "test tube"), 20);
+                room.getInventory().addItem(new Item(5, "funny chemical"), 25);
                 break;
             case "dock":
                 room.getInventory().addItem(new Item(200, "crate"), 30);
@@ -334,8 +349,19 @@ public class Game {
                 room.getInventory().addItem(new Item(200, "corpse"), 2);
                 break;
             case "control":
+                room.getInventory().addItem(new MedKit(), 10);
+                room.getInventory().addItem(new Item(175, "computer"), 5);
+                room.getInventory().addItem(new Item(150, "computer-monitor"), 15);
+                room.getInventory().addItem(new Item(20, "keyboard"), 15);
+                room.getInventory().addItem(new Item(2, "screwdriver"), 6);
+                room.getInventory().addItem(new Item(2, "hammer"), 4);
+                room.getInventory().addItem(new Item(1, "paper"), 20);
                 break;
             case "reactor":
+                room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
+                room.getInventory().addItem(new Item(175, "computer"), 4);
+                room.getInventory().addItem(new Item(2, "screwdriver"), 8);
+                room.getInventory().addItem(new Item(200, "crate"), 10);
                 break;
             case "pod":
                 room.getInventory().addItem(new MedKit());
@@ -486,9 +512,13 @@ public class Game {
 
     // This method prints a help message, including available commands
     private void printHelp() {
-        System.out.println("You are on a spacestation, conducting experiments for the good of the human race.");
-        System.out.println("Something hit the spacestation, and you now have to save yourself and any possible survivors.");
-        System.out.println("The escape pod is in the dock, and it is the only way to get off the spacestation");
+        System.out.println("You must find other crewmembers save them, \n" +
+        "you must survive and reach the escape pod. find items that can \n" +
+        "help you on your way by using the look command and then picking \n" +
+        "them up, secret bonus objectives are scattered around be mindfull \n" +
+        "of what survivers tell you and uses that certain items can have \n" +
+        "you can only carry a certain weight of items so manage your \n" + 
+        "inventory accordingly");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
