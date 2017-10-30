@@ -441,7 +441,7 @@ public class Game {
 
         // Check if the input equals any of the defined commands and print an "error" if it does not
         if (commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...");
+            System.out.println("I don't know what you mean...\nTyping help will give you the valid commands ");
             return false;
         }
 
