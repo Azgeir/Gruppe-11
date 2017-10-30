@@ -42,6 +42,7 @@ public class Game {
 
         // Initialize the biology laboratory
         biologyLaboratory = new Room("in the biology laboratory", "biolab",
+                 //detailed description of biologyLaboratory
             ("You are in the biology laboratory. On the table to your right\n" +
             "there is a row of microscopes, and the shelf above contains a\n" +
             "collection of test tubes with liquids of different colours.\n" +
@@ -50,24 +51,28 @@ public class Game {
         
         // Initialise the computer room
         computerRoom = new Room("in the computer room", "computer",
+                 //detailed description of computerRoom
         ("You are in the computer room, this is here you had your working \n" +
         "hours, you see several computers, chairs and USB's and larger storage \n" + 
         "units you also see your accescard laying on the desk. \n"));
         
         // Initialise the storage room
         storage = new Room("in the storage room", "storage",
+                 //detailed description of storage
         ("You are in the storage facility. here you see several drawers and \n" + 
         "shelves, containing everything from dried food to different tools, \n" +
         "medkits and reseach compartments \n"));
         
         // Initialise the medical bay
         medicalBay = new Room("in the medical bay", "medbay",
+                 //detailed description of medicalbay
         ("You are in the medbay. This is where you would get treated and \n" +
         "contained if you fell sick or got minor injuries, there are beds \n" + 
         "and several drawers with medkits, pills and injectors \n"));
         
         // Initialise the dormitory
         dormitory = new Room("in the dormitory", "dorm",
+                 //detailed description of dormitory
             ("You are in the dormitory. This is where you used to sleep and\n" +
             "relax with your colleagues. Sadly, this is also where the monster\n" +
             "arrived. You see the corpses of your beloved colleagues scattered\n" +
@@ -75,6 +80,7 @@ public class Game {
         
         // Initialise the physics laboratory
         physicsLaboratory = new Room("in the physics laboratory", "physicslab",
+                 //detailed description of physicslaboratory
             "You are in the physics laboratory. The room is filled with various\n" +
             "equipment. On a table nearby, you see a Helmholtz coil, and on your\n" +
             "right, there is a mass spectrometer. In the corner of the room, you\n" +
@@ -82,6 +88,7 @@ public class Game {
         
         // Initialise the dock
         dock = new Room("in the dock", "dock",
+                 //detailed description of dock
         "You are in the Dock. This is where supply ships come and go and also \n" +
         "the only way off the spacestation via the pod, but the spacestation \n" +
         "is currently under quarantine and you don't know how to overwrite \n" + 
@@ -89,12 +96,14 @@ public class Game {
         
         // Initialise the control room
         controlRoom = new Room("in the control room", "control",
+                 //detailed description of a controlRoom
         ("You are in the control room. this is where information goes to and \n" + 
         "from the spacestation, this is where you find the Tech dude he was \n" + 
         "trying to reestablish the connection to earth but to no avail \n"));
         
         // Initialise the reactor
         reactor = new Room("near the reactor", "reactor",
+                //detailed description of reactor
         ("You are in the reactor room. The reactor is a very dense nuclear \n" + 
         "reactor, if it where to melt down the spacestation would be annialated \n" + 
         "you see some basic tools and some Geiger counters and a coupple of \n" + 
