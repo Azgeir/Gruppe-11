@@ -85,11 +85,14 @@ public class Inventory {
         }
     }
 
-    public void removeItem(Item item, int number) {
+    public int removeItem(Item item, int number) {
         //Checks if the inventory has the parsed item and if it does, removes it
+        int counter = 0;
         for (int i = 0; i < number; i++) {
             this.removeItem(item);
+            counter++;
         }
+        return counter;
     }
 
     // iterates all items in the ArrayList corresponding to the key itemName,
