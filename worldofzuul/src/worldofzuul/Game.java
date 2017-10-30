@@ -422,9 +422,9 @@ public class Game {
         System.out.println();
         System.out.println("Welcome to Escape Pod!");
         System.out.println("\nYou are a Software engineer in a space station, and\n"
-                + "the emergency alarm has just gone off. You must find\n"
-                + "the other crew members, find out what is going on and\n"
-                + "find the escape pod if necessary.\n");
+        + "the emergency alarm has just gone off and the station is under \n"
+        + "qurrantine. You must find items and other survivors and escape \n"
+        + "the station before you are caught by what is ravaging the station \n");
         System.out.println("Type '" + CommandWord.HELP + "' for more information about controls and the game.");
         System.out.println();
         // Description of current room of the player, including available exits.
