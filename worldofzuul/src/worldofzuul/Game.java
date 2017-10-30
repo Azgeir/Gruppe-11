@@ -522,6 +522,15 @@ public class Game {
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
+        System.out.println("After you put in a command you will almost always \n"
+        + "need to follow the command up with a second or third word. \n"
+        + "example would be when you want to lock a door you will type \n"
+        + "lock then the exit you want to lock. \n"
+        + "execptions to this is \n"
+        + "stay which will just make you use your turn on not moving \n"
+        + "quit which will quit the game and end the current play session \n"
+        + "Command words that require another word will often ask you to enter \n"
+        + "a specefic second word as putting in go will ask you 'go where?'");
     }
 
     // This method iterates over the different characters to determine whose turn it is.
