@@ -522,6 +522,7 @@ public class Game {
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
+        System.out.println();
         System.out.println("After you put in a command you will almost always \n"
         + "need to follow the command up with a second or third word. \n"
         + "example would be when you want to lock a door you will type \n"
