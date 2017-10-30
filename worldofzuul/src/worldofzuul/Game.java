@@ -509,6 +509,7 @@ public class Game {
         } 
         // If the player is killed by Zuul, print message
         else if (reason == "lose") {
+            System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
             System.out.println("You were caught and killed by the monster. You lost.");
         } 
         // If player is killed by reactor, print message
@@ -518,6 +519,7 @@ public class Game {
         }
         // if the player dies due to low health
         else if (reason == "health") {
+            System.out.println("Tech dude: Don't go into the light!");
             System.out.println("You died due to extensive wound.");
         }
         // If player exits the game without losing or winning.
