@@ -499,7 +499,9 @@ public class Game {
         "you must survive and reach the escape pod. find items that can \n" +
         "help you on your way by using the look command and then picking \n" +
         "them up, secret bonus objectives are scattered around be mindfull \n" +
-        "of what survivers tell you and uses that certain items can have");
+        "of what survivers tell you and uses that certain items can have \n" +
+        "you can only carry a certain weight of items so manage your \n" + 
+        "inventory accordingly");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
