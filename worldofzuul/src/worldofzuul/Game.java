@@ -244,7 +244,7 @@ public class Game {
                 room.getInventory().addItem(new Item(50, "microscope"), 3);
                 room.getInventory().addItem(new Item(200, "DNA-sequencing-machine"));
                 room.getInventory().addItem(new Item(150, "incubator"), 2);
-                room.getInventory().addItem(new Item(200, "refridgerator"), 2);
+                room.getInventory().addItem(new Item(200, "refrigerator"), 2);
                 room.getInventory().addItem(new Item(20, "animal-cell-model"));
                 room.getInventory().addItem(new Item(20, "plant-cell-model"));
                 room.getInventory().addItem(new Item(20, "water-sampler"));
@@ -263,8 +263,6 @@ public class Game {
                 room.getInventory().addItem(new USB(3));
                 room.getInventory().addItem(new USB(2));
                 room.getInventory().addItem(new USB(1));
-                room.getInventory().addItem(new AcidVial(5, 50), 3);
-                room.getInventory().addItem(new MedKit());
                 room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
                 room.getInventory().addItem(new Item(10, "computer-mouse"), 10);
                 room.getInventory().addItem(new Item(20, "keyboard"), 10);
@@ -279,11 +277,10 @@ public class Game {
                 room.getInventory().addItem(new Item(3, "crowbar"), 7);
                 room.getInventory().addItem(new Item(110, "plasma-saw"), 6);
                 room.getInventory().addItem(new Item(150, "nailgun"), 8);
-                room.getInventory().addItem(new Item(200, "railgun"), 2);
                 break;
             case "medbay":
                 room.getInventory().addItem(new AcidVial(5, 50), 7);
-                room.getInventory().addItem(new MedKit());
+                room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(1, "syringe"), 17);
                 room.getInventory().addItem(new Item(2, "pill"), 29);
                 room.getInventory().addItem(new Item(6, "glass"), 49);
@@ -323,7 +320,7 @@ public class Game {
                 room.getInventory().addItem(new MedKit());
                 room.getInventory().addItem(new Item(5, "dehydrated-food"), 5);
                 room.getInventory().addItem(new Item(2, "hammer"), 2);
-                room.getInventory().addItem(new Item(2, "scredriver"), 2);
+                room.getInventory().addItem(new Item(2, "screwdriver"), 2);
                 break;
             default:
                 break;
