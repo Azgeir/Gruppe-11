@@ -49,20 +49,26 @@ public class Game {
             "able to save some of the research.\n"));
         
         // Initialise the computer room
-        computerRoom = new Room("in the computer room", "computer");
+        computerRoom = new Room("in the computer room", "computer",
+        ("You are in the computer room, this is here you had your working \n" +
+        "hours, you see several computers, chairs and USB's and larger storage \n" + 
+        "units you also see your accescard laying on the desk. \n"));
         
         // Initialise the storage room
-        storage = new Room("in the storage room", "storage");
+        storage = new Room("in the storage room", "storage",
+        ("You are in the storage facility. here you see several drawers and \n" + 
+        "shelves, containing everything from dried food to different tools, \n" +
+        "medkits and reseach compartments\n"));
         
         // Initialise the medical bay
         medicalBay = new Room("in the medical bay", "medbay");
         
         // Initialise the dormitory
         dormitory = new Room("in the dormitory", "dorm",
-            "You are in the dormitory. This is where you used to sleep and\n" +
+            ("You are in the dormitory. This is where you used to sleep and\n" +
             "relax with your colleagues. Sadly, this is also where the monster\n" +
             "arrived. You see the corpses of your beloved colleagues scattered\n" +
-            "around the room.\n");
+            "around the room.\n"));
         
         // Initialise the physics laboratory
         physicsLaboratory = new Room("in the physics laboratory", "physicslab",
@@ -72,7 +78,11 @@ public class Game {
             "see a computer. Maybe you'll be able to save some of the research.\n");
         
         // Initialise the dock
-        dock = new Room("in the dock", "dock");
+        dock = new Room("in the dock", "dock",
+        "You are in the Dock. This is where supply ships come and go and also \n" +
+        "the only way off the spacestation via the pod, but the spacestation \n" +
+        "is currently under quarantine and you don't know how to overwrite \n" + 
+        "the quarantine");
         
         // Initialise the control room
         controlRoom = new Room("in the control room", "control");
