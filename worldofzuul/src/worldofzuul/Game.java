@@ -395,7 +395,7 @@ public class Game {
         // Print welcome message
         System.out.println();
         System.out.println("Welcome to Escape Pod!");
-        System.out.println("\nYou are a Software engineer in a space station, and\n"
+        System.out.println("\nYou are a Software engineer on a space station, and\n"
                 + "the emergency alarm has just gone off. You must find\n"
                 + "the other crew members, find out what is going on and\n"
                 + "find the escape pod if necessary.\n");
@@ -486,9 +486,11 @@ public class Game {
 
     // This method prints a help message, including available commands
     private void printHelp() {
-        System.out.println("You are on a spacestation, conducting experiments for the good of the human race.");
-        System.out.println("Something hit the spacestation, and you now have to save yourself and any possible survivors.");
-        System.out.println("The escape pod is in the dock, and it is the only way to get off the spacestation");
+        System.out.println("You must find other crewmembers save them, \n" +
+        "you must survive and reach the escape pod. find items that can \n" +
+        "help you on your way by using the look command and then picking \n" +
+        "them up, secret bonus objectives are scattered around be mindfull \n" +
+        "of what survivers tell you and uses that certain items can have");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
