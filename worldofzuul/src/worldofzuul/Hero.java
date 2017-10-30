@@ -197,13 +197,19 @@ public class Hero extends Character {
         String direction = command.getSecondWord();
         boolean lock = true;
         boolean directionExists = false;
-
+        
         for (String exit : this.getCurrentRoom().getExits().keySet()) {
             if (direction.equals(exit)) {
-                this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
-                this.lockUnlock(direction, lock);
+                if (this.getInventory().getItem("accesscard") != null) {
+                    this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+                    this.lockUnlock(direction, lock);
+                    System.out.println("You locked the door");
+                }
+                else {
+                    System.out.println("You don't have an access card to do that with");
+                }
                 directionExists = true;
-                System.out.println("You locked the door");
+                
             }
         }
         // If there isnt any door that matches the secondWord then this is print
@@ -222,10 +228,16 @@ public class Hero extends Character {
 
         for (String exit : this.getCurrentRoom().getExits().keySet()) {
             if (direction.equals(exit)) {
-                this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
-                this.lockUnlock(direction, lock);
+                if (this.getInventory().getItem("accesscard") != null) {
+                    this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+                    this.lockUnlock(direction, lock);
+                    System.out.println("You unlocked the door");
+                }
+                else {
+                    System.out.println("You don't have an access card to do that with");
+                }
                 directionExists = true;
-                System.out.println("You unlocked the door");
+                
             }
         }
         // If there isnt any door that matches the secondWord then this is print
