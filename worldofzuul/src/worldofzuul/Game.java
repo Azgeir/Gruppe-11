@@ -58,10 +58,13 @@ public class Game {
         storage = new Room("in the storage room", "storage",
         ("You are in the storage facility. here you see several drawers and \n" + 
         "shelves, containing everything from dried food to different tools, \n" +
-        "medkits and reseach compartments\n"));
+        "medkits and reseach compartments \n"));
         
         // Initialise the medical bay
-        medicalBay = new Room("in the medical bay", "medbay");
+        medicalBay = new Room("in the medical bay", "medbay",
+        ("You are in the medbay. This is where you would get treated and \n" +
+        "contained if you fell sick or got minor injuries, there are beds \n" + 
+        "and several drawers with medkits, pills and injectors \n"));
         
         // Initialise the dormitory
         dormitory = new Room("in the dormitory", "dorm",
@@ -82,13 +85,20 @@ public class Game {
         "You are in the Dock. This is where supply ships come and go and also \n" +
         "the only way off the spacestation via the pod, but the spacestation \n" +
         "is currently under quarantine and you don't know how to overwrite \n" + 
-        "the quarantine");
+        "the quarantine, there are tools for repairs, 3d printers and spacesuits \n");
         
         // Initialise the control room
-        controlRoom = new Room("in the control room", "control");
+        controlRoom = new Room("in the control room", "control",
+        ("You are in the control room. this is where information goes to and \n" + 
+        "from the spacestation, this is where you find the Tech dude he was \n" + 
+        "trying to reestablish the connection to earth but to no avail \n"));
         
         // Initialise the reactor
-        reactor = new Room("near the reactor", "reactor");
+        reactor = new Room("near the reactor", "reactor",
+        ("You are in the reactor room. The reactor is a very dense nuclear \n" + 
+        "reactor, if it where to melt down the spacestation would be annialated \n" + 
+        "you see some basic tools and some Geiger counters and a coupple of \n" + 
+        "spacesuits \n"));
         
         // Initialise the escape pod
         escapePod = new Room("in the escape pod", "pod");
