@@ -244,6 +244,15 @@ public class Game {
         
         // Add items to the inventory of the rooms
         this.fillRoom(computerRoom);
+        this.fillRoom(storage);
+        this.fillRoom(medicalBay);
+        this.fillRoom(biologyLaboratory);
+        this.fillRoom(dock);
+        this.fillRoom(reactor);
+        this.fillRoom(controlRoom);
+        this.fillRoom(physicsLaboratory);
+        this.fillRoom(dormitory);
+        this.fillRoom(escapePod);
     }
 
     // This method initialises the inventory of the given room
@@ -287,6 +296,7 @@ public class Game {
                 room.getInventory().addItem(new Item(3, "crowbar"), 7);
                 room.getInventory().addItem(new Item(110, "plasma-saw"), 6);
                 room.getInventory().addItem(new Item(150, "nailgun"), 8);
+                room.getInventory().addItem(new AccessCard());
                 break;
             case "medbay":
                 room.getInventory().addItem(new AcidVial(5, 50), 7);
