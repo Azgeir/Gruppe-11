@@ -285,6 +285,7 @@ public class Game {
                 room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
                 room.getInventory().addItem(new Item(10, "computer-mouse"), 10);
                 room.getInventory().addItem(new Item(20, "keyboard"), 10);
+                room.getInventory().addItem(new AccessCard());
                 break;
             case "storage":
                 room.getInventory().addItem(new Item(150, "box"), 30);
