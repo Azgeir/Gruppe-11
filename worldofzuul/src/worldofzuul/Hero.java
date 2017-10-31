@@ -45,7 +45,6 @@ public class Hero extends Character {
     @Override
     public void pickUp(Command command) {
         
-        
         if (command.hasSecondWord()) {
             String itemName = command.getSecondWord();
             Item item = this.getCurrentRoom().getInventory().getItem(itemName);
@@ -99,8 +98,6 @@ public class Hero extends Character {
                     }
                 }
             }
-            
-            
         }
         else {
             System.out.println("Pickup what?");
@@ -114,47 +111,51 @@ public class Hero extends Character {
     @Override
     public void dropItem(Command command) {
         
+        
         if (command.hasSecondWord()) {
             String itemName = command.getSecondWord();
             Item item = this.inventory.getItem(itemName);
             
-            if (command.hasThirdWord()) {
-                int number = Integer.parseInt(command.getThirdWord());
-                int numberAdded = 0;
-                int numberNonExisting = 0;
-                
-                if (item == null) {
-                    System.out.println("You don't have such an item");
-                } else {
+            if (item == null) {
+                System.out.println("You don't have such an item");
+            } else {
+                if (command.hasThirdWord()) {
+                    String numberString = command.getThirdWord();
                     
-                    for (int i = 0; i < number; i++) {
-                        item = this.inventory.getItem(itemName);
-                        if (item == null){
-                            numberNonExisting++;
-                        } else {
-                            boolean itemAdded = this.getCurrentRoom().getInventory().addItem(item);
-                            if (itemAdded) {
-                                numberAdded++;
-                                this.inventory.removeItem(item);
+                    if (this.canBeParsedToInt(numberString)) {
+                        int number = Integer.parseInt(numberString);
+                        int numberAdded = 0;
+                        int numberNonExisting = 0;
+                        
+                        for (int i = 0; i < number; i++) {
+                            item = this.inventory.getItem(itemName);
+                            if (item == null){
+                                numberNonExisting++;
                             } else {
+                                boolean itemAdded = this.getCurrentRoom().getInventory().addItem(item);
+                                if (itemAdded) {
+                                    numberAdded++;
+                                    this.inventory.removeItem(item);
+                                } else {
+                                }
                             }
                         }
+                        if (numberAdded == 0){
+                            System.out.println("There isn't room in this room for that");
+                        }
+                        else if ((numberAdded < number) && (numberNonExisting == 0) ){
+                            System.out.println("You could only drop " + numberAdded + " " + itemName + " because there is not room enought for all of them in this room");
+                        }
+                        else if (numberNonExisting>0 && (numberNonExisting+numberAdded)==number){
+                            System.out.println("You dropped " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in your inventory");
+                        }
+                        else {
+                            System.out.println("You dropped " + number + " " + itemName);
+                        }
+                    } else {
+                        System.out.println("The third word needs to be an integer");
                     }
-                    if (numberAdded == 0){
-                        System.out.println("There isn't room in this room for that");
-                    }
-                    else if ((numberAdded < number) && (numberNonExisting == 0) ){
-                        System.out.println("You could only drop " + numberAdded + " " + itemName + " because there is not room enought for all of them in this room");
-                    }
-                    else if (numberNonExisting>0 && (numberNonExisting+numberAdded)==number){
-                        System.out.println("You dropped " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in your inventory");
-                    }
-                    else {
-                        System.out.println("You dropped " + number + " " + itemName);
-                    }
-                }
-            } else {
-                if (item != null) {
+                } else {
                     boolean itemAdded = this.getCurrentRoom().getInventory().addItem(item);
                     if (itemAdded) {
                         this.inventory.removeItem(item);
@@ -162,15 +163,12 @@ public class Hero extends Character {
                     } else {
                         System.out.println("There isn't room in this room for that item");
                     }
-                } else {
-                    System.out.println("You don't have such an item");
                 }
             }
         }
         else {
             System.out.println("Drop what?");
         }
-        
         
         this.speedFactorCalculation();
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
