@@ -45,56 +45,62 @@ public class Hero extends Character {
     @Override
     public void pickUp(Command command) {
         
+        
         if (command.hasSecondWord()) {
             String itemName = command.getSecondWord();
             Item item = this.getCurrentRoom().getInventory().getItem(itemName);
-            if (command.hasThirdWord()) {
-                int number = Integer.parseInt(command.getThirdWord());
-                int numberAdded = 0;
-                int numberNonExisting = 0;
-         
-                if (item == null) {
-                    System.out.println("The room doesn't contain that item.");
-                } else {
-                    for (int i = 0; i < number; i++) {
-                        item = this.getCurrentRoom().getInventory().getItem(itemName);
-                        if (item == null){
-                            numberNonExisting++;
-                        } else {
-                            boolean itemAdded = this.inventory.addItem(item);
-                            if (itemAdded) {
-                                numberAdded++;
-                                this.getCurrentRoom().getInventory().removeItem(item);
+            
+            if (item == null) {
+                System.out.println("The room doesn't contain that item.");
+            } else {
+                if (command.hasThirdWord()) {
+                    String numberString = command.getThirdWord();
+                    
+                    if (this.canBeParsedToInt(numberString)) {
+                        int number = Integer.parseInt(numberString);
+                        int numberAdded = 0;
+                        int numberNonExisting = 0;
+                        
+                        for (int i = 0; i < number; i++) {
+                            item = this.getCurrentRoom().getInventory().getItem(itemName);
+                            if (item == null){
+                                numberNonExisting++;
                             } else {
+                                boolean itemAdded = this.inventory.addItem(item);
+                                if (itemAdded) {
+                                    numberAdded++;
+                                    this.getCurrentRoom().getInventory().removeItem(item);
+                                } else {
+                                }
                             }
                         }
+                        if (numberAdded == 0){
+                            System.out.println("You can't carry any of that");
+                        }
+                        else if ((numberAdded < number) && (numberNonExisting == 0) ){
+                            System.out.println("You could only pickup " + numberAdded + " " + itemName);
+                        }
+                        else if (numberNonExisting>0 && (numberNonExisting+numberAdded)==number){
+                            System.out.println("You picked up " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in this room");
+                        }
+                        else {
+                            System.out.println("You picked up " + number + " " + itemName);
+                        }
+                    } else {
+                        System.out.println("The third word needs to be an integer");
                     }
-                    if (numberAdded == 0){
-                        System.out.println("You can't carry any of that");
-                    }
-                    else if ((numberAdded < number) && (numberNonExisting == 0) ){
-                        System.out.println("You could only pickup " + numberAdded + " " + itemName);
-                    }
-                    else if (numberNonExisting>0 && (numberNonExisting+numberAdded)==number){
-                        System.out.println("You picked up " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in this room");
-                    }
-                    else {
-                        System.out.println("You picked up " + number + " " + itemName);
-                    }
-                }
-            } else {
-                if (item == null) {
-                    System.out.println("The room doesn't contain that item.");
                 } else {
                     boolean itemAdded = this.inventory.addItem(item);
-                    System.out.println("You picked up " + item.getName());
                     if (itemAdded) {
                         this.getCurrentRoom().getInventory().removeItem(item);
+                        System.out.println("You picked up " + item.getName());
                     } else {
-                        System.out.println("You can't carry that much");
+                        System.out.println("You can't carry that");
                     }
                 }
             }
+            
+            
         }
         else {
             System.out.println("Pickup what?");
@@ -103,7 +109,7 @@ public class Hero extends Character {
         this.speedFactorCalculation();
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
-
+    
     //Transfers an item from the characters inventory to the rooms
     @Override
     public void dropItem(Command command) {
@@ -129,7 +135,7 @@ public class Hero extends Character {
                             boolean itemAdded = this.getCurrentRoom().getInventory().addItem(item);
                             if (itemAdded) {
                                 numberAdded++;
-                                this.getCurrentRoom().getInventory().removeItem(item);
+                                this.inventory.removeItem(item);
                             } else {
                             }
                         }
@@ -169,7 +175,7 @@ public class Hero extends Character {
         this.speedFactorCalculation();
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
-
+    
     //Gives the player a detailed description of the items and the possibilities of a room
     @Override
     public void look(Command command) {
@@ -196,7 +202,7 @@ public class Hero extends Character {
             System.out.println("Look where");
         }
     }
-
+    
     //Checks whatever Zuul is in the next room and gives feedback if it is or isn't
     @Override
     public void peek(Command command) {
@@ -235,7 +241,7 @@ public class Hero extends Character {
         
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
-
+    
     //This command is used to lock a door
     @Override
     public void lock(Command command) {
@@ -260,17 +266,17 @@ public class Hero extends Character {
         // If there isnt any door that matches the secondWord then this is print
         if (!directionExists) {
             System.out.println("there isn't any exit by that name");
-
+            
         }
     }
-
+    
     //This command is used to unlock a door
     @Override
     public void unlock(Command command) {
         String direction = command.getSecondWord();
         boolean lock = false;
         boolean directionExists = false;
-
+        
         for (String exit : this.getCurrentRoom().getExits().keySet()) {
             if (direction.equals(exit)) {
                 if (this.getInventory().getItem("accesscard") != null) {
@@ -288,14 +294,14 @@ public class Hero extends Character {
         // If there isnt any door that matches the secondWord then this is print
         if (!directionExists) {
             System.out.println("there isn't any exit by that name");
-
+            
         }
     }
-
+    
     //Command for using an Item in your inventory
     @Override
     public double use(Command command) {
-
+        
         if (command.hasSecondWord()) {
             String itemName = command.getSecondWord();
             Item item = this.getInventory().getItem(itemName);
@@ -310,32 +316,32 @@ public class Hero extends Character {
         } else {
             System.out.println("You have to select something to use");
         }
-
+        
         return 0;
     }
-
+    
     //£ characterInitiative
     public void seeInventory(Command command) {
         this.inventory.showItems();
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
-
+    
     private void speedFactorCalculation() {
         double newSpeedFactor = 1 + (this.inventory.getTotalWeight() / this.inventory.getMaxWeight()) / 2;
         this.setSpeedFactor(newSpeedFactor);
     }
-
+    
     public Inventory getInventory() {
         return inventory;
     }
-
+    
     @Override
     public Command getCommand(CommandWords commands) {
         // Declare a String variable for the input
         String inputLine;
-
+        
         Scanner reader = new Scanner(System.in);
-
+        
         // Set words 1 and 2 to null
         String word1 = null;
         String word2 = null;
@@ -347,10 +353,10 @@ public class Hero extends Character {
         
         // Print "> " to prompt user input
         System.out.print("> ");
-
+        
         // Use Scanner to read input line from user
         inputLine = reader.nextLine();
-
+        
         // Create a Scanner called tokenizer based on inputLine
         Scanner tokenizer = new Scanner(inputLine);
         // If the input line has a first word, assign it to word1
@@ -365,15 +371,15 @@ public class Hero extends Character {
                 }
             }
         }
-
+        
         // Create a Command object based on words 1 and 2, and return the command.
         return new Command(commands.getCommandWord(word1), word2, word3);
     }
-
+    
     //Method for locking and unlocking, first lockUnlock the first door(direction) you call
     // then get the next rooms exits and lockUnlock the direction towards currentRoom of the character
     private void lockUnlock(String direction, boolean lock) {
-
+        
         HashMap<String, Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
         String getName = this.getCurrentRoom().getName();
         lockedExits.put(direction, Boolean.TRUE);
@@ -382,29 +388,29 @@ public class Hero extends Character {
                 if (lockedExits.keySet().size() > 2) {
                     this.getCurrentRoom().getLockedExits().put(direction, lock);
                     this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
-
+                    
                 } else {
                     this.getCurrentRoom().getLockedExits().put(direction, lock);
-
+                    
                     HashMap<String, Boolean> templockExits = new HashMap<>();
                     templockExits.putAll(this.getCurrentRoom().getLockedExits());
                     templockExits.remove(direction);
                     String direction2 = (String) templockExits.keySet().toArray()[0];
                     this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
                 }
-
+                
             } else {
                 System.out.println("The station is under quarentine and you therefore can't open the door.\n Perhaps you could find something or someone to force it open");
             }
-
+            
         } else {
             if (lockedExits.keySet().size() > 2) {
                 this.getCurrentRoom().getLockedExits().put(direction, lock);
                 this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
-
+                
             } else {
                 this.getCurrentRoom().getLockedExits().put(direction, lock);
-
+                
                 HashMap<String, Boolean> templockExits = new HashMap<>();
                 templockExits.putAll(this.getCurrentRoom().getLockedExits());
                 templockExits.remove(direction);
@@ -413,42 +419,58 @@ public class Hero extends Character {
             }
         }
     }
-
+    
     //use this command to start the countdown timer for bonus points (by blowing up the reactor)
     @Override
     public double activate(Command command) {
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
-            if (!command.hasSecondWord()) {
-                    System.out.println("Activate what?");
-                    return Double.MAX_VALUE;
-            }
+        if (!command.hasSecondWord()) {
+            System.out.println("Activate what?");
+            return Double.MAX_VALUE;
+        }
         if (command.getSecondWord().equals("reactor")) {
-
+            
             if (this.getCurrentRoom().getName().equals("reactor")) {
                 if (this.getCurrentRoom().getHasCharacter("TechDude")) {
-
+                    
                     System.out.println("You activated the reactor. The spacestation will selfdestruct in 10 turns");
                     return (this.getCharacterInitiative() + 50);
-
+                    
                 } else {
                     System.out.println("You need the TechDude to do this");
                     return Double.MAX_VALUE;
-            }
+                }
             } else {
                 System.out.println("There is no reactor in this room");
                 return Double.MAX_VALUE;
             }
-
+            
         }
-        return 0; 
+        return 0;
     }
-
+    
     public int getHealth() {
         return health;
     }
-
+    
     public void setHealth(int health) {
         this.health = health;
+    }
+    
+    private boolean canBeParsedToInt(String numberString){
+        
+        int punctuationMarkCounter = 0;
+        boolean numberStringCanBeParsed = true;
+        
+        for (int i = 0; i < numberString.length(); i++) {
+            char numberChar = numberString.charAt(i);
+            if (java.lang.Character.isDigit(numberChar) ){
+            }
+            else {
+                return false;
+            }
+        }
+        return true;
     }
     
     
