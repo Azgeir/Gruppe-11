@@ -193,6 +193,10 @@ public class Character {
         this.hostility = hostility;
     }
     
+    public boolean isFollowsHero(){
+        return false;
+    }
+    
     
     
 }

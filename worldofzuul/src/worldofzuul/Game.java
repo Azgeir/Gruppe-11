@@ -591,7 +591,7 @@ public class Game {
     // This method prints a stop message depending on the reason string
     private void printStopMessage(String reason) {
 
-        boolean techDudeIsThere = this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude");
+        boolean techDudeIsThere = this.characters.get(2).isFollowsHero();
 
         // If the player won the game, print message specifying the total points earned
         if (reason == "win") {
@@ -722,15 +722,6 @@ public class Game {
         }
     }
 
-    /*private void techDudeMeetHero() {
-        // Check if current character is tech dude and the current room contains hero and tech dude.
-        if (this.currentCharacter.equals(this.characters.get(2))
-                && (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
-                && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
-            // Set that tech dude has met the hero
-            this.currentCharacter.followsHero(this.characters.get(0));
-        }
-    }*/
     // This method checks whether or not the player has died because of low health.
     private boolean healthTest() {
         // Check if current player is hero
