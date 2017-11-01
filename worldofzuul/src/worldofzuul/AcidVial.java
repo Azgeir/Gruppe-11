@@ -31,7 +31,7 @@ public class AcidVial extends Item {
     
     // (£) This constructor creates an acid vial with a default damage amount
     public AcidVial() {
-        this.damageAmount = 5;
+        this.damageAmount = 4;
         this.initiativeReduction = 15;
     }
     

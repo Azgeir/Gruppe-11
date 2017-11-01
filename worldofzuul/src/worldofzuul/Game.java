@@ -97,7 +97,7 @@ public class Game {
         // Initialise the reactor
         reactor = new Room("near the reactor", "reactor",
                 ("You are in the reactor room. The reactor is a very dense nuclear \n"
-                + "reactor, if it where to melt down the spacestation would be annialated \n"
+                + "reactor, if it where to melt down the spacestation would be annihilated \n"
                 + "you see some basic tools and some Geiger counters and a coupple of \n"
                 + "spacesuits \n"));
 
@@ -277,7 +277,7 @@ public class Game {
                 room.getInventory().addItem(new Item(5, "DNA-precipitate-solution"), 10);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
                 room.getInventory().addItem(new Item(75, "centrifuge"), 2);
-                room.getInventory().addItem(new AcidVial(5, 50), 10);
+                room.getInventory().addItem(new AcidVial(4, 50), 10);
                 break;
             case "computer":
                 room.getInventory().addItem(new USB(3));
@@ -289,7 +289,7 @@ public class Game {
                 room.getInventory().addItem(new AccessCard());
                 break;
             case "storage":
-                room.getInventory().addItem(new AcidVial(5, 50), 5);
+                room.getInventory().addItem(new AcidVial(4, 50), 5);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(150, "box"), 30);
                 room.getInventory().addItem(new Item(150, "bed"), 15);
@@ -305,7 +305,7 @@ public class Game {
                 room.getInventory().addItem(new AccessCard());
                 break;
             case "medbay":
-                room.getInventory().addItem(new AcidVial(5, 50), 7);
+                room.getInventory().addItem(new AcidVial(4, 50), 7);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(1, "syringe", "stick it at yourself to see, if you end up tripping balls."), 17);
                 room.getInventory().addItem(new Item(2, "pill", "try to aquire superpowers, but you end up having extreme explosive "
@@ -331,7 +331,7 @@ public class Game {
                         + "Honestly, don't you have better things to do!"), 6);
                 break;
             case "physicslab":
-                room.getInventory().addItem(new AcidVial(5, 50), 7);
+                room.getInventory().addItem(new AcidVial(4, 50), 7);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(5, "test tube"), 20);
                 room.getInventory().addItem(new Item(2, "coat"), 10);
