@@ -444,7 +444,10 @@ public class Hero extends Character {
             }
             
         }
-        return 0;
+        else {
+            System.out.println("You can't activate anything by that name");
+        }
+        return Double.MAX_VALUE;
     }
     
     public int getHealth() {
