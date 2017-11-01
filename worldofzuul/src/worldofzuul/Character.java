@@ -182,7 +182,7 @@ public class Character {
     }
     
     // This method is overridden in the TechDude class
-    public void meetHero(Character hero){
+    public void followsHero(Character hero, boolean follows){
     }
 
     public int getHostility() {
@@ -192,5 +192,7 @@ public class Character {
     public void setHostility(int hostility) {
         this.hostility = hostility;
     }
+    
+    
     
 }

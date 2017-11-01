@@ -507,10 +507,8 @@ public class Game {
                     }
                     break;
                 case TALK:
-                    if (currentCharacter.getCurrentRoom().getHasCharacter(characters.get(2).getName())) {
-                        if (conversation(characters.get(2))) {
-                            this.characters.get(2).meetHero(this.characters.get(0));
-                        }
+                    if (currentCharacter.getCurrentRoom().getHasCharacter("TechDude")) {
+                    this.conversation(characters.get(2));
                     } else {
                         System.out.println("TechDude isnt in the room");
                     }
@@ -721,7 +719,7 @@ public class Game {
                 && (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
                 && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
             // Set that tech dude has met the hero
-            this.currentCharacter.meetHero(this.characters.get(0));
+            this.currentCharacter.followsHero(this.characters.get(0));
         }
     }*/
     // This method checks whether or not the player has died because of low health.
@@ -743,48 +741,62 @@ public class Game {
         }
     }
 
-    private boolean conversation(Character character) {
+    private void conversation(Character character) {
         Conversation Talk = new Conversation();
         boolean wantToTalk = false;
-        java.util.Scanner input = new java.util.Scanner(System.in);
         int counter = 1;
         if (character.getHostility() != 3) {
             do {
+                java.util.Scanner input = new java.util.Scanner(System.in);
                 String name = character.getName() + counter;
                 Talk.talk(name);
                 Talk.options(name);
-
-                switch (input.nextInt()) {
-                    case 1:
-                        if (counter < 4) {
-                            wantToTalk = true;
-                        } else {
+                if (input.hasNextInt()) {
+                    switch (input.nextInt()) {
+                        case 1:
+                            if (counter < 4) {
+                                wantToTalk = true;
+                            } else {
+                                wantToTalk = false;
+                            }
+                            break;
+                        case 2:
+                            character.setHostility(character.getHostility() + 1);
+                            if (character.getHostility() < 3) {
+                                System.out.println("The TechDude got annoyed at you");
+                            }
+                            if (character.getHostility() == 3) {
+                                System.out.println("The TechDude hates you and will no longer talk to you");
+                                TechDude temp = (TechDude) character;
+                                if (temp.isFollowsHero()){
+                                    character.followsHero(this.characters.get(0), false);
+                                    System.out.println("TechDude no longer follows you");
+                                }
+                            }
+                            break;
+                        case 3:
+                            if (counter == 3){
                             wantToTalk = false;
-                        }
-                        break;
-                    case 2:
-                        character.setHostility(character.getHostility() + 1);
-                        if (character.getHostility() < 3) {
-                            System.out.println("The TechDude got annoyed at you");
-                        }
-                        if (character.getHostility() == 3) {
-                            System.out.println("The TechDude hates you and will no longer talk to you");
-                        }
-                        break;
-                    case 3:
-                        wantToTalk = false;
-                        break;
-                    default:
-                        break;
+                            }
+                            else
+                                System.out.println("You only have 2 options");
+                            break;
+                        default:
+                            System.out.println("Wrong input");
+                            break;
+                    }
+                    if (counter == 4 || (counter == 3 && character.getHostility() < 3 && wantToTalk == false)) {
+                        System.out.println("TechDude is now following you");
+                        character.followsHero(this.characters.get(0), true);                        
+                    }
+                    counter++;
                 }
-                if (counter == 4 || (counter == 3 && character.getHostility() < 3 && wantToTalk == false)) {
-                    System.out.println("TechDude is now following you");
-                    return true;
-                }
-                counter++;
+                else
+                    System.out.println("The input wasnt a number");
             } while (wantToTalk);
 
         }
-        return false;
+
+
     }
 }
