@@ -91,7 +91,8 @@ public class Game {
         controlRoom = new Room("in the control room", "control",
                 ("You are in the control room. this is where information goes to and \n"
                 + "from the spacestation, this is where you find the Tech dude he was \n"
-                + "trying to reestablish the connection to earth but to no avail \n"));
+                + "trying to reestablish the connection to earth but to no avail. \n"
+                + "Maybe you could get surveilliance data back with you"));
 
         // Initialise the reactor
         reactor = new Room("near the reactor", "reactor",
