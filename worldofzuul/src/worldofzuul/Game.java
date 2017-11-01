@@ -333,7 +333,7 @@ public class Game {
             case "physicslab":
                 room.getInventory().addItem(new AcidVial(4, 50), 7);
                 room.getInventory().addItem(new MedKit(), 10);
-                room.getInventory().addItem(new Item(5, "test tube"), 20);
+                room.getInventory().addItem(new Item(5, "test-tube"), 20);
                 room.getInventory().addItem(new Item(2, "coat"), 10);
                 room.getInventory().addItem(new Item(2, "knive"), 10);
                 room.getInventory().addItem(new Item(1, "syringe", "stick it at yourself to see, if you become one with the Matrix."), 15);
@@ -343,13 +343,13 @@ public class Game {
 
                 room.getInventory().addItem(new Item(75, "computer"), 5);
                 room.getInventory().addItem(new Item(200, "table"), 4);
-                room.getInventory().addItem(new Item(2, "quantum- eqqiupment"), 29);
-                room.getInventory().addItem(new Item(5, "test tube"), 20);
-                room.getInventory().addItem(new Item(5, "funny chemical", "sniff at it, then lick at it and then scream 'LEEROY JENKINS'."), 25);
+                room.getInventory().addItem(new Item(2, "quantum-eqiupment"), 29);
+                room.getInventory().addItem(new Item(5, "test-tube"), 20);
+                room.getInventory().addItem(new Item(5, "funny-chemical", "sniff at it, then lick at it and then scream 'LEEROY JENKINS'."), 25);
                 break;
             case "dock":
                 room.getInventory().addItem(new Item(200, "crate"), 30);
-                room.getInventory().addItem(new Item(500, "fuel station"), 1);
+                room.getInventory().addItem(new Item(500, "fuel-station"), 1);
                 room.getInventory().addItem(new Item(50, "barrel"), 40);
                 room.getInventory().addItem(new Item(35, "baggage"), 10);
                 room.getInventory().addItem(new Item(150, "computer-moniter"), 15);
@@ -371,7 +371,7 @@ public class Game {
                 room.getInventory().addItem(new Item(175, "computer"), 4);
                 room.getInventory().addItem(new Item(2, "screwdriver"), 8);
                 room.getInventory().addItem(new Item(200, "crate"), 10);
-                room.getInventory().addItem(new Item(150, "Geiger counter"), 2);
+                room.getInventory().addItem(new Item(150, "Geiger-counter"), 2);
                 room.getInventory().addItem(new Item(100, "spacesuit"), 2);
                 break;
             case "pod":
@@ -434,8 +434,11 @@ public class Game {
         System.out.println("Welcome to Escape Pod!");
         System.out.println("\nYou are a Software engineer in a space station, and\n"
                 + "the emergency alarm has just gone off and the station is under \n"
-                + "qurrantine. You must find items and other survivors and escape \n"
-                + "the station before you are caught by what is ravaging the station \n");
+                + "quarantine. You must find items and other survivors and escape \n"
+                + "the station through the escape pod before you are caught by what\n"
+                + "is ravaging the station. \n"
+                + "You suddenly hear a rumbling voice emenating from everywhere\n"
+                + "\"We are Zuul devourers of worlds.\"");
         System.out.println("Type '" + CommandWord.HELP + "' for more information about controls and the game.");
         System.out.println();
         // Description of current room of the player, including available exits.
@@ -531,29 +534,43 @@ public class Game {
 
     // This method prints a help message, including available commands
     private void printHelp() {
-        System.out.println("You must find other crewmembers save them, \n"
+        System.out.println("You can find other crewmembers and save them, \n"
                 + "you must survive and reach the escape pod. find items that can \n"
-                + "help you on your way by using the look command and then picking \n"
-                + "them up, secret bonus objectives are scattered around be mindfull \n"
-                + "of what survivers tell you and uses that certain items can have \n"
-                + "you can only carry a certain weight of items so manage your \n"
-                + "inventory accordingly");
+                + "help you on your way.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
         System.out.println();
-        System.out.println("After you put in a command you will almost always \n"
-                + "need to follow the command up with a second or third word. \n"
-                + "example would be when you want to lock a door you will type \n"
-                + "lock then the exit you want to lock. \n"
-                + "execptions to this is \n"
-                + "stay which will just make you use your turn on not moving \n"
-                + "quit which will quit the game and end the current play session \n"
-                + "Command words that require another word will often ask you to enter \n"
-                + "a specefic second word as putting in go will ask you 'go where?'\n"
-                + "Note that when picking up multiple items always write the \n"
-                + "name of the item as if you were picking a single item then \n"
-                + "the number of that item as the third word.");
+        System.out.println("After you put in a command you will often need to follow up the command\n"
+                + "with a second and perhaps a third word.\n"
+                + "The commands take  the following second and third words as input\n"
+                + "\n"
+                + "drop: second word - \"itemname\": third word - \"integer\" or \"\"\n"
+                + "You drop the following item or several of them\n"
+                + "pickup: second word - itemname: third word - \"integer\" or \"\"\n"
+                + "You pickup the following item or several of them\n"
+                + "unlock: second word - \"exit name\"\n"
+                + "You unlock the specified door\n"
+                + "lock: second word - \"exit name\"\n"
+                + "You unlock the specified door\n"
+                + "go: second word - \"exit name\"\n"
+                + "You go in the specified direction\n"
+                + "peek: second word - \"exit name\"\n"
+                + "Checks, the neighboring rooms and perhaps two rooms in the specified direction, for enemies\n"
+                + "use: second word - \"itemname\"\n"
+                + "You use the specified item\n"
+                + "look: second word - \"around\" or \"inventory\"\n"
+                + "You either look around the room or checks your inventory\n"
+                + "activate: second word - \"reactor\"\n"
+                + "You try to activate the reactor\n"
+                + "quit: second word - \"\"\n"
+                + "You quit the game\n"
+                + "stay:\n"
+                + "You stay where you are\n"
+                + "help:\n"
+                + "You ask for help, du'h\n"
+                + "talk:\n"
+                + "talks with a character\n");
     }
 
     // This method iterates over the different characters to determine whose turn it is.
