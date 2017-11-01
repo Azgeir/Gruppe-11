@@ -23,13 +23,13 @@ public class Item {
         this.name = name;
         this.useDescription = useDescription;
     }
-    
+
     // This constructor creates an item with the specified weight and name
     public Item(int weight, String name) {
         this.weight = weight;
         this.name = name;
     }
-    
+
     // This is an empty no-arg constructor
     public Item() {    
     }
@@ -46,7 +46,22 @@ public class Item {
     
     // This method prints a description of how the item is used
     public double use(Character currentCharacter) {
-        System.out.println("You use the " + this.name + " to " + this.useDescription);
+        Hero tempCharacter = (Hero)currentCharacter;
+        if (useDescription == null) {
+            if (tempCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
+                System.out.println("You throw the " + this.name + " in blind \n"
+                + "panic. It dosn't have any effect");
+            } else {
+                System.out.println("You wave around the " + this.name + "\n"
+                        + "seemingly with no purpose");
+            }
+        } else {
+            if (tempCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
+                System.out.println("You use the " + this.name + " to " + this.useDescription + "it has no effect on the zuul");                
+            } else {
+                System.out.println("You use the " + this.name + " to " + this.useDescription);
+            }
+        }
         return 0;
     }
     

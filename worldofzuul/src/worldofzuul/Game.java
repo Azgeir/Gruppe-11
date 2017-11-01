@@ -285,8 +285,11 @@ public class Game {
                 room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
                 room.getInventory().addItem(new Item(10, "computer-mouse"), 10);
                 room.getInventory().addItem(new Item(20, "keyboard"), 10);
+                room.getInventory().addItem(new AccessCard());
                 break;
             case "storage":
+                room.getInventory().addItem(new AcidVial(5, 50), 5);
+                room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(150, "box"), 30);
                 room.getInventory().addItem(new Item(150, "bed"), 15);
                 room.getInventory().addItem(new Item(75, "electronics"), 25);
@@ -323,6 +326,20 @@ public class Game {
                 room.getInventory().addItem(new Item(50, "chair"), 6);
                 break;
             case "physicslab":
+                room.getInventory().addItem(new AcidVial(5, 50), 7);
+                room.getInventory().addItem(new MedKit(), 10);
+                room.getInventory().addItem(new Item(5, "test tube"), 20);
+                room.getInventory().addItem(new Item(2, "coat"), 10);
+                room.getInventory().addItem(new Item(2, "knive"), 10);
+                room.getInventory().addItem(new Item(1, "syringe"), 15);
+                room.getInventory().addItem(new Item(350, "desk"), 2);
+                room.getInventory().addItem(new Item(50, "chair"), 10);
+
+                room.getInventory().addItem(new Item(75, "computer"), 5);
+                room.getInventory().addItem(new Item(200, "table"), 4);
+                room.getInventory().addItem(new Item(2, "quantum- eqqiupment"), 29);
+                room.getInventory().addItem(new Item(5, "test tube"), 20);
+                room.getInventory().addItem(new Item(5, "funny chemical"), 25);
                 break;
             case "dock":
                 room.getInventory().addItem(new Item(200, "crate"), 30);
@@ -330,11 +347,25 @@ public class Game {
                 room.getInventory().addItem(new Item(50, "barrel"), 40);
                 room.getInventory().addItem(new Item(35, "baggage"), 10);
                 room.getInventory().addItem(new Item(150, "computer-moniter"), 15);
+                room.getInventory().addItem(new Item(100, "spacesuit"), 10);
                 room.getInventory().addItem(new Item(200, "corpse"), 2);
                 break;
             case "control":
+                room.getInventory().addItem(new MedKit(), 10);
+                room.getInventory().addItem(new Item(175, "computer"), 5);
+                room.getInventory().addItem(new Item(150, "computer-monitor"), 15);
+                room.getInventory().addItem(new Item(20, "keyboard"), 15);
+                room.getInventory().addItem(new Item(2, "screwdriver"), 6);
+                room.getInventory().addItem(new Item(2, "hammer"), 4);
+                room.getInventory().addItem(new Item(1, "paper"), 20);
                 break;
             case "reactor":
+                room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
+                room.getInventory().addItem(new Item(175, "computer"), 4);
+                room.getInventory().addItem(new Item(2, "screwdriver"), 8);
+                room.getInventory().addItem(new Item(200, "crate"), 10);
+                room.getInventory().addItem(new Item(150, "Geiger counter"), 2);
+                room.getInventory().addItem(new Item(100, "spacesuit"), 2);
                 break;
             case "pod":
                 room.getInventory().addItem(new MedKit());
@@ -395,9 +426,9 @@ public class Game {
         System.out.println();
         System.out.println("Welcome to Escape Pod!");
         System.out.println("\nYou are a Software engineer in a space station, and\n"
-                + "the emergency alarm has just gone off. You must find\n"
-                + "the other crew members, find out what is going on and\n"
-                + "find the escape pod if necessary.\n");
+                + "the emergency alarm has just gone off and the station is under \n"
+                + "qurrantine. You must find items and other survivors and escape \n"
+                + "the station before you are caught by what is ravaging the station \n");
         System.out.println("Type '" + CommandWord.HELP + "' for more information about controls and the game.");
         System.out.println();
         // Description of current room of the player, including available exits.
@@ -414,12 +445,11 @@ public class Game {
 
         // Check if the input equals any of the defined commands and print an "error" if it does not
         if (commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...");
+            System.out.println("I don't know what you mean...\nTyping help will give you the valid commands ");
             return false;
         }
 
         if (null != commandWord) // Execute the command if the input matches a valid command
-        // If command is "help" print the help message
         {
             switch (commandWord) {
                 // If command is "help", print help message
@@ -470,20 +500,21 @@ public class Game {
                     break;
                 // If command is "activate", set MaxInitiative to the return value of the activate() method
                 case ACTIVATE:
-                    double newInitiative = this.currentCharacter.activate(command);
-                    if (this.maxInititative == Double.MAX_VALUE) {
+                    double newInitiative = this.currentCharacter.activate(command, reactorActivated);
+                    if (newInitiative != Double.MAX_VALUE && !reactorActivated) {
                         reactorActivated = true;
                         this.maxInititative = newInitiative;
                     }
                     break;
                 case TALK:
-                    if (currentCharacter.getCurrentRoom().getHasCharacter(characters.get(2).getName())) {           
+                    if (currentCharacter.getCurrentRoom().getHasCharacter(characters.get(2).getName())) {
                         if (conversation(characters.get(2))) {
                             this.characters.get(2).meetHero(this.characters.get(0));
-                        }                       
-                    }
-                    else
+                        }
+                    } else {
                         System.out.println("TechDude isnt in the room");
+                    }
+                    break;
                 // If command does not match any of the options, break.
                 default:
                     break;
@@ -495,12 +526,26 @@ public class Game {
 
     // This method prints a help message, including available commands
     private void printHelp() {
-        System.out.println("You are on a spacestation, conducting experiments for the good of the human race.");
-        System.out.println("Something hit the spacestation, and you now have to save yourself and any possible survivors.");
-        System.out.println("The escape pod is in the dock, and it is the only way to get off the spacestation");
+        System.out.println("You must find other crewmembers save them, \n"
+                + "you must survive and reach the escape pod. find items that can \n"
+                + "help you on your way by using the look command and then picking \n"
+                + "them up, secret bonus objectives are scattered around be mindfull \n"
+                + "of what survivers tell you and uses that certain items can have \n"
+                + "you can only carry a certain weight of items so manage your \n"
+                + "inventory accordingly");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
+        System.out.println();
+        System.out.println("After you put in a command you will almost always \n"
+                + "need to follow the command up with a second or third word. \n"
+                + "example would be when you want to lock a door you will type \n"
+                + "lock then the exit you want to lock. \n"
+                + "execptions to this is \n"
+                + "stay which will just make you use your turn on not moving \n"
+                + "quit which will quit the game and end the current play session \n"
+                + "Command words that require another word will often ask you to enter \n"
+                + "a specefic second word as putting in go will ask you 'go where?'");
     }
 
     // This method iterates over the different characters to determine whose turn it is.
@@ -538,24 +583,41 @@ public class Game {
 
     // This method prints a stop message depending on the reason string
     private void printStopMessage(String reason) {
+
+        boolean techDudeIsThere = this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude");
+
         // If the player won the game, print message specifying the total points earned
         if (reason == "win") {
             // Calculate earned points
             double point = pointCalculation();
-            System.out.println("Tech dude: Good job mate, I knew we would make it!");
+            if (techDudeIsThere) {
+                System.out.println("Tech dude: Good job mate, I knew we would make it!");
+            }
             System.out.println("Congratulations, you escaped the space station. You won.");
             System.out.printf("You got %1.2f points\n", point);
         } // If the player is killed by Zuul, print message
         else if (reason == "lose") {
-            System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+            if (techDudeIsThere) {
+                System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+            }
             System.out.println("You were caught and killed by the monster. You lost.");
+
         } // If player is killed by reactor, print message
         else if (reason == "timer") {
             System.out.println("Tech dude: Good run mate see ya on the other side");
+
+        } // If player is killed by reactor, print message
+        else if (reason == "timer") {
+            if (techDudeIsThere) {
+                System.out.println("Tech dude: Good run mate see ya on the other side");
+            }
+
             System.out.println("The reactor overloaded and blew up the spacestation. You lost.");
         } // if the player dies due to low health
         else if (reason == "health") {
-            System.out.println("Tech dude: Don't go into the light!");
+            if (techDudeIsThere) {
+                System.out.println("Tech dude: Don't go into the light!");
+            }
             System.out.println("You died due to extensive wound.");
         } // If player exits the game without losing or winning.
         else {
@@ -662,7 +724,6 @@ public class Game {
             this.currentCharacter.meetHero(this.characters.get(0));
         }
     }*/
-
     // This method checks whether or not the player has died because of low health.
     private boolean healthTest() {
         // Check if current player is hero
@@ -692,27 +753,30 @@ public class Game {
                 String name = character.getName() + counter;
                 Talk.talk(name);
                 Talk.options(name);
-                
+
                 switch (input.nextInt()) {
                     case 1:
-                        if(counter < 4)
+                        if (counter < 4) {
                             wantToTalk = true;
-                        else
+                        } else {
                             wantToTalk = false;
+                        }
                         break;
                     case 2:
                         character.setHostility(character.getHostility() + 1);
-                        if (character.getHostility() < 3)
+                        if (character.getHostility() < 3) {
                             System.out.println("The TechDude got annoyed at you");
-                        if (character.getHostility() == 3)
+                        }
+                        if (character.getHostility() == 3) {
                             System.out.println("The TechDude hates you and will no longer talk to you");
+                        }
                         break;
                     case 3:
                         wantToTalk = false;
                         break;
                     default:
                         break;
-                }               
+                }
                 if (counter == 4 || (counter == 3 && character.getHostility() < 3 && wantToTalk == false)) {
                     System.out.println("TechDude is now following you");
                     return true;

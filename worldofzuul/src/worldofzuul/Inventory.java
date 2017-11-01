@@ -39,7 +39,7 @@ public class Inventory {
         //The first (outer) if statement checks if the item would put the
         //current weight of the inventory above the maximum weight and prints
         // "You cannot carry that" if it would.
-        if ((totalWeight + item.getWeight()) < maxWeight) {
+        if ((totalWeight + item.getWeight()) <= maxWeight) {
             //The inner if statement checks if the inventory has an ArrayList for that
             //exact item and if it doesnt, creates one and adds the item.
             //It just adds the item to the list if the list already exists
@@ -47,10 +47,12 @@ public class Inventory {
                 ArrayList<Item> list = new ArrayList<>();
                 inventory.put(item.getName(), list);
                 list.add(item);
+                this.totalWeight += item.getWeight();
                 return true;
                 //System.out.println(list.size());
             } else {
                 inventory.get(item.getName()).add(item);
+                this.totalWeight += item.getWeight();
                 return true;
             }
         }
@@ -74,6 +76,7 @@ public class Inventory {
         if (inventory.containsKey(item.getName())) {
             if (inventory.get(item.getName()).contains(item)) {
                 inventory.get(item.getName()).remove(item);
+                this.totalWeight -= item.getWeight();
             }
 
             //Removes the key if the ArrayList is empty

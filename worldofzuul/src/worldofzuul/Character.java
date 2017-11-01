@@ -176,31 +176,8 @@ public class Character {
     }
     
     // (£) This method is overridden in the Hero class
-    public double activate(Command Command) {
-        // Increase the character's initiative
-        this.characterInitiative += 5*this.speedFactor;
-        
-        // Check if the character is an instance of Hero
-        if (this instanceof Hero){
-            // Check if the character is in the reactor
-            if (this.currentRoom.getName().equals("reactor")) {
-                // Check if the tech dude is in the current room
-                if (this.currentRoom.getHasCharacter("TechDude")) {
-                    // Return increased character initiative
-                    return (this.characterInitiative+50);
-                }
-                // If tech dude is not in current room, print error
-                else {
-                    System.out.println("You need the TechDude to do this.");
-                    return Double.MAX_VALUE;
-                }
-            }
-            // If the character is not in the reactor, print error message
-            else {
-                System.out.println("There is no reactor in this room.");
-                return Double.MAX_VALUE;
-            }
-        }
+    public double activate(Command Command, boolean reactorActivated) {
+        System.out.println("You are not a hero and therefore cannot activate things");
         return Double.MAX_VALUE;
     }
     
