@@ -16,6 +16,9 @@ public class TechDude extends Character {
     private boolean hasMetHero = false; // This boolean value indicates if the tech dude has met hero
     private int health = 10; // Tech dude's health
     private Character hero; // Tech dude's hero
+    private int hostility = 0;
+
+
     
     // (£) This is an empty no-arg constructor
     public TechDude() {
