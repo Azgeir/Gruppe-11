@@ -12,12 +12,12 @@ package worldofzuul;
 public class AccessCard extends Item {
     
     public AccessCard (){
-        super(5, "accesscard", "locks and unlocks doors");
+        super(5, "accesscard", "lock and unlock doors");
     }
     
     @Override
     public double use(Character currentCharacter){
-        
+        System.out.println("You wave the access card around");
         
         return 0;
     }
