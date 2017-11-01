@@ -1,5 +1,6 @@
 package worldofzuul;
 // Imports:
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,7 +9,6 @@ import java.util.HashSet;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-
 // This class runs the main functionality of the game.
 public class Game {
 
@@ -37,76 +37,76 @@ public class Game {
     // This method creates the rooms of the game.
     private void createRooms() {
         // Declare the rooms
-        Room biologyLaboratory, computerRoom, storage, medicalBay, dormitory, 
-            physicsLaboratory, dock, controlRoom, reactor, escapePod;
+        Room biologyLaboratory, computerRoom, storage, medicalBay, dormitory,
+                physicsLaboratory, dock, controlRoom, reactor, escapePod;
 
         // Initialize the biology laboratory
         biologyLaboratory = new Room("in the biology laboratory", "biolab",
-            ("You are in the biology laboratory. On the table to your right\n" +
-            "there is a row of microscopes, and the shelf above contains a\n" +
-            "collection of test tubes with liquids of different colours.\n" +
-            "In the corner of the room there is a computer. Maybe you'll be\n" +
-            "able to save some of the research.\n"));
-        
+                ("You are in the biology laboratory. On the table to your right\n"
+                + "there is a row of microscopes, and the shelf above contains a\n"
+                + "collection of test tubes with liquids of different colours.\n"
+                + "In the corner of the room there is a computer. Maybe you'll be\n"
+                + "able to save some of the research.\n"));
+
         // Initialise the computer room
         computerRoom = new Room("in the computer room", "computer",
-        ("You are in the computer room, this is here you had your working \n" +
-        "hours, you see several computers, chairs and USB's and larger storage \n" + 
-        "units you also see your accescard laying on the desk. \n"));
-        
+                ("You are in the computer room, this is here you had your working \n"
+                + "hours, you see several computers, chairs and USB's and larger storage \n"
+                + "units you also see your accescard laying on the desk. \n"));
+
         // Initialise the storage room
         storage = new Room("in the storage room", "storage",
-        ("You are in the storage facility. here you see several drawers and \n" + 
-        "shelves, containing everything from dried food to different tools, \n" +
-        "medkits and reseach compartments \n"));
-        
+                ("You are in the storage facility. here you see several drawers and \n"
+                + "shelves, containing everything from dried food to different tools, \n"
+                + "medkits and reseach compartments \n"));
+
         // Initialise the medical bay
         medicalBay = new Room("in the medical bay", "medbay",
-        ("You are in the medbay. This is where you would get treated and \n" +
-        "contained if you fell sick or got minor injuries, there are beds \n" + 
-        "and several drawers with medkits, pills and injectors \n"));
-        
+                ("You are in the medbay. This is where you would get treated and \n"
+                + "contained if you fell sick or got minor injuries, there are beds \n"
+                + "and several drawers with medkits, pills and injectors \n"));
+
         // Initialise the dormitory
         dormitory = new Room("in the dormitory", "dorm",
-            ("You are in the dormitory. This is where you used to sleep and\n" +
-            "relax with your colleagues. Sadly, this is also where the monster\n" +
-            "arrived. You see the corpses of your beloved colleagues scattered\n" +
-            "around the room.\n"));
-        
+                ("You are in the dormitory. This is where you used to sleep and\n"
+                + "relax with your colleagues. Sadly, this is also where the monster\n"
+                + "arrived. You see the corpses of your beloved colleagues scattered\n"
+                + "around the room.\n"));
+
         // Initialise the physics laboratory
         physicsLaboratory = new Room("in the physics laboratory", "physicslab",
-            "You are in the physics laboratory. The room is filled with various\n" +
-            "equipment. On a table nearby, you see a Helmholtz coil, and on your\n" +
-            "right, there is a mass spectrometer. In the corner of the room, you\n" +
-            "see a computer. Maybe you'll be able to save some of the research.\n");
-        
+                "You are in the physics laboratory. The room is filled with various\n"
+                + "equipment. On a table nearby, you see a Helmholtz coil, and on your\n"
+                + "right, there is a mass spectrometer. In the corner of the room, you\n"
+                + "see a computer. Maybe you'll be able to save some of the research.\n");
+
         // Initialise the dock
         dock = new Room("in the dock", "dock",
-        "You are in the Dock. This is where supply ships come and go and also \n" +
-        "the only way off the spacestation via the pod, but the spacestation \n" +
-        "is currently under quarantine and you don't know how to overwrite \n" + 
-        "the quarantine, there are tools for repairs, 3d printers and spacesuits \n");
-        
+                "You are in the Dock. This is where supply ships come and go and also \n"
+                + "the only way off the spacestation via the pod, but the spacestation \n"
+                + "is currently under quarantine and you don't know how to overwrite \n"
+                + "the quarantine, there are tools for repairs, 3d printers and spacesuits \n");
+
         // Initialise the control room
         controlRoom = new Room("in the control room", "control",
-        ("You are in the control room. this is where information goes to and \n" + 
-        "from the spacestation, this is where you find the Tech dude he was \n" + 
-        "trying to reestablish the connection to earth but to no avail \n"));
-        
+                ("You are in the control room. this is where information goes to and \n"
+                + "from the spacestation, this is where you find the Tech dude he was \n"
+                + "trying to reestablish the connection to earth but to no avail \n"));
+
         // Initialise the reactor
         reactor = new Room("near the reactor", "reactor",
-        ("You are in the reactor room. The reactor is a very dense nuclear \n" + 
-        "reactor, if it where to melt down the spacestation would be annialated \n" + 
-        "you see some basic tools and some Geiger counters and a coupple of \n" + 
-        "spacesuits \n"));
-        
+                ("You are in the reactor room. The reactor is a very dense nuclear \n"
+                + "reactor, if it where to melt down the spacestation would be annialated \n"
+                + "you see some basic tools and some Geiger counters and a coupple of \n"
+                + "spacesuits \n"));
+
         // Initialise the escape pod
         escapePod = new Room("in the escape pod", "pod");
 
         // Declare hallways between rooms
-        Room hallwayStorageComputer, hallwayComputerBiology, hallwayBiologyControl, 
-            hallwayControlDock, hallwayDockPhysics, hallwayPhysicsDormitory, 
-            hallwayDormitoryMedical, hallwayMedicalStorage;
+        Room hallwayStorageComputer, hallwayComputerBiology, hallwayBiologyControl,
+                hallwayControlDock, hallwayDockPhysics, hallwayPhysicsDormitory,
+                hallwayDormitoryMedical, hallwayMedicalStorage;
 
         // Initialize the hallways between the outer rooms
         hallwayStorageComputer = new Room("in the hallway between the storage and computer rooms");
@@ -120,8 +120,8 @@ public class Game {
 
         // Declare hallways connected to the reactor
         Room hallwayReactorBiology, hallwayReactorControl, hallwayReactorDock,
-            hallwayReactorPhysics, hallwayReactorDormitory, hallwayReactorMedical,
-            hallwayReactorStorage, hallwayReactorComputer;
+                hallwayReactorPhysics, hallwayReactorDormitory, hallwayReactorMedical,
+                hallwayReactorStorage, hallwayReactorComputer;
 
         // Initialize the hallways connected to the reactor
         hallwayReactorBiology = new Room("in the hallway between the reactor and the biology laboratory");
@@ -233,15 +233,15 @@ public class Game {
         characterStartRooms.put("Computer", computerRoom);
         characterStartRooms.put("Control", controlRoom);
         characterStartRooms.put("Dorm", dormitory);
-        
+
         // Set the value of the win condition
         winConditionRoom = escapePod;
-        
+
         // Set the initial positions of Zuul, hero, and tech dude
         dormitory.setHasCharacter("Zuul", true);
         computerRoom.setHasCharacter("Hero", true);
         controlRoom.setHasCharacter("TechDude", true);
-        
+
         // Add items to the inventory of the rooms
         this.fillRoom(computerRoom);
         this.fillRoom(storage);
@@ -387,8 +387,8 @@ public class Game {
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
     private void createCharacter() {
         this.characters.add(new Hero(characterStartRooms.get("Computer"), "Hero"));
-        this.characters.add(new Zuul(characterStartRooms.get("Dorm"),"Zuul"));
-        this.characters.add(new TechDude(characterStartRooms.get("Control"),"TechDude"));
+        this.characters.add(new Zuul(characterStartRooms.get("Dorm"), "Zuul"));
+        this.characters.add(new TechDude(characterStartRooms.get("Control"), "TechDude"));
     }
 
     // This method plays the game
@@ -402,13 +402,13 @@ public class Game {
             // Select current character
             this.currentCharacter = this.chooseCharacter();
             // checks if the TechDude has met the Hero
-            techDudeMeetHero();
+            //techDudeMeetHero();
             // Get command from parser
             Command command = parser.getCommand(this.currentCharacter);
             // Process command
             finished = processCommand(command);
             // Check if player lost game because they met Zuul
-            
+
             if (!finished) {
                 finished = lose();
             }
@@ -432,9 +432,9 @@ public class Game {
         System.out.println();
         System.out.println("Welcome to Escape Pod!");
         System.out.println("\nYou are a Software engineer in a space station, and\n"
-        + "the emergency alarm has just gone off and the station is under \n"
-        + "qurrantine. You must find items and other survivors and escape \n"
-        + "the station before you are caught by what is ravaging the station \n");
+                + "the emergency alarm has just gone off and the station is under \n"
+                + "qurrantine. You must find items and other survivors and escape \n"
+                + "the station before you are caught by what is ravaging the station \n");
         System.out.println("Type '" + CommandWord.HELP + "' for more information about controls and the game.");
         System.out.println();
         // Description of current room of the player, including available exits.
@@ -456,65 +456,73 @@ public class Game {
         }
 
         if (null != commandWord) // Execute the command if the input matches a valid command
-        // If command is "help" print the help message
-        switch (commandWord) {
-            // If command is "help", print help message
-            case HELP:
-                printHelp();
-                break;
-            // If command is "go", call go() method on current character
-            case GO:
-                this.currentCharacter.go(command);
-                break;
-            // If command is "quit", call quit() method (returns true, if player wants to quit)
-            case QUIT:
-                wantToQuit = quit(command);
-                break;
-            // If command is "stay", call stay() method on current character
-            case STAY:
-                this.currentCharacter.stay(command);
-                break;
-            // If command is "pickup", call pickup() method on current character
-            case PICKUP:
-                this.currentCharacter.pickUp(command);
-                break;
-            // If command is "drop", call dropItem() method on current character
-            case DROP:
-                this.currentCharacter.dropItem(command);
-                break;
-            // If command is "look", call look() method on current character
-            case LOOK:
-                this.currentCharacter.look(command);
-                break;
-            // If command is "peek", call peek() method on current character
-            case PEEK:
-                this.currentCharacter.peek(command);
-                break;
-            // If command is "use", call use() method on current character and change Zuul's initiative
-            case USE:
-                double zuulInitiativeReduction = this.currentCharacter.use(command);
-                Character zuul = this.characters.get(1);
-                zuul.setCharacterInitiative(zuul.getCharacterInitiative()+zuulInitiativeReduction);
-                break;
-            // If command is "lock", call lock() command on current character
-            case LOCK:
-                this.currentCharacter.lock(command);
-                break;
-            // If command is "unlock", call unlock() command on current character
-            case UNLOCK:
-                this.currentCharacter.unlock(command);
-                break;
-            // If command is "activate", set MaxInitiative to the return value of the activate() method
-            case ACTIVATE:
-                double newInitiative = this.currentCharacter.activate(command, reactorActivated);
-                if (newInitiative != Double.MAX_VALUE && !reactorActivated){ 
-                    reactorActivated = true;
-                    this.maxInititative = newInitiative;
-                }
-                break;
-            // If command does not match any of the options, break.
-            default:
-                break;
+        {
+            switch (commandWord) {
+                // If command is "help", print help message
+                case HELP:
+                    printHelp();
+                    break;
+                // If command is "go", call go() method on current character
+                case GO:
+                    this.currentCharacter.go(command);
+                    break;
+                // If command is "quit", call quit() method (returns true, if player wants to quit)
+                case QUIT:
+                    wantToQuit = quit(command);
+                    break;
+                // If command is "stay", call stay() method on current character
+                case STAY:
+                    this.currentCharacter.stay(command);
+                    break;
+                // If command is "pickup", call pickup() method on current character
+                case PICKUP:
+                    this.currentCharacter.pickUp(command);
+                    break;
+                // If command is "drop", call dropItem() method on current character
+                case DROP:
+                    this.currentCharacter.dropItem(command);
+                    break;
+                // If command is "look", call look() method on current character
+                case LOOK:
+                    this.currentCharacter.look(command);
+                    break;
+                // If command is "peek", call peek() method on current character
+                case PEEK:
+                    this.currentCharacter.peek(command);
+                    break;
+                // If command is "use", call use() method on current character and change Zuul's initiative
+                case USE:
+                    double zuulInitiativeReduction = this.currentCharacter.use(command);
+                    Character zuul = this.characters.get(1);
+                    zuul.setCharacterInitiative(zuul.getCharacterInitiative() + zuulInitiativeReduction);
+                    break;
+                // If command is "lock", call lock() command on current character
+                case LOCK:
+                    this.currentCharacter.lock(command);
+                    break;
+                // If command is "unlock", call unlock() command on current character
+                case UNLOCK:
+                    this.currentCharacter.unlock(command);
+                    break;
+                // If command is "activate", set MaxInitiative to the return value of the activate() method
+                case ACTIVATE:
+                    double newInitiative = this.currentCharacter.activate(command, reactorActivated);
+                    if (newInitiative != Double.MAX_VALUE && !reactorActivated) {
+                        reactorActivated = true;
+                        this.maxInititative = newInitiative;
+                    }
+                    break;
+                case TALK:
+                    if (currentCharacter.getCurrentRoom().getHasCharacter("TechDude")) {
+                    this.conversation(characters.get(2));
+                    } else {
+                        System.out.println("TechDude isnt in the room");
+                    }
+                    break;
+                // If command does not match any of the options, break.
+                default:
+                    break;
+            }
         }
         // Return boolean value (false = continue playing; true = quit game)
         return wantToQuit;
@@ -522,26 +530,29 @@ public class Game {
 
     // This method prints a help message, including available commands
     private void printHelp() {
-        System.out.println("You must find other crewmembers save them, \n" +
-        "you must survive and reach the escape pod. find items that can \n" +
-        "help you on your way by using the look command and then picking \n" +
-        "them up, secret bonus objectives are scattered around be mindfull \n" +
-        "of what survivers tell you and uses that certain items can have \n" +
-        "you can only carry a certain weight of items so manage your \n" + 
-        "inventory accordingly");
+        System.out.println("You must find other crewmembers save them, \n"
+                + "you must survive and reach the escape pod. find items that can \n"
+                + "help you on your way by using the look command and then picking \n"
+                + "them up, secret bonus objectives are scattered around be mindfull \n"
+                + "of what survivers tell you and uses that certain items can have \n"
+                + "you can only carry a certain weight of items so manage your \n"
+                + "inventory accordingly");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
         System.out.println();
         System.out.println("After you put in a command you will almost always \n"
-        + "need to follow the command up with a second or third word. \n"
-        + "example would be when you want to lock a door you will type \n"
-        + "lock then the exit you want to lock. \n"
-        + "execptions to this is \n"
-        + "stay which will just make you use your turn on not moving \n"
-        + "quit which will quit the game and end the current play session \n"
-        + "Command words that require another word will often ask you to enter \n"
-        + "a specefic second word as putting in go will ask you 'go where?'");
+                + "need to follow the command up with a second or third word. \n"
+                + "example would be when you want to lock a door you will type \n"
+                + "lock then the exit you want to lock. \n"
+                + "execptions to this is \n"
+                + "stay which will just make you use your turn on not moving \n"
+                + "quit which will quit the game and end the current play session \n"
+                + "Command words that require another word will often ask you to enter \n"
+                + "a specefic second word as putting in go will ask you 'go where?'\n"
+                + "Note that when picking up multiple items always write the \n"
+                + "name of the item as if you were picking a single item then \n"
+                + "the number of that item as the third word.");
     }
 
     // This method iterates over the different characters to determine whose turn it is.
@@ -570,8 +581,7 @@ public class Game {
         if (command.hasSecondWord()) {
             System.out.println("Quit what?");
             return false;
-        }
-        // If the command has no second word, return "true", which causes the game to end.
+        } // If the command has no second word, return "true", which causes the game to end.
         else {
             printStopMessage("quit");
             return true;
@@ -580,9 +590,9 @@ public class Game {
 
     // This method prints a stop message depending on the reason string
     private void printStopMessage(String reason) {
-        
+
         boolean techDudeIsThere = this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude");
-        
+
         // If the player won the game, print message specifying the total points earned
         if (reason == "win") {
             // Calculate earned points
@@ -592,29 +602,31 @@ public class Game {
             }
             System.out.println("Congratulations, you escaped the space station. You won.");
             System.out.printf("You got %1.2f points\n", point);
-        } 
-        // If the player is killed by Zuul, print message
+        } // If the player is killed by Zuul, print message
         else if (reason == "lose") {
             if (techDudeIsThere) {
                 System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
             }
             System.out.println("You were caught and killed by the monster. You lost.");
-        } 
-        // If player is killed by reactor, print message
-        else if (reason == "timer"){
+
+        } // If player is killed by reactor, print message
+        else if (reason == "timer") {
+            System.out.println("Tech dude: Good run mate see ya on the other side");
+
+        } // If player is killed by reactor, print message
+        else if (reason == "timer") {
             if (techDudeIsThere) {
                 System.out.println("Tech dude: Good run mate see ya on the other side");
             }
+
             System.out.println("The reactor overloaded and blew up the spacestation. You lost.");
-        }
-        // if the player dies due to low health
+        } // if the player dies due to low health
         else if (reason == "health") {
             if (techDudeIsThere) {
                 System.out.println("Tech dude: Don't go into the light!");
             }
             System.out.println("You died due to extensive wound.");
-        }
-        // If player exits the game without losing or winning.
+        } // If player exits the game without losing or winning.
         else {
             System.out.println("You quit the current instance of the game.");
         }
@@ -623,7 +635,7 @@ public class Game {
     // (£) This method calculates the points earned by the player
     private double pointCalculation() {
         // Set hero to the Hero character
-        Hero hero = (Hero)(characters.get(0));
+        Hero hero = (Hero) (characters.get(0));
         // Declare usb
         USB usb;
         // Create hash set for points
@@ -634,7 +646,7 @@ public class Game {
             // Set name of USB
             String name = "USB" + i;
             // Set usb to the specified USB item in the player's inventory
-            usb = (USB)hero.getInventory().getItem(name);
+            usb = (USB) hero.getInventory().getItem(name);
             // If the specified USB is in the player's inventory...
             if (usb != null) {
                 // If the specified USB has data stored on it...
@@ -648,7 +660,7 @@ public class Game {
         }
 
         // Calculate earned points
-        double point = (pointSet.size() * 5 + 5) * (1 + ((reactorActivated)?5:0) + (5 / (hero.getCharacterInitiative() + 5)));
+        double point = (pointSet.size() * 5 + 5) * (1 + ((reactorActivated) ? 5 : 0) + (5 / (hero.getCharacterInitiative() + 5)));
         return point;
     }
 
@@ -664,7 +676,7 @@ public class Game {
         // Return value of finished (true if player has won)
         return finished;
     }
-    
+
     // This method tests if the player has lost
     private boolean lose() {
         // If player is in same room as Zuul, and player is current character, set sameRoom to true
@@ -672,14 +684,12 @@ public class Game {
         if (characters.get(0).getCurrentRoom().getHasCharacter("Zuul")
                 && currentCharacter.equals(characters.get(0))) {
             sameRoom = true;
-        }
-        // If Zuul is in the same room as the player, and Zuul is the current character, set sameRoom and zuulHadTurn to true
+        } // If Zuul is in the same room as the player, and Zuul is the current character, set sameRoom and zuulHadTurn to true
         else if (characters.get(1).getCurrentRoom().getHasCharacter("Hero")
                 && currentCharacter.equals(characters.get(1))) {
             sameRoom = true;
             zuulHadTurn = true;
-        }
-        // If current character is not player, and Zuul is not in player's current room, set sameRoom and zuulHadTurn to false
+        } // If current character is not player, and Zuul is not in player's current room, set sameRoom and zuulHadTurn to false
         else if (currentCharacter != characters.get(0) && !(characters.get(0).
                 getCurrentRoom().getHasCharacter("Zuul"))) {
             sameRoom = false;
@@ -690,11 +700,10 @@ public class Game {
         // print lose message and return true
         if ((sameRoom && currentCharacter.equals(characters.get(0)) && zuulHadTurn)
                 && characters.get(0).getCharacterInitiative() > characters.
-                        get(1).getCharacterInitiative()) {
+                get(1).getCharacterInitiative()) {
             printStopMessage("lose");
             return true;
-        }
-        // Else, return false
+        } // Else, return false
         else {
             return false;
         }
@@ -707,41 +716,96 @@ public class Game {
         if (characters.get(0).getCharacterInitiative() > maxInititative) {
             printStopMessage("timer");
             return true;
-        }
-        // Else, return false
+        } // Else, return false
         else {
             return false;
         }
     }
-    
-    private void techDudeMeetHero(){
+
+    /*private void techDudeMeetHero() {
         // Check if current character is tech dude and the current room contains hero and tech dude.
-        if (this.currentCharacter.equals(this.characters.get(2)) &&
-                (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
+        if (this.currentCharacter.equals(this.characters.get(2))
+                && (this.currentCharacter.getCurrentRoom().getHasCharacter("Hero")
                 && this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude"))) {
             // Set that tech dude has met the hero
-            this.currentCharacter.meetHero(this.characters.get(0));
+            this.currentCharacter.followsHero(this.characters.get(0));
         }
-    }
-    
+    }*/
     // This method checks whether or not the player has died because of low health.
-    private boolean healthTest(){
+    private boolean healthTest() {
         // Check if current player is hero
         if (this.currentCharacter.equals(this.characters.get(0))) {
             // Set tempCharacter to current character
-            Hero tempCharacter = (Hero)this.currentCharacter;
+            Hero tempCharacter = (Hero) this.currentCharacter;
             // If player's health is less than or equal to zero, print "health"
             // lose message and return true.
-            if (tempCharacter.getHealth() <= 0){
+            if (tempCharacter.getHealth() <= 0) {
                 printStopMessage("health");
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
-        }
-        else {
+        } else {
             return false;
         }
+    }
+
+    private void conversation(Character character) {
+        Conversation Talk = new Conversation();
+        boolean wantToTalk = false;
+        int counter = 1;
+        if (character.getHostility() != 3) {
+            do {
+                java.util.Scanner input = new java.util.Scanner(System.in);
+                String name = character.getName() + counter;
+                Talk.talk(name);
+                Talk.options(name);
+                if (input.hasNextInt()) {
+                    switch (input.nextInt()) {
+                        case 1:
+                            if (counter < 4) {
+                                wantToTalk = true;
+                            } else {
+                                wantToTalk = false;
+                            }
+                            break;
+                        case 2:
+                            character.setHostility(character.getHostility() + 1);
+                            if (character.getHostility() < 3) {
+                                System.out.println("The TechDude got annoyed at you");
+                            }
+                            if (character.getHostility() == 3) {
+                                System.out.println("The TechDude hates you and will no longer talk to you");
+                                TechDude temp = (TechDude) character;
+                                if (temp.isFollowsHero()){
+                                    character.followsHero(this.characters.get(0), false);
+                                    System.out.println("TechDude no longer follows you");
+                                }
+                            }
+                            break;
+                        case 3:
+                            if (counter == 3){
+                            wantToTalk = false;
+                            }
+                            else
+                                System.out.println("You only have 2 options");
+                            break;
+                        default:
+                            System.out.println("Wrong input");
+                            break;
+                    }
+                    if (counter == 4 || (counter == 3 && character.getHostility() < 3 && wantToTalk == false)) {
+                        System.out.println("TechDude is now following you");
+                        character.followsHero(this.characters.get(0), true);                        
+                    }
+                    counter++;
+                }
+                else
+                    System.out.println("The input wasnt a number");
+            } while (wantToTalk);
+
+        }
+
+
     }
 }
