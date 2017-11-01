@@ -570,27 +570,38 @@ public class Game {
 
     // This method prints a stop message depending on the reason string
     private void printStopMessage(String reason) {
+        
+        boolean techDudeIsThere = this.currentCharacter.getCurrentRoom().getHasCharacter("TechDude");
+        
         // If the player won the game, print message specifying the total points earned
         if (reason == "win") {
             // Calculate earned points
             double point = pointCalculation();
-            System.out.println("Tech dude: Good job mate, I knew we would make it!");
+            if (techDudeIsThere) {
+                System.out.println("Tech dude: Good job mate, I knew we would make it!");
+            }
             System.out.println("Congratulations, you escaped the space station. You won.");
             System.out.printf("You got %1.2f points\n", point);
         } 
         // If the player is killed by Zuul, print message
         else if (reason == "lose") {
-            System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+            if (techDudeIsThere) {
+                System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+            }
             System.out.println("You were caught and killed by the monster. You lost.");
         } 
         // If player is killed by reactor, print message
         else if (reason == "timer"){
-            System.out.println("Tech dude: Good run mate see ya on the other side");
+            if (techDudeIsThere) {
+                System.out.println("Tech dude: Good run mate see ya on the other side");
+            }
             System.out.println("The reactor overloaded and blew up the spacestation. You lost.");
         }
         // if the player dies due to low health
         else if (reason == "health") {
-            System.out.println("Tech dude: Don't go into the light!");
+            if (techDudeIsThere) {
+                System.out.println("Tech dude: Don't go into the light!");
+            }
             System.out.println("You died due to extensive wound.");
         }
         // If player exits the game without losing or winning.
