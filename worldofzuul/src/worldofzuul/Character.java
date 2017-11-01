@@ -23,6 +23,7 @@ public class Character {
     private double speedFactor;
     private String direction;
     private String name;
+    private int hostility;
 
     // This constructor creates a character with default initiative and speed factor
     public Character() {
@@ -181,6 +182,17 @@ public class Character {
     }
     
     // This method is overridden in the TechDude class
-    public void meetHero(Character hero){
+    public void followsHero(Character hero, boolean follows){
     }
+
+    public int getHostility() {
+        return hostility;
+    }
+
+    public void setHostility(int hostility) {
+        this.hostility = hostility;
+    }
+    
+    
+    
 }

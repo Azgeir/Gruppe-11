@@ -13,9 +13,12 @@ package worldofzuul;
 // This class represents the tech dude
 public class TechDude extends Character {
     // Data fields:
-    private boolean hasMetHero = false; // This boolean value indicates if the tech dude has met hero
+    private boolean followsHero = false; // This boolean value indicates if the tech dude has met hero
     private int health = 10; // Tech dude's health
     private Character hero; // Tech dude's hero
+    private int hostility = 0;
+
+
     
     // (£) This is an empty no-arg constructor
     public TechDude() {
@@ -56,10 +59,17 @@ public class TechDude extends Character {
     // This method helps in defining what commands should be chosen when it is 
     // the tech dude's turn.
     @Override
-    public void meetHero(Character hero){
+    public void followsHero(Character hero, boolean follows){
         // Set data fields
-        this.hasMetHero = true;
-        this.hero = hero;
+        if (follows){
+           this.followsHero = true;
+           this.hero = hero; 
+        }
+        else{
+            this.followsHero = false;
+            this.hero = null;
+        }
+        
     }
     
     // This method returns tech dude's command based on whether or not he has met the hero
@@ -69,7 +79,7 @@ public class TechDude extends Character {
         String word1, word2, word3;
         
         // If tech dude has not met the hero, return "stay" command
-        if (this.hasMetHero == false){
+        if (this.followsHero == false){
             word1 = "stay";
             word2 = null;
             word3 = null;
@@ -83,4 +93,9 @@ public class TechDude extends Character {
             return new Command(commands.getCommandWord(word1), word2, word3);
         }
     }
+
+    public boolean isFollowsHero() {
+        return followsHero;
+    }
+    
 }
