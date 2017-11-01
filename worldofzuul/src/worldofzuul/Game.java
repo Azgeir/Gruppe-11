@@ -334,6 +334,7 @@ public class Game {
                 room.getInventory().addItem(new Item(1, "syringe"), 15);
                 room.getInventory().addItem(new Item(350, "desk"), 2);
                 room.getInventory().addItem(new Item(50, "chair"), 10);
+
                 room.getInventory().addItem(new Item(75, "computer"), 5);
                 room.getInventory().addItem(new Item(200, "table"), 4);
                 room.getInventory().addItem(new Item(2, "quantum- eqqiupment"), 29);
@@ -346,6 +347,7 @@ public class Game {
                 room.getInventory().addItem(new Item(50, "barrel"), 40);
                 room.getInventory().addItem(new Item(35, "baggage"), 10);
                 room.getInventory().addItem(new Item(150, "computer-moniter"), 15);
+                room.getInventory().addItem(new Item(100, "spacesuit"), 10);
                 room.getInventory().addItem(new Item(200, "corpse"), 2);
                 break;
             case "control":
@@ -362,6 +364,8 @@ public class Game {
                 room.getInventory().addItem(new Item(175, "computer"), 4);
                 room.getInventory().addItem(new Item(2, "screwdriver"), 8);
                 room.getInventory().addItem(new Item(200, "crate"), 10);
+                room.getInventory().addItem(new Item(150, "Geiger counter"), 2);
+                room.getInventory().addItem(new Item(100, "spacesuit"), 2);
                 break;
             case "pod":
                 room.getInventory().addItem(new MedKit());
@@ -496,8 +500,8 @@ public class Game {
                 break;
             // If command is "activate", set MaxInitiative to the return value of the activate() method
             case ACTIVATE:
-                double newInitiative = this.currentCharacter.activate(command);
-                if (this.maxInititative == Double.MAX_VALUE){ 
+                double newInitiative = this.currentCharacter.activate(command, reactorActivated);
+                if (newInitiative != Double.MAX_VALUE && !reactorActivated){ 
                     reactorActivated = true;
                     this.maxInititative = newInitiative;
                 }
