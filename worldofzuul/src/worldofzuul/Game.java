@@ -543,7 +543,10 @@ public class Game {
                 + "stay which will just make you use your turn on not moving \n"
                 + "quit which will quit the game and end the current play session \n"
                 + "Command words that require another word will often ask you to enter \n"
-                + "a specefic second word as putting in go will ask you 'go where?'");
+                + "a specefic second word as putting in go will ask you 'go where?'\n"
+                + "Note that when picking up multiple items always write the \n"
+                + "name of the item as if you were picking a single item then \n"
+                + "the number of that item as the third word.");
     }
 
     // This method iterates over the different characters to determine whose turn it is.
