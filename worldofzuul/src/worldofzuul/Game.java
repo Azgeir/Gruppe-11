@@ -496,7 +496,7 @@ public class Game {
                 break;
             // If command is "activate", set MaxInitiative to the return value of the activate() method
             case ACTIVATE:
-                double newInitiative = this.currentCharacter.activate(command);
+                double newInitiative = this.currentCharacter.activate(command, reactorActivated);
                 if (newInitiative != Double.MAX_VALUE && !reactorActivated){ 
                     reactorActivated = true;
                     this.maxInititative = newInitiative;

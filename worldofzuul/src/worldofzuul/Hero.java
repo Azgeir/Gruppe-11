@@ -420,7 +420,7 @@ public class Hero extends Character {
     
     //use this command to start the countdown timer for bonus points (by blowing up the reactor)
     @Override
-    public double activate(Command command) {
+    public double activate(Command command, boolean reactorActivated) {
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
         if (!command.hasSecondWord()) {
             System.out.println("Activate what?");
@@ -430,10 +430,13 @@ public class Hero extends Character {
             
             if (this.getCurrentRoom().getName().equals("reactor")) {
                 if (this.getCurrentRoom().getHasCharacter("TechDude")) {
-                    
-                    System.out.println("You activated the reactor. The spacestation will selfdestruct in 10 turns");
-                    return (this.getCharacterInitiative() + 50);
-                    
+                    if (!reactorActivated) {
+                        System.out.println("You activated the reactor. The spacestation will selfdestruct in 10 turns");
+                        return (this.getCharacterInitiative() + 50);
+                    } else {
+                        System.out.println("The reactor is already activated");
+                        return Double.MAX_VALUE;
+                    }
                 } else {
                     System.out.println("You need the TechDude to do this");
                     return Double.MAX_VALUE;
