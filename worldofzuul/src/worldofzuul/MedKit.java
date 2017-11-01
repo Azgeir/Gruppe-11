@@ -39,6 +39,8 @@ public class MedKit extends Item {
         Hero tempCharacter = (Hero)currentCharacter;
         // Player's health is increased by the health amount of the the medkit.
         tempCharacter.setHealth(tempCharacter.getHealth() + this.healthAmount);
+        if (tempCharacter.getHealth() > 10)
+            tempCharacter.setHealth(10);
         // Medkit is removed from the player's inventory.
         tempCharacter.getInventory().removeItem(this);
         // Print message to player

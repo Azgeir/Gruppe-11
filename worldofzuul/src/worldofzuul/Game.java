@@ -90,7 +90,7 @@ public class Game {
         // Initialise the control room
         controlRoom = new Room("in the control room", "control",
                 ("You are in the control room. this is where information goes to and \n"
-                + "from the spacestation, this is where you find the Tech dude he was \n"
+                + "from the spacestation, this is where you find the TechDude. He was \n"
                 + "trying to reestablish the connection to earth but to no avail \n"));
 
         // Initialise the reactor
@@ -332,7 +332,7 @@ public class Game {
             case "physicslab":
                 room.getInventory().addItem(new AcidVial(5, 50), 7);
                 room.getInventory().addItem(new MedKit(), 10);
-                room.getInventory().addItem(new Item(5, "test tube"), 20);
+                room.getInventory().addItem(new Item(5, "test-tube"), 20);
                 room.getInventory().addItem(new Item(2, "coat"), 10);
                 room.getInventory().addItem(new Item(2, "knive"), 10);
                 room.getInventory().addItem(new Item(1, "syringe", "stick it at yourself to see, if you become one with the Matrix."), 15);
@@ -343,12 +343,12 @@ public class Game {
                 room.getInventory().addItem(new Item(75, "computer"), 5);
                 room.getInventory().addItem(new Item(200, "table"), 4);
                 room.getInventory().addItem(new Item(2, "quantum- eqqiupment"), 29);
-                room.getInventory().addItem(new Item(5, "test tube"), 20);
-                room.getInventory().addItem(new Item(5, "funny chemical", "sniff at it, then lick at it and then scream 'LEEROY JENKINS'."), 25);
+                room.getInventory().addItem(new Item(5, "test-tube"), 20);
+                room.getInventory().addItem(new Item(5, "funny-chemical", "sniff at it, then lick at it and then scream 'LEEROY JENKINS'."), 25);
                 break;
             case "dock":
                 room.getInventory().addItem(new Item(200, "crate"), 30);
-                room.getInventory().addItem(new Item(500, "fuel station"), 1);
+                room.getInventory().addItem(new Item(500, "fuel-station"), 1);
                 room.getInventory().addItem(new Item(50, "barrel"), 40);
                 room.getInventory().addItem(new Item(35, "baggage"), 10);
                 room.getInventory().addItem(new Item(150, "computer-moniter"), 15);
@@ -370,7 +370,7 @@ public class Game {
                 room.getInventory().addItem(new Item(175, "computer"), 4);
                 room.getInventory().addItem(new Item(2, "screwdriver"), 8);
                 room.getInventory().addItem(new Item(200, "crate"), 10);
-                room.getInventory().addItem(new Item(150, "Geiger counter"), 2);
+                room.getInventory().addItem(new Item(150, "Geiger-counter"), 2);
                 room.getInventory().addItem(new Item(100, "spacesuit"), 2);
                 break;
             case "pod":
@@ -387,8 +387,8 @@ public class Game {
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
     private void createCharacter() {
         this.characters.add(new Hero(characterStartRooms.get("Computer"), "Hero"));
-        this.characters.add(new Zuul(characterStartRooms.get("Dorm"), "Zuul"));
-        this.characters.add(new TechDude(characterStartRooms.get("Control"), "TechDude"));
+        this.characters.add(new Zuul(characterStartRooms.get("Dorm"), "Zuul", 1.15));
+        this.characters.add(new TechDude(characterStartRooms.get("Control"), "TechDude", 0.5));
     }
 
     // This method plays the game
@@ -518,6 +518,7 @@ public class Game {
                     } else {
                         System.out.println("TechDude isnt in the room");
                     }
+                    this.currentCharacter.setCharacterInitiative(this.currentCharacter.getCharacterInitiative() + 10 * this.currentCharacter.getSpeedFactor());
                     break;
                 // If command does not match any of the options, break.
                 default:
@@ -797,7 +798,6 @@ public class Game {
                     System.out.println("The input wasnt a number");
                 }
             } while (wantToTalk);
-
         }
 
     }
