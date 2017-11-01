@@ -82,10 +82,10 @@ public class Game {
 
         // Initialise the dock
         dock = new Room("in the dock", "dock",
-                "You are in the Dock. This is where supply ships come and go and also \n"
+                "You are in the dock. This is where supply ships come and go and also \n"
                 + "the only way off the spacestation via the pod, but the spacestation \n"
                 + "is currently under quarantine and you don't know how to overwrite \n"
-                + "the quarantine, there are tools for repairs, 3d printers and spacesuits \n");
+                + "the quarantine. There are tools for repairs, 3d printers and spacesuits \n");
 
         // Initialise the control room
         controlRoom = new Room("in the control room", "control",
