@@ -71,6 +71,8 @@ public class USB extends Item {
         else {
             System.out.println("There is nowhere to obtain useful data in this room.");
         }
+        
+        currentCharacter.setCharacterInitiative(currentCharacter.getCharacterInitiative()+7.5*currentCharacter.getSpeedFactor());
         return 0;
     }
 }

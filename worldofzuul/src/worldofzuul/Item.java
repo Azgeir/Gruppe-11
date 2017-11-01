@@ -62,6 +62,7 @@ public class Item {
                 System.out.println("You use the " + this.name + " to " + this.useDescription);
             }
         }
+        currentCharacter.setCharacterInitiative(currentCharacter.getCharacterInitiative()+3*currentCharacter.getSpeedFactor());
         return 0;
     }
     

@@ -31,8 +31,8 @@ public class AcidVial extends Item {
     
     // (£) This constructor creates an acid vial with a default damage amount
     public AcidVial() {
-        this.damageAmount = 5;
-        this.initiativeReduction = 15;
+        this.damageAmount = 4;
+        this.initiativeReduction = 23;
     }
     
     // This method returns the damage amount of the acid vial.
@@ -49,6 +49,8 @@ public class AcidVial extends Item {
         tempCharacter.setHealth(tempCharacter.getHealth() - this.damageAmount);
         // Remove acid vial from player's inventory
         tempCharacter.getInventory().removeItem(this);
+        
+        currentCharacter.setCharacterInitiative(currentCharacter.getCharacterInitiative()+1.5*currentCharacter.getSpeedFactor());
         
         // If Zuul is in the current room, player hits Zuul with the acid vial.
         if (tempCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
