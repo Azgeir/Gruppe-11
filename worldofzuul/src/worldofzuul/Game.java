@@ -344,7 +344,7 @@ public class Game {
                 room.getInventory().addItem(new Item(200, "table"), 4);
                 room.getInventory().addItem(new Item(2, "quantum- eqqiupment"), 29);
                 room.getInventory().addItem(new Item(5, "test tube"), 20);
-                room.getInventory().addItem(new Item(5, "funny chemical", "sniff at it, then lick at and then scream 'LEEROY JENKINS'."), 25);
+                room.getInventory().addItem(new Item(5, "funny chemical", "sniff at it, then lick at it and then scream 'LEEROY JENKINS'."), 25);
                 break;
             case "dock":
                 room.getInventory().addItem(new Item(200, "crate"), 30);
