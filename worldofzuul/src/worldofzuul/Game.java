@@ -82,15 +82,15 @@ public class Game {
 
         // Initialise the dock
         dock = new Room("in the dock", "dock",
-                "You are in the Dock. This is where supply ships come and go and also \n"
+                "You are in the dock. This is where supply ships come and go and also \n"
                 + "the only way off the spacestation via the pod, but the spacestation \n"
                 + "is currently under quarantine and you don't know how to overwrite \n"
-                + "the quarantine, there are tools for repairs, 3d printers and spacesuits \n");
+                + "the quarantine. There are tools for repairs, 3d printers and spacesuits \n");
 
         // Initialise the control room
         controlRoom = new Room("in the control room", "control",
                 ("You are in the control room. this is where information goes to and \n"
-                + "from the spacestation, this is where you find the Tech dude he was \n"
+                + "from the spacestation, this is where you find the TechDude he was \n"
                 + "trying to reestablish the connection to earth but to no avail. \n"
                 + "Maybe you could get surveilliance data back with you"));
 
@@ -343,7 +343,7 @@ public class Game {
 
                 room.getInventory().addItem(new Item(75, "computer"), 5);
                 room.getInventory().addItem(new Item(200, "table"), 4);
-                room.getInventory().addItem(new Item(2, "quantum-eqiupment"), 29);
+                room.getInventory().addItem(new Item(2, "quantum-equipment"), 29);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
                 room.getInventory().addItem(new Item(5, "funny-chemical", "sniff at it, then lick at it and then scream 'LEEROY JENKINS'."), 25);
                 break;
@@ -388,8 +388,8 @@ public class Game {
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
     private void createCharacter() {
         this.characters.add(new Hero(characterStartRooms.get("Computer"), "Hero"));
-        this.characters.add(new Zuul(characterStartRooms.get("Dorm"), "Zuul"));
-        this.characters.add(new TechDude(characterStartRooms.get("Control"), "TechDude"));
+        this.characters.add(new Zuul(characterStartRooms.get("Dorm"), "Zuul", 1.15));
+        this.characters.add(new TechDude(characterStartRooms.get("Control"), "TechDude", 0.5));
     }
 
     // This method plays the game
@@ -518,10 +518,11 @@ public class Game {
                     break;
                 case TALK:
                     if (currentCharacter.getCurrentRoom().getHasCharacter("TechDude")) {
-                    this.conversation(characters.get(2));
+                        this.conversation(characters.get(2));
                     } else {
                         System.out.println("TechDude isnt in the room");
                     }
+                    this.currentCharacter.setCharacterInitiative(this.currentCharacter.getCharacterInitiative() + 10 * this.currentCharacter.getSpeedFactor());
                     break;
                 // If command does not match any of the options, break.
                 default:
@@ -777,6 +778,7 @@ public class Game {
                             } else {
                                 wantToTalk = false;
                             }
+                            counter++;
                             break;
                         case 2:
                             character.setHostility(character.getHostility() + 1);
@@ -786,18 +788,20 @@ public class Game {
                             if (character.getHostility() == 3) {
                                 System.out.println("The TechDude hates you and will no longer talk to you");
                                 TechDude temp = (TechDude) character;
-                                if (temp.isFollowsHero()){
+                                if (temp.isFollowsHero()) {
                                     character.followsHero(this.characters.get(0), false);
                                     System.out.println("TechDude no longer follows you");
                                 }
                             }
+                            counter++;
                             break;
                         case 3:
-                            if (counter == 3){
-                            wantToTalk = false;
-                            }
-                            else
+                            if (counter == 3) {
+                                wantToTalk = false;
+                                counter++;
+                            } else {
                                 System.out.println("You only have 2 options");
+                            }
                             break;
                         default:
                             System.out.println("Wrong input");
@@ -805,16 +809,14 @@ public class Game {
                     }
                     if (counter == 4 || (counter == 3 && character.getHostility() < 3 && wantToTalk == false)) {
                         System.out.println("TechDude is now following you");
-                        character.followsHero(this.characters.get(0), true);                        
+                        character.followsHero(this.characters.get(0), true);
                     }
-                    counter++;
-                }
-                else
+
+                } else {
                     System.out.println("The input wasnt a number");
+                }
             } while (wantToTalk);
-
         }
-
 
     }
 }
