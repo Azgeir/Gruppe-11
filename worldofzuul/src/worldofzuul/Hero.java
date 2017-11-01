@@ -430,7 +430,7 @@ public class Hero extends Character {
                 if (this.getCurrentRoom().getHasCharacter("TechDude")) {
                     if (!reactorActivated) {
                         System.out.println("You activated the reactor. The spacestation will selfdestruct in 10 turns");
-                        return (this.getCharacterInitiative() + 50);
+                        return (this.getCharacterInitiative() + 80);
                     } else {
                         System.out.println("The reactor is already activated");
                         return Double.MAX_VALUE;

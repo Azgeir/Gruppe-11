@@ -661,7 +661,7 @@ public class Game {
         }
 
         // Calculate earned points
-        double point = (pointSet.size() * 5 + 5) * (1 + ((reactorActivated) ? 5 : 0) + (5 / (hero.getCharacterInitiative() + 5)));
+        double point = (pointSet.size() * 5 + 5) * (1 + ((reactorActivated) ? 2 : 0) + (150 / (hero.getCharacterInitiative() + 150)));
         return point;
     }
 
