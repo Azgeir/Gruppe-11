@@ -262,21 +262,21 @@ public class Game {
             case "biolab":
                 room.getInventory().addItem(new Item(10, "notebook", "smash it down on the floor in pure anger"));
                 room.getInventory().addItem(new Item(50, "microscope"), 3);
-                room.getInventory().addItem(new Item(200, "DNA-sequencing-machine"));
+                room.getInventory().addItem(new Item(1000, "DNA-sequencing-machine"));
                 room.getInventory().addItem(new Item(150, "incubator"), 2);
-                room.getInventory().addItem(new Item(200, "refrigerator"), 2);
+                room.getInventory().addItem(new Item(500, "refrigerator"), 2);
                 room.getInventory().addItem(new Item(20, "animal-cell-model"));
                 room.getInventory().addItem(new Item(20, "plant-cell-model"));
-                room.getInventory().addItem(new Item(20, "water-sampler", "piss in it to show dominance."));
-                room.getInventory().addItem(new Item(20, "air-sampler"));
-                room.getInventory().addItem(new Item(5, "methylene-blue-stain"), 10);
-                room.getInventory().addItem(new Item(5, "Gram's-iodine-solution"), 10);
+                room.getInventory().addItem(new Item(20, "water-sample", "piss in it to show dominance."));
+                room.getInventory().addItem(new Item(20, "air-sample"));
+                room.getInventory().addItem(new Item(10, "methylene-blue-stain"), 10);
+                room.getInventory().addItem(new Item(10, "Gram's-iodine-solution"), 10);
                 room.getInventory().addItem(new Item(5, "pipette"), 20);
                 room.getInventory().addItem(new Item(5, "microscope-slide"), 20);
-                room.getInventory().addItem(new Item(5, "cell-lysis-solution"), 10);
-                room.getInventory().addItem(new Item(5, "DNA-precipitate-solution"), 10);
+                room.getInventory().addItem(new Item(10, "cell-lysis-solution"), 10);
+                room.getInventory().addItem(new Item(10, "DNA-precipitate-solution"), 10);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
-                room.getInventory().addItem(new Item(75, "centrifuge"), 2);
+                room.getInventory().addItem(new Item(400, "centrifuge"), 2);
                 room.getInventory().addItem(new AcidVial(4, 50), 10);
                 break;
             case "computer":
@@ -291,94 +291,94 @@ public class Game {
             case "storage":
                 room.getInventory().addItem(new AcidVial(4, 50), 5);
                 room.getInventory().addItem(new MedKit(), 10);
-                room.getInventory().addItem(new Item(150, "box"), 30);
-                room.getInventory().addItem(new Item(150, "bed"), 15);
+                room.getInventory().addItem(new Item(400, "box"), 30);
+                room.getInventory().addItem(new Item(600, "bed"), 15);
                 room.getInventory().addItem(new Item(75, "electronics"), 25);
-                room.getInventory().addItem(new Item(135, "solarpanel"), 15);
-                room.getInventory().addItem(new Item(2, "hammer"), 13); // "hit yourself in hope of convincing yourself that this is not reality."
-                room.getInventory().addItem(new Item(5, "saw"), 9);
-                room.getInventory().addItem(new Item(3, "crowbar", "smash some stuff and pretend that you are Gordon Freeman. "
+                room.getInventory().addItem(new Item(1350, "solarpanel"), 15);
+                room.getInventory().addItem(new Item(20, "hammer"), 13); // "hit yourself in hope of convincing yourself that this is not reality."
+                room.getInventory().addItem(new Item(20, "saw"), 9);
+                room.getInventory().addItem(new Item(20, "crowbar", "smash some stuff and pretend that you are Gordon Freeman. "
                         + "This isn't Half Life 3, you dumbass!"), 7);
-                room.getInventory().addItem(new Item(110, "plasma-saw", "try to cut a hole on the wall to get away from the Zuul. Though, you end "
+                room.getInventory().addItem(new Item(20, "plasma-saw", "try to cut a hole on the wall to get away from the Zuul. Though, you end "
                         + "up being sucked out into space, because you cannot think for shit!"), 6);
-                room.getInventory().addItem(new Item(150, "nailgun", "shoot all over the place like a stormtrooper."), 8);
+                room.getInventory().addItem(new Item(30, "nailgun", "shoot all over the place like a stormtrooper."), 8);
                 room.getInventory().addItem(new AccessCard());
                 break;
             case "medbay":
                 room.getInventory().addItem(new AcidVial(4, 50), 7);
                 room.getInventory().addItem(new MedKit(), 10);
-                room.getInventory().addItem(new Item(1, "syringe", "stick it at yourself to see, if you end up tripping balls."), 17);
+                room.getInventory().addItem(new Item(5, "syringe", "stick it at yourself to see, if you end up tripping balls."), 17);
                 room.getInventory().addItem(new Item(2, "pill", "try to aquire superpowers, but you end up having extreme explosive "
                         + "diaherra being shot out of your ass as a cannon."), 29);
                 room.getInventory().addItem(new Item(6, "glass"), 49);
                 room.getInventory().addItem(new Item(20, "book", ""), 200);
-                room.getInventory().addItem(new Item(9, "coat"), 19);
-                room.getInventory().addItem(new Item(350, "desk"), 8);
-                room.getInventory().addItem(new Item(15, "display-skeleton"), 5);
+                room.getInventory().addItem(new Item(20, "coat"), 19);
+                room.getInventory().addItem(new Item(400, "desk"), 8);
+                room.getInventory().addItem(new Item(100, "display-skeleton"), 5);
                 break;
             case "dorm":
-                room.getInventory().addItem(new Item(5, "dehydrated-food"), 50);
-                room.getInventory().addItem(new Item(200, "bed"), 20);
+                room.getInventory().addItem(new Item(10, "dehydrated-food"), 50);
+                room.getInventory().addItem(new Item(600, "bed"), 20);
                 room.getInventory().addItem(new Item(10, "pillow", "remind yourself that Mommy is not going to save you."), 20);
-                room.getInventory().addItem(new Item(20, "duvet", "clean the stain where you pissed yourself at."), 20);
+                room.getInventory().addItem(new Item(500, "duvet", "clean the stain where you pissed yourself at."), 20);
                 room.getInventory().addItem(new Item(200, "corpse"), 10);
-                room.getInventory().addItem(new Item(200, "couch"));
+                room.getInventory().addItem(new Item(600, "couch"));
                 room.getInventory().addItem(new Item(200, "table"), 2);
-                room.getInventory().addItem(new Item(200, "bookcase"));
+                room.getInventory().addItem(new Item(600, "bookcase"));
                 room.getInventory().addItem(new Item(10, "book", "read up on how to fart like a machine gun."), 100);
-                room.getInventory().addItem(new Item(150, "desk"), 2);
-                room.getInventory().addItem(new Item(50, "chair", "sit down on it to contemplate about your life choices at the moment. "
+                room.getInventory().addItem(new Item(600, "desk"), 2);
+                room.getInventory().addItem(new Item(75, "chair", "sit down on it to contemplate about your life choices at the moment. "
                         + "Honestly, don't you have better things to do!"), 6);
                 break;
             case "physicslab":
                 room.getInventory().addItem(new AcidVial(4, 50), 7);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
-                room.getInventory().addItem(new Item(2, "coat"), 10);
-                room.getInventory().addItem(new Item(2, "knive"), 10);
-                room.getInventory().addItem(new Item(1, "syringe", "stick it at yourself to see, if you become one with the Matrix."), 15);
-                room.getInventory().addItem(new Item(350, "desk"), 2);
-                room.getInventory().addItem(new Item(50, "chair", "sit down on it to contemplate about your life choices at the moment. "
+                room.getInventory().addItem(new Item(20, "coat"), 10);
+                room.getInventory().addItem(new Item(15, "knife"), 10);
+                room.getInventory().addItem(new Item(5, "syringe", "stick it at yourself to see, if you become one with the Matrix."), 15);
+                room.getInventory().addItem(new Item(400, "desk"), 2);
+                room.getInventory().addItem(new Item(75, "chair", "sit down on it to contemplate about your life choices at the moment. "
                         + "Seriosly, don't you not have better things to do!"), 10);
 
-                room.getInventory().addItem(new Item(75, "computer"), 5);
+                room.getInventory().addItem(new Item(175, "computer"), 5);
                 room.getInventory().addItem(new Item(200, "table"), 4);
-                room.getInventory().addItem(new Item(2, "quantum-equipment"), 29);
+                room.getInventory().addItem(new Item(1000, "quantum-equipment"), 29);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
-                room.getInventory().addItem(new Item(5, "funny-chemical", "sniff at it, then lick at it and then scream 'LEEROY JENKINS'."), 25);
+                room.getInventory().addItem(new Item(10, "funny-chemical", "sniff at it, then lick at it and then scream 'LEEROY JENKINS'."), 25);
                 break;
             case "dock":
-                room.getInventory().addItem(new Item(200, "crate"), 30);
+                room.getInventory().addItem(new Item(1500, "crate"), 30);
                 room.getInventory().addItem(new Item(500, "fuel-station"), 1);
-                room.getInventory().addItem(new Item(50, "barrel"), 40);
-                room.getInventory().addItem(new Item(35, "baggage"), 10);
+                room.getInventory().addItem(new Item(400, "barrel"), 40);
+                room.getInventory().addItem(new Item(50, "baggage"), 10);
                 room.getInventory().addItem(new Item(150, "computer-moniter"), 15);
                 room.getInventory().addItem(new Item(100, "spacesuit"), 10);
                 room.getInventory().addItem(new Item(200, "corpse"), 2);
-                room.getInventory().addItem(new Item(300, "3D-printer", "scan your ass and print it for science."), 1);
+                room.getInventory().addItem(new Item(500, "3D-printer", "scan your ass and print it for science."), 1);
                 break;
             case "control":
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(175, "computer"), 5);
                 room.getInventory().addItem(new Item(150, "computer-monitor"), 15);
-                room.getInventory().addItem(new Item(20, "keyboard"), 15);
-                room.getInventory().addItem(new Item(2, "screwdriver"), 6);
-                room.getInventory().addItem(new Item(2, "hammer"), 4);
+                room.getInventory().addItem(new Item(20, "keyboard", "write code, but it dosen't work, so you smash it into pieces."), 15);
+                room.getInventory().addItem(new Item(10, "screwdriver"), 6);
+                room.getInventory().addItem(new Item(20, "hammer"), 4);
                 room.getInventory().addItem(new Item(1, "paper", "fold a paper plane and make StarWars sounds."), 20);
                 break;
             case "reactor":
                 room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
                 room.getInventory().addItem(new Item(175, "computer"), 4);
-                room.getInventory().addItem(new Item(2, "screwdriver"), 8);
-                room.getInventory().addItem(new Item(200, "crate"), 10);
-                room.getInventory().addItem(new Item(150, "Geiger-counter"), 2);
+                room.getInventory().addItem(new Item(10, "screwdriver"), 8);
+                room.getInventory().addItem(new Item(1500, "crate"), 10);
+                room.getInventory().addItem(new Item(20, "Geiger-counter"), 2);
                 room.getInventory().addItem(new Item(100, "spacesuit"), 2);
                 break;
             case "pod":
                 room.getInventory().addItem(new MedKit());
-                room.getInventory().addItem(new Item(5, "dehydrated-food"), 5);
-                room.getInventory().addItem(new Item(2, "hammer"), 2);
-                room.getInventory().addItem(new Item(2, "screwdriver"), 2);
+                room.getInventory().addItem(new Item(10, "dehydrated-food"), 5);
+                room.getInventory().addItem(new Item(20, "hammer"), 2);
+                room.getInventory().addItem(new Item(10, "screwdriver"), 2);
                 break;
             default:
                 break;
