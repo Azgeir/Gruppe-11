@@ -78,7 +78,7 @@ public class Character {
             System.out.println(currentRoom.getLongDescription());
         }
         
-        this.characterInitiative += 5 * this.speedFactor;
+        this.characterInitiative += 10 * this.speedFactor;
     }
 
     // This method is overridden in the Hero class
@@ -119,7 +119,7 @@ public class Character {
     
     // (£) This method increases the character's initiative
     public void stay(Command command) {
-        this.characterInitiative += 5 * this.speedFactor;
+        this.characterInitiative += 10 * this.speedFactor;
     }
 
     // This method returns the current room of the character

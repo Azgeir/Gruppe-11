@@ -53,7 +53,7 @@ public class TechDude extends Character {
         // Add tech dude to the new current room
         this.getCurrentRoom().setHasCharacter(this.getName(), true);
         // Set character initiative
-        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * super.getSpeedFactor());
+        this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
     }
     
     // This method helps in defining what commands should be chosen when it is 

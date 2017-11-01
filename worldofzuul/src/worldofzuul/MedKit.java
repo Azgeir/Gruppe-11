@@ -43,6 +43,7 @@ public class MedKit extends Item {
         tempCharacter.getInventory().removeItem(this);
         // Print message to player
         System.out.println("You healed youself with a medkit, but it is now spent.");
+        currentCharacter.setCharacterInitiative(currentCharacter.getCharacterInitiative()+8*currentCharacter.getSpeedFactor());
         return 0;
     }
 }

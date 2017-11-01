@@ -50,6 +50,8 @@ public class AcidVial extends Item {
         // Remove acid vial from player's inventory
         tempCharacter.getInventory().removeItem(this);
         
+        currentCharacter.setCharacterInitiative(currentCharacter.getCharacterInitiative()+1.5*currentCharacter.getSpeedFactor());
+        
         // If Zuul is in the current room, player hits Zuul with the acid vial.
         if (tempCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
             System.out.println("You throw an acidvial at the terrifying Zuul\nYou hit it in the face. You were hit\nby a splash of acid, but now you have a chance to flee.");

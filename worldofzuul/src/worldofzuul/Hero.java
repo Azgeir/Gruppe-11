@@ -171,7 +171,7 @@ public class Hero extends Character {
         }
         
         this.speedFactorCalculation();
-        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+        this.setCharacterInitiative(this.getCharacterInitiative() + 2.5 * this.getSpeedFactor());
     }
     
     //Gives the player a detailed description of the items and the possibilities of a room
@@ -187,11 +187,11 @@ public class Hero extends Character {
                 System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
                 // Print status of exits
                 System.out.println(this.getCurrentRoom().getLockedExitString());
-                this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+                this.setCharacterInitiative(this.getCharacterInitiative() + 1 * this.getSpeedFactor());
             }
             else if (direction.equals("inventory")) {
                 System.out.println("There is the following in your inventory:\n" + this.getInventory().showItems());
-                this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+                this.setCharacterInitiative(this.getCharacterInitiative() + 1.5 * this.getSpeedFactor());
             }
             else{
                 System.out.println("There is no such direction to look.");
@@ -250,7 +250,6 @@ public class Hero extends Character {
         for (String exit : this.getCurrentRoom().getExits().keySet()) {
             if (direction.equals(exit)) {
                 if (this.getInventory().getItem("accesscard") != null) {
-                    this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
                     this.lockUnlock(direction, lock);
                     System.out.println("You locked the door");
                 }
@@ -266,6 +265,7 @@ public class Hero extends Character {
             System.out.println("there isn't any exit by that name");
             
         }
+        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
     
     //This command is used to unlock a door
@@ -278,7 +278,6 @@ public class Hero extends Character {
         for (String exit : this.getCurrentRoom().getExits().keySet()) {
             if (direction.equals(exit)) {
                 if (this.getInventory().getItem("accesscard") != null) {
-                    this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
                     this.lockUnlock(direction, lock);
                     System.out.println("You unlocked the door");
                 }
@@ -286,14 +285,13 @@ public class Hero extends Character {
                     System.out.println("You don't have an access card to do that with");
                 }
                 directionExists = true;
-                
             }
         }
         // If there isnt any door that matches the secondWord then this is print
         if (!directionExists) {
             System.out.println("there isn't any exit by that name");
-            
         }
+        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
     
     //Command for using an Item in your inventory
@@ -305,10 +303,10 @@ public class Hero extends Character {
             Item item = this.getInventory().getItem(itemName);
             if (item != null) {
                 double initiativeReduction = item.use(this);
-                this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+                this.setCharacterInitiative(this.getCharacterInitiative() + 2 * this.getSpeedFactor());
                 return initiativeReduction;
             } else {
-                this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+                this.setCharacterInitiative(this.getCharacterInitiative() + 2 * this.getSpeedFactor());
                 System.out.println("You don't have any such item");
             }
         } else {
@@ -421,7 +419,7 @@ public class Hero extends Character {
     //use this command to start the countdown timer for bonus points (by blowing up the reactor)
     @Override
     public double activate(Command command, boolean reactorActivated) {
-        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+        this.setCharacterInitiative(this.getCharacterInitiative() + 15 * this.getSpeedFactor());
         if (!command.hasSecondWord()) {
             System.out.println("Activate what?");
             return Double.MAX_VALUE;
