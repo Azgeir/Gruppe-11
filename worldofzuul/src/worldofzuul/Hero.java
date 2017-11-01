@@ -183,6 +183,13 @@ public class Hero extends Character {
             if (direction.equals("around")) {
                 // Print detailed description of room
                 System.out.println(this.getCurrentRoom().getDetailedDescription());
+                // Prints out the characters present in the room, except for the player
+                for (Entry<String,Boolean> hasCharacter : this.getCurrentRoom().getHasCharacters().entrySet()) {
+                    if (hasCharacter.getValue() && !hasCharacter.getKey().equals("Hero")){
+                        System.out.println("\n" + hasCharacter.getKey() + " is in this room");
+                    }
+                }
+                
                 // Print inventory of current room
                 System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
                 // Print status of exits

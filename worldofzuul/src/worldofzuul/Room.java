@@ -150,4 +150,9 @@ public class Room
     public void setHasCharacter(String character, boolean presence){
         hasCharacter.put(character, presence);
     }
+    
+    public HashMap<String, Boolean> getHasCharacters(){
+        return this.hasCharacter;
+    }
+    
 }
