@@ -508,7 +508,7 @@ public class Game {
                     break;
                 case TALK:
                     if (currentCharacter.getCurrentRoom().getHasCharacter("TechDude")) {
-                    this.conversation(characters.get(2));
+                        this.conversation(characters.get(2));
                     } else {
                         System.out.println("TechDude isnt in the room");
                     }
@@ -759,6 +759,7 @@ public class Game {
                             } else {
                                 wantToTalk = false;
                             }
+                            counter++;
                             break;
                         case 2:
                             character.setHostility(character.getHostility() + 1);
@@ -768,18 +769,20 @@ public class Game {
                             if (character.getHostility() == 3) {
                                 System.out.println("The TechDude hates you and will no longer talk to you");
                                 TechDude temp = (TechDude) character;
-                                if (temp.isFollowsHero()){
+                                if (temp.isFollowsHero()) {
                                     character.followsHero(this.characters.get(0), false);
                                     System.out.println("TechDude no longer follows you");
                                 }
                             }
+                            counter++;
                             break;
                         case 3:
-                            if (counter == 3){
-                            wantToTalk = false;
-                            }
-                            else
+                            if (counter == 3) {
+                                wantToTalk = false;
+                                counter++;
+                            } else {
                                 System.out.println("You only have 2 options");
+                            }
                             break;
                         default:
                             System.out.println("Wrong input");
@@ -787,16 +790,15 @@ public class Game {
                     }
                     if (counter == 4 || (counter == 3 && character.getHostility() < 3 && wantToTalk == false)) {
                         System.out.println("TechDude is now following you");
-                        character.followsHero(this.characters.get(0), true);                        
+                        character.followsHero(this.characters.get(0), true);
                     }
-                    counter++;
-                }
-                else
+
+                } else {
                     System.out.println("The input wasnt a number");
+                }
             } while (wantToTalk);
 
         }
-
 
     }
 }
