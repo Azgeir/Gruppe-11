@@ -90,7 +90,7 @@ public class Game {
         // Initialise the control room
         controlRoom = new Room("in the control room", "control",
                 ("You are in the control room. this is where information goes to and \n"
-                + "from the spacestation, this is where you find the Tech dude he was \n"
+                + "from the spacestation, this is where you find the TechDude he was \n"
                 + "trying to reestablish the connection to earth but to no avail. \n"
                 + "Maybe you could get surveilliance data back with you"));
 
@@ -343,7 +343,7 @@ public class Game {
 
                 room.getInventory().addItem(new Item(75, "computer"), 5);
                 room.getInventory().addItem(new Item(200, "table"), 4);
-                room.getInventory().addItem(new Item(2, "quantum-eqiupment"), 29);
+                room.getInventory().addItem(new Item(2, "quantum-equipment"), 29);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
                 room.getInventory().addItem(new Item(5, "funny-chemical", "sniff at it, then lick at it and then scream 'LEEROY JENKINS'."), 25);
                 break;
