@@ -807,9 +807,11 @@ public class Game {
                             System.out.println("Wrong input");
                             break;
                     }
-                    if (counter == 4 || (counter == 3 && character.getHostility() < 3 && wantToTalk == false)) {
+                    if (counter == 5 || (counter == 4 && character.getHostility() < 3 && wantToTalk == false)) {
+                        if (!character.isFollowsHero()){
                         System.out.println("TechDude is now following you");
                         character.followsHero(this.characters.get(0), true);
+                        }
                     }
 
                 } else {
