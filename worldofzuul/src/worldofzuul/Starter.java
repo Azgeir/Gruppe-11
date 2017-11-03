@@ -8,7 +8,7 @@ package worldofzuul;
 import java.util.Scanner;
 
 /**
- *
+ * 
  * @author Aske Wulf
  */
 // This class starts the game.
