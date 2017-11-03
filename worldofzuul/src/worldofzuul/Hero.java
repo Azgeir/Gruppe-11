@@ -195,6 +195,8 @@ public class Hero extends Character {
                 // Print status of exits
                 System.out.println(this.getCurrentRoom().getLockedExitString());
                 this.setCharacterInitiative(this.getCharacterInitiative() + 1 * this.getSpeedFactor());
+                // print what Characters in current room
+                System.out.println(this.getCurrentRoom().getHasCharacters());
             }
             else if (direction.equals("inventory")) {
                 System.out.println("There is the following in your inventory:\n" + this.getInventory().showItems());
@@ -481,6 +483,8 @@ public class Hero extends Character {
         }
         return true;
     }
+    
+    
     
     
 }

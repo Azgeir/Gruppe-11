@@ -17,6 +17,7 @@ public class TechDude extends Character {
     private int health = 10; // Tech dude's health
     private Character hero; // Tech dude's hero
     private int hostility = 0;
+    private boolean metHero;
 
 
     
@@ -27,10 +28,12 @@ public class TechDude extends Character {
     // This constructor creates a tech dude with the specified current room and name
     public TechDude(Room currentRoom, String name){
         super(currentRoom, name);
+        metHero = false;
 }
     // This constructor creates a tech dude with the specified current room, name, and speed factor.
     public TechDude(Room currentRoom, String name, double speedFactor){
         super(currentRoom, name, speedFactor);
+        metHero = false;
     }
     
     // This constructor creates a tech dude with the specified current room, name, speed factor, and health.
@@ -61,6 +64,7 @@ public class TechDude extends Character {
     @Override
     public void followsHero(Character hero, boolean follows){
         // Set data fields
+        metHero = true;
         if (follows){
            this.followsHero = true;
            this.hero = hero; 
@@ -78,8 +82,16 @@ public class TechDude extends Character {
         // Declare String variables for the input
         String word1, word2, word3;
         
+        if(this.followsHero == false && this.getCurrentRoom().getHasCharacter("Hero") == true && metHero == false){
+            System.out.println("You see a man in the corner of the room. He notices you and comes over");
+            word1 = "talk";
+            word2 = null;
+            word3 = null;
+            metHero = true;
+            return new Command(commands.getCommandWord(word1), word2, word3);
+        }
         // If tech dude has not met the hero, return "stay" command
-        if (this.followsHero == false){
+        else if (this.followsHero == false){
             word1 = "stay";
             word2 = null;
             word3 = null;
