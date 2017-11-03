@@ -197,6 +197,11 @@ public class Character {
         return false;
     }
     
+    public String kill(){
+        
+        return "derp";
+    }
+    
     
     
 }
