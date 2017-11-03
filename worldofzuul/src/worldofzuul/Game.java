@@ -659,6 +659,9 @@ public class Game {
                 }
                 System.out.println("You died due to extensive wounds.");
                 break;
+            case "derp":
+                System.out.println("You committed suicide because you are to weak to kill anything else.\n You pussed out like a bitch");
+                break;
             default: // If player exits the game without losing or winning.
                 System.out.println("You quit the current instance of the game.");
         }
