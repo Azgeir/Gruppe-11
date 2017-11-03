@@ -277,7 +277,7 @@ public class Game {
                 room.getInventory().addItem(new Item(10, "DNA-precipitate-solution"), 10);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
                 room.getInventory().addItem(new Item(400, "centrifuge"), 2);
-                room.getInventory().addItem(new AcidVial(4, 50), 10);
+                room.getInventory().addItem(new AcidVial(4, 25), 10);
                 break;
             case "computer":
                 room.getInventory().addItem(new USB(3));
@@ -289,7 +289,7 @@ public class Game {
                 room.getInventory().addItem(new AccessCard());
                 break;
             case "storage":
-                room.getInventory().addItem(new AcidVial(4, 50), 5);
+                room.getInventory().addItem(new AcidVial(4, 25), 5);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(400, "box"), 30);
                 room.getInventory().addItem(new Item(600, "bed"), 15);
@@ -305,7 +305,7 @@ public class Game {
                 room.getInventory().addItem(new AccessCard());
                 break;
             case "medbay":
-                room.getInventory().addItem(new AcidVial(4, 50), 7);
+                room.getInventory().addItem(new AcidVial(4, 25), 7);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(5, "syringe", "stick it at yourself to see, if you end up tripping balls."), 17);
                 room.getInventory().addItem(new Item(2, "pill", "try to aquire superpowers, but you end up having extreme explosive "
@@ -331,7 +331,7 @@ public class Game {
                         + "Honestly, don't you have better things to do!"), 6);
                 break;
             case "physicslab":
-                room.getInventory().addItem(new AcidVial(4, 50), 7);
+                room.getInventory().addItem(new AcidVial(4, 25), 7);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
                 room.getInventory().addItem(new Item(20, "coat"), 10);
