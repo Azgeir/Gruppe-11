@@ -89,7 +89,6 @@ public class Zuul extends Character {
         if (heroIsInSameRoom) {
             if (!this.getCurrentRoom().getHasCharacter("Hero")) {
                 heroWasInSameRoom = true;
-                heroInRoomInitiative = this.getCharacterInitiative();
             } else {
                 heroWasInSameRoom = false;
             }
