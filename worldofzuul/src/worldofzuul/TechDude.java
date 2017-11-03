@@ -83,6 +83,7 @@ public class TechDude extends Character {
         String word1, word2, word3;
         
         if(this.followsHero == false && this.getCurrentRoom().getHasCharacter("Hero") == true && metHero == false){
+            System.out.println("You see a man in the corner of the room. He notices you and comes over");
             word1 = "talk";
             word2 = null;
             word3 = null;
