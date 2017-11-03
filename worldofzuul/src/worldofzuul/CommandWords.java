@@ -55,8 +55,10 @@ public class CommandWords
     {
         // Traverse all command strings in the HashMap of valid commands.
         for(String command : validCommands.keySet()) {
+            if (command != "kill"){
             // Print the valid command strings
             System.out.print(command + "  ");
+            }
         }
         System.out.println();
     }

@@ -818,6 +818,7 @@ public class Game {
                 }
             } while (wantToTalk);
         }
-
+        else
+            System.out.println("Fuck you. I hate you");
     }
 }
