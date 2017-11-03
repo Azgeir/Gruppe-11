@@ -340,7 +340,6 @@ public class Game {
                 room.getInventory().addItem(new Item(400, "desk"), 2);
                 room.getInventory().addItem(new Item(75, "chair", "sit down on it to contemplate about your life choices at the moment. "
                         + "Seriosly, don't you not have better things to do!"), 10);
-
                 room.getInventory().addItem(new Item(175, "computer"), 5);
                 room.getInventory().addItem(new Item(200, "table"), 4);
                 room.getInventory().addItem(new Item(1000, "quantum-equipment"), 29);
