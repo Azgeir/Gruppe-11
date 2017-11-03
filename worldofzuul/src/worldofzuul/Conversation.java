@@ -18,7 +18,7 @@ public class Conversation {
             + "but I will have to be in the dock to do this.";
     //Replace (time) with the number of turns after tuning
     String techTalk4 = "I can overload the reactor, causing it to self-destruct with the whole space station.\n"
-            + "This will give you (time) to get off the station before it blows.\n"
+            + "This will give you a short time to get off the station before it blows.\n"
             + "But I must be near the reactor to overload it.";
     
     //Player responses
