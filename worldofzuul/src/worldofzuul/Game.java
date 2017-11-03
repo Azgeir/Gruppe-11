@@ -519,7 +519,7 @@ public class Game {
                     if (currentCharacter.getCurrentRoom().getHasCharacter("TechDude")) {
                         this.conversation(characters.get(2));
                     } else {
-                        System.out.println("TechDude isnt in the room");
+                        System.out.println("You talk to yourself as you begin to question your sanity");
                     }
                     this.currentCharacter.setCharacterInitiative(this.currentCharacter.getCharacterInitiative() + 10 * this.currentCharacter.getSpeedFactor());
                     break;
