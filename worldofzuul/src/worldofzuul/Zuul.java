@@ -17,6 +17,10 @@ public class Zuul extends Character {
     private ArrayList<String> triedLockedExits = new ArrayList<>();
     private int stayCounter = 0;
     private int stayCounterMax = 1;
+    private boolean heroIsInSameRoom;
+    private boolean heroWasInSameRoom;
+    private double heroInRoomInitiative = -Double.MAX_VALUE;
+    private boolean heroHadTurn;
     
     public Zuul(){
         
@@ -24,10 +28,16 @@ public class Zuul extends Character {
     
     public Zuul(Room currentRoom, String name){
         super(currentRoom, name);
+        this.heroIsInSameRoom = currentRoom.getHasCharacter("Hero");
+        this.heroWasInSameRoom = false;
+        this.heroHadTurn = false;
     }
     
     public Zuul(Room currentRoom, String name, double speedFactor){
         super(currentRoom, name, speedFactor);
+        this.heroIsInSameRoom = currentRoom.getHasCharacter("Hero");
+        this.heroWasInSameRoom = false;
+        this.heroHadTurn = false;
     }
     
     /*£
@@ -61,6 +71,12 @@ public class Zuul extends Character {
         }
         //System.out.println("Zuul is " + this.getCurrentRoom().getShortDescription());
         this.setCharacterInitiative(this.getCharacterInitiative()+10*this.getSpeedFactor());
+        
+        heroIsInSameRoom = this.getCurrentRoom().getHasCharacter("Hero");
+        if (heroIsInSameRoom) {
+            heroInRoomInitiative = this.getCharacterInitiative();
+        }
+        
     }
     
     @Override
@@ -70,11 +86,34 @@ public class Zuul extends Character {
         String word2 = null;
         String word3 = null;
         
-        if (this.getCurrentRoom().getHasCharacter("Hero")) {
+        if (heroIsInSameRoom) {
+            if (!this.getCurrentRoom().getHasCharacter("Hero")) {
+                heroWasInSameRoom = true;
+                heroInRoomInitiative = this.getCharacterInitiative();
+            } else {
+                heroWasInSameRoom = false;
+            }
+        } else {
+        }
+        
+        if (heroIsInSameRoom || heroWasInSameRoom) {
+            heroHadTurn = true;
+        } else {
+            heroHadTurn = false;
+        }
+        
+        if ((this.getCharacterInitiative()<=(heroInRoomInitiative+10*this.getSpeedFactor())) && (heroIsInSameRoom || heroWasInSameRoom) && heroHadTurn) {
+            word1 = "kill";
+        }
+        else if (this.getCurrentRoom().getHasCharacter("Hero")) {
             word1 = "stay";
             // This sets word1 to have the value/command 'stay' for the player
         }
         else {
+            heroIsInSameRoom = false;
+            heroWasInSameRoom = false;
+            heroInRoomInitiative = -Double.MAX_VALUE;
+            heroHadTurn = false;
             // This creates a array list based on the rooms and where the commands changes the payers position
             ArrayList<String> exits = new ArrayList(this.getCurrentRoom().getExits().keySet());
             
@@ -103,8 +142,18 @@ public class Zuul extends Character {
             
         }
         
+        heroIsInSameRoom = this.getCurrentRoom().getHasCharacter("Hero");
+        if (heroIsInSameRoom) {
+            heroInRoomInitiative = this.getCharacterInitiative();
+        }
+        
         // Create a Command object based on words 1 and 2, and return the command.
         return new Command(commands.getCommandWord(word1), word2, word3);
+    }
+    
+    
+    public String kill(){
+        return "lose";
     }
     
 }

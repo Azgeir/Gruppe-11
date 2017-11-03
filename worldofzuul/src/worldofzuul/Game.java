@@ -410,7 +410,7 @@ public class Game {
             // Check if player lost game because they met Zuul
 
             if (!finished) {
-                finished = lose();
+//                finished = lose();
             }
             // Check if player lost game because of reactor
             if (!finished) {
@@ -523,6 +523,11 @@ public class Game {
                     }
                     this.currentCharacter.setCharacterInitiative(this.currentCharacter.getCharacterInitiative() + 10 * this.currentCharacter.getSpeedFactor());
                     break;
+                case KILL:
+                    String reason = this.currentCharacter.kill();
+                    wantToQuit = true;
+                    this.printStopMessage(reason);
+                    
                 // If command does not match any of the options, break.
                 default:
                     break;
