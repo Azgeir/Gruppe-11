@@ -152,7 +152,23 @@ public class Zuul extends Character {
     
     
     public String kill(){
-        return "lose";
+        
+        int whichKillMessage = (int)(Math.random()*3);
+        
+        String reason = "lose";
+        
+        switch (whichKillMessage){
+            case 1:
+                reason = "reason1";
+                break;
+            case 2:
+                reason = "reason2";
+                break;
+            default:
+                reason = "reason3";
+            }
+        
+        return reason;
     }
     
 }

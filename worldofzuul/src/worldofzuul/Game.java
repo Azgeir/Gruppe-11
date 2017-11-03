@@ -19,8 +19,6 @@ public class Game {
     private Character currentCharacter;
     private HashMap<String, Room> characterStartRooms = new HashMap<>();
     private Room winConditionRoom;
-    private boolean sameRoom = false;
-    private boolean zuulHadTurn = false;
     private double maxInititative = Double.MAX_VALUE;
     private boolean reactorActivated = false;
 
@@ -409,9 +407,6 @@ public class Game {
             finished = processCommand(command);
             // Check if player lost game because they met Zuul
 
-            if (!finished) {
-//                finished = lose();
-            }
             // Check if player lost game because of reactor
             if (!finished) {
                 finished = timerLose();
@@ -615,43 +610,57 @@ public class Game {
     private void printStopMessage(String reason) {
 
         boolean techDudeIsThere = this.characters.get(2).isFollowsHero();
-
+        
         // If the player won the game, print message specifying the total points earned
-        if (reason == "win") {
-            // Calculate earned points
-            double point = pointCalculation();
-            if (techDudeIsThere) {
-                System.out.println("Tech dude: Good job mate, I knew we would make it!");
-            }
-            System.out.println("Congratulations, you escaped the space station. You won.");
-            System.out.printf("You got %1.2f points\n", point);
-        } // If the player is killed by Zuul, print message
-        else if (reason == "lose") {
-            if (techDudeIsThere) {
-                System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
-            }
-            System.out.println("You were caught and killed by the monster. You lost.");
-
-        } // If player is killed by reactor, print message
-        else if (reason == "timer") {
-            System.out.println("Tech dude: Good run mate see ya on the other side");
-
-        } // If player is killed by reactor, print message
-        else if (reason == "timer") {
-            if (techDudeIsThere) {
-                System.out.println("Tech dude: Good run mate see ya on the other side");
-            }
-
-            System.out.println("The reactor overloaded and blew up the spacestation. You lost.");
-        } // if the player dies due to low health
-        else if (reason == "health") {
-            if (techDudeIsThere) {
-                System.out.println("Tech dude: Don't go into the light!");
-            }
-            System.out.println("You died due to extensive wound.");
-        } // If player exits the game without losing or winning.
-        else {
-            System.out.println("You quit the current instance of the game.");
+        switch (reason){
+            case "win":
+                // Calculate earned points
+                double point = pointCalculation();
+                if (techDudeIsThere) {
+                    System.out.println("Tech dude: Good job mate, I knew we would make it!");
+                }
+                System.out.println("Congratulations, you escaped the space station. You won.");
+                System.out.printf("You got %1.2f points\n", point);
+                break;
+            case "lose":    // If the player is killed by Zuul, print message
+                if (techDudeIsThere) {
+                    System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+                }
+                System.out.println("The Zuul mauled you in the back while you were running away like a coward. You lost.");
+                break;
+            case "lose1": // If the player is killed by Zuul, print message
+                if (techDudeIsThere) {
+                    System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+                }
+                System.out.println("The Zuul rips you head off and and kicks it across the room cheering like it just won the world cup");
+                break;
+            case "lose2": // If the player is killed by Zuul, print message
+                if (techDudeIsThere) {
+                    System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+                }
+                System.out.println("The Zuul rips out your throat and sticks its claws up your ass and prances you around like a ventriloquist puppet"
+                        + "saying \"look at me I'm a scared little human, I can code\"");
+                break;
+            case "lose3": // If the player is killed by Zuul, print message
+                if (techDudeIsThere) {
+                    System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+                }
+                System.out.println("The Zuul rips you in half and the starts teabagging your face that's frozen in horrer by sight of the Zuuls hairy ass");
+                break;
+            case "timer": // If player is killed by reactor, print message
+                if (techDudeIsThere) {
+                    System.out.println("Tech dude: Good run mate see ya on the other side");
+                }
+                System.out.println("The reactor overloaded and blew up the spacestation. You lost.");
+                break;
+            case "health": // if the player dies due to low health
+                if (techDudeIsThere) {
+                    System.out.println("Tech dude: Don't go into the light!");
+                }
+                System.out.println("You died due to extensive wounds.");
+                break;
+            default: // If player exits the game without losing or winning.
+                System.out.println("You quit the current instance of the game.");
         }
     }
 
@@ -698,38 +707,6 @@ public class Game {
         }
         // Return value of finished (true if player has won)
         return finished;
-    }
-
-    // This method tests if the player has lost
-    private boolean lose() {
-        // If player is in same room as Zuul, and player is current character, set sameRoom to true
-
-        if (characters.get(0).getCurrentRoom().getHasCharacter("Zuul")
-                && currentCharacter.equals(characters.get(0))) {
-            sameRoom = true;
-        } // If Zuul is in the same room as the player, and Zuul is the current character, set sameRoom and zuulHadTurn to true
-        else if (characters.get(1).getCurrentRoom().getHasCharacter("Hero")
-                && currentCharacter.equals(characters.get(1))) {
-            sameRoom = true;
-            zuulHadTurn = true;
-        } // If current character is not player, and Zuul is not in player's current room, set sameRoom and zuulHadTurn to false
-        else if (currentCharacter != characters.get(0) && !(characters.get(0).
-                getCurrentRoom().getHasCharacter("Zuul"))) {
-            sameRoom = false;
-            zuulHadTurn = false;
-        }
-        // If player and Zuul are in the same room, and current character is player,
-        // and zuulHadTurn is true, and player's initiative is less than Zuul's initiative + 10,
-        // print lose message and return true
-        if ((sameRoom && currentCharacter.equals(characters.get(0)) && zuulHadTurn)
-                && characters.get(0).getCharacterInitiative() > characters.
-                get(1).getCharacterInitiative()) {
-            printStopMessage("lose");
-            return true;
-        } // Else, return false
-        else {
-            return false;
-        }
     }
 
     // This method tests if the player loses because of the reactor
