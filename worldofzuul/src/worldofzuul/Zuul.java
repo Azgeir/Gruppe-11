@@ -157,16 +157,18 @@ public class Zuul extends Character {
         
         String reason = "lose";
         
+        if (this.getCurrentRoom().getHasCharacter("Hero")){
         switch (whichKillMessage){
             case 1:
-                reason = "reason1";
+                reason = "lose1";
                 break;
             case 2:
-                reason = "reason2";
+                reason = "lose2";
                 break;
             default:
-                reason = "reason3";
+                reason = "lose3";
             }
+        }
         
         return reason;
     }
