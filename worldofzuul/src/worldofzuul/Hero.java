@@ -221,7 +221,7 @@ public class Hero extends Character {
         if (this.getCurrentRoom().getHasCharacter("Zuul")) {
             System.out.println("Zuul is in this room you idiot");
         }
-        
+
         if (this.getCurrentRoom().getExit(direction) != null) {
             for (Room neighbor : this.getCurrentRoom().getExits().values()) {
                 if (neighbor.getHasCharacter("Zuul")) {
