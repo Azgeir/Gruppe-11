@@ -275,6 +275,7 @@ public class Game {
                 room.getInventory().addItem(new Item(10, "DNA-precipitate-solution"), 10);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
                 room.getInventory().addItem(new Item(400, "centrifuge"), 2);
+                room.getInventory().addItem(new Item(99, "cat", "you pet the cat it scratces your hand"));
                 room.getInventory().addItem(new AcidVial(4, 25), 10);
                 break;
             case "computer":
@@ -309,7 +310,7 @@ public class Game {
                 room.getInventory().addItem(new Item(2, "pill", "try to aquire superpowers, but you end up having extreme explosive "
                         + "diaherra being shot out of your ass as a cannon."), 29);
                 room.getInventory().addItem(new Item(6, "glass"), 49);
-                room.getInventory().addItem(new Item(20, "book", ""), 200);
+                room.getInventory().addItem(new Item(20, "book"), 200);
                 room.getInventory().addItem(new Item(20, "coat"), 19);
                 room.getInventory().addItem(new Item(400, "desk"), 8);
                 room.getInventory().addItem(new Item(100, "display-skeleton"), 5);
