@@ -11,22 +11,22 @@ package worldofzuul;
  */
 public class Conversation {
     //Techdude conversation
-    String techTalk1 = "Is the Zuul gone?";
-    String techTalk2 = "The arrival of Zuul has triggered the stations quarantine mechanism,\n"
+    final String TECHTALK1 = "Is the Zuul gone?";
+    final String TECHTALK2 = "The arrival of Zuul has triggered the stations quarantine mechanism,\n"
             + "causing the doors to all the escape pods to be locked.";
-    String techTalk3 = "Yes, I can override the mechanism and unlock one of the pods,\n"
+    final String TECHTALK3 = "Yes, I can override the mechanism and unlock one of the pods,\n"
             + "but I will have to be in the dock to do this.";
     //Replace (time) with the number of turns after tuning
-    String techTalk4 = "I can overload the reactor, causing it to self-destruct with the whole space station.\n"
+    final String TECHTALK4 = "I can overload the reactor, causing it to self-destruct with the whole space station.\n"
             + "This will give you a short time to get off the station before it blows.\n"
             + "But I must be near the reactor to overload it.";
     
     //Player responses
-    String techAnswer1 = "For now. What has happened to the station?";
-    String techAnswer2 = "Can you help me get off this station?";
-    String techAnswer3 = "Anything else you can help with?";
-    String letsGo = "Let's go!";
-    String fuckOff = "Fuck off.";
+    final String TECHANSWER1 = "For now. What has happened to the station?";
+    final String TECHANSWER2 = "Can you help me get off this station?";
+    final String TECHANSWER3 = "Anything else you can help with?";
+    final String LETSGO = "Let's go!";
+    final String FUCKOFF = "Fuck off.";
     
     public void options(String string){
         if (string == null){
@@ -34,21 +34,21 @@ public class Conversation {
         }
         else switch (string) {
             case "TechDude1":
-                System.out.println("1: " + techAnswer1);
-                System.out.println("2: " + fuckOff);
+                System.out.println("1: " + TECHANSWER1);
+                System.out.println("2: " + FUCKOFF);
                 break;
             case "TechDude2":
-                System.out.println("1: " + techAnswer2);
-                System.out.println("2: " + fuckOff);
+                System.out.println("1: " + TECHANSWER2);
+                System.out.println("2: " + FUCKOFF);
                 break;
             case "TechDude3":
-                System.out.println("1: " + techAnswer3);
-                System.out.println("2: " + fuckOff);
-                System.out.println("3: " + letsGo);
+                System.out.println("1: " + TECHANSWER3);
+                System.out.println("2: " + FUCKOFF);
+                System.out.println("3: " + LETSGO);
                 break;
             case "TechDude4":
-                System.out.println("1: " + letsGo);
-                System.out.println("2: " + fuckOff);
+                System.out.println("1: " + LETSGO);
+                System.out.println("2: " + FUCKOFF);
                 break;
             default:
                 System.out.println("I dont know what you mean");
@@ -61,16 +61,16 @@ public class Conversation {
         }
         else switch (string){
             case "TechDude1":
-                System.out.println(techTalk1);
+                System.out.println(TECHTALK1);
                 break;
             case "TechDude2":
-                System.out.println(techTalk2);
+                System.out.println(TECHTALK2);
                 break;
             case "TechDude3":
-                System.out.println(techTalk3);
+                System.out.println(TECHTALK3);
                 break;
             case "TechDude4":
-                System.out.println(techTalk4);
+                System.out.println(TECHTALK4);
                 break;
             default:
                 System.out.println("I dont know what you want");
