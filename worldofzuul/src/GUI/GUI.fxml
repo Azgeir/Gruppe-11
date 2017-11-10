@@ -50,7 +50,7 @@
             <Button fx:id="helpButtonHandler" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#helpButtonHandler" text="Help" GridPane.columnIndex="6" GridPane.rowIndex="1" />
             <Button fx:id="stayButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#stayButtonHandler" text="Stay" GridPane.columnIndex="3" />
             <Button fx:id="lookButtonHandler" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#lookButtonHandler" text="Look" GridPane.columnIndex="5" />
-            <Button fx:id="saveButtonHandler" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveButtonHandler" text="Save" GridPane.columnIndex="4" />
+            <Button fx:id="saveButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#saveButtonHandler" text="Save" GridPane.columnIndex="4" />
             <Button fx:id="dropButtonHandler" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#dropButtonHandler" text="Drop" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <padding>

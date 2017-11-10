@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
+import worldofzuul.Game;
 
 /**
  *
@@ -36,8 +37,6 @@ public class GUIController{
     @FXML
     private Button lookButtonHandler;
     @FXML
-    private Button saveButtonHandler;
-    @FXML
     private Button dropButtonHandler;
     @FXML
     private ChoiceBox<?> useDropDown;
@@ -45,12 +44,16 @@ public class GUIController{
     private ChoiceBox<?> PickupDropDown;
     @FXML
     private Button stayButton;
+    @FXML
+    private Button saveButton;
     
-    
+    private Game game;
     
 
     public void initialize() {
         // TODO
+        game = new Game();
+//        game.createGodDammit();
     }    
 
     @FXML
@@ -85,10 +88,13 @@ public class GUIController{
 
     @FXML
     private void stayButtonHandler(ActionEvent event) {
+        game.play("stay");
+        
     }
 
     @FXML
     private void lookButtonHandler(ActionEvent event) {
+//        game.createGodDammit();
     }
 
     @FXML

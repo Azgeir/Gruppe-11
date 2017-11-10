@@ -819,4 +819,13 @@ do {
             System.out.println("Fuck you. I hate you");
         }
     }
+      
+    public void createGodDammit(){
+        //Create all rooms by calling the createRooms method
+        createRooms();
+        // Create the characters by calling the createCharacter() method
+        createCharacter();
+        // Create a parser
+        parser = new Parser();
+    }
 }
