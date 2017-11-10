@@ -294,7 +294,7 @@ public class Game {
                 room.getInventory().addItem(new Item(600, "bed"), 15);
                 room.getInventory().addItem(new Item(75, "electronics"), 25);
                 room.getInventory().addItem(new Item(1350, "solarpanel"), 15);
-                room.getInventory().addItem(new Item(20, "hammer"), 13); // "hit yourself in hope of convincing yourself that this is not reality."
+                room.getInventory().addItem(new Item(20, "hammer","hit yourself in hope of convincing yourself that this is not reality."), 13); 
                 room.getInventory().addItem(new Item(20, "saw"), 9);
                 room.getInventory().addItem(new Item(20, "crowbar", "smash some stuff and pretend that you are Gordon Freeman. "
                         + "This isn't Half Life 3, you dumbass!"), 7);
