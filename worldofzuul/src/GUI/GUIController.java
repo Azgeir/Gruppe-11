@@ -8,6 +8,7 @@ package GUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 
 /**
@@ -33,13 +34,17 @@ public class GUIController{
     @FXML
     private Button helpButtonHandler;
     @FXML
-    private Button stayButtonHandler;
-    @FXML
     private Button lookButtonHandler;
     @FXML
     private Button saveButtonHandler;
     @FXML
     private Button dropButtonHandler;
+    @FXML
+    private ChoiceBox<?> useDropDown;
+    @FXML
+    private ChoiceBox<?> PickupDropDown;
+    @FXML
+    private Button stayButton;
     
     
     
