@@ -21,31 +21,31 @@ public class GUIController{
     @FXML
     private TextArea output;
     @FXML
-    private Button pickupButtonHandler;
-    @FXML
-    private Button inventoryButtonHandler;
-    @FXML
-    private Button useButtonAction;
-    @FXML
-    private Button activateButtonHandler;
-    @FXML
-    private Button talkButtonHandler;
-    @FXML
-    private Button quitButtonHandler;
-    @FXML
-    private Button helpButtonHandler;
-    @FXML
-    private Button lookButtonHandler;
-    @FXML
-    private Button dropButtonHandler;
-    @FXML
     private ChoiceBox<?> useDropDown;
     @FXML
     private ChoiceBox<?> PickupDropDown;
     @FXML
     private Button stayButton;
     @FXML
+    private Button pickupButton;
+    @FXML
+    private Button inventoryButton;
+    @FXML
+    private Button useButton;
+    @FXML
+    private Button activateButton;
+    @FXML
+    private Button talkButton;
+    @FXML
+    private Button quitButton;
+    @FXML
+    private Button helpButton;
+    @FXML
+    private Button lookButton;
+    @FXML
     private Button saveButton;
+    @FXML
+    private Button dropButton;
     
     private Game game;
     
