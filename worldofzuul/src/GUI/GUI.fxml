@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zuulgui.GUIController">
+<Pane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GUIController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#737974" height="167.0" layoutX="7.0" layoutY="577.0" stroke="BLACK" strokeType="INSIDE" width="737.0" />
       <GridPane alignment="BOTTOM_CENTER" layoutX="26.0" layoutY="589.0" prefHeight="150.0">
