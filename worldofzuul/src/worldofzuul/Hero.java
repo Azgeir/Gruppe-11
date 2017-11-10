@@ -340,11 +340,11 @@ public class Hero extends Character {
     }
     
     @Override
-    public Command getCommand(CommandWords commands) {
+    public Command getCommand(CommandWords commands, String GUICommand) {
         // Declare a String variable for the input
         String inputLine;
         
-        Scanner reader = new Scanner(System.in);
+        Scanner reader = new Scanner(GUICommand);
         
         // Set words 1 and 2 to null
         String word1 = null;
@@ -362,7 +362,7 @@ public class Hero extends Character {
         inputLine = reader.nextLine();
         
         // Create a Scanner called tokenizer based on inputLine
-        Scanner tokenizer = new Scanner(inputLine);
+        Scanner tokenizer = new Scanner(GUICommand);
         // If the input line has a first word, assign it to word1
         if (tokenizer.hasNext()) {
             word1 = tokenizer.next();

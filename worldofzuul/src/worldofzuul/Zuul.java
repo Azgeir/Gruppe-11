@@ -80,7 +80,7 @@ public class Zuul extends Character {
     }
     
     @Override
-    public Command getCommand(CommandWords commands) {
+    public Command getCommand(CommandWords commands, String GUICommand) {
         // Set words 1, 2 and 3 to null
         String word1 = null;
         String word2 = null;
