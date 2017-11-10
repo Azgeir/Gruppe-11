@@ -28,9 +28,9 @@
         </rowConstraints>
          <children>
             <Button fx:id="pickupButtonHandler" mnemonicParsing="false" onAction="#pickupButtonHandler" text="Pickup" GridPane.rowIndex="1" />
-            <ChoiceBox layoutX="35.0" layoutY="22.0" prefWidth="150.0" GridPane.columnIndex="1" />
+            <ChoiceBox fx:id="useDropDown" layoutX="35.0" layoutY="22.0" prefWidth="150.0" GridPane.columnIndex="1" />
             <Button fx:id="inventoryButtonHandler" mnemonicParsing="false" onAction="#inventoryButtonHandler" text="Inventory" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <ChoiceBox prefWidth="150.0" />
+            <ChoiceBox fx:id="PickupDropDown" prefWidth="150.0" />
             <Button fx:id="useButtonAction" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#useButtonAction" text="Use" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
             <Button fx:id="activateButtonHandler" mnemonicParsing="false" onAction="#activateButtonHandler" text="Activate" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Button fx:id="talkButtonHandler" mnemonicParsing="false" onAction="#talkButtonHandler" text="Talk" GridPane.columnIndex="3" GridPane.rowIndex="1" />
