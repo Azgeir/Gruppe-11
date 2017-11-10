@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zuulgui.GUIController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#737974" height="167.0" layoutX="7.0" layoutY="577.0" stroke="BLACK" strokeType="INSIDE" width="737.0" />
+      <GridPane alignment="BOTTOM_CENTER" layoutX="26.0" layoutY="589.0" prefHeight="150.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="pickupButtonHandler" mnemonicParsing="false" onAction="#pickupButtonHandler" text="Pickup" GridPane.rowIndex="1" />
+            <ChoiceBox layoutX="35.0" layoutY="22.0" prefWidth="150.0" GridPane.columnIndex="1" />
+            <Button fx:id="inventoryButtonHandler" mnemonicParsing="false" onAction="#inventoryButtonHandler" text="Inventory" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <ChoiceBox prefWidth="150.0" />
+            <Button fx:id="useButtonAction" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#useButtonAction" text="Use" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Button fx:id="activateButtonHandler" mnemonicParsing="false" onAction="#activateButtonHandler" text="Activate" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="talkButtonHandler" mnemonicParsing="false" onAction="#talkButtonHandler" text="Talk" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="quitButtonHandler" mnemonicParsing="false" onAction="#quitButtonHandler" text="Quit" GridPane.columnIndex="5" />
+            <Button fx:id="helpButtonHandler" mnemonicParsing="false" onAction="#helpButtonHandler" text="Help" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Button fx:id="stayButtonHandler" mnemonicParsing="false" onAction="#stayButtonHandler" text="Stay" GridPane.columnIndex="2" />
+            <Button fx:id="lookButtonHandler" mnemonicParsing="false" onAction="#lookButtonHandler" text="Look" GridPane.columnIndex="4" />
+            <Button fx:id="saveButtonHandler" mnemonicParsing="false" onAction="#saveButtonHandler" text="Save" GridPane.columnIndex="3" />
+            <Button fx:id="dropButtonHandler" mnemonicParsing="false" onAction="#dropButtonHandler" text="Drop" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <TextArea fx:id="output" layoutX="14.0" layoutY="14.0" prefHeight="487.0" prefWidth="387.0" />
+   </children>
+</Pane>
