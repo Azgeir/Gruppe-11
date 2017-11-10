@@ -213,43 +213,6 @@ public class Hero extends Character {
     //Checks whatever Zuul is in the next room and gives feedback if it is or isn't
     @Override
     public void peek(Command command) {
-        
-        String direction = command.getSecondWord();
-        
-        boolean zuulNearby = false;
-        
-        if (this.getCurrentRoom().getHasCharacter("Zuul")) {
-            System.out.println("Zuul is in this room you idiot");
-        }
-
-        if (this.getCurrentRoom().getExit(direction) != null) {
-            for (Room neighbor : this.getCurrentRoom().getExits().values()) {
-                if (neighbor.getHasCharacter("Zuul")) {
-                    System.out.println("Zuul is " + neighbor.getShortDescription());
-                    zuulNearby = true;
-                }
-            }
-            
-            if (this.getCurrentRoom().getExits().keySet().size() > 2) {
-                Room neighbor = this.getCurrentRoom().getExit(direction);
-                if (neighbor.getExit(direction).getHasCharacter("Zuul")) {
-                    System.out.println("Zuul is " + neighbor.getExit(direction).getShortDescription());
-                    zuulNearby = true;
-                }
-            }
-            
-            if (!zuulNearby) {
-                System.out.println("There is no Zuul nearby");
-            }
-        }
-        else {
-            System.out.println("There is no direction by that name");
-        }
-        
-        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
-    }
-    
-    public void peek(Command command) {
         String direction = command.getSecondWord();
         
         boolean zuulNearby = false;
@@ -259,7 +222,7 @@ public class Hero extends Character {
             zuulNearby = true;
         }
         
-        if (this.getCurrentRoom().getExit(direction != null) {
+        if (this.getCurrentRoom().getExit(direction) != null) {
             for (Room neighbor : this.getCurrentRoom().getExits().values()) {
                 if (neighbor.getHasCharacter("Zuul")) {
                     System.out.println("Zuul is " + neighbor.getShortDescription());
@@ -276,7 +239,7 @@ public class Hero extends Character {
                 }                
             }
         
-            if (!zuulBearby) {
+            if (!zuulNearby) {
                 System.out.println("There is no Zuul nearby");
             }
         }
@@ -288,33 +251,6 @@ public class Hero extends Character {
     }    
         
     //This command is used to lock a door
-    @Override
-    public void lock(Command command) {
-        String direction = command.getSecondWord();
-        boolean lock = true;
-        boolean directionExists = false;
-        
-        for (String exit : this.getCurrentRoom().getExits().keySet()) {
-            if (direction.equals(exit)) {
-                if (this.getInventory().getItem("accesscard") != null) {
-                    this.lockUnlock(direction, lock);
-                    System.out.println("You locked the door");
-                }
-                else {
-                    System.out.println("You don't have an access card to do that with");
-                }
-                directionExists = true;
-                
-            }
-        }
-        // If there isnt any door that matches the secondWord then this is print
-        if (!directionExists) {
-            System.out.println("there isn't any exit by that name");
-            
-        }
-        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
-    }
-    
     public void lock(Command command) {
         String direction = command.getSecondWord();
         boolean lock = true;
@@ -322,7 +258,7 @@ public class Hero extends Character {
         boolean directionExists = this.getCurrentRoom().getExits().containsKey(direction);
         
         if (directionExists) {
-            if (this.getInventory().getItem("accesscard") = != null {
+            if (this.getInventory().getItem("accesscard") != null) {
                 this.lockUnlock(direction, lock);
                     System.out.println("You locked the door");
                 }
@@ -333,7 +269,7 @@ public class Hero extends Character {
                 
         // If there isn't any door that matches the secondWord, then this is print
         if (!directionExists) {
-            System.ut.println("there isn't exit by that name");
+            System.out.println("there isn't exit by that name");
         
         }
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
@@ -446,66 +382,24 @@ public class Hero extends Character {
     
     //Method for locking and unlocking, first lockUnlock the first door(direction) you call
     // then get the next rooms exits and lockUnlock the direction towards currentRoom of the character
-    private void lockUnlock(String direction, boolean lock) {
+   private void lockUnlock(String direction, boolean lock) {
         
         HashMap<String, Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
-        String getName = this.getCurrentRoom().getName();
-        lockedExits.put(direction, Boolean.TRUE);
-        if (direction.equals("pod")) {
-            if (this.getCurrentRoom().getHasCharacter("TechDude")) {
-                if (lockedExits.keySet().size() > 2) {
-                    this.getCurrentRoom().getLockedExits().put(direction, lock);
-                    this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
-                    
-                } else {
-                    this.getCurrentRoom().getLockedExits().put(direction, lock);
-                    
-                    HashMap<String, Boolean> templockExits = new HashMap<>();
-                    templockExits.putAll(this.getCurrentRoom().getLockedExits());
-                    templockExits.remove(direction);
-                    String direction2 = (String) templockExits.keySet().toArray()[0];
-                    this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
-                }
-                
-            } else {
-                System.out.println("The station is under quarentine and you therefore can't open the door.\n Perhaps you could find something or someone to force it open");
-            }
-            
-        } else {
-            if (lockedExits.keySet().size() > 2) {
-                this.getCurrentRoom().getLockedExits().put(direction, lock);
-                this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
-                
-            } else {
-                this.getCurrentRoom().getLockedExits().put(direction, lock);
-                
-                HashMap<String, Boolean> templockExits = new HashMap<>();
-                templockExits.putAll(this.getCurrentRoom().getLockedExits());
-                templockExits.remove(direction);
-                String direction2 = (String) templockExits.keySet().toArray()[0];
-                this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
-            }
-        }
-    }
-    
-    private void lockUnlock(String direction, boolean lock) {
-        
-        HashMap<String, Boolean> lockedExits = this.getCurrentRoom()..getLockedExits();
         String getName = this.getCurrentRoom().getName();
         //lockedExits.put(direction, Boolean.TRUE);
         if (direction.equals("pod")) {
             if (this.getCurrentRoom().getHasCharacter("TechDude")) {
-                if (this.getCurretnRoom().getExit(direction).getExits().containsKey(getName)) {
+                if (this.getCurrentRoom().getExit(direction).getExits().containsKey(getName)) {
                     lockedExits.put(direction, lock);
-                    this.getCurrentRoom().getExit(direction.getLockedExits().put(getName, lock);
+                    this.getCurrentRoom().getExit(direction).getLockedExits().put(getName, lock);
             
                 } else {
-                    lockedExits.put(direction), lock);
+                    lockedExits.put(direction, lock);
                     
                     HashMap<String, Boolean> templockExits = new HashMap<>();
                     templockExits.putAll(lockedExits);
                     templockExits.remove(direction);
-                    String direction = (String) templockExits.ketSet().toArray()[0];
+                    String direction2 = (String)templockExits.keySet().toArray()[0];
                     this.getCurrentRoom().getExit(direction).getLockedExits().put(direction, lock);
                 }
                            
@@ -515,16 +409,16 @@ public class Hero extends Character {
             
         } else {
             if (this.getCurrentRoom().getExit(direction).getExits().containsKey(getName)) {
-                lockedExits.put(direction), lock);
+                lockedExits.put(direction, lock);
                 this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
             }
             else {
-                lockedExits.pit(direction, lock);
+                lockedExits.put(direction, lock);
                 
                 HashMap<String, Boolean> templockExits = new HashMap<>();
                 templockExits.putAll(lockedExits);
                 templockExits.remove(direction);
-                String direction = (String) templockExits.keySet().toArray()[0];
+                String direction2 = (String) templockExits.keySet().toArray()[0];
                 this.getCurrentRoom().getExit(direction).getLockedExits().put(direction, lock);
             }                                      
         }    
