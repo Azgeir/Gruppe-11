@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
 
-<Pane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zuulgui.GUIController">
+<Pane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="zuulgui.GUIController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#737974" height="167.0" layoutX="7.0" layoutY="577.0" stroke="BLACK" strokeType="INSIDE" width="737.0" />
       <GridPane alignment="BOTTOM_CENTER" layoutX="26.0" layoutY="589.0" prefHeight="150.0">
@@ -35,12 +36,13 @@
             <Button fx:id="talkButtonHandler" mnemonicParsing="false" onAction="#talkButtonHandler" text="Talk" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Button fx:id="quitButtonHandler" mnemonicParsing="false" onAction="#quitButtonHandler" text="Quit" GridPane.columnIndex="5" />
             <Button fx:id="helpButtonHandler" mnemonicParsing="false" onAction="#helpButtonHandler" text="Help" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Button fx:id="stayButtonHandler" mnemonicParsing="false" onAction="#stayButtonHandler" text="Stay" GridPane.columnIndex="2" />
+            <Button fx:id="stayButton" mnemonicParsing="false" onAction="#stayButtonHandler" text="Stay" GridPane.columnIndex="2" />
             <Button fx:id="lookButtonHandler" mnemonicParsing="false" onAction="#lookButtonHandler" text="Look" GridPane.columnIndex="4" />
             <Button fx:id="saveButtonHandler" mnemonicParsing="false" onAction="#saveButtonHandler" text="Save" GridPane.columnIndex="3" />
             <Button fx:id="dropButtonHandler" mnemonicParsing="false" onAction="#dropButtonHandler" text="Drop" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <TextArea fx:id="output" layoutX="14.0" layoutY="14.0" prefHeight="487.0" prefWidth="387.0" />
+      <Label fx:id="testLabel" layoutX="148.0" layoutY="173.0" text="Label" />
    </children>
 </Pane>

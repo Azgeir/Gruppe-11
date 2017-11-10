@@ -391,19 +391,20 @@ public class Game {
     }
 
     // This method plays the game
-    public void play() {
+    public void play(String GUICommand) {
         // Call the printWelcome method to show a brief introduction to the game
         printWelcome();
         // Check if the player is still playing
         boolean finished = false;
         // As long as game is not finished, get and process user commands
-        while (!finished) {
+//        while (!finished) {
+do {
             // Select current character
             this.currentCharacter = this.chooseCharacter();
             // checks if the TechDude has met the Hero
             //techDudeMeetHero();
             // Get command from parser
-            Command command = parser.getCommand(this.currentCharacter);
+            Command command = parser.getCommand(this.currentCharacter, GUICommand);
             // Process command
             finished = processCommand(command);
             // Check if player lost game because they met Zuul
@@ -419,7 +420,8 @@ public class Game {
             if (!finished) {
                 finished = healthTest();
             }
-        }
+            currentCharacter = this.chooseCharacter();
+        } while(currentCharacter.getName().equals("Hero"));
     }
 
     // This method prints the welcome message.

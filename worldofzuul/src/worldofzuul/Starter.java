@@ -24,7 +24,7 @@ public class Starter {
             playAgain = false;
             // Call the play method on game
             Game game = new Game();
-            game.play();
+//            game.play();
             System.out.println("Do you want to play again?");
 
             boolean correctInput = false;

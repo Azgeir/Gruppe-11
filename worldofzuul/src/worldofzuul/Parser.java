@@ -25,8 +25,8 @@ public class Parser
     }
 
     // This method returns a command
-    public Command getCommand(Character currentCharacter) {
-        Command characterCommand = currentCharacter.getCommand(commands);
+    public Command getCommand(Character currentCharacter, String GUICommand) {
+        Command characterCommand = currentCharacter.getCommand(commands, GUICommand);
         
         return characterCommand;
     }

@@ -78,7 +78,7 @@ public class TechDude extends Character {
     
     // This method returns tech dude's command based on whether or not he has met the hero
     @Override
-    public Command getCommand(CommandWords commands) {
+    public Command getCommand(CommandWords commands, String GUICommand) {
         // Declare String variables for the input
         String word1, word2, word3;
         

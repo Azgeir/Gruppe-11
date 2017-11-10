@@ -163,7 +163,7 @@ public class Character {
     }
 
     // This method is overridden in the Hero, TechDude, and Zuul classes
-    public Command getCommand(CommandWords commands) {
+    public Command getCommand(CommandWords commands, String GUICommand) {
         String word1 = null;
         String word2 = null;
         String word3 = null;
