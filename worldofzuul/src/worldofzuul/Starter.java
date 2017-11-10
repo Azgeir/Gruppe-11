@@ -2,16 +2,17 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+*/
 package worldofzuul;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /**
  * 
  * @author Aske Wulf
  */
-// This class starts the game.
+// This class starts the game
+/*
 public class Starter {
 
     // Main method
@@ -42,3 +43,4 @@ public class Starter {
         System.out.println("Thank you for playing. Goodbye.");
     }
 }
+*/
