@@ -21,8 +21,8 @@ public class ZuulGUI extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
-        Driver driver = new Driver();
-        driver.driver();
+//        Driver driver = new Driver();
+//        driver.driver();
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
