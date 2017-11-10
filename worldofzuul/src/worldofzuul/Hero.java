@@ -249,6 +249,44 @@ public class Hero extends Character {
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
     
+    public void peek(Command command) {
+        String direction = command.getSecondWord();
+        
+        boolean zuulNearby = false;
+        
+        if (this.getCurrentRoom().getHasCharacter("Zuul")) {
+            System.out.println("Zuul is in this room you idiot");
+            zuulNearby = true;
+        }
+        
+        if (this.getCurrentRoom().getExit(direction != null) {
+            for (Room neighbor : this.getCurrentRoom().getExits().values()) {
+                if (neighbor.getHasCharacter("Zuul")) {
+                    System.out.println("Zuul is " + neighbor.getShortDescription());
+                    zuulNearby = true;
+                }
+            }        
+        
+            Room neighbor = this.getCurrentRoom().getExit(direction);
+            if (neighbor.getHasCharacter("Zuul")) {
+                if (neighbor.getExit(direction).getHasCharacter("Zuul")) {
+                    System.out.println("Zuul is " + neighbor.getShortDescription());
+                    zuulNearby = true;
+            
+                }                
+            }
+        
+            if (!zuulBearby) {
+                System.out.println("There is no Zuul nearby");
+            }
+        }
+        else {
+            System.out.println("There is no direction by that name");
+        }
+            
+        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());    
+    }    
+        
     //This command is used to lock a door
     @Override
     public void lock(Command command) {
@@ -277,6 +315,31 @@ public class Hero extends Character {
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
     
+    public void lock(Command command) {
+        String direction = command.getSecondWord();
+        boolean lock = true;
+        
+        boolean directionExists = this.getCurrentRoom().getExits().containsKey(direction);
+        
+        if (directionExists) {
+            if (this.getInventory().getItem("accesscard") = != null {
+                this.lockUnlock(direction, lock);
+                    System.out.println("You locked the door");
+                }
+                else {
+                    System.out.println("You don't have an access card to do that with");
+                }  
+        }
+                
+        // If there isn't any door that matches the secondWord, then this is print
+        if (!directionExists) {
+            System.ut.println("there isn't exit by that name");
+        
+        }
+        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+                
+    }
+        
     //This command is used to unlock a door
     @Override
     public void unlock(Command command) {
@@ -425,6 +488,48 @@ public class Hero extends Character {
         }
     }
     
+    private void lockUnlock(String direction, boolean lock) {
+        
+        HashMap<String, Boolean> lockedExits = this.getCurrentRoom()..getLockedExits();
+        String getName = this.getCurrentRoom().getName();
+        //lockedExits.put(direction, Boolean.TRUE);
+        if (direction.equals("pod")) {
+            if (this.getCurrentRoom().getHasCharacter("TechDude")) {
+                if (this.getCurretnRoom().getExit(direction).getExits().containsKey(getName)) {
+                    lockedExits.put(direction, lock);
+                    this.getCurrentRoom().getExit(direction.getLockedExits().put(getName, lock);
+            
+                } else {
+                    lockedExits.put(direction), lock);
+                    
+                    HashMap<String, Boolean> templockExits = new HashMap<>();
+                    templockExits.putAll(lockedExits);
+                    templockExits.remove(direction);
+                    String direction = (String) templockExits.ketSet().toArray()[0];
+                    this.getCurrentRoom().getExit(direction).getLockedExits().put(direction, lock);
+                }
+                           
+            } else {
+                System.out.println("The station is under quarentine and you therefore can't open the door.\n Perhaps you could find something or someone to force it open");
+            }
+            
+        } else {
+            if (this.getCurrentRoom().getExit(direction).getExits().containsKey(getName)) {
+                lockedExits.put(direction), lock);
+                this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
+            }
+            else {
+                lockedExits.pit(direction, lock);
+                
+                HashMap<String, Boolean> templockExits = new HashMap<>();
+                templockExits.putAll(lockedExits);
+                templockExits.remove(direction);
+                String direction = (String) templockExits.keySet().toArray()[0];
+                this.getCurrentRoom().getExit(direction).getLockedExits().put(direction, lock);
+            }                                      
+        }    
+    }            
+                
     //use this command to start the countdown timer for bonus points (by blowing up the reactor)
     @Override
     public double activate(Command command, boolean reactorActivated) {
