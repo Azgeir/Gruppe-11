@@ -84,7 +84,7 @@ public class Inventory {
                 inventory.remove(item.getName());
             }
         } else {
-            System.out.println("You don't have that item");
+            System.out.println("You don't have that item.");
         }
     }
 

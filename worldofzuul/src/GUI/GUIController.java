@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package GUI;
 
@@ -16,13 +16,12 @@ import worldofzuul.Game;
  *
  * @author Aske Wulf
  */
-public class GUIController{
-    
+public class GUIController {
+
     @FXML
     private TextArea output;
     @FXML
     private ChoiceBox<?> useDropDown;
-    @FXML
     private ChoiceBox<?> PickupDropDown;
     @FXML
     private Button stayButton;
@@ -46,8 +45,6 @@ public class GUIController{
     private Button saveButton;
     @FXML
     private Button dropButton;
-    
-    private Game game;
     @FXML
     private ChoiceBox<?> GoDropDown1;
     @FXML
@@ -58,21 +55,37 @@ public class GUIController{
     private Button unlockButton;
     @FXML
     private Button unlockButton1;
-    
+
+    @FXML
+    private ChoiceBox<?> pickupDropDown;
+
+    private Game game;
 
     public void initialize() {
         // TODO
-        game = new Game();
+        game = new Game(3);
 //        game.createGodDammit();
-    }    
+    }
 
     @FXML
     private void pickupButtonHandler(ActionEvent event) {
+
         game.play("pickup");
+
+        String command;
+        if (this.PickupDropDown.getValue() != null) {
+            command = "pickup";
+            command = command + " " + this.pickupDropDown.getValue();
+            game.play(command);
+        } else {
+            System.out.println("choose something to pickup from the dropbox");
+        }
+
     }
 
     @FXML
     private void inventoryButtonHandler(ActionEvent event) {
+
         game.play("inventory");
     }
 
@@ -87,7 +100,7 @@ public class GUIController{
 
     @FXML
     private void talkButtonHandler(ActionEvent event) {
-       game.play("talk");
+        game.play("talk");
     }
 
     @FXML
@@ -103,21 +116,40 @@ public class GUIController{
     @FXML
     private void stayButtonHandler(ActionEvent event) {
         game.play("stay");
-        
+
+        String command;
+        command = "look inventory";
+        game.play(command);
+
     }
 
     @FXML
     private void lookButtonHandler(ActionEvent event) {
-//        game.createGodDammit();
+        String command;
+        command = "look around";
+        game.play(command);
+
     }
 
     @FXML
     private void saveButtonHandler(ActionEvent event) {
+
         game.play("save");
+
+        System.out.println("Save stuff and stuff");
+
     }
 
     @FXML
     private void dropButtonHandler(ActionEvent event) {
+        String command;
+        if (this.PickupDropDown.getValue() != null) {
+            command = "drop";
+            command = command + " " + this.useDropDown.getValue();
+            game.play(command);
+        } else {
+            System.out.println("choose something to drop from the dropbox");
+        }
     }
 
     @FXML
@@ -131,5 +163,5 @@ public class GUIController{
     @FXML
     private void unlockButtonHandler(ActionEvent event) {
     }
-    
+
 }

@@ -17,7 +17,7 @@ public class AccessCard extends Item {
     
     @Override
     public double use(Character currentCharacter){
-        System.out.println("You wave the access card around");
+        System.out.println("You wave the access card around.");
         currentCharacter.setCharacterInitiative(currentCharacter.getCharacterInitiative()+3*currentCharacter.getSpeedFactor());
         return 0;
     }
