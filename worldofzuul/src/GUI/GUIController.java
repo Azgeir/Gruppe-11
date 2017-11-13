@@ -116,11 +116,6 @@ public class GUIController {
     @FXML
     private void stayButtonHandler(ActionEvent event) {
         game.play("stay");
-
-        String command;
-        command = "look inventory";
-        game.play(command);
-
     }
 
     @FXML
