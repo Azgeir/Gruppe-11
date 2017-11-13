@@ -27,7 +27,16 @@ public class Game {
         //Create all rooms by calling the createRooms method
         createRooms();
         // Create the characters by calling the createCharacter() method
-        createCharacter();
+        createCharacter(1);
+        // Create a parser
+        parser = new Parser();
+    }
+    
+    public Game(int numberOfZuul) {
+        //Create all rooms by calling the createRooms method
+        createRooms();
+        // Create the characters by calling the createCharacter() method
+        createCharacter(numberOfZuul);
         // Create a parser
         parser = new Parser();
     }
@@ -384,9 +393,11 @@ public class Game {
     }
 
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
-    private void createCharacter() {
+    private void createCharacter(int numberOfZuul) {
         this.characters.add(new Hero(characterStartRooms.get("Computer"), "Hero"));
-        this.characters.add(new Zuul(characterStartRooms.get("Dorm"), "Zuul", 1.15));
+        for (int i = 0; i < numberOfZuul; i++) {
+            this.characters.add(new Zuul(characterStartRooms.get("Dorm"), "Zuul", 1.15));
+        }
         this.characters.add(new TechDude(characterStartRooms.get("Control"), "TechDude", 0.5));
     }
 
@@ -494,8 +505,13 @@ do {
                 // If command is "use", call use() method on current character and change Zuul's initiative
                 case USE:
                     double zuulInitiativeReduction = this.currentCharacter.use(command);
-                    Character zuul = this.characters.get(1);
-                    zuul.setCharacterInitiative(zuul.getCharacterInitiative() + zuulInitiativeReduction);
+                    
+                    for (Character character : characters) {
+                        if (character.getName().equals("Zuul") && character.getCurrentRoom().equals(this.currentCharacter.getCurrentRoom())) {
+                            character.setCharacterInitiative(character.getCharacterInitiative() + zuulInitiativeReduction);
+                        }
+                    }
+                    
                     break;
                 // If command is "lock", call lock() command on current character
                 case LOCK:
@@ -514,11 +530,19 @@ do {
                     }
                     break;
                 case TALK:
-                    if (currentCharacter.getCurrentRoom().getHasCharacter("TechDude")) {
-                        this.conversation(characters.get(2));
-                    } else {
+                    boolean techDudeIsThere = false;
+                    for (Character character : characters) {
+                        if (currentCharacter.getCurrentRoom().getHasCharacter("TechDude")) {
+                            techDudeIsThere = true;
+                            this.conversation(character);
+                            break;
+                        }
+                    }
+                    
+                    if (!techDudeIsThere) {
                         System.out.println("You talk to yourself as you begin to question your sanity.");
                     }
+                    
                     this.currentCharacter.setCharacterInitiative(this.currentCharacter.getCharacterInitiative() + 10 * this.currentCharacter.getSpeedFactor());
                     break;
                 case KILL:
@@ -612,8 +636,16 @@ do {
     // This method prints a stop message depending on the reason string
     private void printStopMessage(String reason) {
 
-        boolean techDudeIsThere = this.characters.get(2).isFollowsHero();
+        boolean techDudeIsThere = false;
         
+        for (Character character : characters) {
+            if (character.getName().equals("TechDude")) {
+                if (character.isFollowsHero()) {
+                    techDudeIsThere = true;
+                }
+            }
+        }
+                
         // If the player won the game, print message specifying the total points earned
         switch (reason){
             case "win":
@@ -673,7 +705,7 @@ do {
     // (£) This method calculates the points earned by the player
     private double pointCalculation() {
         // Set hero to the Hero character
-        Hero hero = (Hero) (characters.get(0));
+        Hero hero = (Hero) (currentCharacter);
         // Declare usb
         USB usb;
         // Create hash set for points
@@ -707,10 +739,14 @@ do {
         // Set finished to false
         boolean finished = false;
         // If the player is in the escape pod, set finished to true and print win message
-        if (characters.get(0).getCurrentRoom().equals(winConditionRoom)) {
-            finished = true;
-            printStopMessage("win");
+        for (Character character : characters) {
+            if (character.getCurrentRoom().equals(winConditionRoom)) {
+                finished = true;
+                printStopMessage("win");
+                break;
+            }
         }
+        
         // Return value of finished (true if player has won)
         return finished;
     }
@@ -719,35 +755,52 @@ do {
     boolean timerLose() {
         // If player's initiative is greater than maxInitiative, print lose 
         // message based on "timer" and return true.
-        if (characters.get(0).getCharacterInitiative() > maxInititative) {
-            printStopMessage("timer");
-            return true;
-        } // Else, return false
-        else {
-            return false;
+        
+        for (Character character : characters) {
+            if (character.getName().equals("Hero")) {
+                if (character.getCharacterInitiative() > maxInititative) {
+                    printStopMessage("timer");
+                    return true;
+                } // Else, return false
+                else {
+                    return false;
+                }
+            }
         }
+        return false;
     }
 
     // This method checks whether or not the player has died because of low health.
     private boolean healthTest() {
         // Check if current player is hero
-        if (this.currentCharacter.equals(this.characters.get(0))) {
-            // Set tempCharacter to current character
-            Hero tempCharacter = (Hero) this.currentCharacter;
-            // If player's health is less than or equal to zero, print "health"
-            // lose message and return true.
-            if (tempCharacter.getHealth() <= 0) {
-                printStopMessage("health");
-                return true;
-            } else {
-                return false;
+        
+        for (Character character : characters) {
+            if (character.getName().equals("Hero")) {
+                // Set tempCharacter to current character
+                Hero tempCharacter = (Hero) character;
+                // If player's health is less than or equal to zero, print "health"
+                // lose message and return true.
+                if (tempCharacter.getHealth() <= 0) {
+                    printStopMessage("health");
+                    return true;
+                } else {
+                    return false;
+                }
             }
-        } else {
-            return false;
         }
+        return false;
     }
 
     private void conversation(Character character) {
+        
+        Character hero = null;
+        for (Character character1 : characters) {
+            if (character1.getName().equals("Hero")) {
+                hero = character1;
+                break;
+            }
+        }
+        
         Conversation Talk = new Conversation();
         boolean wantToTalk = false;
         int counter = 1;
@@ -781,7 +834,7 @@ do {
                                     System.out.println("The tech dude hates you and will no longer talk to you.");
                                     TechDude temp = (TechDude) character;
                                     if (temp.isFollowsHero()) {
-                                        character.followsHero(this.characters.get(0), false);
+                                        character.followsHero(hero, false);
                                         System.out.println("Tech dude no longer follows you.");
                                         counter++;
                                     }
@@ -804,7 +857,7 @@ do {
                             if (counter == 5 || (counter == 4 && character.getHostility() < 3 && wantToTalk == false)) {
                                 if (!character.isFollowsHero()) {
                                     System.out.println("Tech dude is now following you");
-                                    character.followsHero(this.characters.get(0), true);
+                                    character.followsHero(hero, true);
                                 }
                             }
                         }
@@ -820,12 +873,12 @@ do {
         }
     }
       
-    public void createGodDammit(){
-        //Create all rooms by calling the createRooms method
-        createRooms();
-        // Create the characters by calling the createCharacter() method
-        createCharacter();
-        // Create a parser
-        parser = new Parser();
-    }
+//    public void createGodDammit(){
+//        //Create all rooms by calling the createRooms method
+//        createRooms();
+//        // Create the characters by calling the createCharacter() method
+//        createCharacter();
+//        // Create a parser
+//        parser = new Parser();
+//    }
 }

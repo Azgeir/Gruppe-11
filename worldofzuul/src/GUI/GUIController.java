@@ -53,7 +53,7 @@ public class GUIController{
     
     public void initialize() {
         // TODO
-        game = new Game();
+        game = new Game(3);
 //        game.createGodDammit();
     }
     
@@ -138,6 +138,7 @@ public class GUIController{
     @FXML
     private void saveButtonHandler(ActionEvent event) {
         System.out.println("Save stuff and stuff");
+        
     }
     
     @FXML
