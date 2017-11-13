@@ -50,14 +50,14 @@ public class Item {
         if (useDescription == null) {
             if (tempCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
                 System.out.println("You throw the " + this.name + " in blind \n"
-                + "panic. It dosn't have any effect");
+                + "panic. It doesn't have any effect.");
             } else {
-                System.out.println("You wave around the " + this.name + "\n"
-                        + "seemingly with no purpose");
+                System.out.println("You wave around the " + this.name + ",\n"
+                        + "seemingly with no purpose.");
             }
         } else {
             if (tempCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
-                System.out.println("You use the " + this.name + " to " + this.useDescription + "it has no effect on the zuul");                
+                System.out.println("You use the " + this.name + " to " + this.useDescription + ". It has no effect on the zuul");                
             } else {
                 System.out.println("You use the " + this.name + " to " + this.useDescription);
             }

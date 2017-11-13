@@ -12,12 +12,12 @@ package worldofzuul;
 public class Conversation {
     //Techdude conversation
     final String TECHTALK1 = "Is the Zuul gone?";
-    final String TECHTALK2 = "The arrival of Zuul has triggered the stations quarantine mechanism,\n"
+    final String TECHTALK2 = "The arrival of Zuul has triggered the station's quarantine mechanism,\n"
             + "causing the doors to all the escape pods to be locked.";
     final String TECHTALK3 = "Yes, I can override the mechanism and unlock one of the pods,\n"
             + "but I will have to be in the dock to do this.";
     //Replace (time) with the number of turns after tuning
-    final String TECHTALK4 = "I can overload the reactor, causing it to self-destruct with the whole space station.\n"
+    final String TECHTALK4 = "I can overload the reactor, causing it to self-destruct along with the whole space station.\n"
             + "This will give you a short time to get off the station before it blows.\n"
             + "But I must be near the reactor to overload it.";
     
@@ -51,7 +51,7 @@ public class Conversation {
                 System.out.println("2: " + FUCKOFF);
                 break;
             default:
-                System.out.println("I dont know what you mean");
+                System.out.println("I don't know what you mean.");
                 break;
         }
     }
@@ -73,7 +73,7 @@ public class Conversation {
                 System.out.println(TECHTALK4);
                 break;
             default:
-                System.out.println("I dont know what you want");
+                System.out.println("I don't know what you want.");
                 break;
         }
     }
