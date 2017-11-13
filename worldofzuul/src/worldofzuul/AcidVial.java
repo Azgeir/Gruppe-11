@@ -54,12 +54,12 @@ public class AcidVial extends Item {
         
         // If Zuul is in the current room, player hits Zuul with the acid vial.
         if (tempCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
-            System.out.println("You throw an acidvial at the terrifying Zuul\nYou hit it in the face. You were hit\nby a splash of acid, but now you have a chance to flee.");
+            System.out.println("You throw an acid vial at the terrifying Zuul.\nYou hit it in the face. You were hit\nby a splash of acid, but now you have a chance to flee.");
             return this.initiativeReduction;
         }
         // If Zuul is not in the current room, the player throws acid at the wall.
         else {
-            System.out.println("For some reason, you throw an acidvial at the wall\nYou where hit by a splash of acid and hurt yourself.");
+            System.out.println("For some reason, you throw an acidvial at the wall.\nYou where hit by a splash of acid and hurt yourself.");
             return 0;
         }
     }
