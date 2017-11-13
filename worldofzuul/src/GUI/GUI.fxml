@@ -41,7 +41,7 @@
             <Button fx:id="pickupButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pickupButtonHandler" text="Pickup" GridPane.rowIndex="1" />
             <ChoiceBox fx:id="useDropDown" layoutX="35.0" layoutY="22.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2" />
             <Button fx:id="inventoryButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#inventoryButtonHandler" text="Inventory" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <ChoiceBox fx:id="PickupDropDown" maxWidth="1.7976931348623157E308" />
+            <ChoiceBox fx:id="pickupDropDown" maxWidth="1.7976931348623157E308" />
             <Button fx:id="useButton" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#useButtonAction" text="Use" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Button fx:id="activateButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#activateButtonHandler" text="Activate" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <Button fx:id="talkButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#talkButtonHandler" text="Talk" GridPane.columnIndex="4" GridPane.rowIndex="1" />
