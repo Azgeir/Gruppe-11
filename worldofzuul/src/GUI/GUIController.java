@@ -120,11 +120,6 @@ public class GUIController {
     @FXML
     private void stayButtonHandler(ActionEvent event) {
         game.play("stay");
-
-        String command;
-        command = "look inventory";
-        game.play(command);
-
     }
 
     @FXML
@@ -138,7 +133,7 @@ public class GUIController {
     @FXML
     private void saveButtonHandler(ActionEvent event) {
 
-        game.play("save");
+//        game.play("save");
 
         System.out.println("Save stuff and stuff");
 
