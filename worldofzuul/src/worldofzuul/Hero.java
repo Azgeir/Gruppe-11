@@ -74,19 +74,19 @@ public class Hero extends Character {
                             }
                         }
                         if (numberAdded == 0){
-                            System.out.println("You can't carry any of that");
+                            System.out.println("You can't carry any of that.");
                         }
                         else if ((numberAdded < number) && (numberNonExisting == 0) ){
-                            System.out.println("You could only pickup " + numberAdded + " " + itemName);
+                            System.out.println("You could only pick up " + numberAdded + " " + itemName);
                         }
                         else if (numberNonExisting>0 && (numberNonExisting+numberAdded)==number){
-                            System.out.println("You picked up " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in this room");
+                            System.out.println("You picked up " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in this room.");
                         }
                         else {
                             System.out.println("You picked up " + number + " " + itemName);
                         }
                     } else {
-                        System.out.println("The third word needs to be an integer");
+                        System.out.println("The third word needs to be an integer.");
                     }
                 } else {
                     boolean itemAdded = this.inventory.addItem(item);
@@ -94,7 +94,7 @@ public class Hero extends Character {
                         this.getCurrentRoom().getInventory().removeItem(item);
                         System.out.println("You picked up " + item.getName());
                     } else {
-                        System.out.println("You can't carry that");
+                        System.out.println("You can't carry that.");
                     }
                 }
             }
@@ -117,7 +117,7 @@ public class Hero extends Character {
             Item item = this.inventory.getItem(itemName);
             
             if (item == null) {
-                System.out.println("You don't have such an item");
+                System.out.println("You don't have such an item.");
             } else {
                 if (command.hasThirdWord()) {
                     String numberString = command.getThirdWord();
@@ -141,19 +141,19 @@ public class Hero extends Character {
                             }
                         }
                         if (numberAdded == 0){
-                            System.out.println("There isn't room in this room for that");
+                            System.out.println("There isn't room in this room for that.");
                         }
                         else if ((numberAdded < number) && (numberNonExisting == 0) ){
-                            System.out.println("You could only drop " + numberAdded + " " + itemName + " because there is not room enought for all of them in this room");
+                            System.out.println("You could only drop " + numberAdded + " " + itemName + " because there is not room enought for all of them in this room.");
                         }
                         else if (numberNonExisting>0 && (numberNonExisting+numberAdded)==number){
-                            System.out.println("You dropped " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in your inventory");
+                            System.out.println("You dropped " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in your inventory.");
                         }
                         else {
                             System.out.println("You dropped " + number + " " + itemName);
                         }
                     } else {
-                        System.out.println("The third word needs to be an integer");
+                        System.out.println("The third word needs to be an integer.");
                     }
                 } else {
                     boolean itemAdded = this.getCurrentRoom().getInventory().addItem(item);
@@ -161,7 +161,7 @@ public class Hero extends Character {
                         this.inventory.removeItem(item);
                         System.out.println("You dropped " + item.getName());
                     } else {
-                        System.out.println("There isn't room in this room for that item");
+                        System.out.println("There isn't room in this room for that item.");
                     }
                 }
             }
@@ -218,7 +218,7 @@ public class Hero extends Character {
         boolean zuulNearby = false;
         
         if (this.getCurrentRoom().getHasCharacter("Zuul")) {
-            System.out.println("Zuul is in this room you idiot");
+            System.out.println("Zuul is in this room, you idiot.");
             zuulNearby = true;
         }
         
@@ -240,11 +240,11 @@ public class Hero extends Character {
             }
         
             if (!zuulNearby) {
-                System.out.println("There is no Zuul nearby");
+                System.out.println("There is no Zuul nearby.");
             }
         }
         else {
-            System.out.println("There is no direction by that name");
+            System.out.println("There is no direction by that name.");
         }
             
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());    
@@ -260,16 +260,16 @@ public class Hero extends Character {
         if (directionExists) {
             if (this.getInventory().getItem("accesscard") != null) {
                 this.lockUnlock(direction, lock);
-                    System.out.println("You locked the door");
+                    System.out.println("You locked the door.");
                 }
                 else {
-                    System.out.println("You don't have an access card to do that with");
+                    System.out.println("You don't have an access card to do that with.");
                 }  
         }
                 
         // If there isn't any door that matches the secondWord, then this is print
         if (!directionExists) {
-            System.out.println("there isn't exit by that name");
+            System.out.println("There isn't an exit by that name.");
         
         }
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
@@ -287,17 +287,17 @@ public class Hero extends Character {
             if (direction.equals(exit)) {
                 if (this.getInventory().getItem("accesscard") != null) {
                     this.lockUnlock(direction, lock);
-                    System.out.println("You unlocked the door");
+                    System.out.println("You unlocked the door.");
                 }
                 else {
-                    System.out.println("You don't have an access card to do that with");
+                    System.out.println("You don't have an access card to do that with.");
                 }
                 directionExists = true;
             }
         }
         // If there isnt any door that matches the secondWord then this is print
         if (!directionExists) {
-            System.out.println("there isn't any exit by that name");
+            System.out.println("There isn't any exit by that name.");
         }
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
@@ -315,10 +315,10 @@ public class Hero extends Character {
                 return initiativeReduction;
             } else {
                 this.setCharacterInitiative(this.getCharacterInitiative() + 2 * this.getSpeedFactor());
-                System.out.println("You don't have any such item");
+                System.out.println("You don't have any such item.");
             }
         } else {
-            System.out.println("You have to select something to use");
+            System.out.println("You have to select something to use.");
         }
         
         return 0;
@@ -352,7 +352,7 @@ public class Hero extends Character {
         String word3 = null;
         
         if (this.getCurrentRoom().getHasCharacter("Zuul")){
-            System.out.println("The Zuul is in this room");
+            System.out.println("The Zuul is in this room.");
         }
         
         // Print "> " to prompt user input
@@ -404,7 +404,7 @@ public class Hero extends Character {
                 }
                            
             } else {
-                System.out.println("The station is under quarentine and you therefore can't open the door.\n Perhaps you could find something or someone to force it open");
+                System.out.println("The station is under quarantine and you therefore can't open the door.\nPerhaps you could find something or someone to force it open.");
             }
             
         } else {
@@ -437,24 +437,24 @@ public class Hero extends Character {
             if (this.getCurrentRoom().getName().equals("reactor")) {
                 if (this.getCurrentRoom().getHasCharacter("TechDude")) {
                     if (!reactorActivated) {
-                        System.out.println("You activated the reactor. The spacestation will selfdestruct in 10 turns");
+                        System.out.println("You activated the reactor. The space station will self-destruct in 10 turns.");
                         return (this.getCharacterInitiative() + 80);
                     } else {
-                        System.out.println("The reactor is already activated");
+                        System.out.println("The reactor is already activated.");
                         return Double.MAX_VALUE;
                     }
                 } else {
-                    System.out.println("You need the TechDude to do this");
+                    System.out.println("You need the tech dude to do this.");
                     return Double.MAX_VALUE;
                 }
             } else {
-                System.out.println("There is no reactor in this room");
+                System.out.println("There is no reactor in this room.");
                 return Double.MAX_VALUE;
             }
             
         }
         else {
-            System.out.println("You can't activate anything by that name");
+            System.out.println("You can't activate anything by that name.");
         }
         return Double.MAX_VALUE;
     }
