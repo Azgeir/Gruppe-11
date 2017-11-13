@@ -46,8 +46,6 @@ public class GUIController {
     @FXML
     private Button dropButton;
     @FXML
-    private ChoiceBox<?> GoDropDown1;
-    @FXML
     private Button goButton;
     @FXML
     private Button peekButton;
@@ -60,11 +58,17 @@ public class GUIController {
     private ChoiceBox<?> pickupDropDown;
 
     private Game game;
+    @FXML
+    private ChoiceBox<?> GoDropDown;
 
     public void initialize() {
         // TODO
         game = new Game(3);
 //        game.createGodDammit();
+
+        GoDropDown.getItems();
+//        GoDropDown.setItems(value);
+//        game.
     }
 
     @FXML
