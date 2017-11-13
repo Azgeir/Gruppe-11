@@ -48,21 +48,21 @@ public class Game {
 
         // Initialise the computer room
         computerRoom = new Room("in the computer room", "computer",
-                ("You are in the computer room, this is here you had your working \n"
-                + "hours, you see several computers, chairs and USB's and larger storage \n"
-                + "units you also see your accescard laying on the desk. \n"));
+                ("You are in the computer room. This is where you had your working\n"
+                + "hours. You see several computers, chairs, USBs, and larger storage\n"
+                + "units. You also see your access card lying on the desk.\n"));
 
         // Initialise the storage room
         storage = new Room("in the storage room", "storage",
-                ("You are in the storage facility. here you see several drawers and \n"
-                + "shelves, containing everything from dried food to different tools, \n"
-                + "medkits and reseach compartments \n"));
+                ("You are in the storage facility. Here you see several drawers and\n"
+                + "shelves, containing everything from dried food to different tools,\n"
+                + "medkits and reseach compartments.\n"));
 
         // Initialise the medical bay
         medicalBay = new Room("in the medical bay", "medbay",
-                ("You are in the medbay. This is where you would get treated and \n"
-                + "contained if you fell sick or got minor injuries, there are beds \n"
-                + "and several drawers with medkits, pills and injectors \n"));
+                ("You are in the medical bay. This is where you would get treated and\n"
+                + "contained if you fell sick or got minor injuries. There are beds\n"
+                + "and several drawers with medkits, pills and syringes.\n"));
 
         // Initialise the dormitory
         dormitory = new Room("in the dormitory", "dorm",
@@ -81,23 +81,23 @@ public class Game {
         // Initialise the dock
         dock = new Room("in the dock", "dock",
                 "You are in the dock. This is where supply ships come and go and also \n"
-                + "the only way off the spacestation via the pod, but the spacestation \n"
-                + "is currently under quarantine and you don't know how to overwrite \n"
-                + "the quarantine. There are tools for repairs, 3d printers and spacesuits \n");
+                + "the only way off the space station via the pod. However, the space station \n"
+                + "is currently under quarantine and you don't know how to overwrite\n"
+                + "it. Around you, you see tools for repairs, 3D printers and space suits \n");
 
         // Initialise the control room
         controlRoom = new Room("in the control room", "control",
-                ("You are in the control room. this is where information goes to and \n"
-                + "from the spacestation, this is where you find the TechDude he was \n"
-                + "trying to reestablish the connection to earth but to no avail. \n"
-                + "Maybe you could get surveilliance data back with you"));
+                ("You are in the control room. This is where information goes to and\n"
+                + "from the space station. This is where you find the tech dude. He was \n"
+                + "trying to reestablish the connection to earth, but to no avail.\n"
+                + "Maybe you could get surveilliance data back with you."));
 
         // Initialise the reactor
         reactor = new Room("near the reactor", "reactor",
-                ("You are in the reactor room. The reactor is a very dense nuclear \n"
-                + "reactor, if it where to melt down the spacestation would be annihilated \n"
-                + "you see some basic tools and some Geiger counters and a coupple of \n"
-                + "spacesuits \n"));
+                ("You are in the reactor room. The reactor is a very dense nuclear\n"
+                + "reactor. If it were to melt down the space station would be annihilated.\n"
+                + "You see some basic tools, some Geiger counters, and a coupple of\n"
+                + "space suits.\n"));
 
         // Initialise the escape pod
         escapePod = new Room("in the escape pod", "pod");
@@ -258,7 +258,7 @@ public class Game {
     private void fillRoom(Room room) {
         switch (room.getName()) {
             case "biolab":
-                room.getInventory().addItem(new Item(10, "notebook", "smash it down on the floor in pure anger"));
+                room.getInventory().addItem(new Item(10, "notebook", "smash it down on the floor in pure anger."));
                 room.getInventory().addItem(new Item(50, "microscope"), 3);
                 room.getInventory().addItem(new Item(1000, "DNA-sequencing-machine"));
                 room.getInventory().addItem(new Item(150, "incubator"), 2);
@@ -275,7 +275,7 @@ public class Game {
                 room.getInventory().addItem(new Item(10, "DNA-precipitate-solution"), 10);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
                 room.getInventory().addItem(new Item(400, "centrifuge"), 2);
-                room.getInventory().addItem(new Item(99, "cat", "you pet the cat it scratces your hand"));
+                room.getInventory().addItem(new Item(99, "cat", "pet it. It scratces your hand."));
                 room.getInventory().addItem(new AcidVial(4, 25), 10);
                 break;
             case "computer":
@@ -298,7 +298,7 @@ public class Game {
                 room.getInventory().addItem(new Item(20, "saw"), 9);
                 room.getInventory().addItem(new Item(20, "crowbar", "smash some stuff and pretend that you are Gordon Freeman. "
                         + "This isn't Half Life 3, you dumbass!"), 7);
-                room.getInventory().addItem(new Item(20, "plasma-saw", "try to cut a hole on the wall to get away from the Zuul. Though, you end "
+                room.getInventory().addItem(new Item(20, "plasma-saw", "try to cut a hole in the wall to get away from the Zuul. Though, you end "
                         + "up being sucked out into space, because you cannot think for shit!"), 6);
                 room.getInventory().addItem(new Item(30, "nailgun", "shoot all over the place like a stormtrooper."), 8);
                 room.getInventory().addItem(new AccessCard());
@@ -434,8 +434,8 @@ do {
                 + "quarantine. You must find items and other survivors and escape \n"
                 + "the station through the escape pod before you are caught by what\n"
                 + "is ravaging the station. \n"
-                + "You suddenly hear a rumbling voice emenating from everywhere\n"
-                + "\"We are Zuul devourers of worlds.\"");
+                + "\nYou suddenly hear a rumbling voice emanating from everywhere:\n"
+                + "\"We are Zuul, devourers of worlds.\"");
         System.out.println("Type '" + CommandWord.HELP + "' for more information about controls and the game.");
         System.out.println();
         // Description of current room of the player, including available exits.
@@ -452,7 +452,7 @@ do {
 
         // Check if the input equals any of the defined commands and print an "error" if it does not
         if (commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...\nTyping help will give you the valid commands ");
+            System.out.println("I don't know what you mean...\nTyping 'help' will give you the valid commands.");
             return false;
         }
 
@@ -517,7 +517,7 @@ do {
                     if (currentCharacter.getCurrentRoom().getHasCharacter("TechDude")) {
                         this.conversation(characters.get(2));
                     } else {
-                        System.out.println("You talk to yourself as you begin to question your sanity");
+                        System.out.println("You talk to yourself as you begin to question your sanity.");
                     }
                     this.currentCharacter.setCharacterInitiative(this.currentCharacter.getCharacterInitiative() + 10 * this.currentCharacter.getSpeedFactor());
                     break;
@@ -537,8 +537,8 @@ do {
 
     // This method prints a help message, including available commands
     private void printHelp() {
-        System.out.println("You can find other crewmembers and save them, \n"
-                + "you must survive and reach the escape pod. find items that can \n"
+        System.out.println("You can find other crew members and save them.\n"
+                + "You must survive and reach the escape pod. Find items that can\n"
                 + "help you on your way.");
         System.out.println();
         System.out.println("Your command words are:");
@@ -549,31 +549,31 @@ do {
                 + "The commands take  the following second and third words as input\n"
                 + "\n"
                 + "drop: second word - \"itemname\": third word - \"integer\" or \"\"\n"
-                + "You drop the following item or several of them\n"
+                + "You drop the following item or several of them.\n"
                 + "pickup: second word - itemname: third word - \"integer\" or \"\"\n"
-                + "You pickup the following item or several of them\n"
+                + "You pickup the following item or several of them.\n"
                 + "unlock: second word - \"exit name\"\n"
-                + "You unlock the specified door\n"
+                + "You unlock the specified door.\n"
                 + "lock: second word - \"exit name\"\n"
-                + "You unlock the specified door\n"
+                + "You lock the specified door.\n"
                 + "go: second word - \"exit name\"\n"
-                + "You go in the specified direction\n"
+                + "You go in the specified direction.\n"
                 + "peek: second word - \"exit name\"\n"
-                + "Checks, the neighboring rooms and perhaps two rooms in the specified direction, for enemies\n"
+                + "Checks, the neighboring rooms and perhaps two rooms in the specified direction, for enemies.\n"
                 + "use: second word - \"itemname\"\n"
-                + "You use the specified item\n"
+                + "You use the specified item.\n"
                 + "look: second word - \"around\" or \"inventory\"\n"
-                + "You either look around the room or checks your inventory\n"
+                + "You either look around the room or checks your inventory.\n"
                 + "activate: second word - \"reactor\"\n"
-                + "You try to activate the reactor\n"
+                + "You try to activate the reactor.\n"
                 + "quit: second word - \"\"\n"
-                + "You quit the game\n"
+                + "You quit the game.\n"
                 + "stay:\n"
-                + "You stay where you are\n"
+                + "You stay where you are.\n"
                 + "help:\n"
-                + "You ask for help, du'h\n"
+                + "You ask for help.\n"
                 + "talk:\n"
-                + "talks with a character\n");
+                + "You talk with a character.\n");
     }
 
     // This method iterates over the different characters to determine whose turn it is.
@@ -620,7 +620,7 @@ do {
                 // Calculate earned points
                 double point = pointCalculation();
                 if (techDudeIsThere) {
-                    System.out.println("Tech dude: Good job mate, I knew we would make it!");
+                    System.out.println("Tech dude: Good job, mate! I knew we would make it!");
                 }
                 System.out.println("Congratulations, you escaped the space station. You won.");
                 System.out.printf("You got %1.2f points\n", point);
@@ -635,26 +635,26 @@ do {
                 if (techDudeIsThere) {
                     System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
                 }
-                System.out.println("The Zuul rips you head off and and kicks it across the room cheering like it just won the world cup");
+                System.out.println("The Zuul rips your head off and kicks it across the room, cheering like it just won the world cup.");
                 break;
             case "lose2": // If the player is killed by Zuul, print message
                 if (techDudeIsThere) {
                     System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
                 }
-                System.out.println("The Zuul rips out your throat and sticks its claws up your ass and prances you around like a ventriloquist puppet"
-                        + "saying \"look at me I'm a scared little human, I can code\"");
+                System.out.println("The Zuul rips out your throat, sticks its claws up your ass, and prances you around like a ventriloquist puppet "
+                        + "saying: \"Look at me! I'm a scared little human! I can code!\"");
                 break;
             case "lose3": // If the player is killed by Zuul, print message
                 if (techDudeIsThere) {
                     System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
                 }
-                System.out.println("The Zuul rips you in half and the starts teabagging your face that's frozen in horrer by sight of the Zuuls hairy ass");
+                System.out.println("The Zuul rips you in half and then starts teabagging your face that's frozen in horrer by sight of the Zuul's hairy ass.");
                 break;
             case "timer": // If player is killed by reactor, print message
                 if (techDudeIsThere) {
-                    System.out.println("Tech dude: Good run mate see ya on the other side");
+                    System.out.println("Tech dude: Good run, mate! See ya on the other side.");
                 }
-                System.out.println("The reactor overloaded and blew up the spacestation. You lost.");
+                System.out.println("The reactor overloaded and blew up the space station. You lost.");
                 break;
             case "health": // if the player dies due to low health
                 if (techDudeIsThere) {
@@ -663,10 +663,10 @@ do {
                 System.out.println("You died due to extensive wounds.");
                 break;
             case "derp":
-                System.out.println("You committed suicide because you are to weak to kill anything else.\nYou pussed out like a bitch");
+                System.out.println("You committed suicide because you are too weak to kill anything else.\nYou pussed out like a bitch.");
                 break;
             default: // If player exits the game without losing or winning.
-                System.out.println("You committed suicide.\nYou pussed out like a bitch");
+                System.out.println("You committed suicide.\nYou pussed out like a bitch.");
         }
     }
 
@@ -690,7 +690,7 @@ do {
                 // If the specified USB has data stored on it...
                 if (usb.getDataType() != null) {
                     // Print the data type collected
-                    System.out.println("You got the " + usb.getDataType() + " data");
+                    System.out.println("You got the " + usb.getDataType() + " data.");
                     // Add value to pointSet
                     pointSet.add(usb.getDataType());
                 }
@@ -774,15 +774,15 @@ do {
                             case 2:
                                 character.setHostility(character.getHostility() + 1);
                                 if (character.getHostility() < 3) {
-                                    System.out.println("The TechDude got annoyed at you");
+                                    System.out.println("The tech dude got annoyed at you.");
                                     wantToTalk = false;
                                 }
                                 if (character.getHostility() == 3) {
-                                    System.out.println("The TechDude hates you and will no longer talk to you");
+                                    System.out.println("The tech dude hates you and will no longer talk to you.");
                                     TechDude temp = (TechDude) character;
                                     if (temp.isFollowsHero()) {
                                         character.followsHero(this.characters.get(0), false);
-                                        System.out.println("TechDude no longer follows you");
+                                        System.out.println("Tech dude no longer follows you.");
                                         counter++;
                                     }
                                 }
@@ -803,14 +803,14 @@ do {
                         if (number != 2) {
                             if (counter == 5 || (counter == 4 && character.getHostility() < 3 && wantToTalk == false)) {
                                 if (!character.isFollowsHero()) {
-                                    System.out.println("TechDude is now following you");
+                                    System.out.println("Tech dude is now following you");
                                     character.followsHero(this.characters.get(0), true);
                                 }
                             }
                         }
                     }
                 } else {
-                    System.out.println("The input wasnt a number");
+                    System.out.println("The input wasn't a number");
                     wantToTalk = false;
                 }
 
