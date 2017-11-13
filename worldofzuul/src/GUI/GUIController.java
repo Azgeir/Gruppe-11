@@ -48,6 +48,16 @@ public class GUIController{
     private Button dropButton;
     
     private Game game;
+    @FXML
+    private ChoiceBox<?> GoDropDown1;
+    @FXML
+    private Button goButton;
+    @FXML
+    private Button peekButton;
+    @FXML
+    private Button unlockButton;
+    @FXML
+    private Button unlockButton1;
     
 
     public void initialize() {
@@ -58,15 +68,17 @@ public class GUIController{
 
     @FXML
     private void pickupButtonHandler(ActionEvent event) {
+        game.play("pickup");
     }
 
     @FXML
     private void inventoryButtonHandler(ActionEvent event) {
+        game.play("inventory");
     }
 
     @FXML
     private void useButtonAction(ActionEvent event) {
-        output.setText("Stuff");
+        game.play("use");
     }
 
     @FXML
@@ -75,15 +87,17 @@ public class GUIController{
 
     @FXML
     private void talkButtonHandler(ActionEvent event) {
-       
+       game.play("talk");
     }
 
     @FXML
     private void quitButtonHandler(ActionEvent event) {
+        game.play("quit");
     }
 
     @FXML
     private void helpButtonHandler(ActionEvent event) {
+        game.play("help");
     }
 
     @FXML
@@ -99,10 +113,23 @@ public class GUIController{
 
     @FXML
     private void saveButtonHandler(ActionEvent event) {
+        game.play("save");
     }
 
     @FXML
     private void dropButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void goButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void peekButtonHandler(ActionEvent event) {
+    }
+
+    @FXML
+    private void unlockButtonHandler(ActionEvent event) {
     }
     
 }
