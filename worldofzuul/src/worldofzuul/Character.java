@@ -83,38 +83,38 @@ public class Character {
 
     // This method is overridden in the Hero class
     public void pickUp(Command command) {
-        System.out.println("This does nothing");
+        System.out.println("This does nothing.");
     }
 
     // This method is overridden in the Hero class
     public void dropItem(Command command) {
-        System.out.println("This does nothing");
+        System.out.println("This does nothing.");
     }
     
     // This method is overridden in the Hero class
     public void look(Command command) {
-        System.out.println("This does nothing");
+        System.out.println("This does nothing.");
     }
     
     // This method is overridden in the Hero class
     public void peek(Command command) {
-        System.out.println("This does nothing");
+        System.out.println("This does nothing.");
     }
     
     // This method is overridden in the Hero class
     public double use(Command command) {
-        System.out.println("This does nothing");
+        System.out.println("This does nothing.");
         return -1;
     }
     
     // This method is overridden in the Hero class
     public void lock(Command command) {
-        System.out.println("This does nothing");
+        System.out.println("This does nothing.");
     }
     
     // This method is overridden in the Hero class
     public void unlock(Command command) {
-        System.out.println("This does nothing");
+        System.out.println("This does nothing.");
     }
     
     // (£) This method increases the character's initiative
@@ -177,7 +177,7 @@ public class Character {
     
     // (£) This method is overridden in the Hero class
     public double activate(Command Command, boolean reactorActivated) {
-        System.out.println("You are not a hero and therefore cannot activate things");
+        System.out.println("You are not a hero and therefore cannot activate things.");
         return Double.MAX_VALUE;
     }
     
