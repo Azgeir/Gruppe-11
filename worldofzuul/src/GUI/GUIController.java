@@ -129,7 +129,7 @@ public class GUIController {
     @FXML
     private void saveButtonHandler(ActionEvent event) {
 
-        game.play("save");
+//        game.play("save");
 
         System.out.println("Save stuff and stuff");
 
