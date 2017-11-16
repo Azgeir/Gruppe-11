@@ -87,8 +87,13 @@ public class GUIController {
         String command;
         if (this.pickupDropDown.getValue() != null) {
             command = "pickup";
-            command = command + " " + this.pickupDropDown.getValue();
+            String item = this.pickupDropDown.getValue();
+            command = command + " " + item;
             GUIFacade.sendCommand(command);
+            
+            this.pickupDropDown.getItems().clear();
+            Set<String> itemSet = GUIFacade.getRoomItemSet();
+            this.pickupDropDown.getItems().addAll(itemSet);
 //            game.play(command);
         } else {
             System.out.println("choose something to pickup from the dropbox");
