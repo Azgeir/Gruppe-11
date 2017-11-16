@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -71,11 +72,10 @@ public class GUIController {
 //        game.createGodDammit();
 
         ObservableList<String> list = FXCollections.observableArrayList();
-        list.add("derp");
-        list.add("Herp");
-        String derp = "Herp";
+
+        Set<String> exits = GUIFacade.getExits();
         
-        GoDropDown.getItems().addAll(list);
+        GoDropDown.getItems().addAll(exits);
         
 //        GoDropDown.getItems();
 //        GoDropDown.setItems(value);
@@ -109,7 +109,7 @@ public class GUIController {
     private void useButtonAction(ActionEvent event) {
         
         String command;
-        if (this.PickupDropDown.getValue() != null) {
+        if (this.useDropDown.getValue() != null) {
             command = "use";
             command = command + " " + this.useDropDown.getValue();
             GUIFacade.sendCommand(command);
@@ -178,7 +178,7 @@ public class GUIController {
     @FXML
     private void dropButtonHandler(ActionEvent event) {
         String command;
-        if (this.PickupDropDown.getValue() != null) {
+        if (this.useDropDown.getValue() != null) {
             command = "drop";
             command = command + " " + this.useDropDown.getValue();
             GUIFacade.sendCommand(command);
@@ -192,7 +192,7 @@ public class GUIController {
     private void goButtonHandler(ActionEvent event) {
         
         String command;
-        if (this.PickupDropDown.getValue() != null) {
+        if (this.GoDropDown.getValue() != null) {
             command = "go";
             command = command + " " + this.GoDropDown.getValue();
             GUIFacade.sendCommand(command);
@@ -208,7 +208,7 @@ public class GUIController {
     private void peekButtonHandler(ActionEvent event) {
         
         String command;
-        if (this.PickupDropDown.getValue() != null) {
+        if (this.GoDropDown.getValue() != null) {
             command = "peek";
             command = command + " " + this.GoDropDown.getValue();
             GUIFacade.sendCommand(command);
@@ -223,7 +223,7 @@ public class GUIController {
     private void unlockButtonHandler(ActionEvent event) {
         
         String command;
-        if (this.PickupDropDown.getValue() != null) {
+        if (this.GoDropDown.getValue() != null) {
             command = "unlock";
             command = command + " " + this.GoDropDown.getValue();
             GUIFacade.sendCommand(command);
@@ -238,7 +238,7 @@ public class GUIController {
     private void lockButtonHandler(ActionEvent event) {
         
         String command;
-        if (this.PickupDropDown.getValue() != null) {
+        if (this.GoDropDown.getValue() != null) {
             command = "lock";
             command = command + " " + this.GoDropDown.getValue();
             GUIFacade.sendCommand(command);

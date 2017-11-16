@@ -351,10 +351,6 @@ public class Hero extends Character {
         String word2 = null;
         String word3 = null;
         
-        if (this.getCurrentRoom().getHasCharacter("Zuul")){
-            System.out.println("The Zuul is in this room.");
-        }
-        
         // Print "> " to prompt user input
         System.out.print("> ");
         

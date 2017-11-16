@@ -76,6 +76,9 @@ public class Zuul extends Character {
         if (heroIsInSameRoom) {
             heroInRoomInitiative = this.getCharacterInitiative();
         }
+        if (this.getCurrentRoom().getHasCharacter("Hero")){
+            System.out.println("The Zuul is in this room.");
+        }
         
     }
     
@@ -169,6 +172,8 @@ public class Zuul extends Character {
                 reason = "lose3";
             }
         }
+        
+        this.setCharacterInitiative(this.getCharacterInitiative()+10*this.getSpeedFactor());
         
         return reason;
     }

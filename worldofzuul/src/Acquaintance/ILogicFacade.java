@@ -5,6 +5,8 @@
  */
 package Acquaintance;
 
+import java.util.Set;
+
 /**
  *
  * @author HCHB
@@ -16,4 +18,6 @@ public interface ILogicFacade {
     void initializeGame(int numberOfZuulAtStart);
     
     void processCommand(String command);
+    
+    Set<String> getExits();
 }

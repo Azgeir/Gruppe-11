@@ -5,6 +5,7 @@
  */
 package worldofzuul;
 import Acquaintance.*;
+import java.util.Set;
 /**
  *
  * @author Simon
@@ -27,6 +28,11 @@ public class LogicFacade implements ILogicFacade{
     @Override
     public void processCommand(String command){
         game.play(command);
+    }
+    
+    public Set<String> getExits(){
+        Set<String> exits = game.getCurrentCharacter().getCurrentRoom().getExits().keySet();
+        return exits;
     }
     
 }

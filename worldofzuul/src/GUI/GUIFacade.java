@@ -5,6 +5,7 @@
  */
 package GUI;
 import Acquaintance.*;
+import java.util.Set;
 /**
  *
  * @author Simon
@@ -29,6 +30,11 @@ public class GUIFacade implements IGUIFacade  {
    
    static void sendCommand(String command){
        logic.processCommand(command);
+   }
+   
+   static Set<String> getExits(){
+       Set<String> exits = logic.getExits();
+       return exits;
    }
    
 }

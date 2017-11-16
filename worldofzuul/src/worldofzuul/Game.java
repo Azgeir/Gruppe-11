@@ -869,6 +869,8 @@ public class Game {
             System.out.println("Fuck you. I hate you");
         }
     }
+    
+    
       
 //    public void createGodDammit(){
 //        //Create all rooms by calling the createRooms method
@@ -878,4 +880,8 @@ public class Game {
 //        // Create a parser
 //        parser = new Parser();
 //    }
+
+    public Character getCurrentCharacter() {
+        return currentCharacter;
+    }
 }
