@@ -37,4 +37,15 @@ public class GUIFacade implements IGUIFacade  {
        return exits;
    }
    
+   static Set<String> getRoomItemSet(){
+       Set<String> itemSet = logic.getRoomItemSet();
+       return itemSet;
+   }
+   
+   static boolean isRoomLookedBefore(){
+       boolean lookedBefore = logic.isRoomLookedBefore();
+       return lookedBefore;
+       
+   }
+   
 }

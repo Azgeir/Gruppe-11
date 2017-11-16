@@ -20,4 +20,9 @@ public interface ILogicFacade {
     void processCommand(String command);
     
     Set<String> getExits();
+    
+    Set<String> getRoomItemSet();
+    
+    boolean isRoomLookedBefore();
+    
 }

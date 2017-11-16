@@ -24,8 +24,7 @@ public class GUIController {
     @FXML
     private TextArea output;
     @FXML
-    private ChoiceBox<?> useDropDown;
-    private ChoiceBox<?> PickupDropDown;
+    private ChoiceBox<String> useDropDown;
     @FXML
     private Button stayButton;
     @FXML
@@ -56,7 +55,7 @@ public class GUIController {
     private Button unlockButton;
 
     @FXML
-    private ChoiceBox<?> pickupDropDown;
+    private ChoiceBox<String> pickupDropDown;
 
 //    private Game game;
     @FXML
@@ -86,7 +85,7 @@ public class GUIController {
     private void pickupButtonHandler(ActionEvent event) {
 
         String command;
-        if (this.PickupDropDown.getValue() != null) {
+        if (this.pickupDropDown.getValue() != null) {
             command = "pickup";
             command = command + " " + this.pickupDropDown.getValue();
             GUIFacade.sendCommand(command);
@@ -159,6 +158,11 @@ public class GUIController {
     private void lookButtonHandler(ActionEvent event) {
         String command = "look around";
         GUIFacade.sendCommand(command);
+        Set<String> itemSet = GUIFacade.getRoomItemSet();
+        
+        this.pickupDropDown.getItems().clear();
+        this.pickupDropDown.getItems().addAll(itemSet);
+        
 //        game.play(command);
 
     }
@@ -196,6 +200,16 @@ public class GUIController {
             command = "go";
             command = command + " " + this.GoDropDown.getValue();
             GUIFacade.sendCommand(command);
+            Set<String> exits = GUIFacade.getExits();
+            this.GoDropDown.getItems().clear();
+            this.GoDropDown.getItems().addAll(exits);
+            
+            this.pickupDropDown.getItems().clear();
+            if (GUIFacade.isRoomLookedBefore()) {
+                Set<String> itemSet = GUIFacade.getRoomItemSet();
+                this.pickupDropDown.getItems().addAll(itemSet);
+            }
+            
 //            game.play(command);
         } else {
             System.out.println("choose a direction from the dropbox");

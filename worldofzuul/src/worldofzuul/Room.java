@@ -23,6 +23,7 @@ public class Room
     private Inventory inventory; // The place Items are sotred in the room
     private String name; // Name of the room
     private HashMap<String,Boolean> hasCharacter = new HashMap<>(); // Checks if the room has the different characters
+    private boolean hasBeenLookedUpon;
     
     // This constructor creates a Room with a specified description string.
     public Room(String description) 
@@ -39,6 +40,7 @@ public class Room
         this.hasCharacter.put("Hero", false);
         this.hasCharacter.put("Zuul", false);
         this.hasCharacter.put("TechDude", false);
+        this.hasBeenLookedUpon = false;
     }
     
     // This constructor creates a room with the specified description and name.
@@ -154,5 +156,15 @@ public class Room
     public HashMap<String, Boolean> getHasCharacters(){
         return this.hasCharacter;
     }
+
+    public boolean isHasBeenLookedUpon() {
+        return hasBeenLookedUpon;
+    }
+
+    public void setHasBeenLookedUpon(boolean hasBeenLookedUpon) {
+        this.hasBeenLookedUpon = hasBeenLookedUpon;
+    }
+    
+    
     
 }

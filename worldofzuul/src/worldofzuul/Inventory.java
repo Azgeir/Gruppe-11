@@ -151,6 +151,10 @@ public class Inventory {
         }
         return returnString;
     }
+    
+    public Set<String> listItems(){
+        return this.inventory.keySet();
+    }
 
     public int getMaxWeight() {
         return maxWeight;

@@ -35,4 +35,14 @@ public class LogicFacade implements ILogicFacade{
         return exits;
     }
     
+    public Set<String> getRoomItemSet(){
+        Set<String> itemSet = game.getCurrentCharacter().getCurrentRoom().getInventory().listItems();
+        return itemSet;
+    }
+    
+    public boolean isRoomLookedBefore(){
+        boolean lookedBefore = game.getCurrentCharacter().getCurrentRoom().isHasBeenLookedUpon();
+        return lookedBefore;
+    }
+    
 }

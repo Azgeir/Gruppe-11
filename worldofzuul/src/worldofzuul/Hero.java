@@ -194,9 +194,8 @@ public class Hero extends Character {
                 System.out.println("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
                 // Print status of exits
                 System.out.println(this.getCurrentRoom().getLockedExitString());
+                this.getCurrentRoom().setHasBeenLookedUpon(true);
                 this.setCharacterInitiative(this.getCharacterInitiative() + 1 * this.getSpeedFactor());
-                // print what Characters in current room
-                System.out.println(this.getCurrentRoom().getHasCharacters());
             }
             else if (direction.equals("inventory")) {
                 System.out.println("There is the following in your inventory:\n" + this.getInventory().showItems());
@@ -324,11 +323,11 @@ public class Hero extends Character {
         return 0;
     }
     
-    //£ characterInitiative
-    public void seeInventory(Command command) {
-        this.inventory.showItems();
-        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
-    }
+//    //£ characterInitiative
+//    public void seeInventory(Command command) {
+//        this.inventory.showItems();
+//        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+//    }
     
     private void speedFactorCalculation() {
         double newSpeedFactor = 1 + (this.inventory.getTotalWeight() / this.inventory.getMaxWeight()) / 2;
