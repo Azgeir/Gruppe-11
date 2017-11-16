@@ -13,4 +13,7 @@ public interface ILogicFacade {
     
     void injectData(IDataFacade data);
     
+    void initializeGame(int numberOfZuulAtStart);
+    
+    void processCommand(String command);
 }

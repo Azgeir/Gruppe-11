@@ -24,12 +24,7 @@ public class Game {
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() {
-        //Create all rooms by calling the createRooms method
-        createRooms();
-        // Create the characters by calling the createCharacter() method
-        createCharacter(1);
-        // Create a parser
-        parser = new Parser();
+        this(1);
     }
     
     public Game(int numberOfZuul) {
@@ -39,6 +34,9 @@ public class Game {
         createCharacter(numberOfZuul);
         // Create a parser
         parser = new Parser();
+        this.printWelcome();
+        // Select current character
+        this.currentCharacter = this.chooseCharacter();
     }
 
     // This method creates the rooms of the game.
@@ -404,14 +402,13 @@ public class Game {
     // This method plays the game
     public void play(String GUICommand) {
         // Call the printWelcome method to show a brief introduction to the game
-        printWelcome();
+//        printWelcome();
         // Check if the player is still playing
         boolean finished = false;
         // As long as game is not finished, get and process user commands
-//        while (!finished) {
-do {
-            // Select current character
-            this.currentCharacter = this.chooseCharacter();
+        //        while (!finished) {
+        do {
+            
             // checks if the TechDude has met the Hero
             //techDudeMeetHero();
             // Get command from parser
@@ -419,7 +416,7 @@ do {
             // Process command
             finished = processCommand(command);
             // Check if player lost game because they met Zuul
-
+            
             // Check if player lost game because of reactor
             if (!finished) {
                 finished = timerLose();
@@ -432,7 +429,7 @@ do {
                 finished = healthTest();
             }
             currentCharacter = this.chooseCharacter();
-        } while(currentCharacter.getName().equals("Hero"));
+        } while(!currentCharacter.getName().equals("Hero"));
     }
 
     // This method prints the welcome message.

@@ -11,7 +11,7 @@ import Acquaintance.*;
  */
 public class GUIFacade implements IGUIFacade  {
     
-    private ILogicFacade logic;
+    private static ILogicFacade logic;
     
    @Override
    public void injectLogic(ILogicFacade logic){
@@ -21,6 +21,14 @@ public class GUIFacade implements IGUIFacade  {
    @Override
    public void startApplication(String[] args){
        ZuulGUI.main(args);
+   }
+   
+   static void initializeGame(int numberOfZuulAtStart){
+       logic.initializeGame(numberOfZuulAtStart);
+   }
+   
+   static void sendCommand(String command){
+       logic.processCommand(command);
    }
    
 }

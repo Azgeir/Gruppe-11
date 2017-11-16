@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -51,22 +53,31 @@ public class GUIController {
     private Button peekButton;
     @FXML
     private Button unlockButton;
-    @FXML
-    private Button unlockButton1;
 
     @FXML
     private ChoiceBox<?> pickupDropDown;
 
-    private Game game;
+//    private Game game;
     @FXML
-    private ChoiceBox<?> GoDropDown;
+    private ChoiceBox<String> GoDropDown;
+    @FXML
+    private Button lockButton1;
 
     public void initialize() {
         // TODO
-        game = new Game(3);
+        int numberOfZuulAtStart = 3;
+//        game = new Game(3);
+        GUIFacade.initializeGame(numberOfZuulAtStart);
 //        game.createGodDammit();
 
-        GoDropDown.getItems();
+        ObservableList<String> list = FXCollections.observableArrayList();
+        list.add("derp");
+        list.add("Herp");
+        String derp = "Herp";
+        
+        GoDropDown.getItems().addAll(list);
+        
+//        GoDropDown.getItems();
 //        GoDropDown.setItems(value);
 //        game.
     }
@@ -74,13 +85,12 @@ public class GUIController {
     @FXML
     private void pickupButtonHandler(ActionEvent event) {
 
-        game.play("pickup");
-
         String command;
         if (this.PickupDropDown.getValue() != null) {
             command = "pickup";
             command = command + " " + this.pickupDropDown.getValue();
-            game.play(command);
+            GUIFacade.sendCommand(command);
+//            game.play(command);
         } else {
             System.out.println("choose something to pickup from the dropbox");
         }
@@ -89,44 +99,67 @@ public class GUIController {
 
     @FXML
     private void inventoryButtonHandler(ActionEvent event) {
+        String command = "look inventory";
+        GUIFacade.sendCommand(command);
 
-        game.play("inventory");
+//        game.play("inventory");
     }
 
     @FXML
     private void useButtonAction(ActionEvent event) {
-        game.play("use");
+        
+        String command;
+        if (this.PickupDropDown.getValue() != null) {
+            command = "use";
+            command = command + " " + this.useDropDown.getValue();
+            GUIFacade.sendCommand(command);
+//            game.play(command);
+        } else {
+            System.out.println("choose something to use from the dropbox");
+        }
+        
+//        game.play("use");
     }
 
     @FXML
     private void activateButtonHandler(ActionEvent event) {
+        String command = "activate reactor";
+        GUIFacade.sendCommand(command);
     }
 
     @FXML
     private void talkButtonHandler(ActionEvent event) {
-        game.play("talk");
+        String command = "talk";
+        GUIFacade.sendCommand(command);
+//        game.play("talk");
     }
 
     @FXML
     private void quitButtonHandler(ActionEvent event) {
-        game.play("quit");
+        String command = "quit";
+        GUIFacade.sendCommand(command);
+//        game.play("quit");
     }
 
     @FXML
     private void helpButtonHandler(ActionEvent event) {
-        game.play("help");
+        String command = "help";
+        GUIFacade.sendCommand(command);
+//        game.play("help");
     }
 
     @FXML
     private void stayButtonHandler(ActionEvent event) {
-        game.play("stay");
+        String command = "stay";
+        GUIFacade.sendCommand(command);
+//        game.play("stay");
     }
 
     @FXML
     private void lookButtonHandler(ActionEvent event) {
-        String command;
-        command = "look around";
-        game.play(command);
+        String command = "look around";
+        GUIFacade.sendCommand(command);
+//        game.play(command);
 
     }
 
@@ -134,6 +167,9 @@ public class GUIController {
     private void saveButtonHandler(ActionEvent event) {
 
 //        game.play("save");
+
+//        String command = "save";
+//        GUIFacade.sendCommand(command);
 
         System.out.println("Save stuff and stuff");
 
@@ -145,7 +181,8 @@ public class GUIController {
         if (this.PickupDropDown.getValue() != null) {
             command = "drop";
             command = command + " " + this.useDropDown.getValue();
-            game.play(command);
+            GUIFacade.sendCommand(command);
+//            game.play(command);
         } else {
             System.out.println("choose something to drop from the dropbox");
         }
@@ -153,14 +190,63 @@ public class GUIController {
 
     @FXML
     private void goButtonHandler(ActionEvent event) {
+        
+        String command;
+        if (this.PickupDropDown.getValue() != null) {
+            command = "go";
+            command = command + " " + this.GoDropDown.getValue();
+            GUIFacade.sendCommand(command);
+//            game.play(command);
+        } else {
+            System.out.println("choose a direction from the dropbox");
+        }
+        
+        
     }
 
     @FXML
     private void peekButtonHandler(ActionEvent event) {
+        
+        String command;
+        if (this.PickupDropDown.getValue() != null) {
+            command = "peek";
+            command = command + " " + this.GoDropDown.getValue();
+            GUIFacade.sendCommand(command);
+//            game.play(command);
+        } else {
+            System.out.println("choose a direction from the dropbox");
+        }
+        
     }
 
     @FXML
     private void unlockButtonHandler(ActionEvent event) {
+        
+        String command;
+        if (this.PickupDropDown.getValue() != null) {
+            command = "unlock";
+            command = command + " " + this.GoDropDown.getValue();
+            GUIFacade.sendCommand(command);
+//            game.play(command);
+        } else {
+            System.out.println("choose a direction from the dropbox");
+        }
+        
+    }
+
+    @FXML
+    private void lockButtonHandler(ActionEvent event) {
+        
+        String command;
+        if (this.PickupDropDown.getValue() != null) {
+            command = "lock";
+            command = command + " " + this.GoDropDown.getValue();
+            GUIFacade.sendCommand(command);
+//            game.play(command);
+        } else {
+            System.out.println("choose a direction from the dropbox");
+        }
+        
     }
 
 }

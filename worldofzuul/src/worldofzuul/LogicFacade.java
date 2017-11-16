@@ -12,10 +12,21 @@ import Acquaintance.*;
 public class LogicFacade implements ILogicFacade{
     
     private IDataFacade data;
+    Game game;
     
     @Override
     public void injectData(IDataFacade data) {
         this.data = data;
+    }
+    
+    @Override
+    public void initializeGame(int numberOfZuulAtStart){
+        game = new Game(numberOfZuulAtStart);
+    }
+    
+    @Override
+    public void processCommand(String command){
+        game.play(command);
     }
     
 }
