@@ -5,10 +5,12 @@
  */
 package Data;
 
+import Acquaintance.IDataFacade;
+
 /**
  *
  * @author HCHB
  */
-public class DataFacade {
+public class DataFacade implements IDataFacade {
     
 }

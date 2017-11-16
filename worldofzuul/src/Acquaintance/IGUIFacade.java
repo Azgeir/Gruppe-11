@@ -13,4 +13,6 @@ public interface IGUIFacade {
     
     void injectLogic(ILogicFacade logic);
     
+    void startApplication(String[] args);
+    
 }

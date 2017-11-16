@@ -5,11 +5,24 @@
  */
 package Starter;
 import Acquaintance.*;
+import GUI.GUIFacade;
+import Data.DataFacade;
+import worldofzuul.LogicFacade;
 
 /**
  *
  * @author HCHB
  */
 public class Start {
-    
+    public static void main(String[] args) {
+        IDataFacade data = new DataFacade();
+        ILogicFacade logic = new LogicFacade();
+        IGUIFacade GUI = new GUIFacade();
+        
+        GUI.injectLogic(logic);
+        logic.injectData(data);
+        
+        GUI.startApplication(args);
+        
+    }
 }
