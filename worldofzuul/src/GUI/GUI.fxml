@@ -65,7 +65,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ChoiceBox fx:id="GoDropDown1" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="GoDropDown" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button fx:id="goButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goButtonHandler" text="Go" GridPane.columnIndex="1" />
                   <Button fx:id="peekButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#peekButtonHandler" text="Peek" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                   <Button fx:id="unlockButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#unlockButtonHandler" text="Unlock" GridPane.columnIndex="1" GridPane.rowIndex="2" />
