@@ -230,7 +230,8 @@ public class Hero extends Character {
             }        
         
             Room neighbor = this.getCurrentRoom().getExit(direction);
-            if (neighbor.getHasCharacter("Zuul")) {
+            if (neighbor.getExit(direction) != null){
+//                    neighbor.getHasCharacter("Zuul")) {
                 if (neighbor.getExit(direction).getHasCharacter("Zuul")) {
                     System.out.println("Zuul is " + neighbor.getShortDescription());
                     zuulNearby = true;
