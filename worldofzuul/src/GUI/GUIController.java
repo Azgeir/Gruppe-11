@@ -61,7 +61,7 @@ public class GUIController {
     @FXML
     private ChoiceBox<String> GoDropDown;
     @FXML
-    private Button lockButton1;
+    private Button lockButton;
 
     public void initialize() {
         // TODO
@@ -98,6 +98,7 @@ public class GUIController {
         } else {
             System.out.println("choose something to pickup from the dropbox");
         }
+        this.isGameFinished();
 
     }
 
@@ -105,6 +106,7 @@ public class GUIController {
     private void inventoryButtonHandler(ActionEvent event) {
         String command = "look inventory";
         GUIFacade.sendCommand(command);
+        this.isGameFinished();
 
 //        game.play("inventory");
     }
@@ -121,7 +123,7 @@ public class GUIController {
         } else {
             System.out.println("choose something to use from the dropbox");
         }
-        
+        this.isGameFinished();
 //        game.play("use");
     }
 
@@ -129,12 +131,14 @@ public class GUIController {
     private void activateButtonHandler(ActionEvent event) {
         String command = "activate reactor";
         GUIFacade.sendCommand(command);
+        this.isGameFinished();
     }
 
     @FXML
     private void talkButtonHandler(ActionEvent event) {
         String command = "talk";
         GUIFacade.sendCommand(command);
+        this.isGameFinished();
 //        game.play("talk");
     }
 
@@ -142,6 +146,7 @@ public class GUIController {
     private void quitButtonHandler(ActionEvent event) {
         String command = "quit";
         GUIFacade.sendCommand(command);
+        this.isGameFinished();
 //        game.play("quit");
     }
 
@@ -149,6 +154,7 @@ public class GUIController {
     private void helpButtonHandler(ActionEvent event) {
         String command = "help";
         GUIFacade.sendCommand(command);
+        this.isGameFinished();
 //        game.play("help");
     }
 
@@ -156,6 +162,7 @@ public class GUIController {
     private void stayButtonHandler(ActionEvent event) {
         String command = "stay";
         GUIFacade.sendCommand(command);
+        this.isGameFinished();
 //        game.play("stay");
     }
 
@@ -167,6 +174,8 @@ public class GUIController {
         
         this.pickupDropDown.getItems().clear();
         this.pickupDropDown.getItems().addAll(itemSet);
+        
+        this.isGameFinished();
         
 //        game.play(command);
 
@@ -181,6 +190,8 @@ public class GUIController {
 //        GUIFacade.sendCommand(command);
 
         System.out.println("Save stuff and stuff");
+        
+        this.isGameFinished();
 
     }
 
@@ -195,6 +206,7 @@ public class GUIController {
         } else {
             System.out.println("choose something to drop from the dropbox");
         }
+        this.isGameFinished();
     }
 
     @FXML
@@ -220,6 +232,7 @@ public class GUIController {
             System.out.println("choose a direction from the dropbox");
         }
         
+        this.isGameFinished();
         
     }
 
@@ -235,6 +248,7 @@ public class GUIController {
         } else {
             System.out.println("choose a direction from the dropbox");
         }
+        this.isGameFinished();
         
     }
 
@@ -251,6 +265,7 @@ public class GUIController {
             System.out.println("choose a direction from the dropbox");
         }
         
+        this.isGameFinished();
     }
 
     @FXML
@@ -265,7 +280,30 @@ public class GUIController {
         } else {
             System.out.println("choose a direction from the dropbox");
         }
-        
+        this.isGameFinished();
+    }
+    
+    private void isGameFinished(){
+        if (GUIFacade.isGameFinished()) {
+            this.goButton.setDisable(true);
+            this.GoDropDown.setDisable(true);
+            this.activateButton.setDisable(true);
+            this.dropButton.setDisable(true);
+            this.helpButton.setDisable(true);
+            this.inventoryButton.setDisable(true);
+            this.lookButton.setDisable(true);
+            this.peekButton.setDisable(true);
+            this.pickupButton.setDisable(true);
+            this.pickupDropDown.setDisable(true);
+            this.quitButton.setDisable(true);
+            this.saveButton.setDisable(true);
+            this.stayButton.setDisable(true);
+            this.talkButton.setDisable(true);
+            this.unlockButton.setDisable(true);
+            this.useButton.setDisable(true);
+            this.useDropDown.setDisable(true);
+            this.lockButton.setDisable(true);
+        }
     }
 
 }

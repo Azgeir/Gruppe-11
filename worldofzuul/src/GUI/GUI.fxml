@@ -69,7 +69,7 @@
                   <Button fx:id="goButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goButtonHandler" text="Go" GridPane.columnIndex="1" />
                   <Button fx:id="peekButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#peekButtonHandler" text="Peek" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                   <Button fx:id="unlockButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#unlockButtonHandler" text="Unlock" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button fx:id="lockButton1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#lockButtonHandler" text="Lock" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Button fx:id="lockButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#lockButtonHandler" text="Lock" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                </children>
                <padding>
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />

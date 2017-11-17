@@ -21,6 +21,7 @@ public class Game {
     private Room winConditionRoom;
     private double maxInititative = Double.MAX_VALUE;
     private boolean reactorActivated = false;
+    private boolean finished;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     public Game() {
@@ -37,6 +38,7 @@ public class Game {
         this.printWelcome();
         // Select current character
         this.currentCharacter = this.chooseCharacter();
+        this.finished = false;
     }
 
     // This method creates the rooms of the game.
@@ -404,7 +406,6 @@ public class Game {
         // Call the printWelcome method to show a brief introduction to the game
 //        printWelcome();
         // Check if the player is still playing
-        boolean finished = false;
         // As long as game is not finished, get and process user commands
         //        while (!finished) {
         do {
@@ -429,7 +430,7 @@ public class Game {
                 finished = healthTest();
             }
             currentCharacter = this.chooseCharacter();
-        } while(!currentCharacter.getName().equals("Hero"));
+        } while(!currentCharacter.getName().equals("Hero") && !finished);
     }
 
     // This method prints the welcome message.
@@ -886,4 +887,10 @@ public class Game {
     public Character getCurrentCharacter() {
         return currentCharacter;
     }
+
+    public boolean isFinished() {
+        return finished;
+    }
+    
+    
 }

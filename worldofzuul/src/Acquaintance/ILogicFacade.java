@@ -25,4 +25,6 @@ public interface ILogicFacade {
     
     boolean isRoomLookedBefore();
     
+    boolean isGameFinished();
+    
 }

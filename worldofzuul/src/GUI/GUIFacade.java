@@ -48,4 +48,9 @@ public class GUIFacade implements IGUIFacade  {
        
    }
    
+   static boolean isGameFinished(){
+       boolean finished = logic.isGameFinished();
+       return finished;
+   }
+   
 }

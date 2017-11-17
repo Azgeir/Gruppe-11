@@ -45,4 +45,9 @@ public class LogicFacade implements ILogicFacade{
         return lookedBefore;
     }
     
+    public boolean isGameFinished(){
+        boolean finished = game.isFinished();
+        return finished;
+    }
+    
 }
