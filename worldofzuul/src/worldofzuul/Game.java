@@ -531,8 +531,10 @@ public class Game {
                     for (Character character : characters) {
                         if (currentCharacter.getCurrentRoom().getHasCharacter("TechDude")) {
                             techDudeIsThere = true;
-                            this.conversation(character);
-                            break;
+                            if (character.getName().equals("TechDude")) {
+                                this.conversation(character);
+                                break;
+                            }
                         }
                     }
                     
