@@ -50,4 +50,10 @@ public class LogicFacade implements ILogicFacade{
         return finished;
     }
     
+    public Set<String> getInventorySet(){
+        Hero heroTemp = (Hero)game.getCurrentCharacter();
+        Set<String> inventorySet = heroTemp.getInventory().listItems();
+        return inventorySet;
+    }
+    
 }

@@ -27,4 +27,6 @@ public interface ILogicFacade {
     
     boolean isGameFinished();
     
+    Set<String> getInventorySet();
+    
 }

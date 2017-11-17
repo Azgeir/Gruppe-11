@@ -53,4 +53,9 @@ public class GUIFacade implements IGUIFacade  {
        return finished;
    }
    
+   static Set<String> getInventorySet(){
+       Set<String> inventorySet = logic.getInventorySet();
+       return inventorySet;
+   }
+   
 }

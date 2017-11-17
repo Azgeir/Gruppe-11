@@ -70,11 +70,15 @@ public class GUIController {
         GUIFacade.initializeGame(numberOfZuulAtStart);
 //        game.createGodDammit();
 
-        ObservableList<String> list = FXCollections.observableArrayList();
+//        ObservableList<String> exit = FXCollections.observableArrayList();
 
         Set<String> exits = GUIFacade.getExits();
         
         GoDropDown.getItems().addAll(exits);
+        
+        Set<String> inventorySet = GUIFacade.getInventorySet();
+        
+        useDropDown.getItems().addAll(inventorySet);
         
 //        GoDropDown.getItems();
 //        GoDropDown.setItems(value);
@@ -94,6 +98,10 @@ public class GUIController {
             this.pickupDropDown.getItems().clear();
             Set<String> itemSet = GUIFacade.getRoomItemSet();
             this.pickupDropDown.getItems().addAll(itemSet);
+            
+            this.useDropDown.getItems().clear();
+            Set<String> inventorySet = GUIFacade.getInventorySet();
+            this.useDropDown.getItems().addAll(inventorySet);
 //            game.play(command);
         } else {
             System.out.println("choose something to pickup from the dropbox");
@@ -119,6 +127,10 @@ public class GUIController {
             command = "use";
             command = command + " " + this.useDropDown.getValue();
             GUIFacade.sendCommand(command);
+            
+            this.useDropDown.getItems().clear();
+            Set<String> inventorySet = GUIFacade.getInventorySet();
+            this.useDropDown.getItems().addAll(inventorySet);
 //            game.play(command);
         } else {
             System.out.println("choose something to use from the dropbox");
@@ -202,6 +214,14 @@ public class GUIController {
             command = "drop";
             command = command + " " + this.useDropDown.getValue();
             GUIFacade.sendCommand(command);
+            
+            this.pickupDropDown.getItems().clear();
+            Set<String> itemSet = GUIFacade.getRoomItemSet();
+            this.pickupDropDown.getItems().addAll(itemSet);
+            
+            this.useDropDown.getItems().clear();
+            Set<String> inventorySet = GUIFacade.getInventorySet();
+            this.useDropDown.getItems().addAll(inventorySet);
 //            game.play(command);
         } else {
             System.out.println("choose something to drop from the dropbox");
