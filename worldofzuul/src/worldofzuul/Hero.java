@@ -396,7 +396,7 @@ public class Hero extends Character {
                     templockExits.putAll(lockedExits);
                     templockExits.remove(direction);
                     String direction2 = (String)templockExits.keySet().toArray()[0];
-                    this.getCurrentRoom().getExit(direction).getLockedExits().put(direction, lock);
+                    this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
                 }
                            
             } else {
@@ -415,7 +415,7 @@ public class Hero extends Character {
                 templockExits.putAll(lockedExits);
                 templockExits.remove(direction);
                 String direction2 = (String) templockExits.keySet().toArray()[0];
-                this.getCurrentRoom().getExit(direction).getLockedExits().put(direction, lock);
+                this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
             }                                      
         }    
     }            

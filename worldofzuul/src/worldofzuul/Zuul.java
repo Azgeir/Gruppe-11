@@ -53,7 +53,7 @@ public class Zuul extends Character {
         String direction = command.getSecondWord();
 
         Room nextRoom = this.getCurrentRoom().getExit(direction);
-
+        
         if (nextRoom == null) {
         }
         else if (this.getCurrentRoom().getLockedExit(direction)){
