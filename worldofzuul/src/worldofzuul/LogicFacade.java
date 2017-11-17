@@ -51,8 +51,15 @@ public class LogicFacade implements ILogicFacade{
     }
     
     public Set<String> getInventorySet(){
-        Hero heroTemp = (Hero)game.getCurrentCharacter();
-        Set<String> inventorySet = heroTemp.getInventory().listItems();
+        Set<String> inventorySet;
+        if (game.getCurrentCharacter().getName().equals("hero")) {
+            Hero heroTemp = (Hero)game.getCurrentCharacter();
+            inventorySet = heroTemp.getInventory().listItems();
+        }
+        else {
+            inventorySet = null; 
+        }
+        
         return inventorySet;
     }
     
