@@ -72,11 +72,11 @@ public class Zuul extends Character {
         //System.out.println("Zuul is " + this.getCurrentRoom().getShortDescription());
         this.setCharacterInitiative(this.getCharacterInitiative()+10*this.getSpeedFactor());
         
-        heroIsInSameRoom = this.getCurrentRoom().getHasCharacter("Hero")|this.getCurrentRoom().getHasCharacter("Zuul");
+        heroIsInSameRoom = this.getCurrentRoom().getHasCharacter("Hero");
         if (heroIsInSameRoom) {
             heroInRoomInitiative = this.getCharacterInitiative();
         }
-        if (this.getCurrentRoom().getHasCharacter("Hero")|this.getCurrentRoom().getHasCharacter("Zuul")){
+        if (this.getCurrentRoom().getHasCharacter("Hero")){
             System.out.println("The Zuul is in this room.");
         }
         

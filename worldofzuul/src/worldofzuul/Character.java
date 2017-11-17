@@ -78,6 +78,10 @@ public class Character {
             System.out.println(currentRoom.getLongDescription());
         }
         
+        if (this.getCurrentRoom().getHasCharacter("Zuul")){
+            System.out.println("The Zuul is in this room.");
+        }
+        
         this.characterInitiative += 10 * this.speedFactor;
     }
 
