@@ -5,6 +5,7 @@
  */
 package worldofzuul;
 import Acquaintance.*;
+import java.util.HashSet;
 import java.util.Set;
 /**
  *
@@ -57,7 +58,9 @@ public class LogicFacade implements ILogicFacade{
             inventorySet = heroTemp.getInventory().listItems();
         }
         else {
-            inventorySet = null; 
+            //The type of Set doesn't matter because it is only supposed to hold a single value to not cause a null pointer exception
+            inventorySet = new HashSet<String>();
+            inventorySet.add("derp"); 
         }
         
         return inventorySet;
