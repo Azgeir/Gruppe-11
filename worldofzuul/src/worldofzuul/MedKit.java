@@ -16,25 +16,25 @@ public class MedKit extends Item {
     private int healthAmount; // Health points added to player's health when used
     
     // (£) This constructor creates an instance of MedKit with a specified health amount
-    public MedKit(int healthAmount) {
+    MedKit(int healthAmount) {
         super(15, "MedKit", "heal yourself.");
         this.healthAmount = healthAmount;
     }
     
     // (£) This constructor creates an instance of MedKit with a default health amount
-    public MedKit() {
+    MedKit() {
         super(5, "medkit", "heal yourself.");
         this.healthAmount = 5;
     }
     
     // This method returns the health amount of the MedKit
-    public int getHealthAmount() {
+    int getHealthAmount() {
         return this.healthAmount;
     }
     
     // This method is called when the medkit is used
     @Override
-    public double use(Character currentCharacter){
+    double use(Character currentCharacter){
         // tempCharacter is set to current character
         Hero tempCharacter = (Hero)currentCharacter;
         // Player's health is increased by the health amount of the the medkit.

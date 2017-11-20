@@ -22,22 +22,22 @@ public class TechDude extends Character {
 
     
     // (£) This is an empty no-arg constructor
-    public TechDude() {
+    TechDude() {
     }
     
     // This constructor creates a tech dude with the specified current room and name
-    public TechDude(Room currentRoom, String name){
+    TechDude(Room currentRoom, String name){
         super(currentRoom, name);
         metHero = false;
 }
     // This constructor creates a tech dude with the specified current room, name, and speed factor.
-    public TechDude(Room currentRoom, String name, double speedFactor){
+    TechDude(Room currentRoom, String name, double speedFactor){
         super(currentRoom, name, speedFactor);
         metHero = false;
     }
     
     // This constructor creates a tech dude with the specified current room, name, speed factor, and health.
-    public TechDude(Room currentRoom, String name, double speedFactor, int health){
+    TechDude(Room currentRoom, String name, double speedFactor, int health){
         this(currentRoom, name, speedFactor);
         this.health = health;
     }
@@ -48,7 +48,7 @@ public class TechDude extends Character {
     */
     @Override
     // This method changes the current room of tech dude to that of hero
-    public void go(Command command){
+    void go(Command command){
         // Remove tech dude from current room
         this.getCurrentRoom().setHasCharacter(this.getName(), false);
         // Change current room of tech dude to current room of hero.
@@ -62,7 +62,7 @@ public class TechDude extends Character {
     // This method helps in defining what commands should be chosen when it is 
     // the tech dude's turn.
     @Override
-    public void followsHero(Character hero, boolean follows){
+    void followsHero(Character hero, boolean follows){
         // Set data fields
         metHero = true;
         if (follows){
@@ -106,7 +106,7 @@ public class TechDude extends Character {
         }
     }
 
-    public boolean isFollowsHero() {
+    boolean isFollowsHero() {
         return followsHero;
     }
     

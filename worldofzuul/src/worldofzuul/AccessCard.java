@@ -11,12 +11,12 @@ package worldofzuul;
  */
 public class AccessCard extends Item {
     
-    public AccessCard (){
+    AccessCard (){
         super(5, "accesscard", "lock and unlock doors");
     }
     
     @Override
-    public double use(Character currentCharacter){
+    double use(Character currentCharacter){
         System.out.println("You wave the access card around.");
         currentCharacter.setCharacterInitiative(currentCharacter.getCharacterInitiative()+3*currentCharacter.getSpeedFactor());
         return 0;

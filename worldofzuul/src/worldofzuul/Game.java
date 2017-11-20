@@ -24,11 +24,11 @@ public class Game {
     private boolean finished;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
-    public Game() {
+    Game() {
         this(1);
     }
     
-    public Game(int numberOfZuul) {
+    Game(int numberOfZuul) {
         //Create all rooms by calling the createRooms method
         createRooms();
         // Create the characters by calling the createCharacter() method
@@ -402,7 +402,7 @@ public class Game {
     }
 
     // This method plays the game
-    public void play(String GUICommand) {
+    void play(String GUICommand) {
         // Call the printWelcome method to show a brief introduction to the game
 //        printWelcome();
         // Check if the player is still playing
@@ -565,39 +565,36 @@ public class Game {
                 + "You must survive and reach the escape pod. Find items that can\n"
                 + "help you on your way.");
         System.out.println();
-        System.out.println("Your command words are:");
+        System.out.println("Your commands are:");
         parser.showCommands();
         System.out.println();
-        System.out.println("After you put in a command you will often need to follow up the command\n"
-                + "with a second and perhaps a third word.\n"
-                + "The commands take  the following second and third words as input\n"
-                + "\n"
-                + "drop: second word - \"itemname\": third word - \"integer\" or \"\"\n"
-                + "You drop the following item or several of them.\n"
-                + "pickup: second word - itemname: third word - \"integer\" or \"\"\n"
-                + "You pickup the following item or several of them.\n"
-                + "unlock: second word - \"exit name\"\n"
+        System.out.println("The game works by using the command buttons to direct \n"
+                + "what you wish to do in the game. you have 3 dropdown menus \n"
+                + "the first to the right is the room objects scond is player inventory \n"
+                + "the left most one is direction dropdown you use this in \n"
+                + "conjunction with the buttons around it.");
+        System.out.println("");
+               System.out.println("funktions for the buttons are:\n"
+                + "drop: choose an item from the inventory dropdown and press drop \n"
+                + "You drop the following item.\n"
+                + "pickup: choose an item from the room dropdown and press pickup \n"
+                + "You pickup the following item if you can carry it.\n"
+                + "unlock: choose direction from the direction dropdown then press unlock \n"
                 + "You unlock the specified door.\n"
-                + "lock: second word - \"exit name\"\n"
+                + "lock: choose direction from the direction dropdown then press lock \n"
                 + "You lock the specified door.\n"
-                + "go: second word - \"exit name\"\n"
+                + "go: choose direction from the direction dropdown then press go. \n"
                 + "You go in the specified direction.\n"
-                + "peek: second word - \"exit name\"\n"
+                + "peek: choose direction from the direction dropdown then press peek \n"
                 + "Checks, the neighboring rooms and perhaps two rooms in the specified direction, for enemies.\n"
-                + "use: second word - \"itemname\"\n"
-                + "You use the specified item.\n"
-                + "look: second word - \"around\" or \"inventory\"\n"
-                + "You either look around the room or checks your inventory.\n"
-                + "activate: second word - \"reactor\"\n"
-                + "You try to activate the reactor.\n"
-                + "quit: second word - \"\"\n"
-                + "You quit the game.\n"
-                + "stay:\n"
-                + "You stay where you are.\n"
-                + "help:\n"
-                + "You ask for help.\n"
-                + "talk:\n"
-                + "You talk with a character.\n");
+                + "use: select an item from the character dropdown menu. \n"
+                + "then press the use button.\n"
+                + "look: gives information about the character and the room.\n"
+                + "activate: is used for activating specefik objects. \n"
+                + "quit: terminates the game session. \n"
+                + "stay: you skib a turn \n"
+                + "help: prints the message you are reading. \n"
+                + "talk: you initiate a conversation with a character \n");
     }
 
     // This method iterates over the different characters to determine whose turn it is.

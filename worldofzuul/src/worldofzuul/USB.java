@@ -17,35 +17,35 @@ public class USB extends Item {
     private String dataType; // Indicates the type of data: biology, physics, monster, or null (for empty USB)
     
     // (£) This constructor creates an empty USB with default name and weight(?)
-    public USB (int number) {
+    USB (int number) {
         super(5, "USB"+number, "do something");
         this.hasData = false;
         this.dataType = null;
     }
     
     // This method returns a boolean value indicating whether or not the USB has data
-    public boolean hasData() {
+    boolean hasData() {
         return this.hasData;
     }
     
     // This method returns the data type stored on the USB (null if the USB is empty)
-    public String getDataType() {
+    String getDataType() {
         return this.dataType;
     }
     
     // This method sets the value of hasData
-    public void setHasData(boolean hasData) {
+    void setHasData(boolean hasData) {
         this.hasData = hasData;
     }
     
     // This method sets the value of dataType
-    public void setDataType(String dataType) {
+    void setDataType(String dataType) {
         this.dataType = dataType;
     }
     
     // This method is called when the player uses the usb
     @Override
-    public double use(Character currentCharacter){
+    double use(Character currentCharacter){
         // Set roomName to current room of the character
         String roomName = currentCharacter.getCurrentRoom().getName();
         

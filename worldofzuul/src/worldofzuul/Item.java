@@ -18,34 +18,34 @@ public class Item {
     private String useDescription; // Describes how the item is used
     
     // This constructor creates an item with the specified weight and name
-    public Item(int weight, String name, String useDescription) {
+    Item(int weight, String name, String useDescription) {
         this.weight = weight;
         this.name = name;
         this.useDescription = useDescription;
     }
 
     // This constructor creates an item with the specified weight and name
-    public Item(int weight, String name) {
+    Item(int weight, String name) {
         this.weight = weight;
         this.name = name;
     }
 
     // This is an empty no-arg constructor
-    public Item() {    
+    Item() {    
     }
     
     // This method returns the weight of the item
-    public int getWeight() {
+    int getWeight() {
         return this.weight;
     }
     
     // This method returns the name of the item
-    public String getName() {
+    String getName() {
         return this.name;
     }
     
     // This method prints a description of how the item is used
-    public double use(Character currentCharacter) {
+    double use(Character currentCharacter) {
         Hero tempCharacter = (Hero)currentCharacter;
         if (useDescription == null) {
             if (tempCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
@@ -67,7 +67,7 @@ public class Item {
     }
     
     // This method returns a description of the possible use of the item
-    public void getDescription() {
+    void getDescription() {
         System.out.println("This is a " + this.name + ". You can use this to " + this.useDescription);
     }
 }

@@ -17,7 +17,7 @@ public class Parser
     private Scanner reader; // A Scanner
 
     // This constructor creates an instance of the Parser class
-    public Parser() 
+    Parser() 
     {
         // Create data fields:
         commands = new CommandWords();
@@ -25,14 +25,14 @@ public class Parser
     }
 
     // This method returns a command
-    public Command getCommand(Character currentCharacter, String GUICommand) {
+    Command getCommand(Character currentCharacter, String GUICommand) {
         Command characterCommand = currentCharacter.getCommand(commands, GUICommand);
         
         return characterCommand;
     }
 
     // This method prints the available commands.
-    public void showCommands()
+    void showCommands()
     {
         commands.showAll();
     }

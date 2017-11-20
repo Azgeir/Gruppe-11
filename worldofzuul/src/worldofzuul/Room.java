@@ -26,7 +26,7 @@ public class Room
     private boolean hasBeenLookedUpon;
     
     // This constructor creates a Room with a specified description string.
-    public Room(String description) 
+    Room(String description) 
     {
         // Set description
         this.description = description;
@@ -44,26 +44,26 @@ public class Room
     }
     
     // This constructor creates a room with the specified description and name.
-    public Room(String description, String roomName) {
+    Room(String description, String roomName) {
         this(description);
         this.name = roomName;
     }
     
     // This constructor creates a room with the specified description, name,
     // and detailed description.
-    public Room(String description, String roomName, String detailedDescription){
+    Room(String description, String roomName, String detailedDescription){
         this(description, roomName);
         this.detailedDescription = detailedDescription;
     }
 
     // This method returns the name of the room.
-    public String getName() {
+    String getName() {
         return name;
     }
     
     // This method sets an available exit from the room with a specified 
     // direction string and locked value.
-    public void setExit(String direction, Room neighbor, boolean locked) 
+    void setExit(String direction, Room neighbor, boolean locked) 
     {
         // Add exit to HashMap of exits
         exits.put(direction, neighbor);
@@ -72,19 +72,19 @@ public class Room
     }
     
     // This method returns a short description of the room.
-    public String getShortDescription()
+    String getShortDescription()
     {
         return description;
     }
 
     // This method returns a longer description of the room with a list of available exits.
-    public String getLongDescription()
+    String getLongDescription()
     {
         return "You are " + description + ".\n" + getExitString();
     }
     
     // This method returns the detailed description
-    public String getDetailedDescription() {
+    String getDetailedDescription() {
         return this.detailedDescription;
     }
     
@@ -110,7 +110,7 @@ public class Room
     // This method checks if the specified exit is locked:
     // true = locked
     // false = unlocked
-    public boolean getLockedExit(String direction){
+    boolean getLockedExit(String direction){
         return this.lockedExits.get(direction);
     }
 
@@ -125,7 +125,7 @@ public class Room
     }
     
     // This method returns a string specifying the status of the available exits
-    public String getLockedExitString() {
+    String getLockedExitString() {
         String returnString = "The status of the exits:\n";
         // Traverse the elements in the lockedExits hashmap
         for (Entry<String, Boolean> exit : lockedExits.entrySet()) {
@@ -143,13 +143,13 @@ public class Room
   
     // This method returns true if the given character is in the room, and
     // returns false if the given character is not in the room.
-    public boolean getHasCharacter(String character){
+    boolean getHasCharacter(String character){
         return this.hasCharacter.get(character);
     }
     
     // This method specifies whether the character (specified by a string) is
     // in the room.
-    public void setHasCharacter(String character, boolean presence){
+    void setHasCharacter(String character, boolean presence){
         hasCharacter.put(character, presence);
     }
     
@@ -157,11 +157,11 @@ public class Room
         return this.hasCharacter;
     }
 
-    public boolean isHasBeenLookedUpon() {
+    boolean isHasBeenLookedUpon() {
         return hasBeenLookedUpon;
     }
 
-    public void setHasBeenLookedUpon(boolean hasBeenLookedUpon) {
+    void setHasBeenLookedUpon(boolean hasBeenLookedUpon) {
         this.hasBeenLookedUpon = hasBeenLookedUpon;
     }
     
