@@ -17,7 +17,7 @@ public class USB extends Item {
     private String dataType; // Indicates the type of data: biology, physics, monster, or null (for empty USB)
     
     // (£) This constructor creates an empty USB with default name and weight(?)
-    public USB (int number) {
+    USB (int number) {
         super(5, "USB"+number, "do something");
         this.hasData = false;
         this.dataType = null;

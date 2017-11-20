@@ -26,7 +26,7 @@ public class Room
     private boolean hasBeenLookedUpon;
     
     // This constructor creates a Room with a specified description string.
-    public Room(String description) 
+    Room(String description) 
     {
         // Set description
         this.description = description;
@@ -44,14 +44,14 @@ public class Room
     }
     
     // This constructor creates a room with the specified description and name.
-    public Room(String description, String roomName) {
+    Room(String description, String roomName) {
         this(description);
         this.name = roomName;
     }
     
     // This constructor creates a room with the specified description, name,
     // and detailed description.
-    public Room(String description, String roomName, String detailedDescription){
+    Room(String description, String roomName, String detailedDescription){
         this(description, roomName);
         this.detailedDescription = detailedDescription;
     }

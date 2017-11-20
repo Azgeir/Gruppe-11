@@ -22,22 +22,22 @@ public class TechDude extends Character {
 
     
     // (£) This is an empty no-arg constructor
-    public TechDude() {
+    TechDude() {
     }
     
     // This constructor creates a tech dude with the specified current room and name
-    public TechDude(Room currentRoom, String name){
+    TechDude(Room currentRoom, String name){
         super(currentRoom, name);
         metHero = false;
 }
     // This constructor creates a tech dude with the specified current room, name, and speed factor.
-    public TechDude(Room currentRoom, String name, double speedFactor){
+    TechDude(Room currentRoom, String name, double speedFactor){
         super(currentRoom, name, speedFactor);
         metHero = false;
     }
     
     // This constructor creates a tech dude with the specified current room, name, speed factor, and health.
-    public TechDude(Room currentRoom, String name, double speedFactor, int health){
+    TechDude(Room currentRoom, String name, double speedFactor, int health){
         this(currentRoom, name, speedFactor);
         this.health = health;
     }

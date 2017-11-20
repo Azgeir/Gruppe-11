@@ -22,14 +22,14 @@ public class Inventory {
 
     //Constructor for the inventory, with the maximum weight as a parameter
     //and initializes the hashmap
-    public Inventory(int newMaxWeight) {
+    Inventory(int newMaxWeight) {
         maxWeight = newMaxWeight;
         inventory = new HashMap<>();
     }
 
     //No-args constructor for inventory which sets the max weight to the max
     //value for integers
-    public Inventory() {
+    Inventory() {
         maxWeight = Integer.MAX_VALUE;
         inventory = new HashMap<>();
     }

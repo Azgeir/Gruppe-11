@@ -22,18 +22,18 @@ public class Zuul extends Character {
     private double heroInRoomInitiative = -Double.MAX_VALUE;
     private boolean heroHadTurn;
     
-    public Zuul(){
+    Zuul(){
         
     }
     
-    public Zuul(Room currentRoom, String name){
+    Zuul(Room currentRoom, String name){
         super(currentRoom, name);
         this.heroIsInSameRoom = currentRoom.getHasCharacter("Hero");
         this.heroWasInSameRoom = false;
         this.heroHadTurn = false;
     }
     
-    public Zuul(Room currentRoom, String name, double speedFactor){
+    Zuul(Room currentRoom, String name, double speedFactor){
         super(currentRoom, name, speedFactor);
         this.heroIsInSameRoom = currentRoom.getHasCharacter("Hero");
         this.heroWasInSameRoom = false;
