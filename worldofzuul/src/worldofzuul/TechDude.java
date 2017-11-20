@@ -48,7 +48,7 @@ public class TechDude extends Character {
     */
     @Override
     // This method changes the current room of tech dude to that of hero
-    public void go(Command command){
+    void go(Command command){
         // Remove tech dude from current room
         this.getCurrentRoom().setHasCharacter(this.getName(), false);
         // Change current room of tech dude to current room of hero.
@@ -62,7 +62,7 @@ public class TechDude extends Character {
     // This method helps in defining what commands should be chosen when it is 
     // the tech dude's turn.
     @Override
-    public void followsHero(Character hero, boolean follows){
+    void followsHero(Character hero, boolean follows){
         // Set data fields
         metHero = true;
         if (follows){
@@ -106,7 +106,7 @@ public class TechDude extends Character {
         }
     }
 
-    public boolean isFollowsHero() {
+    boolean isFollowsHero() {
         return followsHero;
     }
     

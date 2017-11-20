@@ -35,7 +35,7 @@ public class Inventory {
     }
 
     //Changed it to return true if successfully added the item and false otherwise
-    public boolean addItem(Item item) {
+    boolean addItem(Item item) {
         //The first (outer) if statement checks if the item would put the
         //current weight of the inventory above the maximum weight and prints
         // "You cannot carry that" if it would.
@@ -61,7 +61,7 @@ public class Inventory {
         return false;
     }
 
-    public int addItem(Item item, int number) {
+    int addItem(Item item, int number) {
         int counter = 0;
         for (int i = 0; i < number; i++) {
             if(this.addItem(item)){
@@ -71,7 +71,7 @@ public class Inventory {
         return counter;
     }
 
-    public void removeItem(Item item) {
+    void removeItem(Item item) {
         //Checks if the inventory has the parsed item and if it does, removes it
         if (inventory.containsKey(item.getName())) {
             if (inventory.get(item.getName()).contains(item)) {
@@ -88,7 +88,7 @@ public class Inventory {
         }
     }
 
-    public int removeItem(Item item, int number) {
+    int removeItem(Item item, int number) {
         //Checks if the inventory has the parsed item and if it does, removes it
         int counter = 0;
         for (int i = 0; i < number; i++) {
@@ -100,7 +100,7 @@ public class Inventory {
 
     // iterates all items in the ArrayList corresponding to the key itemName,
     // when an element in the ArrayList is found that isn't null it is returned
-    public Item getItem(String itemName) {
+    Item getItem(String itemName) {
         Item returnItem = null;
         if (this.inventory.size() != 0) {
             if (this.inventory.containsKey(itemName)) {
@@ -117,7 +117,7 @@ public class Inventory {
     }
 
     //This method calculates the total weight of the inventory
-    public int getTotalWeight() {
+    int getTotalWeight() {
         //Creates a set with the entries of the hashmap
         Set<HashMap.Entry<String, ArrayList<Item>>> entrySet = inventory.entrySet();
         int total = 0; //Declares and initializes an integer total
@@ -136,7 +136,7 @@ public class Inventory {
         return total;
     }
 
-    public String showItems() {
+    String showItems() {
         //System.out.println("Trying to show items");
         //Creates a set with the entries of the hashmap
         String returnString = "";
@@ -152,11 +152,11 @@ public class Inventory {
         return returnString;
     }
     
-    public Set<String> listItems(){
+    Set<String> listItems(){
         return this.inventory.keySet();
     }
 
-    public int getMaxWeight() {
+    int getMaxWeight() {
         return maxWeight;
     }
 

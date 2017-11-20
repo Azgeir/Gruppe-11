@@ -35,17 +35,17 @@ public class Item {
     }
     
     // This method returns the weight of the item
-    public int getWeight() {
+    int getWeight() {
         return this.weight;
     }
     
     // This method returns the name of the item
-    public String getName() {
+    String getName() {
         return this.name;
     }
     
     // This method prints a description of how the item is used
-    public double use(Character currentCharacter) {
+    double use(Character currentCharacter) {
         Hero tempCharacter = (Hero)currentCharacter;
         if (useDescription == null) {
             if (tempCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
@@ -67,7 +67,7 @@ public class Item {
     }
     
     // This method returns a description of the possible use of the item
-    public void getDescription() {
+    void getDescription() {
         System.out.println("This is a " + this.name + ". You can use this to " + this.useDescription);
     }
 }

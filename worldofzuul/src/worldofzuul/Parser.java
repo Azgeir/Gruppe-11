@@ -32,7 +32,7 @@ public class Parser
     }
 
     // This method prints the available commands.
-    public void showCommands()
+    void showCommands()
     {
         commands.showAll();
     }

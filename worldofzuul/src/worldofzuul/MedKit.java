@@ -34,7 +34,7 @@ public class MedKit extends Item {
     
     // This method is called when the medkit is used
     @Override
-    public double use(Character currentCharacter){
+    double use(Character currentCharacter){
         // tempCharacter is set to current character
         Hero tempCharacter = (Hero)currentCharacter;
         // Player's health is increased by the health amount of the the medkit.

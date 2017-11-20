@@ -45,7 +45,7 @@ public class Zuul extends Character {
     comes from
     */
     @Override
-    public void go(Command command){
+    void go(Command command){
         if(!command.hasSecondWord()) {
             return;
         }
