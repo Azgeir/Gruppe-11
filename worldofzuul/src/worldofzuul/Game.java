@@ -24,11 +24,11 @@ public class Game {
     private boolean finished;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
-    public Game() {
+    Game() {
         this(1);
     }
     
-    public Game(int numberOfZuul) {
+    Game(int numberOfZuul) {
         //Create all rooms by calling the createRooms method
         createRooms();
         // Create the characters by calling the createCharacter() method
@@ -402,7 +402,7 @@ public class Game {
     }
 
     // This method plays the game
-    public void play(String GUICommand) {
+    void play(String GUICommand) {
         // Call the printWelcome method to show a brief introduction to the game
 //        printWelcome();
         // Check if the player is still playing

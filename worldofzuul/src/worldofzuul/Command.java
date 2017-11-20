@@ -14,7 +14,7 @@ public class Command
     private String thirdWord; // The third word of the command
 
     // This constructor creates a Command with the specified command word and second word
-    public Command(CommandWord commandWord, String secondWord, String thirdWord)
+    Command(CommandWord commandWord, String secondWord, String thirdWord)
     {
         this.commandWord = commandWord;
         this.secondWord = secondWord;
@@ -22,25 +22,25 @@ public class Command
     }
 
     // This method returns the command word of the command.
-    public CommandWord getCommandWord()
+    CommandWord getCommandWord()
     {
         return commandWord;
     }
 
     // This method returns the second word of the command.
-    public String getSecondWord()
+    String getSecondWord()
     {
         return secondWord;
     }
     
     // This method returns the third word of the command
-    public String getThirdWord()
+    String getThirdWord()
     {
         return thirdWord;
     }
     
     // This method returns true if the command word is unknown.
-    public boolean isUnknown()
+    boolean isUnknown()
     {
         return (commandWord == CommandWord.UNKNOWN);
     }

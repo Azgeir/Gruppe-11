@@ -26,26 +26,26 @@ public class Character {
     private int hostility;
 
     // This constructor creates a character with default initiative and speed factor
-    public Character() {
+    Character() {
         this.characterInitiative = 0;
         this.speedFactor = 1;
     }
 
     // This constructor creates a character with the specified current room and name
-    public Character(Room currentRoom, String name) {
+    Character(Room currentRoom, String name) {
         this();
         this.currentRoom = currentRoom;
         this.name = name;
     }
 
     // This constructor creates a character with the specified current room, name, and speed factor
-    public Character(Room currentRoom, String name, double speedFactor) {
+    Character(Room currentRoom, String name, double speedFactor) {
         this(currentRoom, name);
         this.speedFactor = speedFactor;
     }
 
     //£ just copied from sourcecode Game.goRoom
-    public void go(Command command) {
+    void go(Command command) {
         // If the command does not have a second word, print error message
         if (!command.hasSecondWord()) {
             System.out.println("Go where?");
@@ -86,88 +86,88 @@ public class Character {
     }
 
     // This method is overridden in the Hero class
-    public void pickUp(Command command) {
+    void pickUp(Command command) {
         System.out.println("This does nothing.");
     }
 
     // This method is overridden in the Hero class
-    public void dropItem(Command command) {
+    void dropItem(Command command) {
         System.out.println("This does nothing.");
     }
     
     // This method is overridden in the Hero class
-    public void look(Command command) {
+    void look(Command command) {
         System.out.println("This does nothing.");
     }
     
     // This method is overridden in the Hero class
-    public void peek(Command command) {
+    void peek(Command command) {
         System.out.println("This does nothing.");
     }
     
     // This method is overridden in the Hero class
-    public double use(Command command) {
+    double use(Command command) {
         System.out.println("This does nothing.");
         return -1;
     }
     
     // This method is overridden in the Hero class
-    public void lock(Command command) {
+    void lock(Command command) {
         System.out.println("This does nothing.");
     }
     
     // This method is overridden in the Hero class
-    public void unlock(Command command) {
+    void unlock(Command command) {
         System.out.println("This does nothing.");
     }
     
     // (£) This method increases the character's initiative
-    public void stay(Command command) {
+    void stay(Command command) {
         this.characterInitiative += 10 * this.speedFactor;
     }
 
     // This method returns the current room of the character
-    public Room getCurrentRoom() {
+    Room getCurrentRoom() {
         return currentRoom;
     }
 
     // This method sets the current room of the character to the specfied room
-    public void setCurrentRoom(Room currentRoom) {
+    void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
 
     // This method returns the character's initiative
-    public double getCharacterInitiative() {
+    double getCharacterInitiative() {
         return characterInitiative;
     }
 
     // This method sets the character's initiative to the specified value
-    public void setCharacterInitiative(double characterInitiative) {
+    void setCharacterInitiative(double characterInitiative) {
         this.characterInitiative = characterInitiative;
     }
 
     // This method returns the character's speed factor
-    public double getSpeedFactor() {
+    double getSpeedFactor() {
         return speedFactor;
     }
 
     // This method sets the character's speed factor to the specified value
-    public void setSpeedFactor(double speedFactor) {
+    void setSpeedFactor(double speedFactor) {
         this.speedFactor = speedFactor;
     }
 
     // This method returns the character's direction
-    public String getDirection() {
+    String getDirection() {
         return direction;
     }
 
     // This method sets the character's direction to the specified string
-    public void setDirection(String direction) {
+    void setDirection(String direction) {
         this.direction = direction;
     }
 
     // This method is overridden in the Hero, TechDude, and Zuul classes
-    public Command getCommand(CommandWords commands, String GUICommand) {
+    Command getCommand(CommandWords commands, String GUICommand) {
         String word1 = null;
         String word2 = null;
         String word3 = null;
@@ -175,33 +175,33 @@ public class Character {
     }
 
     // This method returns the name of the character
-    public String getName() {
+    String getName() {
         return name;
     }
     
     // (£) This method is overridden in the Hero class
-    public double activate(Command Command, boolean reactorActivated) {
+    double activate(Command Command, boolean reactorActivated) {
         System.out.println("You are not a hero and therefore cannot activate things.");
         return Double.MAX_VALUE;
     }
     
     // This method is overridden in the TechDude class
-    public void followsHero(Character hero, boolean follows){
+    void followsHero(Character hero, boolean follows){
     }
 
-    public int getHostility() {
+    int getHostility() {
         return hostility;
     }
 
-    public void setHostility(int hostility) {
+    void setHostility(int hostility) {
         this.hostility = hostility;
     }
     
-    public boolean isFollowsHero(){
+    boolean isFollowsHero(){
         return false;
     }
     
-    public String kill(){
+    String kill(){
         
         return "derp";
     }
