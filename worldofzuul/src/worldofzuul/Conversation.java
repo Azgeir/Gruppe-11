@@ -28,7 +28,7 @@ public class Conversation {
     final String LETSGO = "Let's go!";
     final String FUCKOFF = "Fuck off.";
     
-    public void options(String string){
+    void options(String string){
         if (string == null){
             System.out.println("String is null");
         }
@@ -55,7 +55,7 @@ public class Conversation {
                 break;
         }
     }
-    public void talk(String string){
+    void talk(String string){
         if (string == null){
             System.out.println("String is null");
         }

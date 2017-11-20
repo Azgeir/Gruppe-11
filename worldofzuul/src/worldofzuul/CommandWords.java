@@ -15,7 +15,7 @@ public class CommandWords
     private HashMap<String, CommandWord> validCommands; // HashMap of valid commands
 
     // This constructor creates an instance of CommandWords
-    public CommandWords()
+    CommandWords()
     {
         // Create a HashMap with valid commands
         validCommands = new HashMap<String, CommandWord>();
@@ -30,7 +30,7 @@ public class CommandWords
     }
 
     // This method returns the CommandWord associated with the command string
-    public CommandWord getCommandWord(String commandWord)
+    CommandWord getCommandWord(String commandWord)
     {
         // Assign the CommandWord associated with the commandWord string to the variable command.
         CommandWord command = validCommands.get(commandWord);
@@ -45,13 +45,13 @@ public class CommandWords
     }
     
     // This method checks if a specified string is associated with a valid command in the HashMap.
-    public boolean isCommand(String aString)
+    boolean isCommand(String aString)
     {
         return validCommands.containsKey(aString);
     }
 
     // This method prints the valid commands.
-    public void showAll() 
+    void showAll() 
     {
         // Traverse all command strings in the HashMap of valid commands.
         for(String command : validCommands.keySet()) {
