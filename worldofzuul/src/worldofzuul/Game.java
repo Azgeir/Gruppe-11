@@ -4,6 +4,8 @@ package worldofzuul;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
+import java.util.Map.Entry;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -17,11 +19,13 @@ public class Game {
     // ArrayList is chosen because it allows us to know which character is chosen when the initiative is the same.
     private ArrayList<Character> characters = new ArrayList<>(); // This is an arraylist because it offer a simple way to break an initiative tie in a predefined way
     private Character currentCharacter;
-    private HashMap<String, Room> characterStartRooms = new HashMap<>();
+    private HashMap<String, Room> characterStartRooms;
     private Room winConditionRoom;
     private double maxInititative = Double.MAX_VALUE;
     private boolean reactorActivated = false;
     private boolean finished;
+    private int timeSinceSpawn;
+    private int spawnTime;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     Game() {
@@ -29,6 +33,14 @@ public class Game {
     }
     
     Game(int numberOfZuul) {
+        this(numberOfZuul,200);
+    }
+    
+    Game(int numberOfZuul, int spawnTime){
+        this.finished = false;
+        this.timeSinceSpawn = 0;
+        this.spawnTime = spawnTime;
+        this.characterStartRooms = new HashMap<>();
         //Create all rooms by calling the createRooms method
         createRooms();
         // Create the characters by calling the createCharacter() method
@@ -38,7 +50,7 @@ public class Game {
         this.printWelcome();
         // Select current character
         this.currentCharacter = this.chooseCharacter();
-        this.finished = false;
+       
     }
 
     // This method creates the rooms of the game.
@@ -241,6 +253,29 @@ public class Game {
         characterStartRooms.put("Computer", computerRoom);
         characterStartRooms.put("Control", controlRoom);
         characterStartRooms.put("Dorm", dormitory);
+        characterStartRooms.put("Biolab", biologyLaboratory);
+        characterStartRooms.put("Storage", storage);
+        characterStartRooms.put("Medbay", medicalBay);
+        characterStartRooms.put("Physicslab", physicsLaboratory);
+        characterStartRooms.put("Dock", dock);
+        characterStartRooms.put("Control", controlRoom);
+        characterStartRooms.put("Reactor", reactor);
+        characterStartRooms.put("ReactorBio", hallwayReactorBiology);
+        characterStartRooms.put("ReactorControl", hallwayReactorControl);
+        characterStartRooms.put("ReactorDock", hallwayReactorDock);
+        characterStartRooms.put("ReactorPhysics", hallwayReactorPhysics);
+        characterStartRooms.put("ReactorDorm", hallwayReactorDormitory);
+        characterStartRooms.put("ReactorMedBay", hallwayReactorMedical);
+        characterStartRooms.put("ReactorStorage", hallwayReactorStorage);
+        characterStartRooms.put("ReactorComputer", hallwayReactorComputer);
+        characterStartRooms.put("StorageComputer",hallwayStorageComputer);
+        characterStartRooms.put("ComputerBiolab",hallwayComputerBiology);
+        characterStartRooms.put("BiolabControl",hallwayBiologyControl);
+        characterStartRooms.put("ControlDock",hallwayControlDock);
+        characterStartRooms.put("DockPhysicslab",hallwayDockPhysics);
+        characterStartRooms.put("PhysicslabDorm",hallwayPhysicsDormitory);
+        characterStartRooms.put("DormMedBay",hallwayDormitoryMedical);
+        characterStartRooms.put("MedBayStorage",hallwayMedicalStorage);
 
         // Set the value of the win condition
         winConditionRoom = escapePod;
@@ -400,6 +435,17 @@ public class Game {
         }
         this.characters.add(new TechDude(characterStartRooms.get("Control"), "TechDude", 0.5));
     }
+    
+    private void timeAddedZuul(){
+        if (this.timeSinceSpawn>spawnTime) {
+            Room randomRoom = this.randomRoom();
+            this.characters.add(new Zuul(randomRoom,"Zuul",1.15));
+            this.timeSinceSpawn -= spawnTime;
+        }
+        else {
+            this.timeSinceSpawn += currentCharacter.getCharacterInitiative();
+        }
+    }
 
     // This method plays the game
     void play(String GUICommand) {
@@ -416,7 +462,10 @@ public class Game {
             Command command = parser.getCommand(this.currentCharacter, GUICommand);
             // Process command
             finished = processCommand(command);
-            // Check if player lost game because they met Zuul
+
+            if (currentCharacter.getName().equals("Hero")) {
+                this.timeAddedZuul();
+            }
             
             // Check if player lost game because of reactor
             if (!finished) {
@@ -887,6 +936,20 @@ public class Game {
 
     public boolean isFinished() {
         return finished;
+    }
+    
+    private Room randomRoom(){
+        ArrayList<Entry<String,Room>> derp = new ArrayList<>(this.characterStartRooms.entrySet());
+//        this.characterStartRooms.e
+        
+//        Object[] temp = this.characterStartRooms.keySet().toArray();
+//        String[] roomKeys = (String[])temp;
+        int randomRoomKeyIndex = (int)(Math.random()*derp.size());
+//        String randomRoomKey = roomKeys[randomRoomKeyIndex];
+
+        Room herp = derp.get(randomRoomKeyIndex).getValue();
+        
+        return herp;
     }
     
     
