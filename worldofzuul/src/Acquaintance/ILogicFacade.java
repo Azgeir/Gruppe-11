@@ -29,4 +29,10 @@ public interface ILogicFacade {
     
     Set<String> getInventorySet();
     
+    void loadGame();
+    
+    void loadHighscore();
+    
+    void saveGame();
+    
 }

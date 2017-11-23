@@ -12,5 +12,12 @@ package Acquaintance;
 public interface IDataFacade {
     
     void loadGame();
+ 
+    void saveGame(IGame game);
     
+    void saveHighscore();
+    
+    
+    void loadHighscore();
+      
 }

@@ -13,7 +13,7 @@ import java.util.Set;
  */
 public class LogicFacade implements ILogicFacade{
     
-    private IDataFacade data;
+    private static IDataFacade data;
     Game game;
     
     @Override
@@ -31,26 +31,31 @@ public class LogicFacade implements ILogicFacade{
         game.play(command);
     }
     
+    @Override
     public Set<String> getExits(){
         Set<String> exits = game.getCurrentCharacter().getCurrentRoom().getExits().keySet();
         return exits;
     }
     
+    @Override
     public Set<String> getRoomItemSet(){
         Set<String> itemSet = game.getCurrentCharacter().getCurrentRoom().getInventory().listItems();
         return itemSet;
     }
     
+    @Override
     public boolean isRoomLookedBefore(){
         boolean lookedBefore = game.getCurrentCharacter().getCurrentRoom().isHasBeenLookedUpon();
         return lookedBefore;
     }
     
+    @Override
     public boolean isGameFinished(){
         boolean finished = game.isFinished();
         return finished;
     }
     
+    @Override
     public Set<String> getInventorySet(){
         Set<String> inventorySet;
         if (game.getCurrentCharacter().getName().equals("Hero")) {
@@ -66,4 +71,21 @@ public class LogicFacade implements ILogicFacade{
         return inventorySet;
     }
     
+    @Override
+    public void loadGame(){
+        data.loadGame();
+    }
+    
+    @Override
+    public void loadHighscore(){
+        data.loadHighscore();
+    }
+    @Override
+    public void saveGame(){
+        data.saveGame(game);
+        
+    }
+    static void saveHighscore(){
+        data.saveHighscore();
+    }
 }

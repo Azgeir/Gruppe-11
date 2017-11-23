@@ -57,5 +57,13 @@ public class GUIFacade implements IGUIFacade  {
        Set<String> inventorySet = logic.getInventorySet();
        return inventorySet;
    }
-   
+   static void saveGame(){
+       logic.saveGame();
+   }
+   static void loadGame(){
+       logic.loadGame();
+   }
+   static void loadHighscore(){
+       logic.loadHighscore();
+   }
 }

@@ -1,6 +1,7 @@
 package worldofzuul;
 // Imports:
 
+import Acquaintance.IGame;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,7 +13,7 @@ import java.util.Map.Entry;
  * @version 2006.03.30
  */
 // This class runs the main functionality of the game.
-public class Game {
+public class Game implements IGame{
 
     // Data fields:
     private Parser parser;
