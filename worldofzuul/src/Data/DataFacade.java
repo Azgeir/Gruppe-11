@@ -13,4 +13,24 @@ import Acquaintance.IDataFacade;
  */
 public class DataFacade implements IDataFacade {
     
+    private Data data;
+    
+    public DataFacade(){
+        data = new Data();
+    }
+    
+    @Override
+    public void loadGame(){
+        
+        data.loadGame();
+    }
+    
+    @Override
+    
+    @Override
+    
+    @Override
+    
+
+    
 }

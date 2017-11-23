@@ -9,8 +9,6 @@ package Acquaintance;
  *
  * @author HCHB
  */
-public interface IDataFacade {
-    
-    void loadGame();
+public interface IGame {
     
 }
