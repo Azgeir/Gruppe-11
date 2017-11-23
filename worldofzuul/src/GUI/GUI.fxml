@@ -83,9 +83,9 @@
       </GridPane>
       <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
         <content>
-          <AnchorPane prefHeight="1709.0" prefWidth="1766.0">
+          <AnchorPane>
                <children>
-                  <AnchorPane prefHeight="1709.0" prefWidth="1766.0">
+                  <AnchorPane>
                      <children>
                         <BorderPane layoutX="309.0" layoutY="128.0" maxHeight="30.0" maxWidth="301.0" minHeight="30.0" minWidth="301.0" prefHeight="30.0" prefWidth="301.0" rotate="-16.0" style="-fx-border-color: black;">
                            <bottom>

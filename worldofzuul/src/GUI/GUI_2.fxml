@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="1709.0" prefWidth="1766.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GUIController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GUIController">
    <children>
       <BorderPane layoutX="309.0" layoutY="128.0" maxHeight="30.0" maxWidth="301.0" minHeight="30.0" minWidth="301.0" prefHeight="30.0" prefWidth="301.0" rotate="-16.0" style="-fx-border-color: black;">
          <bottom>
