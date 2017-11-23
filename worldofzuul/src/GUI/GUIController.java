@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.FlowPane;
 import worldofzuul.Game;
 
 /**
@@ -21,8 +22,6 @@ import worldofzuul.Game;
  */
 public class GUIController {
 
-    @FXML
-    private TextArea output;
     @FXML
     private ChoiceBox<String> useDropDown;
     @FXML
@@ -62,6 +61,8 @@ public class GUIController {
     private ChoiceBox<String> GoDropDown;
     @FXML
     private Button lockButton;
+    @FXML
+    private FlowPane characterflowPaneComputer;
 
     public void initialize() {
         // TODO

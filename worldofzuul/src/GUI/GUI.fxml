@@ -157,7 +157,7 @@
                            <center>
                               <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                                    <FlowPane fx:id="characterflowPaneComputer" prefHeight="200.0" prefWidth="200.0" />
                                  </children>
                               </StackPane>
                            </center>
