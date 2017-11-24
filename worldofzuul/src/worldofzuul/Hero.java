@@ -41,6 +41,47 @@ public class Hero extends Character {
         this.inventory = new Inventory(capacity);
     }
 
+    @Override
+    void go(Command command) {
+        // If the command does not have a second word, print error message
+        if (!command.hasSecondWord()) {
+            System.out.println("Go where?");
+            return;
+        }
+
+        // Set the direction string to the second word of the command
+        String direction = command.getSecondWord();
+
+        // Set nextRoom to be the neighbouring room specified by the direction string
+        Room nextRoom = this.getCurrentRoom().getExit(direction);
+
+        // If the specified exit does not exist, print error message
+        if (nextRoom == null) {
+            System.out.println("There is no door!");
+        } 
+        // If the specified exit is locked, print error message
+        else if (this.getCurrentRoom().getLockedExit(direction)){
+            System.out.println("This exit is locked, so you can't get through.");
+        }
+        // If the specified exit exists and is not locked, move character
+        else {
+            // Remove character from current room
+            this.getCurrentRoom().setHasCharacter(this.getName(), false);
+            // Change the value of currentRoom to the specified neighbouring room
+            this.setCurrentRoom(nextRoom);
+            // Add character to the new current room
+            this.getCurrentRoom().setHasCharacter(this.getName(), true);
+            // Print description of the current room
+            System.out.println(this.getCurrentRoom().getLongDescription());
+        }
+        
+        if (this.getCurrentRoom().getHasCharacter("Zuul")){
+            System.out.println("The Zuul is in this room.");
+        }
+        
+        this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
+    }
+    
     //Transfers an Item from the rooms inventory to the characters inventory
     @Override
     void pickUp(Command command) {
