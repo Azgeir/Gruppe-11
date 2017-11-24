@@ -34,8 +34,7 @@ public enum CommandWord implements Serializable
      * 
      * @param commandString 
      */
-    CommandWord(String commandString)
-    {
+    CommandWord(String commandString) {
         this.commandString = commandString;
     }
     
@@ -45,8 +44,7 @@ public enum CommandWord implements Serializable
      * @return commandString
      */
     @Override
-    public String toString()
-    {
+    public String toString() {
         return commandString;
     }
 }
