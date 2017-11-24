@@ -10,7 +10,8 @@ import java.io.Serializable;
 
 /**
  * This class represents a character. This is the superclass for Hero, TechDude,
- * and Zuul.
+ * and Zuul. The class implements the interface Serializable, which is used for
+ * saving the game.
  * 
  * @author HCHB
  */
@@ -20,13 +21,13 @@ public class Character implements Serializable {
     /**
      * Data fields.
      * currentRoom: character's current room
-     * characterInitiative: used to determine turn
+     * characterInitiative: used to determine whose turn it is
      * speedFactor: used to update character initiative
      * name: used to identify character type in other classes
      * hostility: used when conversing with a character (currently only used for
-     * TechDude, but is put in Character class to allow future development of
+     * TechDude, but it is put in Character to allow future development of
      * characters that the player can converse with).
-     * message: used for various purposes (?)
+     * message: used for various purposes throughout the game
      */
     private Room currentRoom;
     private double characterInitiative;
@@ -73,52 +74,25 @@ public class Character implements Serializable {
     }
 
     /**
-     * This method is called from processCommand() in Game when a character
-     * tries to go from one room to another.
+     * This method is called from processCommand() in Game in response to a
+     * "go" command. This method is overridden in Hero, TechDude, and Zuul,
+     * and thus is never called from Character.
      * 
-     * @param command 
+     * @param command represents the command being executed whose commandWord
+     * is "go".
      */
     void go(Command command) {
         System.out.println("This does nothing.");
     }
 
-//    // This method is overridden in the Hero class
-//    void pickUp(Command command) {
-//        System.out.println("This does nothing.");
-//    }
-
-//    // This method is overridden in the Hero class
-//    void dropItem(Command command) {
-//        System.out.println("This does nothing.");
-//    }
-    
-//    // This method is overridden in the Hero class
-//    void look(Command command) {
-//        System.out.println("This does nothing.");
-//    }
-    
-//    // This method is overridden in the Hero class
-//    void peek(Command command) {
-//        System.out.println("This does nothing.");
-//    }
-//    
-//    // This method is overridden in the Hero class
-//    double use(Command command) {
-//        System.out.println("This does nothing.");
-//        return -1;
-//    }
-    
-//    // This method is overridden in the Hero class
-//    void lock(Command command) {
-//        System.out.println("This does nothing.");
-//    }
-    
-//    // This method is overridden in the Hero class
-//    void unlock(Command command) {
-//        System.out.println("This does nothing.");
-//    }
-//    
-    // (£) This method increases the character's initiative
+    /**
+     * This method is called from processCommand() in Game in response to a
+     * "stay" command. The method increases the character's initiative, 
+     * simulating the act of staying in the current room.
+     * 
+     * @param command represents the command being executed whose commandWord
+     * is "stay".
+     */
     void stay(Command command) {
         this.characterInitiative += 10 * this.speedFactor;
     }
@@ -166,16 +140,6 @@ public class Character implements Serializable {
         return name;
     }
     
-//    // (£) This method is overridden in the Hero class
-//    double activate(Command Command, boolean reactorActivated) {
-//        System.out.println("You are not a hero and therefore cannot activate things.");
-//        return Double.MAX_VALUE;
-//    }
-    
-//    // This method is overridden in the TechDude class
-//    void followsHero(Character hero, boolean follows){
-//    }
-
     int getHostility() {
         return hostility;
     }
@@ -183,16 +147,7 @@ public class Character implements Serializable {
     void setHostility(int hostility) {
         this.hostility = hostility;
     }
-//    
-//    boolean isFollowsHero(){
-//        return false;
-//    }
-    
-//    // This method is to be moved to the Zuul class
-//    private void kill(){
-//        
-//    }
-    
+  
     // This method is overridden in Zuul, Hero and TechDude
     public double performCommand(Command command) {
         return 0;
