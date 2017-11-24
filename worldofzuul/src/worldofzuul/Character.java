@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package worldofzuul;
 
 /**
- *
+ * This class represents a character.
+ * 
  * @author HCHB
  */
-// This class represents a character
+
 public class Character {
 
     /*
     Data fields:
-    Initiative needs to be double because the speedfactor
-    is a double
-    Direction is needed for locking doors and peeking
+    Initiative needs to be double because the speed factor is a double.
      */
     private Room currentRoom;
     private double characterInitiative;
     private double speedFactor;
-    private String direction;
+    // private String direction; // (?)
     private String name;
     private int hostility;
 
@@ -156,15 +156,15 @@ public class Character {
         this.speedFactor = speedFactor;
     }
 
-    // This method returns the character's direction
-    String getDirection() {
-        return direction;
-    }
-
-    // This method sets the character's direction to the specified string
-    void setDirection(String direction) {
-        this.direction = direction;
-    }
+//    // This method returns the character's direction
+//    String getDirection() {
+//        return direction;
+//    }
+//
+//    // This method sets the character's direction to the specified string
+//    void setDirection(String direction) {
+//        this.direction = direction;
+//    }
 
     // This method is overridden in the Hero, TechDude, and Zuul classes
     Command getCommand(CommandWords commands, String GUICommand) {
