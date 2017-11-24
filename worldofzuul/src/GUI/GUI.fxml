@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-<GridPane prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GUIController">
+<GridPane fx:id="outerSpace" prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GUIController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -86,7 +86,7 @@
         <content>
           <AnchorPane>
                <children>
-                  <AnchorPane>
+                  <AnchorPane fx:id="innerSpace">
                      <children>
                         <BorderPane layoutX="309.0" layoutY="128.0" maxHeight="30.0" maxWidth="301.0" minHeight="30.0" minWidth="301.0" prefHeight="30.0" prefWidth="301.0" rotate="-16.0" style="-fx-border-color: black;">
                            <bottom>
