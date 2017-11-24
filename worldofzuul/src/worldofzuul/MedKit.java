@@ -5,13 +5,15 @@
  */
 package worldofzuul;
 
+import java.io.Serializable;
+
 /**
  *
  * @author laurabrinkholmjustesen
  */
 
 // This class represents a MedKit item.
-public class MedKit extends Item {
+public class MedKit extends Item implements Serializable {
     // Data fields:
     private int healthAmount; // Health points added to player's health when used
     

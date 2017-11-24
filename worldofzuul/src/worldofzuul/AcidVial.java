@@ -6,6 +6,8 @@
 
 package worldofzuul;
 
+import java.io.Serializable;
+
 /**
  * This class represents an acid vial. The item is used to attack the Zuul,
  * which gives the player a chance to escape. The class extends the superclass
@@ -14,7 +16,7 @@ package worldofzuul;
  * @author laurabrinkholmjustesen
  */
 
-public class AcidVial extends Item {
+public class AcidVial extends Item implements Serializable {
     
     /**
      * Data fields.

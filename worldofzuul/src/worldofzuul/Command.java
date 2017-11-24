@@ -1,12 +1,14 @@
 package worldofzuul;
 
+import java.io.Serializable;
+
 /** 
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
 
 // This class represents a command in the game.
-public class Command
+public class Command implements Serializable
 {
     // Data fields:
     private CommandWord commandWord; // The command's command word

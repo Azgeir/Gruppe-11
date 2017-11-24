@@ -15,10 +15,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GUIController">
    <children>
-      <GridPane fx:id="outerSpace" disable="true" prefHeight="750.0" prefWidth="750.0" visible="false">
+      <GridPane fx:id="outerSpace" disable="true" prefHeight="750.0" prefWidth="750.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -1543,7 +1542,7 @@
         </rowConstraints>
          <children>
             <Button mnemonicParsing="false" onAction="#startButtonActionEvent" text="Start" GridPane.halignment="CENTER" />
-            <Button mnemonicParsing="false" text="Load" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#loadButtonActionEvent" text="Load" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Slider GridPane.rowIndex="2" />
             <Slider GridPane.rowIndex="3" />
          </children>

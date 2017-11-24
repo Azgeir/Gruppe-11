@@ -6,13 +6,15 @@
 
 package worldofzuul;
 
+import java.io.Serializable;
+
 /**
  * This class represents a character.
  * 
  * @author HCHB
  */
 
-public class Character {
+public class Character implements Serializable {
 
     /*
     Data fields:

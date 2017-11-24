@@ -5,13 +5,15 @@
  */
 package worldofzuul;
 
+import java.io.Serializable;
+
 /**
  *
  * @author laurabrinkholmjustesen
  */
 
 // This class represents an item in the game.
-public class Item {
+public class Item implements Serializable {
     // Data fields:
     private int weight; // The weight of the item
     private String name; // The name of the item

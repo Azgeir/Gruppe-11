@@ -73,7 +73,7 @@ public class LogicFacade implements ILogicFacade{
     
     @Override
     public void loadGame(){
-        data.loadGame();
+        game = (Game)data.loadGame();
     }
     
     @Override
@@ -82,9 +82,9 @@ public class LogicFacade implements ILogicFacade{
     }
     @Override
     public void saveGame(){
-        data.saveGame(game);
-        
+        data.saveGame(this.game);
     }
+    
     static void saveHighscore(){
         data.saveHighscore();
     }

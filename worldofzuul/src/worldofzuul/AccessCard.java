@@ -6,6 +6,8 @@
 
 package worldofzuul;
 
+import java.io.Serializable;
+
 /**
  * This class represents an access card. The item is used to lock and unlock
  * doors in the game. The class extends the superclass Item.
@@ -13,7 +15,7 @@ package worldofzuul;
  * @author HCHB
  */
 
-public class AccessCard extends Item {
+public class AccessCard extends Item implements Serializable {
     
     /**
      * This constructor creates an instance of AccessCard with default weight, 

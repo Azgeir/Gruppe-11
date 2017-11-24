@@ -5,13 +5,14 @@
  */
 package worldofzuul;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author HCHB
  */
-public class Zuul extends Character {
+public class Zuul extends Character implements Serializable {
     
     private String previousRoomName;
     private ArrayList<String> triedLockedExits = new ArrayList<>();
