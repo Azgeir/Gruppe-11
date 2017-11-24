@@ -29,7 +29,11 @@ public class AcidVial extends Item {
         this.initiativeReduction = initiativeReduction;
     }
 
-    // This constructor creates an acid vial with a specified damage amount
+    /*
+    This constructor creates an acid vial with a specified damage amount. This
+    constructor is not currently used, but it is included to allow for future
+    use.
+    */
     AcidVial(int damageAmount) {
         super(5, "acidvial", "attack something.");
         this.damageAmount = damageAmount;
@@ -37,7 +41,8 @@ public class AcidVial extends Item {
     
     /*
     This constructor creates an acid vial with a default damage amount and
-    intiative reduction
+    intiative reduction. This constructor is not currently used, but it is
+    included to allow for future use.
     */
     AcidVial() {
         super(5, "acidvial", "attack something.");
