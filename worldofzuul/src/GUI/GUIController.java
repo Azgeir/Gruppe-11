@@ -78,8 +78,6 @@ public class GUIController {
     @FXML
     private ImageView TestImageView;
     @FXML
-    private ImageView ImageViewZuul;
-    @FXML
     private BorderPane RoomComputer;
     @FXML
     private StackPane RoomComputerStackPane;
@@ -87,6 +85,8 @@ public class GUIController {
     private GridPane outerSpace;
     @FXML
     private AnchorPane innerSpace;
+    @FXML
+    private GridPane startScreen;
 
     public void initialize() {
         // TODO
@@ -119,7 +119,7 @@ public class GUIController {
 //        this.TestImageView.setImage(herp);
         derp.setFitHeight(200);
         derp.setFitWidth(200);
-        this.characterflowPaneComputer.getChildren().add(this.ImageViewZuul); // defined in scene builder
+//////        this.characterflowPaneComputer.getChildren().add(this.ImageViewZuul); // defined in scene builder
 //        this.TestImageView.setImage(herp); // defined in scene builder
 //        this.RoomComputer.getChildren().add(derp);
 //        this.RoomComputerStackPane.getChildren().add(derp);
@@ -382,6 +382,16 @@ public class GUIController {
             this.useDropDown.setDisable(true);
             this.lockButton.setDisable(true);
         }
+    }
+
+    @FXML
+    private void startButtonActionEvent(ActionEvent event) {
+        this.startScreen.setDisable(true);
+        this.startScreen.setVisible(false);
+        this.outerSpace.setDisable(false);
+        this.outerSpace.setVisible(true);
+        
+        
     }
 
 }
