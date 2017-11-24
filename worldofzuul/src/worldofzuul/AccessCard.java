@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @author HCHB
  */
 
-public class AccessCard extends Item implements Serializable {
+class AccessCard extends Item implements Serializable {
     
     /**
      * This constructor creates an instance of AccessCard with default weight, 
