@@ -106,10 +106,14 @@ public class GUIController {
         
         useDropDown.getItems().addAll(inventorySet);
         
+        Image buttons = new Image("Pictures/buttons.png");
         Image stars = new Image("Pictures/Stars.jpg");
         BackgroundImage starsBackground = new BackgroundImage(stars, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage buttonBackground = new BackgroundImage(buttons, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         BackgroundImage[] starsBackgroundArray = {starsBackground};
         
+        BackgroundImage[] buttonBackgroundArray = {buttonBackground};
+        this.outerSpace.setBackground(new Background(buttonBackgroundArray));
         this.innerSpace.setBackground(new Background(starsBackgroundArray));
         this.startScreen.setBackground(new Background(starsBackgroundArray));
 

@@ -9,82 +9,75 @@ package worldofzuul;
 import java.io.Serializable;
 
 /**
- * This class represents a character.
+ * This class represents a character. This is the superclass for Hero, TechDude,
+ * and Zuul.
  * 
  * @author HCHB
  */
 
 public class Character implements Serializable {
 
-    /*
-    Data fields:
-    Initiative needs to be double because the speed factor is a double.
+    /**
+     * Data fields.
+     * currentRoom: character's current room
+     * characterInitiative: used to determine turn
+     * speedFactor: used to update character initiative
+     * name: used to identify character type in other classes
+     * hostility: used when conversing with a character (currently only used for
+     * TechDude, but is put in Character class to allow future development of
+     * characters that the player can converse with).
      */
     private Room currentRoom;
     private double characterInitiative;
     private double speedFactor;
-    // private String direction; // (?)
     private String name;
     private int hostility;
 
-    // This constructor creates a character with default initiative and speed factor
+    /**
+     * This constructor creates a character with default initiative and speed
+     * factor.
+     */
     Character() {
         this.characterInitiative = 0;
         this.speedFactor = 1;
     }
 
-    // This constructor creates a character with the specified current room and name
+    /**
+     * This constructor creates a character with the specified current room and
+     * name. The character has default character initiative and speed factor via
+     * constructor chaining.
+     * 
+     * @param currentRoom indicates current room of character.
+     * @param name indicates character type.
+     */
     Character(Room currentRoom, String name) {
         this();
         this.currentRoom = currentRoom;
         this.name = name;
     }
 
-    // This constructor creates a character with the specified current room, name, and speed factor
+    /**
+     * This constructor creates a character with the specified current room,
+     * name, and speed factor. The character has default character initiative 
+     * (via constructor chaining), while the default speed factor is overwritten.
+     * 
+     * @param currentRoom indicates current room of character.
+     * @param name indicates character type.
+     * @param speedFactor used to update character initiative during game play.
+     */
     Character(Room currentRoom, String name, double speedFactor) {
         this(currentRoom, name);
         this.speedFactor = speedFactor;
     }
 
-    //£ just copied from sourcecode Game.goRoom
+    /**
+     * This method is called from processCommand() in Game when a character
+     * tries to go from one room to another.
+     * 
+     * @param command 
+     */
     void go(Command command) {
-        // If the command does not have a second word, print error message
-        if (!command.hasSecondWord()) {
-            System.out.println("Go where?");
-            return;
-        }
-
-        // Set the direction string to the second word of the command
-        String direction = command.getSecondWord();
-
-        // Set nextRoom to be the neighbouring room specified by the direction string
-        Room nextRoom = this.currentRoom.getExit(direction);
-
-        // If the specified exit does not exist, print error message
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        } 
-        // If the specified exit is locked, print error message
-        else if (this.getCurrentRoom().getLockedExit(direction)){
-            System.out.println("This exit is locked, so you can't get through.");
-        }
-        // If the specified exit exists and is not locked, move character
-        else {
-            // Remove character from current room
-            this.getCurrentRoom().setHasCharacter(this.name, false);
-            // Change the value of currentRoom to the specified neighbouring room
-            this.currentRoom = nextRoom;
-            // Add character to the new current room
-            this.getCurrentRoom().setHasCharacter(this.name, true);
-            // Print description of the current room
-            System.out.println(currentRoom.getLongDescription());
-        }
-        
-        if (this.getCurrentRoom().getHasCharacter("Zuul")){
-            System.out.println("The Zuul is in this room.");
-        }
-        
-        this.characterInitiative += 10 * this.speedFactor;
+        System.out.println("This does nothing.");
     }
 
     // This method is overridden in the Hero class
@@ -158,16 +151,6 @@ public class Character implements Serializable {
         this.speedFactor = speedFactor;
     }
 
-//    // This method returns the character's direction
-//    String getDirection() {
-//        return direction;
-//    }
-//
-//    // This method sets the character's direction to the specified string
-//    void setDirection(String direction) {
-//        this.direction = direction;
-//    }
-
     // This method is overridden in the Hero, TechDude, and Zuul classes
     Command getCommand(CommandWords commands, String GUICommand) {
         String word1 = null;
@@ -207,9 +190,4 @@ public class Character implements Serializable {
         
         return "derp";
     }
-    
-    
-    
-    
-    
 }
