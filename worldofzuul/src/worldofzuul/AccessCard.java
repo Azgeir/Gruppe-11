@@ -15,10 +15,10 @@ package worldofzuul;
 
 public class AccessCard extends Item {
     
-    /*
-    This constructor creates an instance of AccessCard with default weight,
-    name, and use description.
-    */
+    /**
+     * This constructor creates an instance of AccessCard with default weight, 
+     * name, and use description via constructor chaining.
+     */
     AccessCard (){
         super(5, "accesscard", "lock and unlock doors");
     }
