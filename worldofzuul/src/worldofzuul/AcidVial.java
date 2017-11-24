@@ -58,8 +58,9 @@ public class AcidVial extends Item {
     /**
      * This method is called when the player tries to use the acid vial. It
      * reduces the player's health, removes the item from the player's
-     * inventory, and increases their initiative. If Zuul is in the room,
-     * its initiative is also increased, giving the player a chance to escape.
+     * inventory, and increases their initiative (because it takes time to throw
+     * an acid vial. If Zuul is in the room, its initiative is also increased,
+     * giving the player a chance to escape.
      * 
      * @param currentCharacter is an instance of Hero. currentCharacter is set
      * to be an instance of Character because...(?) currentCharacter is cast
