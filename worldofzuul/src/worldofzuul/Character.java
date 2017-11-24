@@ -24,12 +24,14 @@ public class Character {
      * hostility: used when conversing with a character (currently only used for
      * TechDude, but is put in Character class to allow future development of
      * characters that the player can converse with).
+     * message: used for various purposes (?)
      */
     private Room currentRoom;
     private double characterInitiative;
     private double speedFactor;
     private String name;
     private int hostility;
+    private String message;
 
     /**
      * This constructor creates a character with default initiative and speed
@@ -78,42 +80,42 @@ public class Character {
         System.out.println("This does nothing.");
     }
 
-    // This method is overridden in the Hero class
-    void pickUp(Command command) {
-        System.out.println("This does nothing.");
-    }
+//    // This method is overridden in the Hero class
+//    void pickUp(Command command) {
+//        System.out.println("This does nothing.");
+//    }
 
-    // This method is overridden in the Hero class
-    void dropItem(Command command) {
-        System.out.println("This does nothing.");
-    }
+//    // This method is overridden in the Hero class
+//    void dropItem(Command command) {
+//        System.out.println("This does nothing.");
+//    }
     
-    // This method is overridden in the Hero class
-    void look(Command command) {
-        System.out.println("This does nothing.");
-    }
+//    // This method is overridden in the Hero class
+//    void look(Command command) {
+//        System.out.println("This does nothing.");
+//    }
     
-    // This method is overridden in the Hero class
-    void peek(Command command) {
-        System.out.println("This does nothing.");
-    }
+//    // This method is overridden in the Hero class
+//    void peek(Command command) {
+//        System.out.println("This does nothing.");
+//    }
+//    
+//    // This method is overridden in the Hero class
+//    double use(Command command) {
+//        System.out.println("This does nothing.");
+//        return -1;
+//    }
     
-    // This method is overridden in the Hero class
-    double use(Command command) {
-        System.out.println("This does nothing.");
-        return -1;
-    }
+//    // This method is overridden in the Hero class
+//    void lock(Command command) {
+//        System.out.println("This does nothing.");
+//    }
     
-    // This method is overridden in the Hero class
-    void lock(Command command) {
-        System.out.println("This does nothing.");
-    }
-    
-    // This method is overridden in the Hero class
-    void unlock(Command command) {
-        System.out.println("This does nothing.");
-    }
-    
+//    // This method is overridden in the Hero class
+//    void unlock(Command command) {
+//        System.out.println("This does nothing.");
+//    }
+//    
     // (£) This method increases the character's initiative
     void stay(Command command) {
         this.characterInitiative += 10 * this.speedFactor;
@@ -162,15 +164,15 @@ public class Character {
         return name;
     }
     
-    // (£) This method is overridden in the Hero class
-    double activate(Command Command, boolean reactorActivated) {
-        System.out.println("You are not a hero and therefore cannot activate things.");
-        return Double.MAX_VALUE;
-    }
+//    // (£) This method is overridden in the Hero class
+//    double activate(Command Command, boolean reactorActivated) {
+//        System.out.println("You are not a hero and therefore cannot activate things.");
+//        return Double.MAX_VALUE;
+//    }
     
-    // This method is overridden in the TechDude class
-    void followsHero(Character hero, boolean follows){
-    }
+//    // This method is overridden in the TechDude class
+//    void followsHero(Character hero, boolean follows){
+//    }
 
     int getHostility() {
         return hostility;
@@ -179,13 +181,30 @@ public class Character {
     void setHostility(int hostility) {
         this.hostility = hostility;
     }
+//    
+//    boolean isFollowsHero(){
+//        return false;
+//    }
     
-    boolean isFollowsHero(){
-        return false;
+//    // This method is to be moved to the Zuul class
+//    private void kill(){
+//        
+//    }
+    
+    // This method is overridden in Zuul, Hero and TechDude
+    public double performCommand(Command command) {
+        return 0;
     }
     
-    String kill(){
-        
-        return "derp";
+    void setMessage(String message) {
+        this.message = message;
+    }
+    
+    String getMessage() {
+        return this.message;
+    }
+    
+    void clearMessage() {
+        this.message = null;
     }
 }

@@ -154,28 +154,54 @@ public class Zuul extends Character {
     }
     
     
-    public String kill(){
+    private void kill(){
         
-        int whichKillMessage = (int)(Math.random()*3);
+        int whichKillMessage = (int)(Math.random() * 3);
         
-        String reason = "lose";
+        this.setMessage("lose");
         
         if (this.getCurrentRoom().getHasCharacter("Hero")){
         switch (whichKillMessage){
             case 1:
-                reason = "lose1";
+                this.setMessage("lose1");
                 break;
             case 2:
-                reason = "lose2";
+                this.setMessage("lose2");
                 break;
             default:
-                reason = "lose3";
+                this.setMessage("lose3");
             }
         }
         
-        this.setCharacterInitiative(this.getCharacterInitiative()+10*this.getSpeedFactor());
+        this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
+    }
+    
+    @Override
+    public double performCommand(Command command) {
+        // Create instance of CommandWord using the command word of the specified command (from Parser)
+        CommandWord commandWord = command.getCommandWord();
         
-        return reason;
+        
+        if (null != commandWord) // Execute the command if the input matches a valid command
+        {
+            switch (commandWord) {
+                // If command is "go", call go() method on current character
+                case GO:
+                    this.go(command);
+                    break;
+                // If command is "stay", call stay() method on current character
+                case STAY:
+                    this.stay(command);
+                    break;
+                case KILL:
+                    this.kill();
+                // If command does not match any of the options, break.
+                default:
+                    break;
+            }
+        }
+        // Return boolean value (false = continue playing; true = quit game)
+        return 0;
     }
     
 }
