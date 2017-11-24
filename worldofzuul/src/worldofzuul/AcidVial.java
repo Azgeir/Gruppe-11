@@ -40,6 +40,7 @@ public class AcidVial extends Item {
     intiative reduction
     */
     AcidVial() {
+        super(5, "acidvial", "attack something.");
         this.damageAmount = 4;
         this.initiativeReduction = 23;
     }
