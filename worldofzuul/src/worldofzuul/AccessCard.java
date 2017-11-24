@@ -8,7 +8,7 @@ package worldofzuul;
 
 /**
  * This class represents an access card. The item is used to lock and unlock
- * doors in the game. The class extends the superclass Item
+ * doors in the game. The class extends the superclass Item.
  * 
  * @author HCHB
  */
