@@ -16,6 +16,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -23,6 +24,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import worldofzuul.Game;
 
@@ -81,6 +83,10 @@ public class GUIController {
     private BorderPane RoomComputer;
     @FXML
     private StackPane RoomComputerStackPane;
+    @FXML
+    private GridPane outerSpace;
+    @FXML
+    private AnchorPane innerSpace;
 
     public void initialize() {
         // TODO
@@ -99,8 +105,14 @@ public class GUIController {
         
         useDropDown.getItems().addAll(inventorySet);
         
-//        File tempFile = new File("Pictures/Zuul.png");
-//        Image herp = new Image(tempFile.toURI().toString());
+        Image stars = new Image("Pictures/Stars.jpg");
+        BackgroundImage starsBackground = new BackgroundImage(stars, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage[] starsBackgroundArray = {starsBackground};
+        
+        this.outerSpace.setBackground(new Background(starsBackgroundArray));
+        this.innerSpace.setBackground(new Background(starsBackgroundArray));
+
+        
         // WORKS
         Image herp = new Image("Pictures/Hero.png");
         ImageView derp = new ImageView(herp);
@@ -128,13 +140,6 @@ public class GUIController {
 //        this.characterflowPaneComputer.setStyle("-fx-background-image: derp");
         
         
-        
-      
-//        this.characterflowPaneComputer.getChildren().add(derp);
-        
-                
-//        this.characterflowPaneComputer.getChildren().add(derp);
-//        
         
     }
 
