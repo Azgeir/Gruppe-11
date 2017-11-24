@@ -8,7 +8,8 @@ package worldofzuul;
 import java.io.Serializable;
 
 /**
- *
+ * This class represents a conversation.
+ * 
  * @author Aske Wulf
  */
 public class Conversation implements Serializable {
@@ -79,5 +80,4 @@ public class Conversation implements Serializable {
                 break;
         }
     }
-
-    }
+}
