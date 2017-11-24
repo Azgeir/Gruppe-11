@@ -31,8 +31,8 @@ public class AccessCard extends Item {
      * player. currentCharacter is defined as an instance of Character as
      * the method setCharacterInitiative() is defined in the Character class.
      * 
-     * @return the double value 0, which will set the value of the variable
-     * zuulInitiativeReduction in processCommand() in the Game class.
+     * @return the double value 0, because this action does not affect Zuul's
+     * initiative.
      */
     @Override // From Item class
     double use(Character currentCharacter){
