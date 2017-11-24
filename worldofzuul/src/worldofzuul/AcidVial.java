@@ -11,7 +11,8 @@ import java.io.Serializable;
 /**
  * This class represents an acid vial. The item is used to attack the Zuul,
  * which gives the player a chance to escape. The class extends the superclass
- * Item.
+ * Item. The class implements the interface Serializable, which allows the game
+ * to be saved.
  * 
  * @author laurabrinkholmjustesen
  */
