@@ -15,6 +15,7 @@ package worldofzuul;
  */
 
 public class AcidVial extends Item {
+    
     /**
      * Data fields.
      * damageAmount: Damage caused to the player when the acid vial is used.
