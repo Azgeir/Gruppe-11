@@ -97,37 +97,68 @@ public class Character implements Serializable {
         this.characterInitiative += 10 * this.speedFactor;
     }
 
-    // This method returns the current room of the character
+    /**
+     * This method returns the current room of the character.
+     * 
+     * @return currentRoom represents the current room of the character.
+     */
     Room getCurrentRoom() {
         return currentRoom;
     }
 
-    // This method sets the current room of the character to the specfied room
+    /**
+     * This method sets the current room of the character to the specified room.
+     * 
+     * @param currentRoom is the new current room of the character.
+     */
     void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
     }
 
-    // This method returns the character's initiative
+    /**
+     * This method returns the character's initiative.
+     * 
+     * @return characterInitiative
+     */
     double getCharacterInitiative() {
         return characterInitiative;
     }
 
-    // This method sets the character's initiative to the specified value
+    /**
+     * This method sets the character's initiative to the specified value.
+     * 
+     * @param characterInitiative is the new value of the character's initiative.
+     */
     void setCharacterInitiative(double characterInitiative) {
         this.characterInitiative = characterInitiative;
     }
 
-    // This method returns the character's speed factor
+    /**
+     * This method returns the character's speed factor.
+     * 
+     * @return speedFactor
+     */
     double getSpeedFactor() {
         return speedFactor;
     }
 
-    // This method sets the character's speed factor to the specified value
+    /**
+     * This method sets the character's speed factor to the specified value.
+     * 
+     * @param speedFactor is the new value of the character's speed factor.
+     */
     void setSpeedFactor(double speedFactor) {
         this.speedFactor = speedFactor;
     }
 
-    // This method is overridden in the Hero, TechDude, and Zuul classes
+    /**
+     * This method is used to get a command. It is overridden in the Hero, 
+     * TechDude, and Zuul classes.
+     * 
+     * @param commands
+     * @param GUICommand
+     * @return 
+     */
     Command getCommand(CommandWords commands, String GUICommand) {
         String word1 = null;
         String word2 = null;
@@ -135,32 +166,65 @@ public class Character implements Serializable {
         return new Command(commands.getCommandWord(word1), word2, word3);
     }
 
-    // This method returns the name of the character
+    /**
+     * This method returns the name of the character.
+     * 
+     * @return name
+     */
     String getName() {
         return name;
     }
     
+    /**
+     * This method returns the character's hostility value.
+     * 
+     * @return hostility
+     */
     int getHostility() {
         return hostility;
     }
 
+    /**
+     * This method sets the character's hostility value.
+     * 
+     * @param hostility 
+     */
     void setHostility(int hostility) {
         this.hostility = hostility;
     }
   
-    // This method is overridden in Zuul, Hero and TechDude
+    /**
+     * This method is used to perform a command. It is overridden in Zuul, Hero
+     * and TechDude.
+     * 
+     * @param command
+     * @return double value depending on the command exectuted.
+     */
     public double performCommand(Command command) {
         return 0;
     }
     
+    /**
+     * This method sets the value of the message.
+     * 
+     * @param message 
+     */
     void setMessage(String message) {
         this.message = message;
     }
     
+    /**
+     * This method returns the value of the message.
+     * 
+     * @return message
+     */
     String getMessage() {
         return this.message;
     }
     
+    /**
+     * This method clears the value of the message.
+     */
     void clearMessage() {
         this.message = null;
     }
