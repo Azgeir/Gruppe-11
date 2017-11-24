@@ -8,7 +8,7 @@ package worldofzuul;
 
 /**
  * This class represents an access card. The item is used to lock and unlock
- * doors in the game. The class extends the superclass Item
+ * doors in the game. The class extends the superclass Item.
  * 
  * @author HCHB
  */
@@ -24,17 +24,17 @@ public class AccessCard extends Item {
     }
     
     /**
-     * This method prints a message when the player tries to use the access card
-     * via the "use" command, and updates the character's initiative.
+     * This method is called when the player tries to use the access card via
+     * the "use" command. The method prints a message and increases the
+     * character's initiative (because it takes time to wave around the access
+     * card).
      * 
      * @param currentCharacter is an instance of Hero, which represents the 
-     * player. currentCharacter is defined as an instance of Character as
-     * the method setCharacterInitiative() is defined in the Character class.
+     * player.
      * 
-     * @return the double value 0, because this action does not affect Zuul's
-     * initiative.
+     * @return 0, because this action does not affect Zuul's initiative.
      */
-    @Override // From Item class
+    @Override // Overridden from Item class
     double use(Hero currentCharacter){
         System.out.println("You wave the access card around.");
         currentCharacter.setCharacterInitiative(
@@ -42,5 +42,4 @@ public class AccessCard extends Item {
             currentCharacter.getSpeedFactor());
         return 0;
     }
-    
 }
