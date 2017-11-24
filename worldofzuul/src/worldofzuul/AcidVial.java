@@ -36,7 +36,7 @@ public class AcidVial extends Item {
     }
     
     /*
-    (£) This constructor creates an acid vial with a default damage amount and
+    This constructor creates an acid vial with a default damage amount and
     intiative reduction
     */
     AcidVial() {
