@@ -25,6 +25,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import worldofzuul.Game;
 
@@ -105,12 +106,16 @@ public class GUIController {
         
         useDropDown.getItems().addAll(inventorySet);
         
+        Image buttons = new Image("Pictures/buttons.png");
         Image stars = new Image("Pictures/Stars.jpg");
         BackgroundImage starsBackground = new BackgroundImage(stars, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage buttonBackground = new BackgroundImage(buttons, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         BackgroundImage[] starsBackgroundArray = {starsBackground};
         
-        this.outerSpace.setBackground(new Background(starsBackgroundArray));
+        BackgroundImage[] buttonBackgroundArray = {buttonBackground};
+        this.outerSpace.setBackground(new Background(buttonBackgroundArray));
         this.innerSpace.setBackground(new Background(starsBackgroundArray));
+        this.startScreen.setBackground(new Background(starsBackgroundArray));
 
         
         // WORKS
@@ -253,16 +258,9 @@ public class GUIController {
 
     @FXML
     private void saveButtonHandler(ActionEvent event) {
-
-//        game.play("save");
-
-//        String command = "save";
-//        GUIFacade.sendCommand(command);
-
-        System.out.println("Save stuff and stuff");
-        
+        GUIFacade.saveGame();
+    
         this.isGameFinished();
-
     }
 
     @FXML
@@ -391,6 +389,20 @@ public class GUIController {
         this.outerSpace.setDisable(false);
         this.outerSpace.setVisible(true);
         
+        
+    }
+
+    @FXML
+    private void loadButtonActionEvent(ActionEvent event) {
+        GUIFacade.loadGame();
+        this.switchScreen(startScreen, outerSpace);
+    }
+    
+    private void switchScreen(Pane from, Pane to){
+        from.setDisable(true);
+        from.setVisible(false);
+        to.setDisable(false);
+        to.setVisible(true);
         
     }
 

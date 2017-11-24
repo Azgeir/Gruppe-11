@@ -47,20 +47,22 @@ public class Data {
         
     }
     
-    void loadGame() {
+    IGame loadGame() {
         FileInputStream fileStream = null;
         ObjectInputStream objectStream = null;
+        IGame game = null;
 
         try {
             fileStream = new FileInputStream(this.saveGameFileName);
             objectStream = new ObjectInputStream(fileStream);
-            IGame game = (IGame) objectStream.readObject();
+            game = (IGame) objectStream.readObject();
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }
 
+        return game;
     }
     
     void loadHighscore(){

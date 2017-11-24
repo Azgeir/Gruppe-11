@@ -5,13 +5,15 @@
  */
 package worldofzuul;
 
+import java.io.Serializable;
+
 /**
  *
  * @author HCHB
  */
 
 // This class represents the tech dude
-public class TechDude extends Character {
+public class TechDude extends Character implements Serializable {
     // Data fields:
     private boolean followsHero = false; // This boolean value indicates if the tech dude has met hero
     private int health = 10; // Tech dude's health

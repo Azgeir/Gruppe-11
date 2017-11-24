@@ -1,12 +1,14 @@
 package worldofzuul;
 
+import java.io.Serializable;
+
 /**
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
 
 // This enum class defines the available command words.
-public enum CommandWord
+public enum CommandWord implements Serializable
 {
     // Available commands:
     GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), PICKUP("pickup"),

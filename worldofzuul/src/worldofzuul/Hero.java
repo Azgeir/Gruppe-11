@@ -6,6 +6,7 @@
 package worldofzuul;
 
 // Imports:
+import java.io.Serializable;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ import java.util.Map.Entry;
  * @author HCHB
  */
 // This class represents the player
-public class Hero extends Character {
+public class Hero extends Character implements Serializable {
 
     // Data fields:
     private int health = 10; // Hero's health

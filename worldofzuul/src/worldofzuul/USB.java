@@ -5,13 +5,15 @@
  */
 package worldofzuul;
 
+import java.io.Serializable;
+
 /**
  *
  * @author laurabrinkholmjustesen
  */
 
 // This class represents a USB item.
-public class USB extends Item {
+public class USB extends Item implements Serializable {
     // Data fields:
     private boolean hasData; // Indicates whether the USB is empty or not
     private String dataType; // Indicates the type of data: biology, physics, monster, or null (for empty USB)

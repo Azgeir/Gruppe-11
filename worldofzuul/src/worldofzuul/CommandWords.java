@@ -1,6 +1,7 @@
 package worldofzuul;
 
 // Import:
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
@@ -9,7 +10,7 @@ import java.util.HashMap;
  */
 
 // This class represents the command words of the game.
-public class CommandWords
+public class CommandWords  implements Serializable
 {
     // Data field:
     private HashMap<String, CommandWord> validCommands; // HashMap of valid commands

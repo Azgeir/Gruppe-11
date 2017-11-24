@@ -21,9 +21,9 @@ public class DataFacade implements IDataFacade {
     }
     
     @Override
-    public void loadGame(){
-        
-        data.loadGame();
+    public IGame loadGame(){
+        IGame game = data.loadGame();
+        return game;
     }
     
     @Override

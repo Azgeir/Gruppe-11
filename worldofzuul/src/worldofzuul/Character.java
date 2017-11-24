@@ -6,6 +6,8 @@
 
 package worldofzuul;
 
+import java.io.Serializable;
+
 /**
  * This class represents a character. This is the superclass for Hero, TechDude,
  * and Zuul.
@@ -13,7 +15,7 @@ package worldofzuul;
  * @author HCHB
  */
 
-public class Character {
+public class Character implements Serializable {
 
     /**
      * Data fields.

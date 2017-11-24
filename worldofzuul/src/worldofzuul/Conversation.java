@@ -5,11 +5,13 @@
  */
 package worldofzuul;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Aske Wulf
  */
-public class Conversation {
+public class Conversation implements Serializable {
     //Techdude conversation
     final String TECHTALK1 = "Is the Zuul gone?";
     final String TECHTALK2 = "The arrival of Zuul has triggered the station's quarantine mechanism,\n"

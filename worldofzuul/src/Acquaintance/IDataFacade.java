@@ -11,7 +11,7 @@ package Acquaintance;
  */
 public interface IDataFacade {
     
-    void loadGame();
+    IGame loadGame();
  
     void saveGame(IGame game);
     
