@@ -74,15 +74,32 @@ public class Character implements Serializable {
     }
 
     /**
-     * This method is called from processCommand() in Game in response to a
-     * "go" command. This method is overridden in Hero, TechDude, and Zuul,
-     * and thus is never called from Character.
+     * This method returns a command. It is overridden in Hero, TechDude, and 
+     * Zuul, so it is never called on Character.
      * 
-     * @param command represents the command being executed whose commandWord
-     * is "go".
+     * @param commands represents the valid commands
+     * @param GUICommand sent from GUI controller, which represents the command
+     * 
+     * @return Command object, which represents the specified command.
      */
-    void go(Command command) {
-        System.out.println("This does nothing.");
+    Command getCommand(CommandWords commands, String GUICommand) {
+        String word1 = null;
+        String word2 = null;
+        String word3 = null;
+        return new Command(commands.getCommandWord(word1), word2, word3);
+    }
+    
+    /**
+     * This method is used to perform a command. It is overridden in Zuul, Hero
+     * and TechDude, so is never called from Character.
+     * 
+     * @param command to be executed
+     * 
+     * @return double value depending on the command being executed (most
+     * commands return 0).
+     */
+    public double performCommand(Command command) {
+        return 0;
     }
 
     /**
@@ -96,11 +113,23 @@ public class Character implements Serializable {
     void stay(Command command) {
         this.characterInitiative += 10 * this.speedFactor;
     }
+    
+    /**
+     * This method is called from processCommand() in Game in response to a
+     * "go" command. This method is overridden in Hero, TechDude, and Zuul,
+     * and is never called from Character.
+     * 
+     * @param command represents the command being executed whose commandWord
+     * is "go".
+     */
+    void go(Command command) {
+        System.out.println("This does nothing.");
+    }
 
     /**
      * This method returns the current room of the character.
      * 
-     * @return currentRoom represents the current room of the character.
+     * @return currentRoom, which represents the current room of the character.
      */
     Room getCurrentRoom() {
         return currentRoom;
@@ -109,7 +138,7 @@ public class Character implements Serializable {
     /**
      * This method sets the current room of the character to the specified room.
      * 
-     * @param currentRoom is the new current room of the character.
+     * @param currentRoom, which is the new current room of the character.
      */
     void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
@@ -127,7 +156,8 @@ public class Character implements Serializable {
     /**
      * This method sets the character's initiative to the specified value.
      * 
-     * @param characterInitiative is the new value of the character's initiative.
+     * @param characterInitiative, which is the new value of the character's
+     * initiative.
      */
     void setCharacterInitiative(double characterInitiative) {
         this.characterInitiative = characterInitiative;
@@ -145,25 +175,10 @@ public class Character implements Serializable {
     /**
      * This method sets the character's speed factor to the specified value.
      * 
-     * @param speedFactor is the new value of the character's speed factor.
+     * @param speedFactor, which is the new value of the character's speed factor.
      */
     void setSpeedFactor(double speedFactor) {
         this.speedFactor = speedFactor;
-    }
-
-    /**
-     * This method is used to get a command. It is overridden in the Hero, 
-     * TechDude, and Zuul classes.
-     * 
-     * @param commands
-     * @param GUICommand
-     * @return 
-     */
-    Command getCommand(CommandWords commands, String GUICommand) {
-        String word1 = null;
-        String word2 = null;
-        String word3 = null;
-        return new Command(commands.getCommandWord(word1), word2, word3);
     }
 
     /**
@@ -187,27 +202,16 @@ public class Character implements Serializable {
     /**
      * This method sets the character's hostility value.
      * 
-     * @param hostility 
+     * @param hostility, which is the new hostility value
      */
     void setHostility(int hostility) {
         this.hostility = hostility;
-    }
-  
-    /**
-     * This method is used to perform a command. It is overridden in Zuul, Hero
-     * and TechDude.
-     * 
-     * @param command
-     * @return double value depending on the command exectuted.
-     */
-    public double performCommand(Command command) {
-        return 0;
     }
     
     /**
      * This method sets the value of the message.
      * 
-     * @param message 
+     * @param message, which is the new value of message
      */
     void setMessage(String message) {
         this.message = message;
@@ -223,7 +227,7 @@ public class Character implements Serializable {
     }
     
     /**
-     * This method clears the value of the message.
+     * This method clears the value of the message by setting it to null.
      */
     void clearMessage() {
         this.message = null;
