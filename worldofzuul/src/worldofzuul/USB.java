@@ -45,7 +45,7 @@ public class USB extends Item {
     
     // This method is called when the player uses the usb
     @Override
-    double use(Character currentCharacter){
+    double use(Hero currentCharacter){
         // Set roomName to current room of the character
         String roomName = currentCharacter.getCurrentRoom().getName();
         

@@ -45,10 +45,10 @@ public class Item {
     }
     
     // This method prints a description of how the item is used
-    double use(Character currentCharacter) {
-        Hero tempCharacter = (Hero)currentCharacter;
+    double use(Hero currentCharacter) {
+//        Hero currentCharacter = (Hero)currentCharacter;
         if (useDescription == null) {
-            if (tempCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
+            if (currentCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
                 System.out.println("You throw the " + this.name + " in blind \n"
                 + "panic. It doesn't have any effect.");
             } else {
@@ -56,7 +56,7 @@ public class Item {
                         + "seemingly with no purpose.");
             }
         } else {
-            if (tempCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
+            if (currentCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
                 System.out.println("You use the " + this.name + " to " + this.useDescription + ". It has no effect on the zuul");                
             } else {
                 System.out.println("You use the " + this.name + " to " + this.useDescription);

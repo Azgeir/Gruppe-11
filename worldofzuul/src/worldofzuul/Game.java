@@ -919,17 +919,6 @@ public class Game implements IGame{
             System.out.println("Fuck you. I hate you");
         }
     }
-    
-    
-      
-//    public void createGodDammit(){
-//        //Create all rooms by calling the createRooms method
-//        createRooms();
-//        // Create the characters by calling the createCharacter() method
-//        createCharacter();
-//        // Create a parser
-//        parser = new Parser();
-//    }
 
     public Character getCurrentCharacter() {
         return currentCharacter;
@@ -940,17 +929,11 @@ public class Game implements IGame{
     }
     
     private Room randomRoom(){
-        ArrayList<Entry<String,Room>> derp = new ArrayList<>(this.characterStartRooms.entrySet());
-//        this.characterStartRooms.e
+        ArrayList<Entry<String,Room>> allRooms = new ArrayList<>(this.characterStartRooms.entrySet());
+        int randomRoomKeyIndex = (int)(Math.random()*allRooms.size());
+        Room randomRoom = allRooms.get(randomRoomKeyIndex).getValue();
         
-//        Object[] temp = this.characterStartRooms.keySet().toArray();
-//        String[] roomKeys = (String[])temp;
-        int randomRoomKeyIndex = (int)(Math.random()*derp.size());
-//        String randomRoomKey = roomKeys[randomRoomKeyIndex];
-
-        Room herp = derp.get(randomRoomKeyIndex).getValue();
-        
-        return herp;
+        return randomRoom;
     }
     
     

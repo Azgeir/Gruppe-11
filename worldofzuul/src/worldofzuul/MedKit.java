@@ -34,15 +34,15 @@ public class MedKit extends Item {
     
     // This method is called when the medkit is used
     @Override
-    double use(Character currentCharacter){
+    double use(Hero currentCharacter){
         // tempCharacter is set to current character
-        Hero tempCharacter = (Hero)currentCharacter;
+//        Hero currentCharacter = (Hero)currentCharacter;
         // Player's health is increased by the health amount of the the medkit.
-        tempCharacter.setHealth(tempCharacter.getHealth() + this.healthAmount);
-        if (tempCharacter.getHealth() > 10)
-            tempCharacter.setHealth(10);
+        currentCharacter.setHealth(currentCharacter.getHealth() + this.healthAmount);
+        if (currentCharacter.getHealth() > 10)
+            currentCharacter.setHealth(10);
         // Medkit is removed from the player's inventory.
-        tempCharacter.getInventory().removeItem(this);
+        currentCharacter.getInventory().removeItem(this);
         // Print message to player
         System.out.println("You healed youself with a medkit, but it is now spent.");
         currentCharacter.setCharacterInitiative(currentCharacter.getCharacterInitiative()+8*currentCharacter.getSpeedFactor());

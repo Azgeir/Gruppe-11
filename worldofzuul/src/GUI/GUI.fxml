@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -142,7 +143,7 @@
                               </GridPane>
                            </top>
                         </BorderPane>
-                        <BorderPane layoutX="150.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
+                        <BorderPane fx:id="RoomComputer" layoutX="150.0" layoutY="150.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
                            <bottom>
                               <GridPane BorderPane.alignment="CENTER">
                                  <columnConstraints>
@@ -155,7 +156,7 @@
                               </GridPane>
                            </bottom>
                            <center>
-                              <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                              <StackPane fx:id="RoomComputerStackPane" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                  <children>
                                     <FlowPane fx:id="characterflowPaneComputer" prefHeight="200.0" prefWidth="200.0" />
                                  </children>
@@ -1352,7 +1353,7 @@
                               </GridPane>
                            </top>
                         </BorderPane>
-                        <BorderPane layoutX="452.0" layoutY="262.0" minWidth="30.0" prefHeight="410.0" prefWidth="30.0" rotate="-45.0" style="-fx-border-color: black;">
+                        <BorderPane layoutX="450.0" layoutY="260.0" minWidth="30.0" prefHeight="410.0" prefWidth="30.0" rotate="-45.0" style="-fx-border-color: black;">
                            <bottom>
                               <GridPane BorderPane.alignment="CENTER">
                                  <columnConstraints>
@@ -1517,8 +1518,14 @@
                               </GridPane>
                            </top>
                         </BorderPane>
+                        <ImageView fx:id="TestImageView" fitHeight="150.0" fitWidth="200.0" layoutX="45.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
+                  <ImageView fx:id="ImageViewZuul" fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Zuul.PNG" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
         </content>

@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.io.File;
 import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +14,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import worldofzuul.Game;
 
 /**
@@ -63,6 +73,14 @@ public class GUIController {
     private Button lockButton;
     @FXML
     private FlowPane characterflowPaneComputer;
+    @FXML
+    private ImageView TestImageView;
+    @FXML
+    private ImageView ImageViewZuul;
+    @FXML
+    private BorderPane RoomComputer;
+    @FXML
+    private StackPane RoomComputerStackPane;
 
     public void initialize() {
         // TODO
@@ -81,9 +99,43 @@ public class GUIController {
         
         useDropDown.getItems().addAll(inventorySet);
         
-//        GoDropDown.getItems();
-//        GoDropDown.setItems(value);
-//        game.
+//        File tempFile = new File("Pictures/Zuul.png");
+//        Image herp = new Image(tempFile.toURI().toString());
+        // WORKS
+        Image herp = new Image("Pictures/Hero.png");
+        ImageView derp = new ImageView(herp);
+//        this.TestImageView.setImage(herp);
+        derp.setFitHeight(200);
+        derp.setFitWidth(200);
+        this.characterflowPaneComputer.getChildren().add(this.ImageViewZuul); // defined in scene builder
+//        this.TestImageView.setImage(herp); // defined in scene builder
+//        this.RoomComputer.getChildren().add(derp);
+//        this.RoomComputerStackPane.getChildren().add(derp);
+//
+        Image herp1 = new Image("Pictures/Zuul.png");
+        ImageView derp1 = new ImageView(herp1);
+//        this.RoomComputerStackPane.getChildren().add(derp1);
+        this.characterflowPaneComputer.getChildren().add(derp1);
+
+
+        // WORKS END
+        
+        Image[] derpArray = {herp};
+        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage[] backDerpArray = {backDerp};
+        
+        this.RoomComputer.setBackground(new Background(backDerpArray));
+//        this.characterflowPaneComputer.setStyle("-fx-background-image: derp");
+        
+        
+        
+      
+//        this.characterflowPaneComputer.getChildren().add(derp);
+        
+                
+//        this.characterflowPaneComputer.getChildren().add(derp);
+//        
+        
     }
 
     @FXML
