@@ -15,28 +15,40 @@ package worldofzuul;
  */
 
 public class AcidVial extends Item {
-    // Data fields:
-    private int damageAmount; // Damage caused to the player when the acid vial is used
-    private double initiativeReduction; // Amount added to Zuul's initiative when used
+    /**
+     * Data fields.
+     * damageAmount: Damage caused to the player when the acid vial is used.
+     * initiativeReduction: Amount added to Zuul's initiative when used against Zuul.
+     */
+    private int damageAmount;
+    private double initiativeReduction;
     
-    /*
-    This constructor creates an acid vial with a specified damage amount and
-    initiative reduction
-    */
+    /**
+     * This constructor creates an acid vial with a specified damage amount and
+     * initiative reduction. The constructor calls the constructor from the
+     * superclass Item.
+     * 
+     * @param damageAmount caused to player by acid vial when used.
+     * @param initiativeReduction added to Zuul's initiative when used against Zuul.
+     */
     AcidVial(int damageAmount, int initiativeReduction) {
         super(5, "acidvial", "attack something.");
         this.damageAmount = damageAmount;
         this.initiativeReduction = initiativeReduction;
     }
 
-    /*
-    This constructor creates an acid vial with a specified damage amount. This
-    constructor is not currently used, but it is included to allow for future
-    use.
-    */
+    /**
+     * This constructor creates an acid vial with a specified damage amount. 
+     * The constructor calls the constructor from the superclass Item. This
+     * constructor is not currently used, but it is included to allow for future
+     * use.
+     * 
+     * @param damageAmount caused to player when used.
+     */
     AcidVial(int damageAmount) {
         super(5, "acidvial", "attack something.");
         this.damageAmount = damageAmount;
+        this.initiativeReduction = 25;
     }
     
     /*
@@ -47,7 +59,7 @@ public class AcidVial extends Item {
     AcidVial() {
         super(5, "acidvial", "attack something.");
         this.damageAmount = 4;
-        this.initiativeReduction = 23;
+        this.initiativeReduction = 25;
     }
     
     // This method returns the damage amount of the acid vial.
