@@ -8,32 +8,85 @@ package worldofzuul;
 import java.io.Serializable;
 
 /**
- *
+ * This class represents a conversation. The class implements Serializable,
+ * which allows the game to be saved.
+ * 
  * @author Aske Wulf
  */
 public class Conversation implements Serializable {
-    //Techdude conversation
+    
+    /**
+     * Data fields.
+     * TECHTALK1: tech dude's first statement
+     * TECHTALK2: tech dude's second statement
+     * TECHTALK3: tech dude's third statement
+     * TECHANSWER1: player's first statement
+     * TECHANSWER2: player's second statement
+     * TECHANSWER3: player's third statement
+     * LETSGO: player's last statement (positive)
+     * FUCKOFF: negative statement that increases tech dude's hostility
+     */
+    // Tech dude statements
     final String TECHTALK1 = "Is the Zuul gone?";
     final String TECHTALK2 = "The arrival of Zuul has triggered the station's quarantine mechanism,\n"
             + "causing the doors to all the escape pods to be locked.";
     final String TECHTALK3 = "Yes, I can override the mechanism and unlock one of the pods,\n"
             + "but I will have to be in the dock to do this.";
-    //Replace (time) with the number of turns after tuning
     final String TECHTALK4 = "I can overload the reactor, causing it to self-destruct along with the whole space station.\n"
             + "This will give you a short time to get off the station before it blows.\n"
             + "But I must be near the reactor to overload it.";
-    
-    //Player responses
+    // Player responses
     final String TECHANSWER1 = "For now. What has happened to the station?";
     final String TECHANSWER2 = "Can you help me get off this station?";
     final String TECHANSWER3 = "Anything else you can help with?";
     final String LETSGO = "Let's go!";
     final String FUCKOFF = "Fuck off.";
     
-    void options(String string){
+    /**
+     * This method prints the tech dude's statements when conversing with the
+     * tech dude. The statement is determined by the argument string.
+     * 
+     * @param string, which determines the statement to be printed. The string
+     * is created in Game by adding a counter (which indicates the progress in
+     * the conversation) to the name of the character.
+     */
+    void talk(String string){
         if (string == null){
             System.out.println("String is null");
         }
+        else switch (string){
+            case "TechDude1":
+                System.out.println(TECHTALK1);
+                break;
+            case "TechDude2":
+                System.out.println(TECHTALK2);
+                break;
+            case "TechDude3":
+                System.out.println(TECHTALK3);
+                break;
+            case "TechDude4":
+                System.out.println(TECHTALK4);
+                break;
+            default:
+                System.out.println("I don't know what you want.");
+                break;
+        }
+    }
+    
+    /**
+     * This class prints the player's options when conversing with the tech dude.
+     * The options are determined by the string argument.
+     * 
+     * @param string, which determines the options. It is created in Game by
+     * adding a counter (which indicates the progress in the conversation) to
+     * the name of the character.
+     */
+    void options(String string){
+        // Check if string is null
+        if (string == null){
+            System.out.println("String is null.");
+        }
+        // Print conversation options depending on the string
         else switch (string) {
             case "TechDude1":
                 System.out.println("1: " + TECHANSWER1);
@@ -57,27 +110,4 @@ public class Conversation implements Serializable {
                 break;
         }
     }
-    void talk(String string){
-        if (string == null){
-            System.out.println("String is null");
-        }
-        else switch (string){
-            case "TechDude1":
-                System.out.println(TECHTALK1);
-                break;
-            case "TechDude2":
-                System.out.println(TECHTALK2);
-                break;
-            case "TechDude3":
-                System.out.println(TECHTALK3);
-                break;
-            case "TechDude4":
-                System.out.println(TECHTALK4);
-                break;
-            default:
-                System.out.println("I don't know what you want.");
-                break;
-        }
-    }
-
-    }
+}

@@ -13,24 +13,38 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 /**
- *
+ * This class represents the hero (the player). The class extends the superclass
+ * Character and implements the interface Serializable.
  * @author HCHB
  */
-// This class represents the player
+
 public class Hero extends Character implements Serializable {
 
-    // Data fields:
-    private int health = 10; // Hero's health
-    private Inventory inventory; // Hero's inventory
-
-    /*
-    £
+    /**
+     * Data fields.
+     * health: the hero's health (default value of 10)
+     * inventory: an instance of Inventory that represents the hero's inventory
+     * reactorActivated: boolean value that indicates if the player has activated
+     * the reactor (default value of false).
      */
-    // This constructor creates a Hero with an inventory of size 100.
+    private int health = 10;
+    private Inventory inventory;
+    private boolean reactorActivated = false;
+
+    /**
+     * This constructor creates a Hero object with an inventory of size 100.
+     */
     Hero() {
         this.inventory = new Inventory(100);
     }
 
+    /**
+     * This constructor creates a Hero object with the specified current room
+     * and name. The hero has an inventory of default size 100.
+     * 
+     * @param currentRoom, the hero's current room
+     * @param name, represents the character type (e.g. "Hero")
+     */
     Hero(Room currentRoom, String name) {
         super(currentRoom, name);
         this.inventory = new Inventory(100);
@@ -84,7 +98,7 @@ public class Hero extends Character implements Serializable {
     }
     
     //Transfers an Item from the rooms inventory to the characters inventory
-    @Override
+    
     void pickUp(Command command) {
 
         if (command.hasSecondWord()) {
@@ -146,7 +160,7 @@ public class Hero extends Character implements Serializable {
     }
 
     //Transfers an item from the characters inventory to the rooms
-    @Override
+//    @Override
     void dropItem(Command command) {
 
         if (command.hasSecondWord()) {
@@ -208,7 +222,7 @@ public class Hero extends Character implements Serializable {
     }
 
     //Gives the player a detailed description of the items and the possibilities of a room
-    @Override
+//    @Override
     void look(Command command) {
 
         if (command.hasSecondWord()) {
@@ -241,7 +255,7 @@ public class Hero extends Character implements Serializable {
     }
 
     //Checks whatever Zuul is in the next room and gives feedback if it is or isn't
-    @Override
+//    @Override
     void peek(Command command) {
         String direction = command.getSecondWord();
 
@@ -306,7 +320,7 @@ public class Hero extends Character implements Serializable {
     }
 
     //This command is used to unlock a door
-    @Override
+//    @Override
     void unlock(Command command) {
         String direction = command.getSecondWord();
         boolean lock = false;
@@ -331,7 +345,7 @@ public class Hero extends Character implements Serializable {
     }
 
     //Command for using an Item in your inventory
-    @Override
+//    @Override
     double use(Command command) {
 
         if (command.hasSecondWord()) {
@@ -447,8 +461,9 @@ public class Hero extends Character implements Serializable {
     }
 
     //use this command to start the countdown timer for bonus points (by blowing up the reactor)
-    @Override
+//    @Override
     double activate(Command command, boolean reactorActivated) {
+        this.clearMessage();
         this.setCharacterInitiative(this.getCharacterInitiative() + 15 * this.getSpeedFactor());
         if (!command.hasSecondWord()) {
             System.out.println("Activate what?");
@@ -460,6 +475,8 @@ public class Hero extends Character implements Serializable {
                 if (this.getCurrentRoom().getHasCharacter("TechDude")) {
                     if (!reactorActivated) {
                         System.out.println("You activated the reactor. The space station will self-destruct in 10 turns.");
+                        this.reactorActivated = true;
+                        this.setMessage("Reactor activated");
                         return (this.getCharacterInitiative() + 80);
                     } else {
                         System.out.println("The reactor is already activated.");
@@ -502,5 +519,63 @@ public class Hero extends Character implements Serializable {
         }
         return true;
     }
+    
+    boolean isReactorActivated() {
+        return this.reactorActivated;
+    }
 
+    @Override
+    public double performCommand(Command command) {
+        // Create instance of CommandWord using the command word of the specified command (from Parser)
+        CommandWord commandWord = command.getCommandWord();
+        
+        if (null != commandWord) // Execute the command if the input matches a valid command
+        {
+            switch (commandWord) {
+                // If command is "go", call go() method on current character
+                case GO:
+                    this.go(command);
+                    break;
+                case STAY:
+                    this.stay(command);
+                    break;
+                // If command is "pickup", call pickup() method on current character
+                case PICKUP:
+                    this.pickUp(command);
+                    break;
+                // If command is "drop", call dropItem() method on current character
+                case DROP:
+                    this.dropItem(command);
+                    break;
+                // If command is "look", call look() method on current character
+                case LOOK:
+                    this.look(command);
+                    break;
+                // If command is "peek", call peek() method on current character
+                case PEEK:
+                    this.peek(command);
+                    break;
+                // (?)If command is "use", call use() method on current character and change Zuul's initiative
+                case USE:
+                    return this.use(command);
+                // If command is "lock", call lock() command on current character
+                case LOCK:
+                    this.lock(command);
+                    break;
+                // If command is "unlock", call unlock() command on current character
+                case UNLOCK:
+                    this.unlock(command);
+                    break;
+                // If command is "activate", set MaxInitiative to the return value of the activate() method
+                case ACTIVATE:
+                    return this.activate(command, reactorActivated);
+                    
+                // If command does not match any of the options, break.
+                default:
+                    break;
+            }
+        }
+        // Return boolean value (false = continue playing; true = quit game)
+        return 0;
+    }
 }

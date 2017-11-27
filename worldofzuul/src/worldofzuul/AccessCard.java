@@ -10,12 +10,13 @@ import java.io.Serializable;
 
 /**
  * This class represents an access card. The item is used to lock and unlock
- * doors in the game. The class extends the superclass Item.
+ * doors in the game. The class extends the superclass Item. The class
+ * implements the interface Serializable to allow the game to be saved.
  * 
  * @author HCHB
  */
 
-public class AccessCard extends Item implements Serializable {
+class AccessCard extends Item implements Serializable {
     
     /**
      * This constructor creates an instance of AccessCard with default weight, 

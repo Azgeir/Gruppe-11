@@ -63,7 +63,7 @@ public class TechDude extends Character implements Serializable {
     
     // This method helps in defining what commands should be chosen when it is 
     // the tech dude's turn.
-    @Override
+//    @Override
     void followsHero(Character hero, boolean follows){
         // Set data fields
         metHero = true;
@@ -108,9 +108,32 @@ public class TechDude extends Character implements Serializable {
         }
     }
 
+//    @Override
     boolean isFollowsHero() {
         return followsHero;
     }
     
-    
+    @Override
+    public double performCommand(Command command) {
+        // Create instance of CommandWord using the command word of the specified command (from Parser)
+        CommandWord commandWord = command.getCommandWord();
+        
+        if (null != commandWord) // Execute the command if the input matches a valid command
+        {
+            switch (commandWord) {
+                // If command is "go", call go() method on current character
+                case GO:
+                    this.go(command);
+                    break;
+                case STAY:
+                    this.stay(command);
+                    break;
+                // If command does not match any of the options, break.
+                default:
+                    break;
+            }
+        }
+        // Return boolean value (false = continue playing; true = quit game)
+        return 0;
+    }
 }
