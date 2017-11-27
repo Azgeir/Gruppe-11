@@ -13,25 +13,38 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 /**
- *
+ * This class represents the hero (the player). The class extends the superclass
+ * Character and implements the interface Serializable.
  * @author HCHB
  */
-// This class represents the player
+
 public class Hero extends Character implements Serializable {
 
-    // Data fields:
-    private int health = 10; // Hero's health
-    private Inventory inventory; // Hero's inventory
+    /**
+     * Data fields.
+     * health: the hero's health (default value of 10)
+     * inventory: an instance of Inventory that represents the hero's inventory
+     * reactorActivated: boolean value that indicates if the player has activated
+     * the reactor (default value of false).
+     */
+    private int health = 10;
+    private Inventory inventory;
     private boolean reactorActivated = false;
 
-    /*
-    £
+    /**
+     * This constructor creates a Hero object with an inventory of size 100.
      */
-    // This constructor creates a Hero with an inventory of size 100.
     Hero() {
         this.inventory = new Inventory(100);
     }
 
+    /**
+     * This constructor creates a Hero object with the specified current room
+     * and name. The hero has an inventory of default size 100.
+     * 
+     * @param currentRoom, the hero's current room
+     * @param name, represents the character type (e.g. "Hero")
+     */
     Hero(Room currentRoom, String name) {
         super(currentRoom, name);
         this.inventory = new Inventory(100);
