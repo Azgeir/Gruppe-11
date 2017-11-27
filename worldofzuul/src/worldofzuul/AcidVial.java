@@ -11,8 +11,7 @@ import java.io.Serializable;
 /**
  * This class represents an acid vial. The item is used to attack the Zuul,
  * which gives the player a chance to escape. The class extends the superclass
- * Item. The class implements the interface Serializable, which allows the game
- * to be saved.
+ * Item and implements the interface Serializable.
  * 
  * @author laurabrinkholmjustesen
  */
@@ -33,7 +32,7 @@ public class AcidVial extends Item implements Serializable {
      * superclass Item (constructor chaining).
      */
     AcidVial() {
-        super(5, "acidvial", "attack something.");
+        super(5, "acidvial");
         this.damageAmount = 4;
         this.initiativeReduction = 25;
     }
@@ -56,7 +55,8 @@ public class AcidVial extends Item implements Serializable {
      * the default values for damageAmount and initiativeReduction.
      * 
      * @param damageAmount caused to player by acid vial when used.
-     * @param initiativeReduction added to Zuul's initiative when used against Zuul.
+     * @param initiativeReduction added to Zuul's initiative when used against
+     * Zuul.
      */
     AcidVial(int damageAmount, int initiativeReduction) {
         this(damageAmount);
@@ -65,6 +65,7 @@ public class AcidVial extends Item implements Serializable {
     
     /**
      * This is a getter method for damageAmount.
+     * 
      * @return damageAmount
      */
     int getDamageAmount() {
@@ -85,7 +86,8 @@ public class AcidVial extends Item implements Serializable {
     @Override // Overrides method from the Item class
     double use(Hero currentCharacter){
         // Reduce player's health by acid vial's damage amount
-        currentCharacter.setHealth(currentCharacter.getHealth() - this.damageAmount);
+        currentCharacter.setHealth(currentCharacter.getHealth() - 
+            this.damageAmount);
         
         // Remove acid vial from player's inventory
         currentCharacter.getInventory().removeItem(this);
@@ -100,15 +102,18 @@ public class AcidVial extends Item implements Serializable {
         and Zuul's initiative is increased.
         */
         if (currentCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
-            System.out.println("You throw an acid vial at the terrifying Zuul." +
-                "\nYou hit it in the face. You were hit\nby a splash of acid, " +
-                "but now you have a chance to flee.");
+            System.out.println("You throw an acid vial at the terrifying Zuul."
+                + "\nYou hit it in the face. You were hit\nby a splash of acid,"
+                + " but now you have a chance to flee.");
             return this.initiativeReduction;
         }
-        // If Zuul is not in the current room, the player throws acid at the wall.
+        /*
+        If Zuul is not in the current room, the player throws acid at the wall.
+        */
         else {
-            System.out.println("For some reason, you throw an acidvial at the " +
-                "wall.\nYou where hit by a splash of acid and hurt yourself.");
+            System.out.println("For some reason, you throw an acidvial at the"
+                + " wall.\nYou where hit by a splash of acid and hurt "
+                + "yourself.");
             return 0;
         }
     }
