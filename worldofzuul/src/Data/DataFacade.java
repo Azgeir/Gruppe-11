@@ -7,6 +7,7 @@ package Data;
 
 import Acquaintance.IDataFacade;
 import Acquaintance.IGame;
+import Acquaintance.IHighscore;
 
 /**
  *
@@ -27,16 +28,18 @@ public class DataFacade implements IDataFacade {
     }
     
     @Override
-    public void loadHighscore(){
-        data.loadHighscore();
+    public IHighscore loadHighscore(){
+        IHighscore highscore = data.loadHighscore();
+        return highscore;
     }
+    
     @Override
     public void saveGame(IGame game){
         data.saveGame(game);
     }
     @Override
-    public void saveHighscore(){
-        data.saveHighscore();
+    public void saveHighscore(IHighscore highscore){
+        data.saveHighscore(highscore);
     }
 
     

@@ -2,6 +2,8 @@ package worldofzuul;
 // Imports:
 
 import Acquaintance.IGame;
+import Acquaintance.IHighscore;
+import Acquaintance.IScore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +30,7 @@ public class Game implements IGame, Serializable{
     private boolean finished;
     private int timeSinceSpawn;
     private int spawnTime;
+    private String name;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     Game() {
@@ -39,10 +42,15 @@ public class Game implements IGame, Serializable{
     }
     
     Game(int numberOfZuul, int spawnTime){
+        this(numberOfZuul, spawnTime, "Derp");
+    }
+    
+    Game(int numberOfZuul, int spawnTime, String name){
         this.finished = false;
         this.timeSinceSpawn = 0;
         this.spawnTime = spawnTime;
         this.characterStartRooms = new HashMap<>();
+        this.name = name;
         //Create all rooms by calling the createRooms method
         createRooms();
         // Create the characters by calling the createCharacter() method
@@ -52,7 +60,6 @@ public class Game implements IGame, Serializable{
         this.printWelcome();
         // Select current character
         this.currentCharacter = this.chooseCharacter();
-       
     }
 
     // This method creates the rooms of the game.
@@ -779,6 +786,13 @@ public class Game implements IGame, Serializable{
 
         // Calculate earned points
         double point = (pointSet.size() * 5 + 5) * (1 + ((reactorActivated) ? 2 : 0) + (150 / (hero.getCharacterInitiative() + 150)));
+        
+        IScore newScore = new Score(this.name, point);
+        IHighscore highscoreData = LogicFacade.getHighscore();
+        IScore[] scores = highscoreData.getScores();
+        Highscore highscore = new Highscore(scores);
+        highscore.updataHighscore(newScore);
+        LogicFacade.saveHighscore(highscore);
         return point;
     }
 

@@ -9,14 +9,9 @@ package Acquaintance;
  *
  * @author HCHB
  */
-public interface IDataFacade {
+public interface IScore {
     
-    IGame loadGame();
- 
-    void saveGame(IGame game);
+    String getName();
+    double getScore();
     
-    void saveHighscore(IHighscore highscore);
-    
-    IHighscore loadHighscore();
-      
 }
