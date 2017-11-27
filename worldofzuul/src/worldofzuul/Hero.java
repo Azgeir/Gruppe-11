@@ -104,9 +104,7 @@ public class Hero extends Character implements Serializable {
         
         this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
     }
-    
-    //Transfers an Item from the rooms inventory to the characters inventory
-    
+        
     /**
      * This method picks up an item from the heros current room and moves it 
      * to the heros inventory.
@@ -175,8 +173,15 @@ public class Hero extends Character implements Serializable {
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
 
-    //Transfers an item from the characters inventory to the rooms
-//    @Override
+    
+    /**
+     * This method drops an item from the heros inventory and moves it to the
+     * current room.
+     * 
+     * @param command Is the command the hero receives. Consists of 3 words
+     * where the second is the name of the item to drop, and the third is an 
+     * optional number of items to drop.
+     */
     void dropItem(Command command) {
 
         if (command.hasSecondWord()) {
