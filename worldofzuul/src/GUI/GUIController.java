@@ -13,6 +13,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,6 +29,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.util.Callback;
 import worldofzuul.Game;
 
 /**
@@ -87,6 +92,8 @@ public class GUIController {
     private AnchorPane innerSpace;
     @FXML
     private GridPane startScreen;
+    @FXML
+    private ComboBox<String> testDropDown;
 
     public void initialize() {
         // TODO
@@ -108,12 +115,20 @@ public class GUIController {
         Image buttons = new Image("Pictures/buttons.png");
         Image stars = new Image("Pictures/Stars.jpg");
         BackgroundImage starsBackground = new BackgroundImage(stars, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        BackgroundImage buttonBackground = new BackgroundImage(buttons, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage buttonsBackground = new BackgroundImage(buttons, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         BackgroundImage[] starsBackgroundArray = {starsBackground};
-        BackgroundImage[] buttonBackgroundArray = {buttonBackground};
-        this.outerSpace.setBackground(new Background(buttonBackgroundArray));
+        BackgroundImage[] buttonsBackgroundArray = {buttonsBackground};
+        this.outerSpace.setBackground(new Background(buttonsBackgroundArray));
         this.innerSpace.setBackground(new Background(starsBackgroundArray));
 
+        Image button = new Image("Pictures/button.png");
+        BackgroundImage buttonBackground = new BackgroundImage(button, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        lockButton.setBackground(new Background(buttonBackground));
+        lockButton.setTextFill(Color.WHITE);
+        
+        testDropDown.setBackground(new Background(buttonBackground));
+//        pickupDropDown.getValue().
+        
         
         // WORKS
         Image herp = new Image("Pictures/Hero.png");
@@ -136,6 +151,7 @@ public class GUIController {
         
         Image[] derpArray = {herp};
         BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        
         BackgroundImage[] backDerpArray = {backDerp};
         
         this.RoomComputer.setBackground(new Background(backDerpArray));
@@ -246,6 +262,8 @@ public class GUIController {
         
         this.pickupDropDown.getItems().clear();
         this.pickupDropDown.getItems().addAll(itemSet);
+        this.testDropDown.getItems().clear();
+        this.testDropDown.getItems().addAll(itemSet);
         
         this.isGameFinished();
         
@@ -262,6 +280,7 @@ public class GUIController {
 //        GUIFacade.sendCommand(command);
 
         System.out.println("Save stuff and stuff");
+        this.updateDropdownBackground();
         
         this.isGameFinished();
 
@@ -394,6 +413,23 @@ public class GUIController {
         this.outerSpace.setVisible(true);
         
         
+    }
+    
+    private void updateDropdownBackground(){
+        Image button = new Image("Pictures/button.png");
+        BackgroundSize stuff = new BackgroundSize(pickupDropDown.getLayoutBounds().getWidth(), pickupDropDown.getLayoutBounds().getHeight(), false, false, false, true);
+        BackgroundImage buttonBackground = new BackgroundImage(button, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, stuff);
+        testDropDown.setBackground(new Background(buttonBackground));
+        testDropDown.setButtonCell(new ListCell<String>(){
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(item);
+                setTextFill(Color.WHITE);
+            }            
+        });
+//        pickupDropDown.getLayoutBounds().getWidth();
+//        pickupDropDown.setStyle("-fx-background-repeat: stretch;");
     }
 
 }
