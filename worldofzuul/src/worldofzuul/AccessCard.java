@@ -10,8 +10,8 @@ import java.io.Serializable;
 
 /**
  * This class represents an access card. The item is used to lock and unlock
- * doors in the game. The class extends the superclass Item. The class
- * implements the interface Serializable to allow the game to be saved.
+ * doors in the game. The class extends the superclass Item and implements the
+ * interface Serializable.
  * 
  * @author HCHB
  */
@@ -19,30 +19,36 @@ import java.io.Serializable;
 class AccessCard extends Item implements Serializable {
     
     /**
-     * This constructor creates an instance of AccessCard with default weight, 
-     * name, and use description via constructor chaining.
+     * This constructor creates an instance of AccessCard with default weight 
+     * and name by calling the superclass's constructor via constructor
+     * chaining.
      */
     AccessCard (){
-        super(5, "accesscard", "lock and unlock doors");
+        super(5, "accesscard");
     }
     
     /**
      * This method is called when the player tries to use the access card via
      * the "use" command. The method prints a message and increases the
      * character's initiative (because it takes time to wave around the access
-     * card).
+     * card). The method overrides the use() method in the Item class.
      * 
      * @param currentCharacter is an instance of Hero, which represents the 
      * player.
      * 
      * @return 0, because this action does not affect Zuul's initiative.
      */
-    @Override // Overridden from Item class
+    @Override
     double use(Hero currentCharacter){
+        // Print message that indicates use.
         System.out.println("You wave the access card around.");
+        
+        // Increase the character's initiaitve.
         currentCharacter.setCharacterInitiative(
             currentCharacter.getCharacterInitiative() + 3 * 
             currentCharacter.getSpeedFactor());
+        
+        // Return 0, as the action does not affect Zuul's initiative.
         return 0;
     }
 }
