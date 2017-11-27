@@ -38,6 +38,7 @@ public class Highscore implements IHighscore, Serializable {
             }
             else {
                 this.highscore[i] = newScore;
+                break;
             }            
         }
     }
