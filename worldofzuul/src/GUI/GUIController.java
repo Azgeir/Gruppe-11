@@ -28,6 +28,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
@@ -97,32 +98,20 @@ public class GUIController {
 
     public void initialize() {
         // TODO
-        int numberOfZuulAtStart = 3;
-//        game = new Game(3);
-        GUIFacade.initializeGame(numberOfZuulAtStart);
-//        game.createGodDammit();
 
-//        ObservableList<String> exit = FXCollections.observableArrayList();
-
-        Set<String> exits = GUIFacade.getExits();
-        
-        GoDropDown.getItems().addAll(exits);
-        
-        Set<String> inventorySet = GUIFacade.getInventorySet();
-        
-        useDropDown.getItems().addAll(inventorySet);
-        
+        // create new private method for loading the pictures and layout
         Image buttons = new Image("Pictures/buttons.png");
         Image stars = new Image("Pictures/Stars.jpg");
         BackgroundImage starsBackground = new BackgroundImage(stars, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        BackgroundImage buttonsBackground = new BackgroundImage(buttons, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage buttonBackground = new BackgroundImage(buttons, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         BackgroundImage[] starsBackgroundArray = {starsBackground};
-        BackgroundImage[] buttonsBackgroundArray = {buttonsBackground};
-        this.outerSpace.setBackground(new Background(buttonsBackgroundArray));
+        
+        BackgroundImage[] buttonBackgroundArray = {buttonBackground};
+        this.outerSpace.setBackground(new Background(buttonBackgroundArray));
         this.innerSpace.setBackground(new Background(starsBackgroundArray));
+        this.startScreen.setBackground(new Background(starsBackgroundArray));
 
         Image button = new Image("Pictures/button.png");
-        BackgroundImage buttonBackground = new BackgroundImage(button, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         lockButton.setBackground(new Background(buttonBackground));
         lockButton.setTextFill(Color.WHITE);
         
@@ -171,14 +160,8 @@ public class GUIController {
             command = command + " " + item;
             GUIFacade.sendCommand(command);
             
-            this.pickupDropDown.getItems().clear();
-            Set<String> itemSet = GUIFacade.getRoomItemSet();
-            this.pickupDropDown.getItems().addAll(itemSet);
+            this.updateAllDropdown();
             
-            this.useDropDown.getItems().clear();
-            Set<String> inventorySet = GUIFacade.getInventorySet();
-            this.useDropDown.getItems().addAll(inventorySet);
-//            game.play(command);
         } else {
             System.out.println("choose something to pickup from the dropbox");
         }
@@ -204,10 +187,8 @@ public class GUIController {
             command = command + " " + this.useDropDown.getValue();
             GUIFacade.sendCommand(command);
             
-            this.useDropDown.getItems().clear();
-            Set<String> inventorySet = GUIFacade.getInventorySet();
-            this.useDropDown.getItems().addAll(inventorySet);
-//            game.play(command);
+            this.updateAllDropdown();
+            
         } else {
             System.out.println("choose something to use from the dropbox");
         }
@@ -258,13 +239,8 @@ public class GUIController {
     private void lookButtonHandler(ActionEvent event) {
         String command = "look around";
         GUIFacade.sendCommand(command);
-        Set<String> itemSet = GUIFacade.getRoomItemSet();
         
-        this.pickupDropDown.getItems().clear();
-        this.pickupDropDown.getItems().addAll(itemSet);
-        this.testDropDown.getItems().clear();
-        this.testDropDown.getItems().addAll(itemSet);
-        
+        this.updateAllDropdown();
         this.isGameFinished();
         
 //        game.play(command);
@@ -273,17 +249,9 @@ public class GUIController {
 
     @FXML
     private void saveButtonHandler(ActionEvent event) {
-
-//        game.play("save");
-
-//        String command = "save";
-//        GUIFacade.sendCommand(command);
-
-        System.out.println("Save stuff and stuff");
-        this.updateDropdownBackground();
-        
+        GUIFacade.saveGame();
+    
         this.isGameFinished();
-
     }
 
     @FXML
@@ -294,14 +262,8 @@ public class GUIController {
             command = command + " " + this.useDropDown.getValue();
             GUIFacade.sendCommand(command);
             
-            this.pickupDropDown.getItems().clear();
-            Set<String> itemSet = GUIFacade.getRoomItemSet();
-            this.pickupDropDown.getItems().addAll(itemSet);
+            this.updateAllDropdown();
             
-            this.useDropDown.getItems().clear();
-            Set<String> inventorySet = GUIFacade.getInventorySet();
-            this.useDropDown.getItems().addAll(inventorySet);
-//            game.play(command);
         } else {
             System.out.println("choose something to drop from the dropbox");
         }
@@ -316,15 +278,9 @@ public class GUIController {
             command = "go";
             command = command + " " + this.GoDropDown.getValue();
             GUIFacade.sendCommand(command);
-            Set<String> exits = GUIFacade.getExits();
-            this.GoDropDown.getItems().clear();
-            this.GoDropDown.getItems().addAll(exits);
             
-            this.pickupDropDown.getItems().clear();
-            if (GUIFacade.isRoomLookedBefore()) {
-                Set<String> itemSet = GUIFacade.getRoomItemSet();
-                this.pickupDropDown.getItems().addAll(itemSet);
-            }
+            this.updateAllDropdown();
+            
             
 //            game.play(command);
         } else {
@@ -407,12 +363,13 @@ public class GUIController {
 
     @FXML
     private void startButtonActionEvent(ActionEvent event) {
-        this.startScreen.setDisable(true);
-        this.startScreen.setVisible(false);
-        this.outerSpace.setDisable(false);
-        this.outerSpace.setVisible(true);
+        int numberOfZuulAtStart = 3;
+
+        GUIFacade.initializeGame(numberOfZuulAtStart);
+
+        this.updateAllDropdown();
         
-        
+        this.switchScreen(startScreen, outerSpace);
     }
     
     private void updateDropdownBackground(){
@@ -431,5 +388,38 @@ public class GUIController {
 //        pickupDropDown.getLayoutBounds().getWidth();
 //        pickupDropDown.setStyle("-fx-background-repeat: stretch;");
     }
+
+    @FXML
+    private void loadButtonActionEvent(ActionEvent event) {
+        GUIFacade.loadGame();
+        this.switchScreen(startScreen, outerSpace);
+        this.updateAllDropdown();
+    }
+    
+    private void switchScreen(Pane from, Pane to){
+        from.setDisable(true);
+        from.setVisible(false);
+        to.setDisable(false);
+        to.setVisible(true);
+    }
+    
+    private void updateAllDropdown(){
+        
+        this.pickupDropDown.getItems().clear();
+        if (GUIFacade.isRoomLookedBefore()) {
+            Set<String> itemSet = GUIFacade.getRoomItemSet();
+            this.pickupDropDown.getItems().addAll(itemSet);
+        }
+            
+        this.useDropDown.getItems().clear();
+        Set<String> inventorySet = GUIFacade.getInventorySet();
+        this.useDropDown.getItems().addAll(inventorySet);
+        
+        Set<String> exits = GUIFacade.getExits();
+        this.GoDropDown.getItems().clear();
+        this.GoDropDown.getItems().addAll(exits);
+    }
+    
+    
 
 }

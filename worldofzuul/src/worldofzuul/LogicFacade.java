@@ -14,7 +14,7 @@ import java.util.Set;
 public class LogicFacade implements ILogicFacade{
     
     private static IDataFacade data;
-    Game game;
+    private Game game;
     
     @Override
     public void injectData(IDataFacade data) {
@@ -73,7 +73,7 @@ public class LogicFacade implements ILogicFacade{
     
     @Override
     public void loadGame(){
-        data.loadGame();
+        game = (Game)data.loadGame();
     }
     
     @Override
@@ -82,10 +82,15 @@ public class LogicFacade implements ILogicFacade{
     }
     @Override
     public void saveGame(){
-        data.saveGame(game);
-        
+        data.saveGame(this.game);
     }
-    static void saveHighscore(){
-        data.saveHighscore();
+    
+    static void saveHighscore(IHighscore highscore){
+        data.saveHighscore(highscore);
+    }
+    
+    static IHighscore getHighscore(){
+        IHighscore highscore = data.loadHighscore();
+        return highscore;
     }
 }

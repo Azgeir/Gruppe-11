@@ -1,6 +1,7 @@
 package worldofzuul;
 
 // Imports:
+import java.io.Serializable;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,7 +14,7 @@ import java.util.Map.Entry;
  */
 
 // This class represents a room.
-public class Room 
+public class Room implements Serializable 
 {
     // Data fields:
     private String description; // Description of room

@@ -5,6 +5,7 @@
  */
 package worldofzuul;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -13,7 +14,7 @@ import java.util.Set;
  *
  * @author Aske Wulf
  */
-public class Inventory {
+public class Inventory implements Serializable {
 
     private HashMap<String, ArrayList<Item>> inventory; //Declares the hashmap "inventory"
     private int stack; //The amount of duplicate items, eg. 2 vials

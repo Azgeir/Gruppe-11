@@ -2,6 +2,9 @@ package worldofzuul;
 // Imports:
 
 import Acquaintance.IGame;
+import Acquaintance.IHighscore;
+import Acquaintance.IScore;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,7 +16,7 @@ import java.util.Map.Entry;
  * @version 2006.03.30
  */
 // This class runs the main functionality of the game.
-public class Game implements IGame{
+public class Game implements IGame, Serializable{
 
     // Data fields:
     private Parser parser;
@@ -27,6 +30,7 @@ public class Game implements IGame{
     private boolean finished;
     private int timeSinceSpawn;
     private int spawnTime;
+    private String name;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     Game() {
@@ -38,10 +42,15 @@ public class Game implements IGame{
     }
     
     Game(int numberOfZuul, int spawnTime){
+        this(numberOfZuul, spawnTime, "Derp");
+    }
+    
+    Game(int numberOfZuul, int spawnTime, String name){
         this.finished = false;
         this.timeSinceSpawn = 0;
         this.spawnTime = spawnTime;
         this.characterStartRooms = new HashMap<>();
+        this.name = name;
         //Create all rooms by calling the createRooms method
         createRooms();
         // Create the characters by calling the createCharacter() method
@@ -51,7 +60,6 @@ public class Game implements IGame{
         this.printWelcome();
         // Select current character
         this.currentCharacter = this.chooseCharacter();
-       
     }
 
     // This method creates the rooms of the game.
@@ -524,7 +532,7 @@ public class Game implements IGame{
                     break;
                 // If command is "go", call go() method on current character
                 case GO:
-                    this.currentCharacter.go(command);
+                    this.currentCharacter.performCommand(command);
                     break;
                 // If command is "quit", call quit() method (returns true, if player wants to quit)
                 case QUIT:
@@ -532,27 +540,27 @@ public class Game implements IGame{
                     break;
                 // If command is "stay", call stay() method on current character
                 case STAY:
-                    this.currentCharacter.stay(command);
+                    this.currentCharacter.performCommand(command);
                     break;
                 // If command is "pickup", call pickup() method on current character
                 case PICKUP:
-                    this.currentCharacter.pickUp(command);
+                    this.currentCharacter.performCommand(command);
                     break;
                 // If command is "drop", call dropItem() method on current character
                 case DROP:
-                    this.currentCharacter.dropItem(command);
+                    this.currentCharacter.performCommand(command);
                     break;
                 // If command is "look", call look() method on current character
                 case LOOK:
-                    this.currentCharacter.look(command);
+                    this.currentCharacter.performCommand(command);
                     break;
                 // If command is "peek", call peek() method on current character
                 case PEEK:
-                    this.currentCharacter.peek(command);
+                    this.currentCharacter.performCommand(command);
                     break;
-                // If command is "use", call use() method on current character and change Zuul's initiative
+                // (?)If command is "use", call use() method on current character and change Zuul's initiative
                 case USE:
-                    double zuulInitiativeReduction = this.currentCharacter.use(command);
+                    double zuulInitiativeReduction = this.currentCharacter.performCommand(command);
                     
                     for (Character character : characters) {
                         if (character.getName().equals("Zuul") && character.getCurrentRoom().equals(this.currentCharacter.getCurrentRoom())) {
@@ -563,31 +571,33 @@ public class Game implements IGame{
                     break;
                 // If command is "lock", call lock() command on current character
                 case LOCK:
-                    this.currentCharacter.lock(command);
+                    this.currentCharacter.performCommand(command);
                     break;
                 // If command is "unlock", call unlock() command on current character
                 case UNLOCK:
-                    this.currentCharacter.unlock(command);
+                    this.currentCharacter.performCommand(command);
                     break;
                 // If command is "activate", set MaxInitiative to the return value of the activate() method
                 case ACTIVATE:
-                    double newInitiative = this.currentCharacter.activate(command, reactorActivated);
-                    if (newInitiative != Double.MAX_VALUE && !reactorActivated) {
-                        reactorActivated = true;
+                    double newInitiative = this.currentCharacter.performCommand(command);
+                    if(this.currentCharacter.getMessage() != null) {
+                        this.reactorActivated = true;
+                        this.currentCharacter.clearMessage();
                         this.maxInititative = newInitiative;
                     }
                     break;
                 case TALK:
                     boolean techDudeIsThere = false;
-                    for (Character character : characters) {
                         if (currentCharacter.getCurrentRoom().getHasCharacter("TechDude")) {
                             techDudeIsThere = true;
-                            if (character.getName().equals("TechDude")) {
-                                this.conversation(character);
-                                break;
-                            }
+                            for (Character character : characters) {
+                                if (character.getName().equals("TechDude")) {
+                                    this.conversation(character);
+                                    break;
+                                }
+                            }    
                         }
-                    }
+                    
                     
                     if (!techDudeIsThere) {
                         System.out.println("You talk to yourself as you begin to question your sanity.");
@@ -596,10 +606,10 @@ public class Game implements IGame{
                     this.currentCharacter.setCharacterInitiative(this.currentCharacter.getCharacterInitiative() + 10 * this.currentCharacter.getSpeedFactor());
                     break;
                 case KILL:
-                    String reason = this.currentCharacter.kill();
+                    this.currentCharacter.performCommand(command);
                     wantToQuit = true;
-                    this.printStopMessage(reason);
-                    
+                    this.printStopMessage(this.currentCharacter.getMessage());
+                    this.currentCharacter.clearMessage();
                 // If command does not match any of the options, break.
                 default:
                     break;
@@ -687,7 +697,8 @@ public class Game implements IGame{
         
         for (Character character : characters) {
             if (character.getName().equals("TechDude")) {
-                if (character.isFollowsHero()) {
+                TechDude temp = (TechDude)character;
+                if (temp.isFollowsHero()) {
                     techDudeIsThere = true;
                 }
             }
@@ -778,6 +789,13 @@ public class Game implements IGame{
 
         // Calculate earned points
         double point = (pointSet.size() * 5 + 5) * (1 + ((reactorActivated) ? 2 : 0) + (150 / (hero.getCharacterInitiative() + 150)));
+        
+        IScore newScore = new Score(this.name, point);
+        IHighscore highscoreData = LogicFacade.getHighscore();
+        IScore[] scores = highscoreData.getScores();
+        Highscore highscore = new Highscore(scores);
+        highscore.updataHighscore(newScore);
+        LogicFacade.saveHighscore(highscore);
         return point;
     }
 
@@ -840,6 +858,7 @@ public class Game implements IGame{
 
     private void conversation(Character character) {
         
+        TechDude temp = (TechDude) character;
         Character hero = null;
         for (Character character1 : characters) {
             if (character1.getName().equals("Hero")) {
@@ -879,9 +898,8 @@ public class Game implements IGame{
                                 }
                                 if (character.getHostility() == 3) {
                                     System.out.println("The tech dude hates you and will no longer talk to you.");
-                                    TechDude temp = (TechDude) character;
                                     if (temp.isFollowsHero()) {
-                                        character.followsHero(hero, false);
+                                        temp.followsHero(hero, false);
                                         System.out.println("Tech dude no longer follows you.");
                                         counter++;
                                     }
@@ -902,9 +920,9 @@ public class Game implements IGame{
                         }
                         if (number != 2) {
                             if (counter == 5 || (counter == 4 && character.getHostility() < 3 && wantToTalk == false)) {
-                                if (!character.isFollowsHero()) {
+                                if (!temp.isFollowsHero()) {
                                     System.out.println("Tech dude is now following you");
-                                    character.followsHero(hero, true);
+                                    temp.followsHero(hero, true);
                                 }
                             }
                         }
