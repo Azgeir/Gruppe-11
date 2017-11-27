@@ -21,6 +21,9 @@ public class MedKit extends Item implements Serializable {
      * Data field.
      * healthAmount: the number of health points added to the player's health
      * when the medical kit is used.
+     * 
+     * healthAmount does not have getter/setter methods as the value of the
+     * data field is only used within the class in the use() method.
      */
     private int healthAmount;
     
@@ -46,16 +49,6 @@ public class MedKit extends Item implements Serializable {
     MedKit(int healthAmount) {
         this();
         this.healthAmount = healthAmount;
-    }
-    
-    /**
-     * This method returns the health amount of the medical kit.
-     * 
-     * @return healthAmount, which indicates the healing capabilities of the
-     * medical kit.
-     */
-    int getHealthAmount() {
-        return this.healthAmount;
     }
     
     /**
