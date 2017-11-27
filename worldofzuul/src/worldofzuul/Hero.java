@@ -243,7 +243,10 @@ public class Hero extends Character implements Serializable {
     }
 
     //Gives the player a detailed description of the items and the possibilities of a room
-//    @Override
+    /**
+     *
+     * @param command
+     */
     void look(Command command) {
 
         if (command.hasSecondWord()) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -1547,6 +1548,7 @@
             <Slider GridPane.rowIndex="4" />
             <Slider GridPane.rowIndex="3" />
             <TextField fx:id="textfieldPlayerName" alignment="CENTER" promptText="Enter name" GridPane.rowIndex="2" />
+            <Label fx:id="highscoreLabel" alignment="CENTER" text="This is going to be highscore" textFill="#e0e408" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>
