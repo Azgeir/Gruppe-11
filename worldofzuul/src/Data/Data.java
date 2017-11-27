@@ -61,7 +61,12 @@ public class Data {
             
             for (int i = 0; i < scores.length; i++) {
                 IScore score = scores[i];
-                output.println(i + " " + score.getName() + " " + score.getScore());
+                if (score != null) {
+                    output.println(i + " " + score.getName() + " " + score.getScore());
+                }
+                else {
+                    break;
+                }
             }
             
             output.close();
