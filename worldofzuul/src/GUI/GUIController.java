@@ -116,10 +116,12 @@ public class GUIController {
         this.outerSpace.setBackground(new Background(buttonBackgroundArray));
         this.innerSpace.setBackground(new Background(starsBackgroundArray));
         this.startScreen.setBackground(new Background(starsBackgroundArray));
+        
+        this.RoomComputer.setRotate(315);
 
         
         // WORKS
-        Image herp = new Image("Pictures/Hero.png");
+        Image herp = new Image("Pictures/ComputerRoom.png");
         ImageView derp = new ImageView(herp);
 //        this.TestImageView.setImage(herp);
         derp.setFitHeight(200);
