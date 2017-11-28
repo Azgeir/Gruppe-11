@@ -117,7 +117,7 @@ public class Room implements Serializable {
      * 
      * @return inventory
      */
-    public Inventory getInventory() {
+    Inventory getInventory() {
         return this.inventory;
     }
     
@@ -186,7 +186,7 @@ public class Room implements Serializable {
      * 
      * @return exits
      */
-    public HashMap<String, Room> getExits() {
+    HashMap<String, Room> getExits() {
         return this.exits;
     }
 
@@ -197,7 +197,7 @@ public class Room implements Serializable {
      * 
      * @return the Room object associated with the given direction.
      */
-    public Room getExit(String direction) {
+    Room getExit(String direction) {
         return this.exits.get(direction);
     }
     
@@ -207,7 +207,7 @@ public class Room implements Serializable {
      * 
      * @return lockedExits
      */
-    public HashMap<String, Boolean> getLockedExits() {
+    HashMap<String, Boolean> getLockedExits() {
         return this.lockedExits;
     }
     
@@ -252,7 +252,7 @@ public class Room implements Serializable {
      * 
      * @return hasCharacter
      */
-    public HashMap<String, Boolean> getHasCharacters(){
+    HashMap<String, Boolean> getHasCharacters(){
         return this.hasCharacter;
     }
   
