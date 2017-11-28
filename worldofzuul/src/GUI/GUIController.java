@@ -137,23 +137,44 @@ public class GUIController {
 
         this.highscoreLabel.setText(highscoreString);
 
-        useDropDown.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                updateNumberBox(useDropDown);
-                numberBox.setValue("1");
-                //numberBox.getItems().add(Integer.toString(GUIFacade.getNumberOfItems("Character", useDropDown.getSelectionModel().getSelectedItem())));
-            }
-        });
-
-        pickupDropDown.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                updateNumberBox(pickupDropDown);
-                numberBox.setValue("1");
-                
-            }
-        });
+//        useDropDown.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                updateNumberBox(useDropDown);
+//                numberBox.setValue("1");
+//                //numberBox.getItems().add(Integer.toString(GUIFacade.getNumberOfItems("Character", useDropDown.getSelectionModel().getSelectedItem())));
+//            }
+//        });
+//
+//        pickupDropDown.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                updateNumberBox(pickupDropDown);
+//                numberBox.setValue("1");
+//                
+//            }
+//        });
+        
+////        this.useDropDown.onActionProperty()
+//        this.pickupDropDown.addEventHandler(ActionEvent.ACTION, eventHandler -> {
+//            updateNumberBox(pickupDropDown);
+////            if (useDropDown.getValue() != null){
+////                if (!useDropDown.getValue().equals("")) {
+////                    useDropDown.setValue("");
+////                }
+////            }
+//        });
+//        this.useDropDown.addEventHandler(ActionEvent.ACTION, eventHandler -> {
+//            updateNumberBox(useDropDown);
+////            if (pickupDropDown.getValue() != null){
+////                if (!pickupDropDown.getValue().equals("")) {
+////                    pickupDropDown.setValue("");
+////                }
+////            }
+//        });
+        
+        
+        
         // WORKS
         Image herp = new Image("Pictures/ComputerRoom.png");
         ImageView derp = new ImageView(herp);
@@ -434,9 +455,11 @@ public class GUIController {
     }
 
     private void updateDropdownBackground(ComboBox<String> box) {
-        Image button = new Image("Pictures/button.png");
-        BackgroundSize stuff = new BackgroundSize(box.getLayoutBounds().getWidth(), box.getLayoutBounds().getHeight(), false, false, false, true);
-        BackgroundImage buttonBackground = new BackgroundImage(button, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, stuff);
+        Image buttonImage = new Image("Pictures/button.png");
+        
+        BackgroundSize buttonBackgroundSize = new BackgroundSize(box.getLayoutBounds().getWidth(), box.getLayoutBounds().getHeight(), false, false, false, true);
+        BackgroundImage buttonBackground = new BackgroundImage(buttonImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, buttonBackgroundSize);
+       
         box.setBackground(new Background(buttonBackground));
         box.setButtonCell(new ListCell<String>() {
             @Override
@@ -491,9 +514,7 @@ public class GUIController {
         this.updateDropdownBackground(goDropDown);
 
         
-        
         this.updateDropdownBackground(numberBox);
-
     }
 
     private String loadAndFormatHighscore() {
@@ -522,9 +543,9 @@ public class GUIController {
 
         for (Node node : pane.getChildren()) {
             if (node instanceof Button) {
-                Button temp = (Button) node;
-                temp.setBackground(new Background(buttonBackground));
-                temp.setTextFill(Color.WHITE);
+                Button button = (Button) node;
+                button.setBackground(new Background(buttonBackground));
+                button.setTextFill(Color.WHITE);
             }
         }
     }
@@ -533,15 +554,32 @@ public class GUIController {
         int number = 0;
         numberBox.getItems().clear();
         if (box.equals(useDropDown)) {
-            number = GUIFacade.getNumberOfItems("Character", useDropDown.getSelectionModel().getSelectedItem());
+            number = GUIFacade.getNumberOfItems("Character", useDropDown.getValue());
         } else if (box.equals(pickupDropDown)) {
-            number = GUIFacade.getNumberOfItems("Room", pickupDropDown.getSelectionModel().getSelectedItem());
+            number = GUIFacade.getNumberOfItems("Room", pickupDropDown.getValue());
         }
         if (number != 0) {
             for (int i = 1; i <= number; i++) {
                 numberBox.getItems().add(Integer.toString(i));
             }
         }
+        this.numberBox.setValue("1");
+    }
+
+    @FXML
+    private void pickupDropDownEventHandler(ActionEvent event) {
+        updateNumberBox(pickupDropDown);
+            if (useDropDown.getValue() != null){
+                    useDropDown.setValue(null);
+            }
+    }
+
+    @FXML
+    private void useDropDownEventHandler(ActionEvent event) {
+        updateNumberBox(useDropDown);
+            if (pickupDropDown.getValue() != null){
+                    pickupDropDown.setValue(null);
+            }
     }
 
 }
