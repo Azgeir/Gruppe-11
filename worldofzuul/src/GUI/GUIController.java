@@ -115,6 +115,8 @@ public class GUIController {
         this.outerSpace.setBackground(new Background(buttonBackgroundArray));
         this.innerSpace.setBackground(new Background(starsBackgroundArray));
         this.startScreen.setBackground(new Background(starsBackgroundArray));
+        
+        this.RoomComputer.setRotate(315);
 
         Image button = new Image("Pictures/button.png");
         BackgroundImage buttonBackground = new BackgroundImage(button, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -130,7 +132,7 @@ public class GUIController {
         this.highscoreLabel.setText(highscoreString);
         
         // WORKS
-        Image herp = new Image("Pictures/Hero.png");
+        Image herp = new Image("Pictures/ComputerRoom.png");
         ImageView derp = new ImageView(herp);
 //        this.TestImageView.setImage(herp);
         derp.setFitHeight(200);
@@ -393,7 +395,7 @@ public class GUIController {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
-                if(!empty || item != null){
+                if(empty || item == null){
                     System.out.println("Look first");
                 }
                 else{
