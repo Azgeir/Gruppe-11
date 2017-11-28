@@ -381,7 +381,7 @@ public class GUIController {
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
-                if(!empty || item != null){
+                if(empty || item == null){
                     System.out.println("Look first");
                 }
                 else{
