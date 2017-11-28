@@ -190,13 +190,28 @@ public class Zuul extends Character implements Serializable {
         
     }
     
+    /**
+     * This method is called when the player is killed by Zuul. The method is
+     * private as it is called internally from the performCommand() method. The
+     * method determines a random kill message and assigns its label to the 
+     * character's message. This message is later read, when the kill message
+     * is to be printed.
+     */
     private void kill(){
-        
+        // Genereate a random integer (0, 1, or 2)
         int whichKillMessage = (int)(Math.random() * 3);
         
+        /*
+        If the player tries to run away from Zuul, the default kill message
+        associated with the label "lose" is chosen.
+        */
         this.setMessage("lose");
         
-        if (this.getCurrentRoom().hasCharacter("Hero")){
+        /*
+        If the player is still in the same room as Zuul, the kill message is
+        determined by the random integer.
+        */
+        if (this.getCurrentRoom().hasCharacter("Hero")) {
         switch (whichKillMessage){
             case 1:
                 this.setMessage("lose1");
@@ -209,6 +224,8 @@ public class Zuul extends Character implements Serializable {
             }
         }
         
-        this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
+        // Increase Zuul's initiative.
+        this.setCharacterInitiative(this.getCharacterInitiative()
+            + 10 * this.getSpeedFactor());
     }
 }
