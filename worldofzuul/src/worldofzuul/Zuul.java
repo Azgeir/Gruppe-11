@@ -148,46 +148,80 @@ public class Zuul extends Character implements Serializable {
         return 0;
     }
     
-    /*£
-    same go command as source, except the monster gets to remember where it
-    comes from
-    */
+    /**
+     * This method is called when Zuul tries to move from one room to another.
+     * The method overrides the go() method in Character.
+     * 
+     * @param command the command to be executed.
+     */
     @Override
     void go(Command command){
+        /*
+        If the command does not have a second word (i.e., a direction), break
+        out of the method, as Zuul cannot go in an undefined direction.
+        */
         if(!command.hasSecondWord()) {
             return;
         }
 
+        // Set the command's second word as the direction String.
         String direction = command.getSecondWord();
 
+        /*
+        Define the next room as the exit from the current room associated with
+        the direction String.
+        */
         Room nextRoom = this.getCurrentRoom().getExit(direction);
         
-        if (nextRoom == null) {
-        }
-        else if (this.getCurrentRoom().isExitLocked(direction)){
-            triedLockedExits.add(direction);
-        }
-        else {
-            triedLockedExits.clear();
-            String roomName = this.getCurrentRoom().getName();
-            if (roomName != null) {
-                this.previousRoomName = roomName;
+        // Check that the next room is not null.
+        if (nextRoom != null) {
+            /*
+            If the exit in the specified direction is locked, add the exit to
+            the HashMap of tried locked exits.
+            */
+            if (this.getCurrentRoom().isExitLocked(direction)) {
+                this.triedLockedExits.add(direction);
             }
-            this.getCurrentRoom().setHasCharacter(this.getName(), false);
-            this.setCurrentRoom(nextRoom);
-            this.getCurrentRoom().setHasCharacter(this.getName(), true);
+            // If the exit is not locked, Zuul moves to the next room.
+            else {
+                /*
+                The HashMap of tried locked exits is cleared, as Zuul is now
+                moving to a new room with a new set of available exits.
+                */
+                this.triedLockedExits.clear();
+                /*
+                Set the previous room to be the room that Zuul is currently 
+                leaving.
+                */
+                String roomName = this.getCurrentRoom().getName();
+                if (roomName != null) {
+                    this.previousRoomName = roomName;
+                }
+                /*
+                As Zuul moves from one room to another, update its presence/
+                absence in the two rooms.
+                */
+                this.getCurrentRoom().setHasCharacter(this.getName(), false);
+                this.setCurrentRoom(nextRoom);
+                this.getCurrentRoom().setHasCharacter(this.getName(), true);
+            }
         }
-        //System.out.println("Zuul is " + this.getCurrentRoom().getShortDescription());
-        this.setCharacterInitiative(this.getCharacterInitiative()+10*this.getSpeedFactor());
         
-        heroIsInSameRoom = this.getCurrentRoom().hasCharacter("Hero");
-        if (heroIsInSameRoom) {
-            heroInRoomInitiative = this.getCharacterInitiative();
-        }
-        if (this.getCurrentRoom().hasCharacter("Hero")){
+        // Increase Zuul's initiative.
+        this.setCharacterInitiative(this.getCharacterInitiative()
+            + 10 * this.getSpeedFactor());
+        
+        // Check if the player is in the room that Zuul enters.
+        this.heroIsInSameRoom = this.getCurrentRoom().hasCharacter("Hero");
+        
+        /*
+        If the player is in the same room, update the value of
+        heroInRoomInitiative and send a message to the facade.
+        */
+        if (this.heroIsInSameRoom) {
+            this.heroInRoomInitiative = this.getCharacterInitiative();
             LogicFacade.appendMessage("The Zuul is in this room.");
         }
-        
     }
     
     /**
