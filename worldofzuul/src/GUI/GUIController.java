@@ -490,6 +490,8 @@ public class GUIController {
         this.goDropDown.getItems().addAll(exits);
         this.updateDropdownBackground(goDropDown);
 
+        
+        
         this.updateDropdownBackground(numberBox);
 
     }
