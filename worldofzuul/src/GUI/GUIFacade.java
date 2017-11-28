@@ -72,4 +72,8 @@ public class GUIFacade implements IGUIFacade  {
        String gameMessage = logic.readAndDeleteMessage();
        return gameMessage;
    }
+   
+   static int getNumberOfItems(String inventory, String item){
+       return logic.getNumberOfItems(inventory, item);
+   }
 }

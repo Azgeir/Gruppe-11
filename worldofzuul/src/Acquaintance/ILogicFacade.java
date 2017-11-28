@@ -37,4 +37,6 @@ public interface ILogicFacade {
     
     String readAndDeleteMessage();
 
+    
+    int getNumberOfItems(String inventory, String item);
 }
