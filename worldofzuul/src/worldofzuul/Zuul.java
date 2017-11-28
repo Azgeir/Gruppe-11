@@ -120,23 +120,38 @@ public class Zuul extends Character implements Serializable {
         return new Command(commands.getCommandWord(word1), word2, word3);
     }
     
+    /**
+     * This method is called when Zuul is to execute a command. This is done by
+     * matching the command word of the command to the corresponding action. The
+     * method overrides the performCommand() method in Character.
+     * 
+     * @param command the command to be executed by Zuul.
+     * 
+     * @return 0 as the action does not affect Zuul's initiative.
+     */
     @Override
-    public double performCommand(Command command) {
-        // Create instance of CommandWord using the command word of the specified command (from Parser)
+    double performCommand(Command command) {
+        /*
+        Create an instance of CommandWord using the command word of the
+        specified command.
+        */
         CommandWord commandWord = command.getCommandWord();
         
-        
-        if (null != commandWord) // Execute the command if the input matches a valid command
-        {
+        /*
+        If the command word matches a valid command, call the corresponding 
+        method.
+        */
+        if (commandWord != null) {
             switch (commandWord) {
-                // If command is "go", call go() method on current character
+                // If the command is "go", call go() method from Zuul.
                 case GO:
                     this.go(command);
                     break;
-                // If command is "stay", call stay() method on current character
+                // If the command is "stay", call stay() method from Character
                 case STAY:
                     this.stay(command);
                     break;
+                // If the command is "kill", call kill() method from Zuul.
                 case KILL:
                     this.kill();
                 // If command does not match any of the options, break.
@@ -144,7 +159,8 @@ public class Zuul extends Character implements Serializable {
                     break;
             }
         }
-        // Return boolean value (false = continue playing; true = quit game)
+        
+        // Return 0 as the action does not affect Zuul's initiative.
         return 0;
     }
     
