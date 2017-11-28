@@ -27,9 +27,24 @@ public class Zuul extends Character implements Serializable {
     private double heroInRoomInitiative = -Double.MAX_VALUE;
     private boolean heroHadTurn;
     
+    /**
+     * This constructor creates a Zuul with the specified current room, name,
+     * and speed factor. The constructor calls the constructor from the
+     * superclass via constructor chaining. As part of the construction, it is
+     * determined whether or not the player (hero) is in the same room as Zuul.
+     * 
+     * @param currentRoom current room of Zuul.
+     * @param name name of the character (i.e., "Zuul").
+     * @param speedFactor used when updating Zuul's initiative.
+     */
     Zuul(Room currentRoom, String name, double speedFactor){
         super(currentRoom, name, speedFactor);
+        // Check if the player is in the same room as Zuul.
         this.heroIsInSameRoom = currentRoom.hasCharacter("Hero");
+        /*
+        When a Zuul is created, it does not know if the player has been in the
+        room or if the player has had its turn.
+        */
         this.heroWasInSameRoom = false;
         this.heroHadTurn = false;
     }
