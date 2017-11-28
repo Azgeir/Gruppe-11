@@ -3,52 +3,89 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package worldofzuul;
 
 import java.io.Serializable;
 
 /**
- *
+ * This class represents an item in the game. The class is the superclass of the
+ * subclasses AccessCard, AcidVial, Medkit, and USB. The class implements the
+ * Serializable interface.
+ * 
  * @author laurabrinkholmjustesen
  */
 
-// This class represents an item in the game.
 public class Item implements Serializable {
-    // Data fields:
-    private int weight; // The weight of the item
-    private String name; // The name of the item
-    private String useDescription; // Describes how the item is used
+    /**
+     * Data fields.
+     * weight: the weight of the item
+     * name: the name of the item
+     * useDescription: describes how the item is used
+     */
+    private int weight;
+    private String name;
+    private String useDescription;
     
-    // This constructor creates an item with the specified weight and name
-    Item(int weight, String name, String useDescription) {
-        this.weight = weight;
-        this.name = name;
-        this.useDescription = useDescription;
-    }
-
-    // This constructor creates an item with the specified weight and name
+    /**
+     * This constructor creates an Item object with the specified weight and
+     * name.
+     * 
+     * @param weight, the weight of the item.
+     * @param name, the name of the item.
+     */
     Item(int weight, String name) {
         this.weight = weight;
         this.name = name;
     }
-
-    // This is an empty no-arg constructor
-    Item() {    
-    }
     
-    // This method returns the weight of the item
+    /**
+     * This constructor creates an Item object with the specified weight, name,
+     * and use description. The constructor uses constructor chaining. 
+     * 
+     * @param weight, the weight of the item.
+     * @param name, the name of the item.
+     * @param useDescription, describes how the item is used.
+     */
+    Item(int weight, String name, String useDescription) {
+        this(weight, name);
+        this.useDescription = useDescription;
+    }
+
+    /**
+     * This method returns the weight of the item.
+     * 
+     * @return weight
+     */
     int getWeight() {
         return this.weight;
     }
     
-    // This method returns the name of the item
+    /**
+     * This method returns the name of the item.
+     * 
+     * @return name
+     */
     String getName() {
         return this.name;
     }
     
-    // This method prints a description of how the item is used
+    /**
+     * This method is used when the player uses an item. The method prints a
+     * message describing the use of the object and increases the character's
+     * initiative as a result of the action. The method is overridden in the
+     * subclasses AccessCard, AcidVial, MedKit, and USB.
+     * 
+     * @param currentCharacter, which is an instance of Hero representing the
+     * player.
+     * 
+     * @return 0, because the action has no effect on Zuul's initiative.
+     */
     double use(Hero currentCharacter) {
-//        Hero currentCharacter = (Hero)currentCharacter;
+        /*
+        Print message depending on whether or not the item has a use
+        description, and whether or not Zuul is in the same room as the player.
+        */
         if (useDescription == null) {
             if (currentCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
                 System.out.println("You throw the " + this.name + " in blind \n"
@@ -59,17 +96,20 @@ public class Item implements Serializable {
             }
         } else {
             if (currentCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
-                System.out.println("You use the " + this.name + " to " + this.useDescription + ". It has no effect on the zuul");                
+                System.out.println("You use the " + this.name + " to " 
+                    + this.useDescription + ". It has no effect on the Zuul.");                
             } else {
-                System.out.println("You use the " + this.name + " to " + this.useDescription);
+                System.out.println("You use the " + this.name + " to " 
+                    + this.useDescription);
             }
         }
-        currentCharacter.setCharacterInitiative(currentCharacter.getCharacterInitiative()+3*currentCharacter.getSpeedFactor());
+        
+        // Increase player's initiative.
+        currentCharacter.setCharacterInitiative(
+            currentCharacter.getCharacterInitiative() + 
+            3 * currentCharacter.getSpeedFactor());
+        
+        // Return 0, as the action does not affect Zuul's initiative.
         return 0;
-    }
-    
-    // This method returns a description of the possible use of the item
-    void getDescription() {
-        System.out.println("This is a " + this.name + ". You can use this to " + this.useDescription);
     }
 }

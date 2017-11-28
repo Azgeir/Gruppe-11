@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -44,9 +45,7 @@
               </rowConstraints>
                <children>
                   <Button fx:id="pickupButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pickupButtonHandler" text="Pickup" GridPane.rowIndex="1" />
-                  <ChoiceBox fx:id="useDropDown" layoutX="35.0" layoutY="22.0" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="2" />
                   <Button fx:id="inventoryButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#inventoryButtonHandler" text="Inventory" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                  <ChoiceBox fx:id="pickupDropDown" maxWidth="1.7976931348623157E308" />
                   <Button fx:id="useButton" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#useButtonAction" text="Use" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <Button fx:id="activateButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#activateButtonHandler" text="Activate" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <Button fx:id="talkButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#talkButtonHandler" text="Talk" GridPane.columnIndex="4" GridPane.rowIndex="1" />
@@ -68,16 +67,18 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ChoiceBox fx:id="GoDropDown" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Button fx:id="goButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goButtonHandler" text="Go" GridPane.columnIndex="1" />
                         <Button fx:id="peekButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#peekButtonHandler" text="Peek" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                         <Button fx:id="unlockButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#unlockButtonHandler" text="Unlock" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Button fx:id="lockButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#lockButtonHandler" text="Lock" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="goDropDown" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                      <padding>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </padding>
                   </GridPane>
+                  <ComboBox fx:id="pickupDropDown" prefWidth="150.0" />
+                  <ComboBox fx:id="useDropDown" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="2" />
                </children>
                <padding>
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -1539,12 +1540,15 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Button mnemonicParsing="false" onAction="#startButtonActionEvent" text="Start" GridPane.halignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#loadButtonActionEvent" text="Load" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Slider GridPane.rowIndex="2" />
+            <Slider GridPane.rowIndex="4" />
             <Slider GridPane.rowIndex="3" />
+            <TextField fx:id="textfieldPlayerName" alignment="CENTER" promptText="Enter name" GridPane.rowIndex="2" />
+            <Label fx:id="highscoreLabel" alignment="CENTER" text="This is going to be highscore" textFill="#e0e408" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>

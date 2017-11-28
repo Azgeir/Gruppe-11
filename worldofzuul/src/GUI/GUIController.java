@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import Acquaintance.IHighscore;
+import Acquaintance.IScore;
 import java.io.File;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -13,7 +15,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +34,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.TextFlow;
+import javafx.util.Callback;
 import worldofzuul.Game;
 
 /**
@@ -36,7 +46,7 @@ import worldofzuul.Game;
 public class GUIController {
 
     @FXML
-    private ChoiceBox<String> useDropDown;
+    private ComboBox<String> useDropDown;
     @FXML
     private Button stayButton;
     @FXML
@@ -67,11 +77,8 @@ public class GUIController {
     private Button unlockButton;
 
     @FXML
-    private ChoiceBox<String> pickupDropDown;
+    private ComboBox<String> pickupDropDown;
 
-//    private Game game;
-    @FXML
-    private ChoiceBox<String> GoDropDown;
     @FXML
     private Button lockButton;
     @FXML
@@ -88,37 +95,43 @@ public class GUIController {
     private AnchorPane innerSpace;
     @FXML
     private GridPane startScreen;
+    @FXML
+    private TextField textfieldPlayerName;
+    @FXML
+    private ComboBox<String> goDropDown;
+    @FXML
+    private Label highscoreLabel;
 
+    
     public void initialize() {
         // TODO
-        int numberOfZuulAtStart = 3;
-//        game = new Game(3);
-        GUIFacade.initializeGame(numberOfZuulAtStart);
-//        game.createGodDammit();
 
-//        ObservableList<String> exit = FXCollections.observableArrayList();
-
-        Set<String> exits = GUIFacade.getExits();
-        
-        GoDropDown.getItems().addAll(exits);
-        
-        Set<String> inventorySet = GUIFacade.getInventorySet();
-        
-        useDropDown.getItems().addAll(inventorySet);
-        
+        // create new private method for loading the pictures and layout
         Image buttons = new Image("Pictures/buttons.png");
         Image stars = new Image("Pictures/Stars.jpg");
         BackgroundImage starsBackground = new BackgroundImage(stars, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        BackgroundImage buttonBackground = new BackgroundImage(buttons, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage buttonsBackground = new BackgroundImage(buttons, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         BackgroundImage[] starsBackgroundArray = {starsBackground};
         
-        BackgroundImage[] buttonBackgroundArray = {buttonBackground};
+        BackgroundImage[] buttonBackgroundArray = {buttonsBackground};
         this.outerSpace.setBackground(new Background(buttonBackgroundArray));
         this.innerSpace.setBackground(new Background(starsBackgroundArray));
         this.startScreen.setBackground(new Background(starsBackgroundArray));
         
         this.RoomComputer.setRotate(315);
 
+        Image button = new Image("Pictures/button.png");
+        BackgroundImage buttonBackground = new BackgroundImage(button, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        lockButton.setBackground(new Background(buttonBackground));
+        lockButton.setTextFill(Color.WHITE);
+        
+        pickupDropDown.setBackground(new Background(buttonBackground));
+        
+        this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
+        
+        String highscoreString = this.loadAndFormatHighscore();
+        
+        this.highscoreLabel.setText(highscoreString);
         
         // WORKS
         Image herp = new Image("Pictures/ComputerRoom.png");
@@ -141,6 +154,7 @@ public class GUIController {
         
         Image[] derpArray = {herp};
         BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        
         BackgroundImage[] backDerpArray = {backDerp};
         
         this.RoomComputer.setBackground(new Background(backDerpArray));
@@ -160,14 +174,8 @@ public class GUIController {
             command = command + " " + item;
             GUIFacade.sendCommand(command);
             
-            this.pickupDropDown.getItems().clear();
-            Set<String> itemSet = GUIFacade.getRoomItemSet();
-            this.pickupDropDown.getItems().addAll(itemSet);
+            this.updateAllDropdown();
             
-            this.useDropDown.getItems().clear();
-            Set<String> inventorySet = GUIFacade.getInventorySet();
-            this.useDropDown.getItems().addAll(inventorySet);
-//            game.play(command);
         } else {
             System.out.println("choose something to pickup from the dropbox");
         }
@@ -193,10 +201,8 @@ public class GUIController {
             command = command + " " + this.useDropDown.getValue();
             GUIFacade.sendCommand(command);
             
-            this.useDropDown.getItems().clear();
-            Set<String> inventorySet = GUIFacade.getInventorySet();
-            this.useDropDown.getItems().addAll(inventorySet);
-//            game.play(command);
+            this.updateAllDropdown();
+            
         } else {
             System.out.println("choose something to use from the dropbox");
         }
@@ -247,11 +253,8 @@ public class GUIController {
     private void lookButtonHandler(ActionEvent event) {
         String command = "look around";
         GUIFacade.sendCommand(command);
-        Set<String> itemSet = GUIFacade.getRoomItemSet();
         
-        this.pickupDropDown.getItems().clear();
-        this.pickupDropDown.getItems().addAll(itemSet);
-        
+        this.updateAllDropdown();
         this.isGameFinished();
         
 //        game.play(command);
@@ -261,7 +264,6 @@ public class GUIController {
     @FXML
     private void saveButtonHandler(ActionEvent event) {
         GUIFacade.saveGame();
-    
         this.isGameFinished();
     }
 
@@ -273,14 +275,8 @@ public class GUIController {
             command = command + " " + this.useDropDown.getValue();
             GUIFacade.sendCommand(command);
             
-            this.pickupDropDown.getItems().clear();
-            Set<String> itemSet = GUIFacade.getRoomItemSet();
-            this.pickupDropDown.getItems().addAll(itemSet);
+            this.updateAllDropdown();
             
-            this.useDropDown.getItems().clear();
-            Set<String> inventorySet = GUIFacade.getInventorySet();
-            this.useDropDown.getItems().addAll(inventorySet);
-//            game.play(command);
         } else {
             System.out.println("choose something to drop from the dropbox");
         }
@@ -291,19 +287,13 @@ public class GUIController {
     private void goButtonHandler(ActionEvent event) {
         
         String command;
-        if (this.GoDropDown.getValue() != null) {
+        if (this.goDropDown.getValue() != null) {
             command = "go";
-            command = command + " " + this.GoDropDown.getValue();
+            command = command + " " + this.goDropDown.getValue();
             GUIFacade.sendCommand(command);
-            Set<String> exits = GUIFacade.getExits();
-            this.GoDropDown.getItems().clear();
-            this.GoDropDown.getItems().addAll(exits);
             
-            this.pickupDropDown.getItems().clear();
-            if (GUIFacade.isRoomLookedBefore()) {
-                Set<String> itemSet = GUIFacade.getRoomItemSet();
-                this.pickupDropDown.getItems().addAll(itemSet);
-            }
+            this.updateAllDropdown();
+            
             
 //            game.play(command);
         } else {
@@ -318,9 +308,9 @@ public class GUIController {
     private void peekButtonHandler(ActionEvent event) {
         
         String command;
-        if (this.GoDropDown.getValue() != null) {
+        if (this.goDropDown.getValue() != null) {
             command = "peek";
-            command = command + " " + this.GoDropDown.getValue();
+            command = command + " " + this.goDropDown.getValue();
             GUIFacade.sendCommand(command);
 //            game.play(command);
         } else {
@@ -334,9 +324,9 @@ public class GUIController {
     private void unlockButtonHandler(ActionEvent event) {
         
         String command;
-        if (this.GoDropDown.getValue() != null) {
+        if (this.goDropDown.getValue() != null) {
             command = "unlock";
-            command = command + " " + this.GoDropDown.getValue();
+            command = command + " " + this.goDropDown.getValue();
             GUIFacade.sendCommand(command);
 //            game.play(command);
         } else {
@@ -350,9 +340,9 @@ public class GUIController {
     private void lockButtonHandler(ActionEvent event) {
         
         String command;
-        if (this.GoDropDown.getValue() != null) {
+        if (this.goDropDown.getValue() != null) {
             command = "lock";
-            command = command + " " + this.GoDropDown.getValue();
+            command = command + " " + this.goDropDown.getValue();
             GUIFacade.sendCommand(command);
 //            game.play(command);
         } else {
@@ -364,7 +354,7 @@ public class GUIController {
     private void isGameFinished(){
         if (GUIFacade.isGameFinished()) {
             this.goButton.setDisable(true);
-            this.GoDropDown.setDisable(true);
+            this.goDropDown.setDisable(true);
             this.activateButton.setDisable(true);
             this.dropButton.setDisable(true);
             this.helpButton.setDisable(true);
@@ -386,18 +376,41 @@ public class GUIController {
 
     @FXML
     private void startButtonActionEvent(ActionEvent event) {
-        this.startScreen.setDisable(true);
-        this.startScreen.setVisible(false);
-        this.outerSpace.setDisable(false);
-        this.outerSpace.setVisible(true);
+        int numberOfZuulAtStart = 3;
+
+        GUIFacade.initializeGame(numberOfZuulAtStart);
+
+        this.updateAllDropdown();
         
-        
+        this.switchScreen(startScreen, outerSpace);
+    }
+    
+    private void updateDropdownBackground(ComboBox<String> box){
+        Image button = new Image("Pictures/button.png");
+        BackgroundSize stuff = new BackgroundSize(box.getLayoutBounds().getWidth(), box.getLayoutBounds().getHeight(), false, false, false, true);
+        BackgroundImage buttonBackground = new BackgroundImage(button, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, stuff);
+        box.setBackground(new Background(buttonBackground));
+        box.setButtonCell(new ListCell<String>(){
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if(!empty || item != null){
+                    System.out.println("Look first");
+                }
+                else{
+                    setText(item);
+                    setTextFill(Color.WHITE);
+                }
+                
+            }            
+        });
     }
 
     @FXML
     private void loadButtonActionEvent(ActionEvent event) {
         GUIFacade.loadGame();
         this.switchScreen(startScreen, outerSpace);
+        this.updateAllDropdown();
     }
     
     private void switchScreen(Pane from, Pane to){
@@ -405,7 +418,48 @@ public class GUIController {
         from.setVisible(false);
         to.setDisable(false);
         to.setVisible(true);
+    }
+    
+    private void updateAllDropdown(){
         
+        this.pickupDropDown.getItems().clear();
+        if (GUIFacade.isRoomLookedBefore()) {
+            Set<String> itemSet = GUIFacade.getRoomItemSet();
+            this.pickupDropDown.getItems().addAll(itemSet);
+        }
+        this.updateDropdownBackground(pickupDropDown);
+
+            
+        this.useDropDown.getItems().clear();
+        Set<String> inventorySet = GUIFacade.getInventorySet();
+        this.useDropDown.getItems().addAll(inventorySet);
+        this.updateDropdownBackground(useDropDown);
+        
+        Set<String> exits = GUIFacade.getExits();
+        this.goDropDown.getItems().clear();
+        this.goDropDown.getItems().addAll(exits);
+        this.updateDropdownBackground(goDropDown);
+    }
+    
+    private String loadAndFormatHighscore(){
+        IHighscore highscore = GUIFacade.loadHighscore();
+        IScore[] scores = highscore.getScores();
+        
+        String highscoreString = "";
+        
+        for (int i = 0; i < scores.length; i++) {
+            IScore score = scores[i];
+            
+            if (score != null) {
+                highscoreString += "Rank: " + (i+1) + "\t";
+                highscoreString += "Player: " + score.getName() + "\t";
+                highscoreString += "Score: " + ((int)(score.getScore()*100))/100.0 + "\n";
+            }
+            else {
+                break;
+           }
+        }
+        return highscoreString;
     }
 
 }

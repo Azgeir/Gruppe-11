@@ -13,36 +13,57 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 /**
- *
+ * This class represents the hero (the player). The class extends the superclass
+ * Character and implements the interface Serializable.
  * @author HCHB
  */
-// This class represents the player
+
 public class Hero extends Character implements Serializable {
 
-    // Data fields:
-    private int health = 10; // Hero's health
-    private Inventory inventory; // Hero's inventory
+    /**
+     * Data fields.
+     * health: the hero's health (default value of 10)
+     * inventory: an instance of Inventory that represents the hero's inventory
+     * reactorActivated: boolean value that indicates if the player has activated
+     * the reactor (default value of false).
+     */
+    private int health = 10;
+    private Inventory inventory;
     private boolean reactorActivated = false;
 
-    /*
-    £
+    /**
+     * This constructor creates a Hero object with the specified current room
+     * and name. The hero has an inventory of default size 100.
+     * 
+     * @param currentRoom, the hero's current room
+     * @param name, represents the character type (e.g. "Hero")
      */
-    // This constructor creates a Hero with an inventory of size 100.
-    Hero() {
-        this.inventory = new Inventory(100);
-    }
-
     Hero(Room currentRoom, String name) {
         super(currentRoom, name);
         this.inventory = new Inventory(100);
     }
-
-    Hero(int health, int capacity, Room currentRoom, String name) {
+    
+    /**
+     * This constructor creates a Hero object with the specified current room,
+     * name, inventory capacity and health. The hero has an inventory of default size 100.
+     * 
+     * @param health  The amount of health the hero gets.
+     * @param inventoryCapacity  The total weight of items the hero can carry.
+     * @param currentRoom The room the hero starts in.
+     * @param name The name of the hero.
+     */
+    Hero(int health, int inventoryCapacity, Room currentRoom, String name) {
         this(currentRoom, name);
         this.health = health;
-        this.inventory = new Inventory(capacity);
+        this.inventory = new Inventory(inventoryCapacity);
     }
-
+    
+    /**
+     * This method moves the hero according to the command passed.
+     * 
+     * @param command Is the command the hero receives. Consists of 3 words
+     * where the second defines the direction the hero attempt to go.
+     */
     @Override
     void go(Command command) {
         // If the command does not have a second word, print error message
@@ -61,7 +82,7 @@ public class Hero extends Character implements Serializable {
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } 
-        // If the specified exit is locked, print error message
+        // If the specified exit is locked, print locked message
         else if (this.getCurrentRoom().getLockedExit(direction)){
             System.out.println("This exit is locked, so you can't get through.");
         }
@@ -83,9 +104,15 @@ public class Hero extends Character implements Serializable {
         
         this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
     }
-    
-    //Transfers an Item from the rooms inventory to the characters inventory
-    
+        
+    /**
+     * This method picks up an item from the heros current room and moves it 
+     * to the heros inventory.
+     * 
+     * @param command Is the command the hero receives. Consists of 3 words
+     * where the second is the name of the item to pick up, and the third is an 
+     * optional number of items to pick up.
+     */
     void pickUp(Command command) {
 
         if (command.hasSecondWord()) {
@@ -146,8 +173,15 @@ public class Hero extends Character implements Serializable {
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
 
-    //Transfers an item from the characters inventory to the rooms
-//    @Override
+    
+    /**
+     * This method drops an item from the heros inventory and moves it to the
+     * current room.
+     * 
+     * @param command Is the command the hero receives. Consists of 3 words
+     * where the second is the name of the item to drop, and the third is an 
+     * optional number of items to drop.
+     */
     void dropItem(Command command) {
 
         if (command.hasSecondWord()) {
@@ -209,7 +243,10 @@ public class Hero extends Character implements Serializable {
     }
 
     //Gives the player a detailed description of the items and the possibilities of a room
-//    @Override
+    /**
+     *
+     * @param command
+     */
     void look(Command command) {
 
         if (command.hasSecondWord()) {

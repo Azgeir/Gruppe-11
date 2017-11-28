@@ -6,11 +6,17 @@
 package Data;
 
 import Acquaintance.IGame;
+import Acquaintance.IHighscore;
+import Acquaintance.IScore;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,9 +27,11 @@ import java.util.logging.Logger;
 public class Data {
     
     private String saveGameFileName;
+    private String highscoreFileName;
     
     public Data(){
         this.saveGameFileName = "Escape pod.Zuul";
+        this.highscoreFileName = "Escape pod highscore.txt";
     }
     
     void saveGame(IGame game){
@@ -43,7 +51,29 @@ public class Data {
     }
     
     
-    void saveHighscore(){
+    void saveHighscore(IHighscore highscore){
+        File highscoreFile = new File(this.highscoreFileName);
+
+        try {
+            PrintWriter output = new PrintWriter(highscoreFile);
+            
+            IScore[] scores = highscore.getScores();
+            
+            for (int i = 0; i < scores.length; i++) {
+                IScore score = scores[i];
+                if (score != null) {
+                    output.println(i + " " + score.getName() + " " + score.getScore());
+                }
+                else {
+                    break;
+                }
+            }
+            
+            output.close();
+        
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     
@@ -65,8 +95,29 @@ public class Data {
         return game;
     }
     
-    void loadHighscore(){
+    IHighscore loadHighscore(){
+        File highscoreFile = new File(highscoreFileName);
+        IHighscore highscore;
         
+        try {
+            Scanner input = new Scanner(highscoreFile);
+            
+            IScore[] scores = new IScore[10];
+            
+            while (input.hasNext()){
+                int i = input.nextInt();
+                String name = input.next();
+                double score = input.nextDouble();
+                scores[i] = new ScoreData(name,score);
+            }
+            
+            highscore = new HighscoreData(scores);
+            
+        } catch (FileNotFoundException ex) {
+            highscore = new HighscoreData();
+        }
+            
+        return highscore;
     }
     
 }
