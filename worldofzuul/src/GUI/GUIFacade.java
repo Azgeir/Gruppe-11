@@ -67,4 +67,9 @@ public class GUIFacade implements IGUIFacade  {
        IHighscore highscore = logic.loadHighscore();
        return highscore;
    }
+   
+   static String readAndDeleteGameMessage(){
+       String gameMessage = logic.readAndDeleteMessage();
+       return gameMessage;
+   }
 }

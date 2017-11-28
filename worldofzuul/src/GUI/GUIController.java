@@ -99,6 +99,8 @@ public class GUIController {
     private ComboBox<String> goDropDown;
     @FXML
     private Label highscoreLabel;
+    @FXML
+    private Label labelMessageField;
 
     
     public void initialize() {
@@ -173,6 +175,9 @@ public class GUIController {
             GUIFacade.sendCommand(command);
             
             this.updateAllDropdown();
+            String message = GUIFacade.readAndDeleteGameMessage();
+                    
+            this.labelMessageField.setText(message);
             
         } else {
             System.out.println("choose something to pickup from the dropbox");

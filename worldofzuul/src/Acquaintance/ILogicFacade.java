@@ -33,6 +33,8 @@ public interface ILogicFacade {
 
     IHighscore loadHighscore();
 
-    void saveGame();
+    void saveGame(); 
+    
+    String readAndDeleteMessage();
 
 }

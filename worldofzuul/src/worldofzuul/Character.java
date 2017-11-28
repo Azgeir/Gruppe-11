@@ -123,7 +123,7 @@ public class Character implements Serializable {
      * is "go".
      */
     void go(Command command) {
-        System.out.println("This does nothing.");
+        LogicFacade.appendMessage("This does nothing.");
     }
 
     /**

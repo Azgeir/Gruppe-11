@@ -41,7 +41,7 @@ class AccessCard extends Item implements Serializable {
     @Override
     double use(Hero currentCharacter){
         // Print message that indicates use.
-        System.out.println("You wave the access card around.");
+        LogicFacade.appendMessage("You wave the access card around.");
         
         // Increase the character's initiaitve.
         currentCharacter.setCharacterInitiative(

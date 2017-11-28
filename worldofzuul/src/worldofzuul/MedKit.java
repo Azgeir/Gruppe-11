@@ -81,7 +81,7 @@ public class MedKit extends Item implements Serializable {
         currentCharacter.getInventory().removeItem(this);
         
         // Print message to player.
-        System.out.println("You healed youself with a medkit, but it is now "
+        LogicFacade.appendMessage("You healed youself with a medkit, but it is now "
             + "spent.");
         
         /*

@@ -85,7 +85,7 @@ public class Inventory implements Serializable {
                 inventory.remove(item.getName());
             }
         } else {
-            System.out.println("You don't have that item.");
+            LogicFacade.appendMessage("You don't have that item.");
         }
     }
 

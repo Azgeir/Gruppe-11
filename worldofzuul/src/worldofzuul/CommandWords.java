@@ -93,6 +93,6 @@ public class CommandWords  implements Serializable
                 System.out.print(command + "  ");
             }
         }
-        System.out.println();
+        LogicFacade.appendMessage("");
     }
 }

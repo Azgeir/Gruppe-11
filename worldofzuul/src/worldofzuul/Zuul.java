@@ -78,7 +78,7 @@ public class Zuul extends Character implements Serializable {
             heroInRoomInitiative = this.getCharacterInitiative();
         }
         if (this.getCurrentRoom().hasCharacter("Hero")){
-            System.out.println("The Zuul is in this room.");
+            LogicFacade.appendMessage("The Zuul is in this room.");
         }
         
     }

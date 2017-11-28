@@ -14,7 +14,7 @@ import java.util.Set;
 public class LogicFacade implements ILogicFacade{
     
     private static IDataFacade data;
-    private Game game;
+    private static Game game;
     
     @Override
     public void injectData(IDataFacade data) {
@@ -94,5 +94,15 @@ public class LogicFacade implements ILogicFacade{
     static IHighscore getHighscore(){
         IHighscore highscore = data.loadHighscore();
         return highscore;
+    }
+
+    @Override
+    public String readAndDeleteMessage() {
+        String message = game.readAndDeleteMessage();
+        return message;
+    }
+    
+    static void appendMessage(String appendMessage){
+        game.appendMessage(appendMessage);
     }
 }

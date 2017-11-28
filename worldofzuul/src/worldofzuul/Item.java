@@ -88,18 +88,18 @@ public class Item implements Serializable {
         */
         if (useDescription == null) {
             if (currentCharacter.getCurrentRoom().hasCharacter("Zuul")) {
-                System.out.println("You throw the " + this.name + " in blind \n"
+                LogicFacade.appendMessage("You throw the " + this.name + " in blind \n"
                 + "panic. It doesn't have any effect.");
             } else {
-                System.out.println("You wave around the " + this.name + ",\n"
+                LogicFacade.appendMessage("You wave around the " + this.name + ",\n"
                         + "seemingly with no purpose.");
             }
         } else {
             if (currentCharacter.getCurrentRoom().hasCharacter("Zuul")) {
-                System.out.println("You use the " + this.name + " to " 
+                LogicFacade.appendMessage("You use the " + this.name + " to " 
                     + this.useDescription + ". It has no effect on the Zuul.");                
             } else {
-                System.out.println("You use the " + this.name + " to " 
+                LogicFacade.appendMessage("You use the " + this.name + " to " 
                     + this.useDescription);
             }
         }
