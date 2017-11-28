@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package worldofzuul;
 
+// Imports:
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
+ * This class represents Zuul (the monster of the game). The class extends the
+ * superclass Character and implements the interface Serializable.
+ * 
  * @author HCHB
  */
 public class Zuul extends Character implements Serializable {
@@ -22,17 +26,6 @@ public class Zuul extends Character implements Serializable {
     private boolean heroWasInSameRoom;
     private double heroInRoomInitiative = -Double.MAX_VALUE;
     private boolean heroHadTurn;
-    
-    Zuul(){
-        
-    }
-    
-    Zuul(Room currentRoom, String name){
-        super(currentRoom, name);
-        this.heroIsInSameRoom = currentRoom.hasCharacter("Hero");
-        this.heroWasInSameRoom = false;
-        this.heroHadTurn = false;
-    }
     
     Zuul(Room currentRoom, String name, double speedFactor){
         super(currentRoom, name, speedFactor);
