@@ -110,6 +110,8 @@ public class GUIController {
     private GridPane smallGridPane;
     @FXML
     private ComboBox<String> numberBox;
+    @FXML
+    private Label warningLabel;
 
     public void initialize() {
         // TODO
