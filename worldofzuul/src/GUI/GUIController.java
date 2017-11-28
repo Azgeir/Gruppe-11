@@ -75,10 +75,8 @@ public class GUIController {
     private Button peekButton;
     @FXML
     private Button unlockButton;
-
     @FXML
     private ComboBox<String> pickupDropDown;
-
     @FXML
     private Button lockButton;
     @FXML
@@ -375,8 +373,11 @@ public class GUIController {
     @FXML
     private void startButtonActionEvent(ActionEvent event) {
         int numberOfZuulAtStart = 3;
+        double spawnTime = 200;
+        String name = this.textfieldPlayerName.getText();
+        
 
-        GUIFacade.initializeGame(numberOfZuulAtStart);
+        GUIFacade.initializeGame(numberOfZuulAtStart,spawnTime,name);
 
         this.updateAllDropdown();
         

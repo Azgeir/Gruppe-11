@@ -24,8 +24,8 @@ public class GUIFacade implements IGUIFacade  {
        ZuulGUI.main(args);
    }
    
-   static void initializeGame(int numberOfZuulAtStart){
-       logic.initializeGame(numberOfZuulAtStart);
+   static void initializeGame(int numberOfZuulAtStart, double spawnTime, String name){
+       logic.initializeGame(numberOfZuulAtStart, spawnTime, name);
    }
    
    static void sendCommand(String command){

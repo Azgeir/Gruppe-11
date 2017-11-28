@@ -28,8 +28,8 @@ public class Game implements IGame, Serializable{
     private double maxInititative = Double.MAX_VALUE;
     private boolean reactorActivated = false;
     private boolean finished;
-    private int timeSinceSpawn;
-    private int spawnTime;
+    private double timeSinceSpawn;
+    private double spawnTime;
     private String name;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
@@ -41,11 +41,11 @@ public class Game implements IGame, Serializable{
         this(numberOfZuul,200);
     }
     
-    Game(int numberOfZuul, int spawnTime){
+    Game(int numberOfZuul, double spawnTime){
         this(numberOfZuul, spawnTime, "Derp");
     }
     
-    Game(int numberOfZuul, int spawnTime, String name){
+    Game(int numberOfZuul, double spawnTime, String name){
         this.finished = false;
         this.timeSinceSpawn = 0;
         this.spawnTime = spawnTime;

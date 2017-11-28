@@ -22,8 +22,8 @@ public class LogicFacade implements ILogicFacade{
     }
     
     @Override
-    public void initializeGame(int numberOfZuulAtStart){
-        game = new Game(numberOfZuulAtStart);
+    public void initializeGame(int numberOfZuulAtStart, double spawnTime, String name){
+        game = new Game(numberOfZuulAtStart, spawnTime ,name);
     }
     
     @Override
