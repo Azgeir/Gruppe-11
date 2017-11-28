@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import Acquaintance.IHighscore;
+import Acquaintance.IScore;
 import java.io.File;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -14,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -32,6 +35,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
 import worldofzuul.Game;
 
@@ -75,7 +79,6 @@ public class GUIController {
     @FXML
     private ComboBox<String> pickupDropDown;
 
-//    private Game game;
     @FXML
     private Button lockButton;
     @FXML
@@ -96,6 +99,10 @@ public class GUIController {
     private TextField textfieldPlayerName;
     @FXML
     private ComboBox<String> goDropDown;
+    @FXML
+    private Label highscoreLabel;
+
+    
     public void initialize() {
         // TODO
 
@@ -110,6 +117,8 @@ public class GUIController {
         this.outerSpace.setBackground(new Background(buttonBackgroundArray));
         this.innerSpace.setBackground(new Background(starsBackgroundArray));
         this.startScreen.setBackground(new Background(starsBackgroundArray));
+        
+        this.RoomComputer.setRotate(315);
 
         Image button = new Image("Pictures/button.png");
         BackgroundImage buttonBackground = new BackgroundImage(button, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -117,11 +126,15 @@ public class GUIController {
         lockButton.setTextFill(Color.WHITE);
         
         pickupDropDown.setBackground(new Background(buttonBackground));
-
         
+        this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
+        
+        String highscoreString = this.loadAndFormatHighscore();
+        
+        this.highscoreLabel.setText(highscoreString);
         
         // WORKS
-        Image herp = new Image("Pictures/Hero.png");
+        Image herp = new Image("Pictures/ComputerRoom.png");
         ImageView derp = new ImageView(herp);
 //        this.TestImageView.setImage(herp);
         derp.setFitHeight(200);
@@ -428,6 +441,25 @@ public class GUIController {
         this.updateDropdownBackground(goDropDown);
     }
     
-    
+    private String loadAndFormatHighscore(){
+        IHighscore highscore = GUIFacade.loadHighscore();
+        IScore[] scores = highscore.getScores();
+        
+        String highscoreString = "";
+        
+        for (int i = 0; i < scores.length; i++) {
+            IScore score = scores[i];
+            
+            if (score != null) {
+                highscoreString += "Rank: " + (i+1) + "\t";
+                highscoreString += "Player: " + score.getName() + "\t";
+                highscoreString += "Score: " + ((int)(score.getScore()*100))/100.0 + "\n";
+            }
+            else {
+                break;
+           }
+        }
+        return highscoreString;
+    }
 
 }

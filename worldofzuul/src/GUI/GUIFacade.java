@@ -63,7 +63,8 @@ public class GUIFacade implements IGUIFacade  {
    static void loadGame(){
        logic.loadGame();
    }
-   static void loadHighscore(){
-       logic.loadHighscore();
+   static IHighscore loadHighscore(){
+       IHighscore highscore = logic.loadHighscore();
+       return highscore;
    }
 }

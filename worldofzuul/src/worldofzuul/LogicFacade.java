@@ -77,9 +77,11 @@ public class LogicFacade implements ILogicFacade{
     }
     
     @Override
-    public void loadHighscore(){
-        data.loadHighscore();
+    public IHighscore loadHighscore(){
+        IHighscore highscore = data.loadHighscore();
+        return highscore;
     }
+    
     @Override
     public void saveGame(){
         data.saveGame(this.game);

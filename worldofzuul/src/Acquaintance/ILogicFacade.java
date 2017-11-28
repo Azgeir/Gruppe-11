@@ -31,7 +31,7 @@ public interface ILogicFacade {
     
     void loadGame();
     
-    void loadHighscore();
+    IHighscore loadHighscore();
     
     void saveGame();
     
