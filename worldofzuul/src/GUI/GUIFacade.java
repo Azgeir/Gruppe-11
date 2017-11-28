@@ -67,4 +67,7 @@ public class GUIFacade implements IGUIFacade  {
        IHighscore highscore = logic.loadHighscore();
        return highscore;
    }
+   static int getNumberOfItems(String item){
+       return logic.getNumberOfItems(item);
+   }
 }

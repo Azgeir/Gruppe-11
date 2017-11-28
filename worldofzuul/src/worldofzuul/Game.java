@@ -953,6 +953,10 @@ public class Game implements IGame, Serializable{
         
         return randomRoom;
     }
+
+    HashMap<String, Room> getCharacterStartRooms() {
+        return characterStartRooms;
+    }
     
     
 }

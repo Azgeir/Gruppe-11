@@ -35,4 +35,5 @@ public interface ILogicFacade {
     
     void saveGame();
     
+    int getNumberOfItems(String item);
 }

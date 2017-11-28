@@ -116,6 +116,15 @@ public class Inventory implements Serializable {
 
         return returnItem;
     }
+    
+    int getNumberOfItems(String itemName){
+        if(!this.inventory.isEmpty()){
+            if(this.inventory.containsKey(itemName)){
+                return this.inventory.get(itemName).size();
+            }
+        }
+        return -1;
+    }
 
     //This method calculates the total weight of the inventory
     int getTotalWeight() {

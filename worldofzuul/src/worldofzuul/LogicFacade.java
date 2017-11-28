@@ -95,4 +95,11 @@ public class LogicFacade implements ILogicFacade{
         IHighscore highscore = data.loadHighscore();
         return highscore;
     }
+        
+    @Override
+    public int getNumberOfItems(String item){
+        if(game.getCurrentCharacter().getName().equals("Hero"))
+                return game.getCurrentCharacter().getCurrentRoom().getInventory().getNumberOfItems(item);
+        return -1;
+    }
 }
