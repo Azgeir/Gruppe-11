@@ -9,10 +9,13 @@ import Acquaintance.IHighscore;
 import Acquaintance.IScore;
 import java.io.File;
 import java.util.Set;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -134,6 +137,23 @@ public class GUIController {
 
         this.highscoreLabel.setText(highscoreString);
 
+        useDropDown.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                updateNumberBox(useDropDown);
+                numberBox.setValue("1");
+                //numberBox.getItems().add(Integer.toString(GUIFacade.getNumberOfItems("Character", useDropDown.getSelectionModel().getSelectedItem())));
+            }
+        });
+
+        pickupDropDown.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                updateNumberBox(pickupDropDown);
+                numberBox.setValue("1");
+                
+            }
+        });
         // WORKS
         Image herp = new Image("Pictures/ComputerRoom.png");
         ImageView derp = new ImageView(herp);
@@ -173,9 +193,9 @@ public class GUIController {
 
             this.updateAllDropdown();
             String message = GUIFacade.readAndDeleteGameMessage();
-                    
+
             this.labelMessageField.setText(message);
-            
+
         } else {
             System.out.println("choose something to pickup from the dropbox");
         }
@@ -359,6 +379,7 @@ public class GUIController {
             this.useButton.setDisable(true);
             this.useDropDown.setDisable(true);
             this.lockButton.setDisable(true);
+            this.numberBox.setDisable(true);
         }
     }
 
@@ -367,9 +388,8 @@ public class GUIController {
         int numberOfZuulAtStart = 3;
         double spawnTime = 200;
         String name = this.textfieldPlayerName.getText();
-        
 
-        GUIFacade.initializeGame(numberOfZuulAtStart,spawnTime,name);
+        GUIFacade.initializeGame(numberOfZuulAtStart, spawnTime, name);
 
         this.updateAllDropdown();
 
@@ -390,6 +410,7 @@ public class GUIController {
                 } else {
                     setText(item);
                     setTextFill(Color.WHITE);
+                    setAlignment(Pos.CENTER);
                 }
 
             }
@@ -430,7 +451,7 @@ public class GUIController {
         this.updateDropdownBackground(goDropDown);
 
         this.updateDropdownBackground(numberBox);
-        
+
     }
 
     private String loadAndFormatHighscore() {
@@ -466,15 +487,19 @@ public class GUIController {
         }
     }
 
-    @FXML
-    private void numberBoxHandler(ActionEvent event) {
-            if (useDropDown.getSelectionModel().getSelectedItem() != null) {
-                useDropDown.getItems().addAll(Integer.toString(GUIFacade.getNumberOfItems("Character", useDropDown.getSelectionModel().getSelectedItem())));
-            }
-            if (pickupDropDown.getSelectionModel().getSelectedItem() != null) {
-                pickupDropDown.getItems().addAll(Integer.toString(GUIFacade.getNumberOfItems("Room", pickupDropDown.getSelectionModel().getSelectedItem())));
-
+    private void updateNumberBox(ComboBox<String> box) {
+        int number = 0;
+        numberBox.getItems().clear();
+        if (box.equals(useDropDown)) {
+            number = GUIFacade.getNumberOfItems("Character", useDropDown.getSelectionModel().getSelectedItem());
+        } else if (box.equals(pickupDropDown)) {
+            number = GUIFacade.getNumberOfItems("Room", pickupDropDown.getSelectionModel().getSelectedItem());
+        }
+        if (number != 0) {
+            for (int i = 1; i <= number; i++) {
+                numberBox.getItems().add(Integer.toString(i));
             }
         }
-    
+    }
+
 }

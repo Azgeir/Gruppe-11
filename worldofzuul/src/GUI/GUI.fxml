@@ -79,7 +79,7 @@
                   </GridPane>
                   <ComboBox fx:id="pickupDropDown" prefWidth="150.0" />
                   <ComboBox fx:id="useDropDown" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="2" />
-                  <ComboBox fx:id="numberBox" onAction="#numberBoxHandler" prefWidth="150.0" GridPane.columnIndex="3" />
+                  <ComboBox fx:id="numberBox" prefWidth="150.0" GridPane.columnIndex="3" />
                </children>
                <padding>
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
