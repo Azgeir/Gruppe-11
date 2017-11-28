@@ -175,8 +175,8 @@ public class GUIController {
             GUIFacade.sendCommand(command);
             
             this.updateAllDropdown();
+            
             String message = GUIFacade.readAndDeleteGameMessage();
-                    
             this.labelMessageField.setText(message);
             
         } else {
@@ -206,6 +206,9 @@ public class GUIController {
             
             this.updateAllDropdown();
             
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
+            
         } else {
             System.out.println("choose something to use from the dropbox");
         }
@@ -217,6 +220,8 @@ public class GUIController {
     private void activateButtonHandler(ActionEvent event) {
         String command = "activate reactor";
         GUIFacade.sendCommand(command);
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
         this.isGameFinished();
     }
 
@@ -224,6 +229,8 @@ public class GUIController {
     private void talkButtonHandler(ActionEvent event) {
         String command = "talk";
         GUIFacade.sendCommand(command);
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
         this.isGameFinished();
 //        game.play("talk");
     }
@@ -232,6 +239,8 @@ public class GUIController {
     private void quitButtonHandler(ActionEvent event) {
         String command = "quit";
         GUIFacade.sendCommand(command);
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
         this.isGameFinished();
 //        game.play("quit");
     }
@@ -240,6 +249,8 @@ public class GUIController {
     private void helpButtonHandler(ActionEvent event) {
         String command = "help";
         GUIFacade.sendCommand(command);
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
         this.isGameFinished();
 //        game.play("help");
     }
@@ -248,6 +259,8 @@ public class GUIController {
     private void stayButtonHandler(ActionEvent event) {
         String command = "stay";
         GUIFacade.sendCommand(command);
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
         this.isGameFinished();
 //        game.play("stay");
     }
@@ -256,6 +269,8 @@ public class GUIController {
     private void lookButtonHandler(ActionEvent event) {
         String command = "look around";
         GUIFacade.sendCommand(command);
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
         
         this.updateAllDropdown();
         this.isGameFinished();
@@ -267,6 +282,8 @@ public class GUIController {
     @FXML
     private void saveButtonHandler(ActionEvent event) {
         GUIFacade.saveGame();
+
+        System.out.println("You saved the game");
         this.isGameFinished();
     }
 
@@ -277,6 +294,9 @@ public class GUIController {
             command = "drop";
             command = command + " " + this.useDropDown.getValue();
             GUIFacade.sendCommand(command);
+            
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
             
             this.updateAllDropdown();
             
@@ -294,6 +314,9 @@ public class GUIController {
             command = "go";
             command = command + " " + this.goDropDown.getValue();
             GUIFacade.sendCommand(command);
+            
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
             
             this.updateAllDropdown();
             
@@ -315,6 +338,9 @@ public class GUIController {
             command = "peek";
             command = command + " " + this.goDropDown.getValue();
             GUIFacade.sendCommand(command);
+            
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
 //            game.play(command);
         } else {
             System.out.println("choose a direction from the dropbox");
@@ -331,6 +357,9 @@ public class GUIController {
             command = "unlock";
             command = command + " " + this.goDropDown.getValue();
             GUIFacade.sendCommand(command);
+            
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
 //            game.play(command);
         } else {
             System.out.println("choose a direction from the dropbox");
@@ -347,6 +376,9 @@ public class GUIController {
             command = "lock";
             command = command + " " + this.goDropDown.getValue();
             GUIFacade.sendCommand(command);
+            
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
 //            game.play(command);
         } else {
             System.out.println("choose a direction from the dropbox");
@@ -383,12 +415,14 @@ public class GUIController {
         double spawnTime = 200;
         String name = this.textfieldPlayerName.getText();
         
-
         GUIFacade.initializeGame(numberOfZuulAtStart,spawnTime,name);
 
-        this.updateAllDropdown();
-        
         this.switchScreen(startScreen, outerSpace);
+        
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
+        
+        this.updateAllDropdown();
     }
     
     private void updateDropdownBackground(ComboBox<String> box){
@@ -416,6 +450,9 @@ public class GUIController {
     private void loadButtonActionEvent(ActionEvent event) {
         GUIFacade.loadGame();
         this.switchScreen(startScreen, outerSpace);
+        
+        System.out.println("You loaded the game");
+        
         this.updateAllDropdown();
     }
     
