@@ -75,10 +75,8 @@ public class GUIController {
     private Button peekButton;
     @FXML
     private Button unlockButton;
-
     @FXML
     private ComboBox<String> pickupDropDown;
-
     @FXML
     private Button lockButton;
     @FXML
@@ -102,10 +100,10 @@ public class GUIController {
     @FXML
     private Label highscoreLabel;
     @FXML
+    private Label labelMessageField;
     private GridPane bigGridPane;
     @FXML
     private GridPane smallGridPane;
-    private Node[][] gridPaneButtons;
     @FXML
     private ComboBox<String> numberBox;
 
@@ -173,7 +171,10 @@ public class GUIController {
             GUIFacade.sendCommand(command);
 
             this.updateAllDropdown();
-
+            String message = GUIFacade.readAndDeleteGameMessage();
+                    
+            this.labelMessageField.setText(message);
+            
         } else {
             System.out.println("choose something to pickup from the dropbox");
         }
@@ -363,8 +364,11 @@ public class GUIController {
     @FXML
     private void startButtonActionEvent(ActionEvent event) {
         int numberOfZuulAtStart = 3;
+        double spawnTime = 200;
+        String name = this.textfieldPlayerName.getText();
+        
 
-        GUIFacade.initializeGame(numberOfZuulAtStart);
+        GUIFacade.initializeGame(numberOfZuulAtStart,spawnTime,name);
 
         this.updateAllDropdown();
 
@@ -424,15 +428,6 @@ public class GUIController {
         this.goDropDown.getItems().addAll(exits);
         this.updateDropdownBackground(goDropDown);
 
-        if (useDropDown.getSelectionModel().getSelectedItem() != null) {
-                useDropDown.getItems().addAll(Integer.toString(GUIFacade.getNumberOfItems(useDropDown.getSelectionModel().getSelectedItem())));
-
-                GUIFacade.getNumberOfItems(useDropDown.getSelectionModel().getSelectedItem());
-            }
-        if (pickupDropDown.getSelectionModel().getSelectedItem() != null) {
-                pickupDropDown.getItems().addAll(Integer.toString(GUIFacade.getNumberOfItems(pickupDropDown.getSelectionModel().getSelectedItem())));
-
-            }
         this.updateDropdownBackground(numberBox);
         
     }
@@ -473,12 +468,10 @@ public class GUIController {
     @FXML
     private void numberBoxHandler(ActionEvent event) {
             if (useDropDown.getSelectionModel().getSelectedItem() != null) {
-                useDropDown.getItems().addAll(Integer.toString(GUIFacade.getNumberOfItems(useDropDown.getSelectionModel().getSelectedItem())));
-
-                GUIFacade.getNumberOfItems(useDropDown.getSelectionModel().getSelectedItem());
+                useDropDown.getItems().addAll(Integer.toString(GUIFacade.getNumberOfItems("Character", useDropDown.getSelectionModel().getSelectedItem())));
             }
             if (pickupDropDown.getSelectionModel().getSelectedItem() != null) {
-                pickupDropDown.getItems().addAll(Integer.toString(GUIFacade.getNumberOfItems(pickupDropDown.getSelectionModel().getSelectedItem())));
+                pickupDropDown.getItems().addAll(Integer.toString(GUIFacade.getNumberOfItems("Room", pickupDropDown.getSelectionModel().getSelectedItem())));
 
             }
         }

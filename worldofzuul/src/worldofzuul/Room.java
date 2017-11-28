@@ -117,7 +117,7 @@ public class Room implements Serializable {
      * 
      * @return inventory
      */
-    public Inventory getInventory() {
+    Inventory getInventory() {
         return this.inventory;
     }
     
@@ -186,7 +186,7 @@ public class Room implements Serializable {
      * 
      * @return exits
      */
-    public HashMap<String, Room> getExits() {
+    HashMap<String, Room> getExits() {
         return this.exits;
     }
 
@@ -197,7 +197,7 @@ public class Room implements Serializable {
      * 
      * @return the Room object associated with the given direction.
      */
-    public Room getExit(String direction) {
+    Room getExit(String direction) {
         return this.exits.get(direction);
     }
     
@@ -207,7 +207,7 @@ public class Room implements Serializable {
      * 
      * @return lockedExits
      */
-    public HashMap<String, Boolean> getLockedExits() {
+    HashMap<String, Boolean> getLockedExits() {
         return this.lockedExits;
     }
     
@@ -220,42 +220,94 @@ public class Room implements Serializable {
      * 
      * @return true if the exit is locked and false if the exit is unlocked.
      */
-    boolean getLockedExit(String direction){
+    boolean isExitLocked(String direction){
         return this.lockedExits.get(direction);
     }
     
-    // This method returns a string specifying the status of the available exits
+    /**
+     * This method returns a String specifying the status of the available
+     * exits. This is done by traversing the lockedExits HashMap and assigning
+     * locked/open status to the exits based on their boolean value (true
+     * becomes locked and false becomes open).
+     * 
+     * @return a String that lists the available exits and indicates whether the
+     * exit is locked or open.
+     */
     String getLockedExitString() {
         String returnString = "The status of the exits:\n";
         // Traverse the elements in the lockedExits hashmap
         for (Entry<String, Boolean> exit : lockedExits.entrySet()) {
-            // Print whether the given entry is locked or unlocked
-            returnString += exit.getKey() + ": " + ((exit.getValue())?"locked\n":"open\n");
+            // Print whether the given entry is locked or open
+            returnString += exit.getKey() + ": " 
+                + ((exit.getValue())?"locked\n":"open\n");
         }
         // Return the string of exit statuses
         return returnString;
     }
     
-    public HashMap<String, Boolean> getHasCharacters(){
+    /**
+     * This method returns a HashMap which indicates the presence or absence of
+     * the characters in the game. This is done by returning the HashMap
+     * hasCharacter.
+     * 
+     * @return hasCharacter
+     */
+    HashMap<String, Boolean> getHasCharacters(){
         return this.hasCharacter;
     }
   
-    // This method returns true if the given character is in the room, and
-    // returns false if the given character is not in the room.
-    boolean getHasCharacter(String character){
+    /**
+     * This method is used to check whether a given character is in the room.
+     * This is done by checking the corresponding entry in the hasCharacter
+     * HashMap.
+     * 
+     * @param character a String that specifies the character whose presence in
+     * the room is to be tested.
+     * 
+     * @return true if the character is in the room, and false if the character
+     * is not in the room.
+     */
+    boolean hasCharacter(String character){
         return this.hasCharacter.get(character);
     }
     
-    // This method specifies whether the character (specified by a string) is
-    // in the room.
+    /**
+     * This method is used to specify if a certain character is in the room.
+     * This is done by updating the corresponding entry in the HashMap
+     * hasCharacter.
+     * 
+     * @param character a String that specifies the character whose presence is
+     * to be set.
+     * @param presence a boolean value that indicates whether the character is
+     * present in the room; true indicates that the room contains the character,
+     * while false indicates that the character is not in the room.
+     */
     void setHasCharacter(String character, boolean presence){
-        hasCharacter.put(character, presence);
+        this.hasCharacter.put(character, presence);
     }
 
-    boolean isHasBeenLookedUpon() {
-        return hasBeenLookedUpon;
+    /**
+     * This method checks whether the player has already looked at the room
+     * using the "look" command. This is done by returning the boolean value
+     * hasBeenLookedUpon. If the player has already looked at a room, the room's
+     * inventory remains unlocked if the player returns to the room at a later
+     * point in the game.
+     * 
+     * @return hasBeenLookedUpon, which is true if the player has looked at the
+     * room and false if the player has not looked at the room.
+     */
+    boolean hasBeenLookedUpon() {
+        return this.hasBeenLookedUpon;
     }
 
+    /**
+     * This method sets the value of the data field hasBeenLookedUpon. The
+     * method is called when the player looks at a room and sets the value to
+     * true. This allows the game to check, at a later point, whether the player
+     * has looked at the room.
+     * 
+     * @param hasBeenLookedUpon the new value of hasBeenLookedUpon (true)
+     */
     void setHasBeenLookedUpon(boolean hasBeenLookedUpon) {
         this.hasBeenLookedUpon = hasBeenLookedUpon;
     } 

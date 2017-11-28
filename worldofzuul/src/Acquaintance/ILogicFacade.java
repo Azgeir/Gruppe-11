@@ -12,28 +12,31 @@ import java.util.Set;
  * @author HCHB
  */
 public interface ILogicFacade {
-    
+
     void injectData(IDataFacade data);
-    
-    void initializeGame(int numberOfZuulAtStart);
-    
+
+    void initializeGame(int numberOfZuulAtStart, double spawnTime, String name);
+
     void processCommand(String command);
-    
+
     Set<String> getExits();
-    
+
     Set<String> getRoomItemSet();
-    
+
     boolean isRoomLookedBefore();
-    
+
     boolean isGameFinished();
-    
+
     Set<String> getInventorySet();
-    
+
     void loadGame();
-    
+
     IHighscore loadHighscore();
+
+    void saveGame(); 
     
-    void saveGame();
+    String readAndDeleteMessage();
+
     
-    int getNumberOfItems(String item);
+    int getNumberOfItems(String inventory, String item);
 }

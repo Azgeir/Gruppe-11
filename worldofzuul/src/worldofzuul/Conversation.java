@@ -52,23 +52,23 @@ public class Conversation implements Serializable {
      */
     void talk(String string){
         if (string == null){
-            System.out.println("String is null");
+            LogicFacade.appendMessage("String is null");
         }
         else switch (string){
             case "TechDude1":
-                System.out.println(TECHTALK1);
+                LogicFacade.appendMessage(TECHTALK1);
                 break;
             case "TechDude2":
-                System.out.println(TECHTALK2);
+                LogicFacade.appendMessage(TECHTALK2);
                 break;
             case "TechDude3":
-                System.out.println(TECHTALK3);
+                LogicFacade.appendMessage(TECHTALK3);
                 break;
             case "TechDude4":
-                System.out.println(TECHTALK4);
+                LogicFacade.appendMessage(TECHTALK4);
                 break;
             default:
-                System.out.println("I don't know what you want.");
+                LogicFacade.appendMessage("I don't know what you want.");
                 break;
         }
     }
@@ -84,29 +84,29 @@ public class Conversation implements Serializable {
     void options(String string){
         // Check if string is null
         if (string == null){
-            System.out.println("String is null.");
+            LogicFacade.appendMessage("String is null.");
         }
         // Print conversation options depending on the string
         else switch (string) {
             case "TechDude1":
-                System.out.println("1: " + TECHANSWER1);
-                System.out.println("2: " + FUCKOFF);
+                LogicFacade.appendMessage("1: " + TECHANSWER1);
+                LogicFacade.appendMessage("2: " + FUCKOFF);
                 break;
             case "TechDude2":
-                System.out.println("1: " + TECHANSWER2);
-                System.out.println("2: " + FUCKOFF);
+                LogicFacade.appendMessage("1: " + TECHANSWER2);
+                LogicFacade.appendMessage("2: " + FUCKOFF);
                 break;
             case "TechDude3":
-                System.out.println("1: " + TECHANSWER3);
-                System.out.println("2: " + FUCKOFF);
-                System.out.println("3: " + LETSGO);
+                LogicFacade.appendMessage("1: " + TECHANSWER3);
+                LogicFacade.appendMessage("2: " + FUCKOFF);
+                LogicFacade.appendMessage("3: " + LETSGO);
                 break;
             case "TechDude4":
-                System.out.println("1: " + LETSGO);
-                System.out.println("2: " + FUCKOFF);
+                LogicFacade.appendMessage("1: " + LETSGO);
+                LogicFacade.appendMessage("2: " + FUCKOFF);
                 break;
             default:
-                System.out.println("I don't know what you mean.");
+                LogicFacade.appendMessage("I don't know what you mean.");
                 break;
         }
     }

@@ -98,7 +98,7 @@ public class Character implements Serializable {
      * @return double value depending on the command being executed (most
      * commands return 0).
      */
-    public double performCommand(Command command) {
+    double performCommand(Command command) {
         return 0;
     }
 
@@ -123,7 +123,7 @@ public class Character implements Serializable {
      * is "go".
      */
     void go(Command command) {
-        System.out.println("This does nothing.");
+        LogicFacade.appendMessage("This does nothing.");
     }
 
     /**

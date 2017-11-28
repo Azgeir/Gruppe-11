@@ -74,21 +74,21 @@ public class USB extends Item implements Serializable {
         switch (roomName) {
             case "biolab":
                 this.dataType = "bio";
-                System.out.println("Important biological experimental data was "
+                LogicFacade.appendMessage("Important biological experimental data was "
                     + "saved. The USB is now full.");
                 break;
             case "physicslab":
                 this.dataType = "physics";
-                System.out.println("Important physics experimental data was "
+                LogicFacade.appendMessage("Important physics experimental data was "
                     + "saved. The USB is now full.");
                 break;
             case "control":
                 this.dataType = "control" ;
-                System.out.println("Surveillance records of the Zuul "
+                LogicFacade.appendMessage("Surveillance records of the Zuul "
                     + "infestation was optained. The USB is now full.");
                 break;
             default:
-                System.out.println("There is nowhere to obtain useful data in "
+                LogicFacade.appendMessage("There is nowhere to obtain useful data in "
                     + "this room.");
                 break;
         }

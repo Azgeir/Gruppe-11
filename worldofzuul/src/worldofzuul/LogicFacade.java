@@ -4,102 +4,118 @@
  * and open the template in the editor.
  */
 package worldofzuul;
+
 import Acquaintance.*;
 import java.util.HashSet;
 import java.util.Set;
+
 /**
  *
  * @author Simon
  */
-public class LogicFacade implements ILogicFacade{
-    
+public class LogicFacade implements ILogicFacade {
+
     private static IDataFacade data;
-    private Game game;
-    
+    private static Game game;
+
     @Override
     public void injectData(IDataFacade data) {
         this.data = data;
     }
-    
+
     @Override
-    public void initializeGame(int numberOfZuulAtStart){
-        game = new Game(numberOfZuulAtStart);
+    public void initializeGame(int numberOfZuulAtStart, double spawnTime, String name) {
+        game = new Game(numberOfZuulAtStart, spawnTime, name);
     }
-    
+
     @Override
-    public void processCommand(String command){
+    public void processCommand(String command) {
         game.play(command);
     }
-    
+
     @Override
-    public Set<String> getExits(){
+    public Set<String> getExits() {
         Set<String> exits = game.getCurrentCharacter().getCurrentRoom().getExits().keySet();
         return exits;
     }
-    
+
     @Override
-    public Set<String> getRoomItemSet(){
+    public Set<String> getRoomItemSet() {
         Set<String> itemSet = game.getCurrentCharacter().getCurrentRoom().getInventory().listItems();
         return itemSet;
     }
-    
+
     @Override
-    public boolean isRoomLookedBefore(){
-        boolean lookedBefore = game.getCurrentCharacter().getCurrentRoom().isHasBeenLookedUpon();
+    public boolean isRoomLookedBefore() {
+        boolean lookedBefore = game.getCurrentCharacter().getCurrentRoom().hasBeenLookedUpon();
         return lookedBefore;
     }
-    
+
     @Override
-    public boolean isGameFinished(){
+    public boolean isGameFinished() {
         boolean finished = game.isFinished();
         return finished;
     }
-    
+
     @Override
-    public Set<String> getInventorySet(){
+    public Set<String> getInventorySet() {
         Set<String> inventorySet;
         if (game.getCurrentCharacter().getName().equals("Hero")) {
-            Hero heroTemp = (Hero)game.getCurrentCharacter();
+            Hero heroTemp = (Hero) game.getCurrentCharacter();
             inventorySet = heroTemp.getInventory().listItems();
-        }
-        else {
+        } else {
             //The type of Set doesn't matter because it is only supposed to hold a single value to not cause a null pointer exception
             inventorySet = new HashSet<String>();
-            inventorySet.add("derp"); 
+            inventorySet.add("derp");
         }
-        
+
         return inventorySet;
     }
-    
+
     @Override
-    public void loadGame(){
-        game = (Game)data.loadGame();
+    public void loadGame() {
+        game = (Game) data.loadGame();
     }
-    
+
     @Override
-    public IHighscore loadHighscore(){
+    public IHighscore loadHighscore() {
         IHighscore highscore = data.loadHighscore();
         return highscore;
     }
-    
+
     @Override
-    public void saveGame(){
+    public void saveGame() {
         data.saveGame(this.game);
     }
-    
-    static void saveHighscore(IHighscore highscore){
+
+    static void saveHighscore(IHighscore highscore) {
         data.saveHighscore(highscore);
     }
-    
-    static IHighscore getHighscore(){
+
+    static IHighscore getHighscore() {
         IHighscore highscore = data.loadHighscore();
         return highscore;
     }
-        
+
     @Override
-    public int getNumberOfItems(String item){
-        if(game.getCurrentCharacter().getName().equals("Hero"))
+    public String readAndDeleteMessage() {
+        String message = game.readAndDeleteMessage();
+        return message;
+    }
+
+    static void appendMessage(String appendMessage) {
+        game.appendMessage(appendMessage);
+    }
+
+    @Override
+    public int getNumberOfItems(String inventory, String item) {
+            if (inventory.equals("Room")) {
                 return game.getCurrentCharacter().getCurrentRoom().getInventory().getNumberOfItems(item);
+            }
+            if (inventory.equals("Character")){
+                Hero temp = (Hero)game.getCurrentCharacter();
+                return temp.getInventory().getNumberOfItems(item);
+            }
         return -1;
     }
 }

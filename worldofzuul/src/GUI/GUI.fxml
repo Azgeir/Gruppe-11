@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
@@ -1528,6 +1529,7 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
+            <Label fx:id="labelMessageField" prefWidth="181.0" text="This is going to be the info box" textFill="#f5f103" wrapText="true" GridPane.halignment="LEFT" GridPane.valignment="TOP" />
          </children>
       </GridPane>
       <GridPane fx:id="startScreen" prefHeight="750.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

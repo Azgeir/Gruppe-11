@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Map.Entry;
 
 /**
@@ -28,9 +27,10 @@ public class Game implements IGame, Serializable{
     private double maxInititative = Double.MAX_VALUE;
     private boolean reactorActivated = false;
     private boolean finished;
-    private int timeSinceSpawn;
-    private int spawnTime;
+    private double timeSinceSpawn;
+    private double spawnTime;
     private String name;
+    private String message;
 
     // This constructor creates a Game object by creating a Parser and calling the createRooms method.
     Game() {
@@ -41,16 +41,17 @@ public class Game implements IGame, Serializable{
         this(numberOfZuul,200);
     }
     
-    Game(int numberOfZuul, int spawnTime){
+    Game(int numberOfZuul, double spawnTime){
         this(numberOfZuul, spawnTime, "Derp");
     }
     
-    Game(int numberOfZuul, int spawnTime, String name){
+    Game(int numberOfZuul, double spawnTime, String name){
         this.finished = false;
         this.timeSinceSpawn = 0;
         this.spawnTime = spawnTime;
         this.characterStartRooms = new HashMap<>();
         this.name = name;
+        this.message = "";
         //Create all rooms by calling the createRooms method
         createRooms();
         // Create the characters by calling the createCharacter() method
@@ -494,19 +495,19 @@ public class Game implements IGame, Serializable{
     // This method prints the welcome message.
     private void printWelcome() {
         // Print welcome message
-        System.out.println();
-        System.out.println("Welcome to Escape Pod!");
-        System.out.println("\nYou are a Software engineer in a space station, and\n"
-                + "the emergency alarm has just gone off and the station is under \n"
-                + "quarantine. You must find items and other survivors and escape \n"
-                + "the station through the escape pod before you are caught by what\n"
+        message += ("\n");
+        message += ("Welcome to Escape Pod!\n");
+        message += ("\nYou are a Software engineer in a space station, and "
+                + "the emergency alarm has just gone off and the station is under "
+                + "quarantine. You must find items and other survivors and escape "
+                + "the station through the escape pod before you are caught by what "
                 + "is ravaging the station. \n"
-                + "\nYou suddenly hear a rumbling voice emanating from everywhere:\n"
-                + "\"We are Zuul, devourers of worlds.\"");
-        System.out.println("Type '" + CommandWord.HELP + "' for more information about controls and the game.");
-        System.out.println();
+                + "\nYou suddenly hear a rumbling voice emanating from everywhere: \n"
+                + "\"We are Zuul, devourers of worlds.\"\n");
+        message += ("Type '" + CommandWord.HELP + "' for more information about controls and the game.\n");
+        message += ("\n");
         // Description of current room of the player, including available exits.
-        System.out.println(characterStartRooms.get("Computer").getLongDescription());
+        message += (characterStartRooms.get("Computer").getLongDescription() + "\n");
     }
 
     // This method processes the command of the player (returns true if player wants to quit)
@@ -519,7 +520,7 @@ public class Game implements IGame, Serializable{
 
         // Check if the input equals any of the defined commands and print an "error" if it does not
         if (commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...\nTyping 'help' will give you the valid commands.");
+            LogicFacade.appendMessage("I don't know what you mean...\nTyping 'help' will give you the valid commands.");
             return false;
         }
 
@@ -588,7 +589,7 @@ public class Game implements IGame, Serializable{
                     break;
                 case TALK:
                     boolean techDudeIsThere = false;
-                        if (currentCharacter.getCurrentRoom().getHasCharacter("TechDude")) {
+                        if (currentCharacter.getCurrentRoom().hasCharacter("TechDude")) {
                             techDudeIsThere = true;
                             for (Character character : characters) {
                                 if (character.getName().equals("TechDude")) {
@@ -600,7 +601,7 @@ public class Game implements IGame, Serializable{
                     
                     
                     if (!techDudeIsThere) {
-                        System.out.println("You talk to yourself as you begin to question your sanity.");
+                        LogicFacade.appendMessage("You talk to yourself as you begin to question your sanity.");
                     }
                     
                     this.currentCharacter.setCharacterInitiative(this.currentCharacter.getCharacterInitiative() + 10 * this.currentCharacter.getSpeedFactor());
@@ -621,20 +622,20 @@ public class Game implements IGame, Serializable{
 
     // This method prints a help message, including available commands
     private void printHelp() {
-        System.out.println("You can find other crew members and save them.\n"
+        LogicFacade.appendMessage("You can find other crew members and save them.\n"
                 + "You must survive and reach the escape pod. Find items that can\n"
                 + "help you on your way.");
-        System.out.println();
-        System.out.println("Your commands are:");
+        LogicFacade.appendMessage("");
+        LogicFacade.appendMessage("Your commands are:");
         parser.showCommands();
-        System.out.println();
-        System.out.println("The game works by using the command buttons to direct \n"
+        LogicFacade.appendMessage("");
+        LogicFacade.appendMessage("The game works by using the command buttons to direct \n"
                 + "what you wish to do in the game. you have 3 dropdown menus \n"
                 + "the first to the right is the room objects scond is player inventory \n"
                 + "the left most one is direction dropdown you use this in \n"
                 + "conjunction with the buttons around it.");
-        System.out.println("");
-               System.out.println("funktions for the buttons are:\n"
+        LogicFacade.appendMessage("");
+               LogicFacade.appendMessage("funktions for the buttons are:\n"
                 + "drop: choose an item from the inventory dropdown and press drop \n"
                 + "You drop the following item.\n"
                 + "pickup: choose an item from the room dropdown and press pickup \n"
@@ -681,7 +682,7 @@ public class Game implements IGame, Serializable{
     private boolean quit(Command command) {
         // If the "quit" command has a second word, print error message and exit method.
         if (command.hasSecondWord()) {
-            System.out.println("Quit what?");
+            LogicFacade.appendMessage("Quit what?");
             return false;
         } // If the command has no second word, return "true", which causes the game to end.
         else {
@@ -710,53 +711,53 @@ public class Game implements IGame, Serializable{
                 // Calculate earned points
                 double point = pointCalculation();
                 if (techDudeIsThere) {
-                    System.out.println("Tech dude: Good job, mate! I knew we would make it!");
+                    LogicFacade.appendMessage("Tech dude: Good job, mate! I knew we would make it!");
                 }
-                System.out.println("Congratulations, you escaped the space station. You won.");
+                LogicFacade.appendMessage("Congratulations, you escaped the space station. You won.");
                 System.out.printf("You got %1.2f points\n", point);
                 break;
             case "lose":    // If the player is killed by Zuul, print message
                 if (techDudeIsThere) {
-                    System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+                    LogicFacade.appendMessage("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
                 }
-                System.out.println("The Zuul mauled you in the back while you were running away like a coward. You lost.");
+                LogicFacade.appendMessage("The Zuul mauled you in the back while you were running away like a coward. You lost.");
                 break;
             case "lose1": // If the player is killed by Zuul, print message
                 if (techDudeIsThere) {
-                    System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+                    LogicFacade.appendMessage("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
                 }
-                System.out.println("The Zuul rips your head off and kicks it across the room, cheering like it just won the world cup.");
+                LogicFacade.appendMessage("The Zuul rips your head off and kicks it across the room, cheering like it just won the world cup.");
                 break;
             case "lose2": // If the player is killed by Zuul, print message
                 if (techDudeIsThere) {
-                    System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+                    LogicFacade.appendMessage("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
                 }
-                System.out.println("The Zuul rips out your throat, sticks its claws up your ass, and prances you around like a ventriloquist puppet "
+                LogicFacade.appendMessage("The Zuul rips out your throat, sticks its claws up your ass, and prances you around like a ventriloquist puppet "
                         + "saying: \"Look at me! I'm a scared little human! I can code!\"");
                 break;
             case "lose3": // If the player is killed by Zuul, print message
                 if (techDudeIsThere) {
-                    System.out.println("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+                    LogicFacade.appendMessage("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
                 }
-                System.out.println("The Zuul rips you in half and then starts teabagging your face that's frozen in horrer by sight of the Zuul's hairy ass.");
+                LogicFacade.appendMessage("The Zuul rips you in half and then starts teabagging your face that's frozen in horrer by sight of the Zuul's hairy ass.");
                 break;
             case "timer": // If player is killed by reactor, print message
                 if (techDudeIsThere) {
-                    System.out.println("Tech dude: Good run, mate! See ya on the other side.");
+                    LogicFacade.appendMessage("Tech dude: Good run, mate! See ya on the other side.");
                 }
-                System.out.println("The reactor overloaded and blew up the space station. You lost.");
+                LogicFacade.appendMessage("The reactor overloaded and blew up the space station. You lost.");
                 break;
             case "health": // if the player dies due to low health
                 if (techDudeIsThere) {
-                    System.out.println("Tech dude: Don't go into the light!");
+                    LogicFacade.appendMessage("Tech dude: Don't go into the light!");
                 }
-                System.out.println("You died due to extensive wounds.");
+                LogicFacade.appendMessage("You died due to extensive wounds.");
                 break;
             case "derp":
-                System.out.println("You committed suicide because you are too weak to kill anything else.\nYou pussed out like a bitch.");
+                LogicFacade.appendMessage("You committed suicide because you are too weak to kill anything else.\nYou pussed out like a bitch.");
                 break;
             default: // If player exits the game without losing or winning.
-                System.out.println("You committed suicide.\nYou pussed out like a bitch.");
+                LogicFacade.appendMessage("You committed suicide.\nYou pussed out like a bitch.");
         }
     }
 
@@ -780,7 +781,7 @@ public class Game implements IGame, Serializable{
                 // If the specified USB has data stored on it...
                 if (usb.getDataType() != null) {
                     // Print the data type collected
-                    System.out.println("You got the " + usb.getDataType() + " data.");
+                    LogicFacade.appendMessage("You got the " + usb.getDataType() + " data.");
                     // Add value to pointSet
                     pointSet.add(usb.getDataType());
                 }
@@ -893,14 +894,14 @@ public class Game implements IGame, Serializable{
                             case 2:
                                 character.setHostility(character.getHostility() + 1);
                                 if (character.getHostility() < 3) {
-                                    System.out.println("The tech dude got annoyed at you.");
+                                    LogicFacade.appendMessage("The tech dude got annoyed at you.");
                                     wantToTalk = false;
                                 }
                                 if (character.getHostility() == 3) {
-                                    System.out.println("The tech dude hates you and will no longer talk to you.");
+                                    LogicFacade.appendMessage("The tech dude hates you and will no longer talk to you.");
                                     if (temp.isFollowsHero()) {
                                         temp.followsHero(hero, false);
-                                        System.out.println("Tech dude no longer follows you.");
+                                        LogicFacade.appendMessage("Tech dude no longer follows you.");
                                         counter++;
                                     }
                                 }
@@ -910,31 +911,31 @@ public class Game implements IGame, Serializable{
                                     wantToTalk = false;
                                     counter++;
                                 } else {
-                                    System.out.println("You only have 2 options");
+                                    LogicFacade.appendMessage("You only have 2 options");
                                 }
                                 break;
                             default:
-                                System.out.println("Wrong input");
+                                LogicFacade.appendMessage("Wrong input");
                                 wantToTalk = false;
                                 break;
                         }
                         if (number != 2) {
                             if (counter == 5 || (counter == 4 && character.getHostility() < 3 && wantToTalk == false)) {
                                 if (!temp.isFollowsHero()) {
-                                    System.out.println("Tech dude is now following you");
+                                    LogicFacade.appendMessage("Tech dude is now following you");
                                     temp.followsHero(hero, true);
                                 }
                             }
                         }
                     }
                 } else {
-                    System.out.println("The input wasn't a number");
+                    LogicFacade.appendMessage("The input wasn't a number");
                     wantToTalk = false;
                 }
 
             } while (wantToTalk);
         } else {
-            System.out.println("Fuck you. I hate you");
+            LogicFacade.appendMessage("Fuck you. I hate you");
         }
     }
 
@@ -956,6 +957,16 @@ public class Game implements IGame, Serializable{
 
     HashMap<String, Room> getCharacterStartRooms() {
         return characterStartRooms;
+    }
+    
+    void appendMessage(String appendMessage){
+        message += appendMessage + "\n";
+    }
+    
+    String readAndDeleteMessage(){
+        String returnMessage = message;
+        message = "";
+        return returnMessage;
     }
     
     

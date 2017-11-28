@@ -24,8 +24,8 @@ public class GUIFacade implements IGUIFacade  {
        ZuulGUI.main(args);
    }
    
-   static void initializeGame(int numberOfZuulAtStart){
-       logic.initializeGame(numberOfZuulAtStart);
+   static void initializeGame(int numberOfZuulAtStart, double spawnTime, String name){
+       logic.initializeGame(numberOfZuulAtStart, spawnTime, name);
    }
    
    static void sendCommand(String command){
@@ -67,7 +67,13 @@ public class GUIFacade implements IGUIFacade  {
        IHighscore highscore = logic.loadHighscore();
        return highscore;
    }
-   static int getNumberOfItems(String item){
-       return logic.getNumberOfItems(item);
+   
+   static String readAndDeleteGameMessage(){
+       String gameMessage = logic.readAndDeleteMessage();
+       return gameMessage;
+   }
+   
+   static int getNumberOfItems(String inventory, String item){
+       return logic.getNumberOfItems(inventory, item);
    }
 }
