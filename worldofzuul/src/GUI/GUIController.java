@@ -101,6 +101,7 @@ public class GUIController {
     private Label highscoreLabel;
     @FXML
     private Label labelMessageField;
+    @FXML
     private GridPane bigGridPane;
     @FXML
     private GridPane smallGridPane;
