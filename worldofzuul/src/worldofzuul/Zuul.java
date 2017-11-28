@@ -65,6 +65,11 @@ public class Zuul extends Character implements Serializable {
         String word2 = null;
         String word3 = null;
         
+        /*
+        If heroIsInSameRoom is true, then either the player is still in the
+        same room (set heroWasInSameRoom to false) or the player has left the
+        room during their turn (set heroWasInSameRoom to true).
+        */
         if (this.heroIsInSameRoom) {
             if (!this.getCurrentRoom().hasCharacter("Hero")) {
                 this.heroWasInSameRoom = true;
@@ -81,7 +86,9 @@ public class Zuul extends Character implements Serializable {
             this.heroHadTurn = false;
         }
         
-        if ((this.getCharacterInitiative() <= (this.heroInRoomInitiative + 10 * this.getSpeedFactor())) && (this.heroIsInSameRoom || this.heroWasInSameRoom) && this.heroHadTurn) {
+        if ((this.getCharacterInitiative() <= (this.heroInRoomInitiative
+            + 10 * this.getSpeedFactor())) && (this.heroIsInSameRoom 
+            || this.heroWasInSameRoom) && this.heroHadTurn) {
             word1 = "kill";
         }
         else if (this.getCurrentRoom().hasCharacter("Hero")) {
@@ -93,8 +100,10 @@ public class Zuul extends Character implements Serializable {
             this.heroWasInSameRoom = false;
             this.heroInRoomInitiative = -Double.MAX_VALUE;
             this.heroHadTurn = false;
-            // This creates a array list based on the rooms and where the commands changes the payers position
-            ArrayList<String> exits = new ArrayList(this.getCurrentRoom().getExits().keySet());
+            // This creates a array list based on the rooms and where the
+            // commands changes the payers position
+            ArrayList<String> exits = new ArrayList(
+                this.getCurrentRoom().getExits().keySet());
             
             exits.removeAll(triedLockedExits);
             
