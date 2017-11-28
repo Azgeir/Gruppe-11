@@ -49,29 +49,39 @@ public class Zuul extends Character implements Serializable {
         this.heroHadTurn = false;
     }
     
+    /**
+     * This method is used to generate a command for Zuul. The method overrides
+     * the getCommand() method from Character.
+     * 
+     * @param commands valid commands in the game.
+     * @param GUICommand command word from GUI.
+     * 
+     * @return a command.
+     */
     @Override
-    public Command getCommand(CommandWords commands, String GUICommand) {
-        // Set words 1, 2 and 3 to null
+    Command getCommand(CommandWords commands, String GUICommand) {
+        // Set words 1, 2, and 3 to null.
         String word1 = null;
         String word2 = null;
         String word3 = null;
         
-        if (heroIsInSameRoom) {
+        if (this.heroIsInSameRoom) {
             if (!this.getCurrentRoom().hasCharacter("Hero")) {
-                heroWasInSameRoom = true;
-            } else {
-                heroWasInSameRoom = false;
+                this.heroWasInSameRoom = true;
             }
-        } else {
+            else {
+                this.heroWasInSameRoom = false;
+            }
         }
         
-        if (heroIsInSameRoom || heroWasInSameRoom) {
-            heroHadTurn = true;
-        } else {
-            heroHadTurn = false;
+        if (this.heroIsInSameRoom || this.heroWasInSameRoom) {
+            this.heroHadTurn = true;
+        }
+        else {
+            this.heroHadTurn = false;
         }
         
-        if ((this.getCharacterInitiative()<=(heroInRoomInitiative+10*this.getSpeedFactor())) && (heroIsInSameRoom || heroWasInSameRoom) && heroHadTurn) {
+        if ((this.getCharacterInitiative() <= (this.heroInRoomInitiative + 10 * this.getSpeedFactor())) && (this.heroIsInSameRoom || this.heroWasInSameRoom) && this.heroHadTurn) {
             word1 = "kill";
         }
         else if (this.getCurrentRoom().hasCharacter("Hero")) {
@@ -79,10 +89,10 @@ public class Zuul extends Character implements Serializable {
             // This sets word1 to have the value/command 'stay' for the player
         }
         else {
-            heroIsInSameRoom = false;
-            heroWasInSameRoom = false;
-            heroInRoomInitiative = -Double.MAX_VALUE;
-            heroHadTurn = false;
+            this.heroIsInSameRoom = false;
+            this.heroWasInSameRoom = false;
+            this.heroInRoomInitiative = -Double.MAX_VALUE;
+            this.heroHadTurn = false;
             // This creates a array list based on the rooms and where the commands changes the payers position
             ArrayList<String> exits = new ArrayList(this.getCurrentRoom().getExits().keySet());
             
