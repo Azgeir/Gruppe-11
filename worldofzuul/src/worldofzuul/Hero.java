@@ -562,6 +562,7 @@ public class Hero extends Character implements Serializable {
                     break;
                 case STAY:
                     this.stay(command);
+                    LogicFacade.appendMessage("You stay in this room");
                     break;
                 // If command is "pickup", call pickup() method on current character
                 case PICKUP:
