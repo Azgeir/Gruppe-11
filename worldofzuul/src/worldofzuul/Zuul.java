@@ -49,48 +49,6 @@ public class Zuul extends Character implements Serializable {
         this.heroHadTurn = false;
     }
     
-    /*£
-    same go command as source, except the monster gets to remember where it
-    comes from
-    */
-    @Override
-    void go(Command command){
-        if(!command.hasSecondWord()) {
-            return;
-        }
-
-        String direction = command.getSecondWord();
-
-        Room nextRoom = this.getCurrentRoom().getExit(direction);
-        
-        if (nextRoom == null) {
-        }
-        else if (this.getCurrentRoom().isExitLocked(direction)){
-            triedLockedExits.add(direction);
-        }
-        else {
-            triedLockedExits.clear();
-            String roomName = this.getCurrentRoom().getName();
-            if (roomName != null) {
-                this.previousRoomName = roomName;
-            }
-            this.getCurrentRoom().setHasCharacter(this.getName(), false);
-            this.setCurrentRoom(nextRoom);
-            this.getCurrentRoom().setHasCharacter(this.getName(), true);
-        }
-        //System.out.println("Zuul is " + this.getCurrentRoom().getShortDescription());
-        this.setCharacterInitiative(this.getCharacterInitiative()+10*this.getSpeedFactor());
-        
-        heroIsInSameRoom = this.getCurrentRoom().hasCharacter("Hero");
-        if (heroIsInSameRoom) {
-            heroInRoomInitiative = this.getCharacterInitiative();
-        }
-        if (this.getCurrentRoom().hasCharacter("Hero")){
-            LogicFacade.appendMessage("The Zuul is in this room.");
-        }
-        
-    }
-    
     @Override
     public Command getCommand(CommandWords commands, String GUICommand) {
         // Set words 1, 2 and 3 to null
@@ -162,29 +120,6 @@ public class Zuul extends Character implements Serializable {
         return new Command(commands.getCommandWord(word1), word2, word3);
     }
     
-    
-    private void kill(){
-        
-        int whichKillMessage = (int)(Math.random() * 3);
-        
-        this.setMessage("lose");
-        
-        if (this.getCurrentRoom().hasCharacter("Hero")){
-        switch (whichKillMessage){
-            case 1:
-                this.setMessage("lose1");
-                break;
-            case 2:
-                this.setMessage("lose2");
-                break;
-            default:
-                this.setMessage("lose3");
-            }
-        }
-        
-        this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
-    }
-    
     @Override
     public double performCommand(Command command) {
         // Create instance of CommandWord using the command word of the specified command (from Parser)
@@ -213,4 +148,67 @@ public class Zuul extends Character implements Serializable {
         return 0;
     }
     
+    /*£
+    same go command as source, except the monster gets to remember where it
+    comes from
+    */
+    @Override
+    void go(Command command){
+        if(!command.hasSecondWord()) {
+            return;
+        }
+
+        String direction = command.getSecondWord();
+
+        Room nextRoom = this.getCurrentRoom().getExit(direction);
+        
+        if (nextRoom == null) {
+        }
+        else if (this.getCurrentRoom().isExitLocked(direction)){
+            triedLockedExits.add(direction);
+        }
+        else {
+            triedLockedExits.clear();
+            String roomName = this.getCurrentRoom().getName();
+            if (roomName != null) {
+                this.previousRoomName = roomName;
+            }
+            this.getCurrentRoom().setHasCharacter(this.getName(), false);
+            this.setCurrentRoom(nextRoom);
+            this.getCurrentRoom().setHasCharacter(this.getName(), true);
+        }
+        //System.out.println("Zuul is " + this.getCurrentRoom().getShortDescription());
+        this.setCharacterInitiative(this.getCharacterInitiative()+10*this.getSpeedFactor());
+        
+        heroIsInSameRoom = this.getCurrentRoom().hasCharacter("Hero");
+        if (heroIsInSameRoom) {
+            heroInRoomInitiative = this.getCharacterInitiative();
+        }
+        if (this.getCurrentRoom().hasCharacter("Hero")){
+            LogicFacade.appendMessage("The Zuul is in this room.");
+        }
+        
+    }
+    
+    private void kill(){
+        
+        int whichKillMessage = (int)(Math.random() * 3);
+        
+        this.setMessage("lose");
+        
+        if (this.getCurrentRoom().hasCharacter("Hero")){
+        switch (whichKillMessage){
+            case 1:
+                this.setMessage("lose1");
+                break;
+            case 2:
+                this.setMessage("lose2");
+                break;
+            default:
+                this.setMessage("lose3");
+            }
+        }
+        
+        this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
+    }
 }
