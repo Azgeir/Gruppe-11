@@ -588,7 +588,7 @@ public class Game implements IGame, Serializable{
                     break;
                 case TALK:
                     boolean techDudeIsThere = false;
-                        if (currentCharacter.getCurrentRoom().getHasCharacter("TechDude")) {
+                        if (currentCharacter.getCurrentRoom().hasCharacter("TechDude")) {
                             techDudeIsThere = true;
                             for (Character character : characters) {
                                 if (character.getName().equals("TechDude")) {

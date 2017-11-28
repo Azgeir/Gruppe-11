@@ -101,7 +101,7 @@ public class AcidVial extends Item implements Serializable {
         If Zuul is in the current room, player hits Zuul with the acid vial,
         and Zuul's initiative is increased.
         */
-        if (currentCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
+        if (currentCharacter.getCurrentRoom().hasCharacter("Zuul")) {
             System.out.println("You throw an acid vial at the terrifying Zuul."
                 + "\nYou hit it in the face. You were hit\nby a splash of acid,"
                 + " but now you have a chance to flee.");

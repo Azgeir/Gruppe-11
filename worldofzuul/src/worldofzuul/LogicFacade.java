@@ -45,7 +45,7 @@ public class LogicFacade implements ILogicFacade{
     
     @Override
     public boolean isRoomLookedBefore(){
-        boolean lookedBefore = game.getCurrentCharacter().getCurrentRoom().isHasBeenLookedUpon();
+        boolean lookedBefore = game.getCurrentCharacter().getCurrentRoom().hasBeenLookedUpon();
         return lookedBefore;
     }
     

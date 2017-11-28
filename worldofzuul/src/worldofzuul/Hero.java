@@ -83,7 +83,7 @@ public class Hero extends Character implements Serializable {
             System.out.println("There is no door!");
         } 
         // If the specified exit is locked, print locked message
-        else if (this.getCurrentRoom().getLockedExit(direction)){
+        else if (this.getCurrentRoom().isExitLocked(direction)){
             System.out.println("This exit is locked, so you can't get through.");
         }
         // If the specified exit exists and is not locked, move character
@@ -98,7 +98,7 @@ public class Hero extends Character implements Serializable {
             System.out.println(this.getCurrentRoom().getLongDescription());
         }
         
-        if (this.getCurrentRoom().getHasCharacter("Zuul")){
+        if (this.getCurrentRoom().hasCharacter("Zuul")){
             System.out.println("The Zuul is in this room.");
         }
         
@@ -285,14 +285,14 @@ public class Hero extends Character implements Serializable {
 
         boolean zuulNearby = false;
 
-        if (this.getCurrentRoom().getHasCharacter("Zuul")) {
+        if (this.getCurrentRoom().hasCharacter("Zuul")) {
             System.out.println("Zuul is in this room, you idiot.");
             zuulNearby = true;
         }
 
         if (this.getCurrentRoom().getExit(direction) != null) {
             for (Room neighbor : this.getCurrentRoom().getExits().values()) {
-                if (neighbor.getHasCharacter("Zuul")) {
+                if (neighbor.hasCharacter("Zuul")) {
                     System.out.println("Zuul is " + neighbor.getShortDescription());
                     zuulNearby = true;
                 }
@@ -301,7 +301,7 @@ public class Hero extends Character implements Serializable {
             Room neighbor = this.getCurrentRoom().getExit(direction);
             if (neighbor.getExit(direction) != null) {
 //                    neighbor.getHasCharacter("Zuul")) {
-                if (neighbor.getExit(direction).getHasCharacter("Zuul")) {
+                if (neighbor.getExit(direction).hasCharacter("Zuul")) {
                     System.out.println("Zuul is " + neighbor.getShortDescription());
                     zuulNearby = true;
 
@@ -449,7 +449,7 @@ public class Hero extends Character implements Serializable {
         String getName = this.getCurrentRoom().getName();
         //lockedExits.put(direction, Boolean.TRUE);
         if (direction.equals("pod")) {
-            if (this.getCurrentRoom().getHasCharacter("TechDude")) {
+            if (this.getCurrentRoom().hasCharacter("TechDude")) {
                 if (this.getCurrentRoom().getExit(direction).getExits().containsKey(getName)) {
                     lockedExits.put(direction, lock);
                     this.getCurrentRoom().getExit(direction).getLockedExits().put(getName, lock);
@@ -496,7 +496,7 @@ public class Hero extends Character implements Serializable {
         if (command.getSecondWord().equals("reactor")) {
 
             if (this.getCurrentRoom().getName().equals("reactor")) {
-                if (this.getCurrentRoom().getHasCharacter("TechDude")) {
+                if (this.getCurrentRoom().hasCharacter("TechDude")) {
                     if (!reactorActivated) {
                         System.out.println("You activated the reactor. The space station will self-destruct in 10 turns.");
                         this.reactorActivated = true;

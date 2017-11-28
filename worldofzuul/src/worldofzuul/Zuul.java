@@ -29,14 +29,14 @@ public class Zuul extends Character implements Serializable {
     
     Zuul(Room currentRoom, String name){
         super(currentRoom, name);
-        this.heroIsInSameRoom = currentRoom.getHasCharacter("Hero");
+        this.heroIsInSameRoom = currentRoom.hasCharacter("Hero");
         this.heroWasInSameRoom = false;
         this.heroHadTurn = false;
     }
     
     Zuul(Room currentRoom, String name, double speedFactor){
         super(currentRoom, name, speedFactor);
-        this.heroIsInSameRoom = currentRoom.getHasCharacter("Hero");
+        this.heroIsInSameRoom = currentRoom.hasCharacter("Hero");
         this.heroWasInSameRoom = false;
         this.heroHadTurn = false;
     }
@@ -57,7 +57,7 @@ public class Zuul extends Character implements Serializable {
         
         if (nextRoom == null) {
         }
-        else if (this.getCurrentRoom().getLockedExit(direction)){
+        else if (this.getCurrentRoom().isExitLocked(direction)){
             triedLockedExits.add(direction);
         }
         else {
@@ -73,11 +73,11 @@ public class Zuul extends Character implements Serializable {
         //System.out.println("Zuul is " + this.getCurrentRoom().getShortDescription());
         this.setCharacterInitiative(this.getCharacterInitiative()+10*this.getSpeedFactor());
         
-        heroIsInSameRoom = this.getCurrentRoom().getHasCharacter("Hero");
+        heroIsInSameRoom = this.getCurrentRoom().hasCharacter("Hero");
         if (heroIsInSameRoom) {
             heroInRoomInitiative = this.getCharacterInitiative();
         }
-        if (this.getCurrentRoom().getHasCharacter("Hero")){
+        if (this.getCurrentRoom().hasCharacter("Hero")){
             System.out.println("The Zuul is in this room.");
         }
         
@@ -91,7 +91,7 @@ public class Zuul extends Character implements Serializable {
         String word3 = null;
         
         if (heroIsInSameRoom) {
-            if (!this.getCurrentRoom().getHasCharacter("Hero")) {
+            if (!this.getCurrentRoom().hasCharacter("Hero")) {
                 heroWasInSameRoom = true;
             } else {
                 heroWasInSameRoom = false;
@@ -108,7 +108,7 @@ public class Zuul extends Character implements Serializable {
         if ((this.getCharacterInitiative()<=(heroInRoomInitiative+10*this.getSpeedFactor())) && (heroIsInSameRoom || heroWasInSameRoom) && heroHadTurn) {
             word1 = "kill";
         }
-        else if (this.getCurrentRoom().getHasCharacter("Hero")) {
+        else if (this.getCurrentRoom().hasCharacter("Hero")) {
             word1 = "stay";
             // This sets word1 to have the value/command 'stay' for the player
         }
@@ -145,7 +145,7 @@ public class Zuul extends Character implements Serializable {
             
         }
         
-        heroIsInSameRoom = this.getCurrentRoom().getHasCharacter("Hero");
+        heroIsInSameRoom = this.getCurrentRoom().hasCharacter("Hero");
         if (heroIsInSameRoom) {
             heroInRoomInitiative = this.getCharacterInitiative();
         }
@@ -161,7 +161,7 @@ public class Zuul extends Character implements Serializable {
         
         this.setMessage("lose");
         
-        if (this.getCurrentRoom().getHasCharacter("Hero")){
+        if (this.getCurrentRoom().hasCharacter("Hero")){
         switch (whichKillMessage){
             case 1:
                 this.setMessage("lose1");

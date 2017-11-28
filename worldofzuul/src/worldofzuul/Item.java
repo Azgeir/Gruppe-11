@@ -87,7 +87,7 @@ public class Item implements Serializable {
         description, and whether or not Zuul is in the same room as the player.
         */
         if (useDescription == null) {
-            if (currentCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
+            if (currentCharacter.getCurrentRoom().hasCharacter("Zuul")) {
                 System.out.println("You throw the " + this.name + " in blind \n"
                 + "panic. It doesn't have any effect.");
             } else {
@@ -95,7 +95,7 @@ public class Item implements Serializable {
                         + "seemingly with no purpose.");
             }
         } else {
-            if (currentCharacter.getCurrentRoom().getHasCharacter("Zuul")) {
+            if (currentCharacter.getCurrentRoom().hasCharacter("Zuul")) {
                 System.out.println("You use the " + this.name + " to " 
                     + this.useDescription + ". It has no effect on the Zuul.");                
             } else {
