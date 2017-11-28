@@ -117,7 +117,7 @@ public class Room implements Serializable {
      * 
      * @return inventory
      */
-    public Inventory getInventory() {
+    Inventory getInventory() {
         return this.inventory;
     }
     
@@ -186,7 +186,7 @@ public class Room implements Serializable {
      * 
      * @return exits
      */
-    public HashMap<String, Room> getExits() {
+    HashMap<String, Room> getExits() {
         return this.exits;
     }
 
@@ -197,7 +197,7 @@ public class Room implements Serializable {
      * 
      * @return the Room object associated with the given direction.
      */
-    public Room getExit(String direction) {
+    Room getExit(String direction) {
         return this.exits.get(direction);
     }
     
@@ -207,7 +207,7 @@ public class Room implements Serializable {
      * 
      * @return lockedExits
      */
-    public HashMap<String, Boolean> getLockedExits() {
+    HashMap<String, Boolean> getLockedExits() {
         return this.lockedExits;
     }
     
@@ -225,17 +225,21 @@ public class Room implements Serializable {
     }
     
     /**
-     * This method returns a string specifying the status of the available
-     * exits.
+     * This method returns a String specifying the status of the available
+     * exits. This is done by traversing the lockedExits HashMap and assigning
+     * locked/open status to the exits based on their boolean value (true
+     * becomes locked and false becomes open).
      * 
-     * @return 
+     * @return a String that lists the available exits and indicates whether the
+     * exit is locked or open.
      */
     String getLockedExitString() {
         String returnString = "The status of the exits:\n";
         // Traverse the elements in the lockedExits hashmap
         for (Entry<String, Boolean> exit : lockedExits.entrySet()) {
-            // Print whether the given entry is locked or unlocked
-            returnString += exit.getKey() + ": " + ((exit.getValue())?"locked\n":"open\n");
+            // Print whether the given entry is locked or open
+            returnString += exit.getKey() + ": " 
+                + ((exit.getValue())?"locked\n":"open\n");
         }
         // Return the string of exit statuses
         return returnString;
@@ -248,7 +252,7 @@ public class Room implements Serializable {
      * 
      * @return hasCharacter
      */
-    public HashMap<String, Boolean> getHasCharacters(){
+    HashMap<String, Boolean> getHasCharacters(){
         return this.hasCharacter;
     }
   
