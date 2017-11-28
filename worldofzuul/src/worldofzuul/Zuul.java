@@ -93,7 +93,6 @@ public class Zuul extends Character implements Serializable {
         }
         else if (this.getCurrentRoom().hasCharacter("Hero")) {
             word1 = "stay";
-            // This sets word1 to have the value/command 'stay' for the player
         }
         else {
             this.heroIsInSameRoom = false;
