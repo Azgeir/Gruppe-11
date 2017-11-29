@@ -29,6 +29,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.RotateEvent;
+import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -113,6 +115,8 @@ public class GUIController {
     private ComboBox<String> numberBox;
     @FXML
     private Label warningLabel;
+    @FXML
+    private Button backToStartScreenButton;
 
     public void initialize() {
         // TODO
@@ -426,24 +430,29 @@ public class GUIController {
 
     private void isGameFinished() {
         if (GUIFacade.isGameFinished()) {
-            this.goButton.setDisable(true);
-            this.goDropDown.setDisable(true);
-            this.activateButton.setDisable(true);
-            this.dropButton.setDisable(true);
-            this.helpButton.setDisable(true);
-            this.lookButton.setDisable(true);
-            this.peekButton.setDisable(true);
-            this.pickupButton.setDisable(true);
-            this.pickupDropDown.setDisable(true);
-            this.quitButton.setDisable(true);
-            this.saveButton.setDisable(true);
-            this.stayButton.setDisable(true);
-            this.talkButton.setDisable(true);
-            this.unlockButton.setDisable(true);
-            this.useButton.setDisable(true);
-            this.useDropDown.setDisable(true);
-            this.lockButton.setDisable(true);
-            this.numberBox.setDisable(true);
+//            this.goButton.setDisable(true);
+//            this.goDropDown.setDisable(true);
+//            this.activateButton.setDisable(true);
+//            this.dropButton.setDisable(true);
+//            this.helpButton.setDisable(true);
+//            this.lookButton.setDisable(true);
+//            this.peekButton.setDisable(true);
+//            this.pickupButton.setDisable(true);
+//            this.pickupDropDown.setDisable(true);
+//            this.quitButton.setDisable(true);
+//            this.saveButton.setDisable(true);
+//            this.stayButton.setDisable(true);
+//            this.talkButton.setDisable(true);
+//            this.unlockButton.setDisable(true);
+//            this.useButton.setDisable(true);
+//            this.useDropDown.setDisable(true);
+//            this.lockButton.setDisable(true);
+//            this.numberBox.setDisable(true);
+
+            this.bigGridPane.setDisable(true);
+            
+            this.backToStartScreenButton.setVisible(true);
+            this.backToStartScreenButton.setDisable(false);
         }
     }
 
@@ -597,6 +606,15 @@ public class GUIController {
             if (pickupDropDown.getValue() != null){
                     pickupDropDown.setValue(null);
             }
+    }
+
+    
+    @FXML
+    private void backToStartScreenButtonEventHandler(ActionEvent event) {
+        this.switchScreen(outerSpace, startScreen);
+        this.bigGridPane.setDisable(false);
+        this.backToStartScreenButton.setDisable(true);
+        this.backToStartScreenButton.setVisible(false);
     }
 
 }

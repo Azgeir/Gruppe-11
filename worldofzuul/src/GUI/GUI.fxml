@@ -1531,6 +1531,7 @@
               </content>
             </ScrollPane>
             <Label fx:id="labelMessageField" prefWidth="181.0" text="This is going to be the info box" textFill="#f5f103" wrapText="true" GridPane.halignment="LEFT" GridPane.valignment="TOP" />
+            <Button fx:id="backToStartScreenButton" disable="true" mnemonicParsing="false" onAction="#backToStartScreenButtonEventHandler" text="Start new game" visible="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
       <GridPane fx:id="startScreen" prefHeight="750.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
