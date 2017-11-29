@@ -213,6 +213,8 @@ public class GUIController {
             command = "pickup";
             String item = this.pickupDropDown.getValue();
             command = command + " " + item;
+            command = command + " " + this.numberBox.getValue();
+
             GUIFacade.sendCommand(command);
 
             this.updateAllDropdown();
@@ -329,6 +331,7 @@ public class GUIController {
         if (this.useDropDown.getValue() != null) {
             command = "drop";
             command = command + " " + this.useDropDown.getValue();
+            command = command + " " + this.numberBox.getValue();
             GUIFacade.sendCommand(command);
             
             String message = GUIFacade.readAndDeleteGameMessage();
