@@ -6,6 +6,7 @@
 package worldofzuul;
 
 import java.io.Serializable;
+import java.util.Scanner;
 
 /**
  *
@@ -20,6 +21,9 @@ public class TechDude extends Character implements Serializable {
     private Character hero; // Tech dude's hero
     private int hostility = 0;
     private boolean metHero;
+    
+    private boolean wantToTalk = false;
+    private int counter = 1;
 
 
     
@@ -83,13 +87,14 @@ public class TechDude extends Character implements Serializable {
     public Command getCommand(CommandWords commands, String GUICommand) {
         // Declare String variables for the input
         String word1, word2, word3;
-        
+
         if(this.followsHero == false && this.getCurrentRoom().hasCharacter("Hero") == true && metHero == false){
             LogicFacade.appendMessage("You see a man in the corner of the room. He notices you and comes over.");
             word1 = "talk";
             word2 = null;
             word3 = null;
             metHero = true;
+            wantToTalk = true;
             return new Command(commands.getCommandWord(word1), word2, word3);
         }
         // If tech dude has not met the hero, return "stay" command
@@ -128,6 +133,9 @@ public class TechDude extends Character implements Serializable {
                 case STAY:
                     this.stay(command);
                     break;
+                case TALK:
+                    this.talk(command);
+                    break;
                 // If command does not match any of the options, break.
                 default:
                     break;
@@ -136,4 +144,90 @@ public class TechDude extends Character implements Serializable {
         // Return boolean value (false = continue playing; true = quit game)
         return 0;
     }
+    
+    private void talk(Command command){
+        Conversation talk = new Conversation();
+
+        if (this.hostility < 3) {
+            
+            int number = -1;
+            if (command.hasSecondWord()) {
+                try {
+                    number = Integer.parseInt(command.getSecondWord());
+                }
+                catch (NumberFormatException ex) {
+                    LogicFacade.appendMessage("The input wasn't a number");
+                }
+                if (command.hasThirdWord()) {
+                    try {
+                        wantToTalk = Boolean.parseBoolean(command.getThirdWord());
+                    }
+                    catch (NumberFormatException ex) {
+                        LogicFacade.appendMessage("The input wasn't a boolean");
+                    }
+                }
+            }
+            
+            if (counter != 1) {
+                switch(number){
+                    case 1:
+                        if (counter == 5) {
+                            wantToTalk = false;
+                            this.followsHero = true;
+                        }
+                        break;
+                    case 2:
+                        hostility += 1;
+                        if (hostility == 3) {
+                            LogicFacade.appendMessage("The tech dude hates you and will no longer talk to you.");
+                            followsHero = false;
+                        }
+                        else {
+                            LogicFacade.appendMessage("The tech dude got annoyed at you.");
+                        }
+                        wantToTalk = false;
+                        break;
+                    case 3:
+                        if (counter == 4) {
+                            wantToTalk = false;
+                            followsHero = true;
+                        }
+                        else {
+                            LogicFacade.appendMessage("Not a valid answer");
+                        }
+                        break;
+                        
+                    default:
+                        break;
+                }
+            }
+            
+            
+            
+            
+            if (wantToTalk){
+                String messsageChooser = this.getName()+counter++;
+                talk.talk(messsageChooser);
+                talk.options(messsageChooser);
+            }
+            
+            
+            
+        } else {
+            LogicFacade.appendMessage("Fuck you. I hate you");
+            wantToTalk = false;
+            followsHero = false;
+        }
+        
+        if (!wantToTalk){
+            counter = 1;
+        }
+    }
+    
+
+    public boolean isWantToTalk() {
+        return wantToTalk;
+    }
+    
+    
 }
