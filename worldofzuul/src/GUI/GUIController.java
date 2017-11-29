@@ -117,6 +117,24 @@ public class GUIController {
     private Label warningLabel;
     @FXML
     private Button backToStartScreenButton;
+    @FXML
+    private BorderPane roomBiolab;
+    @FXML
+    private BorderPane roomStorage;
+    @FXML
+    private BorderPane roomMedbay;
+    @FXML
+    private BorderPane roomDorm;
+    @FXML
+    private BorderPane roomPhysicslab;
+    @FXML
+    private BorderPane roomDock;
+    @FXML
+    private BorderPane roomReactor;
+    @FXML
+    private BorderPane roomControl;
+    @FXML
+    private BorderPane roomPod;
 
     public void initialize() {
         // TODO
@@ -139,9 +157,7 @@ public class GUIController {
         fillButtons(smallGridPane);
 
         this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
-
         String highscoreString = this.loadAndFormatHighscore();
-
         this.highscoreLabel.setText(highscoreString);
 
 //        useDropDown.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -183,11 +199,11 @@ public class GUIController {
         
         
         // WORKS
-        Image herp = new Image("Pictures/ComputerRoom.png");
-        ImageView derp = new ImageView(herp);
+//        Image herp = new Image("Pictures/ComputerRoom.png");
+//        ImageView derp = new ImageView(herp);
 //        this.TestImageView.setImage(herp);
-        derp.setFitHeight(200);
-        derp.setFitWidth(200);
+//        derp.setFitHeight(200);
+//        derp.setFitWidth(200);
 //////        this.characterflowPaneComputer.getChildren().add(this.ImageViewZuul); // defined in scene builder
 //        this.TestImageView.setImage(herp); // defined in scene builder
 //        this.RoomComputer.getChildren().add(derp);
@@ -199,14 +215,32 @@ public class GUIController {
         this.characterflowPaneComputer.getChildren().add(derp1);
 
         // WORKS END
-        Image[] derpArray = {herp};
-        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+//        Image[] derpArray = {herp};
+//        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 
-        BackgroundImage[] backDerpArray = {backDerp};
+//        BackgroundImage[] backDerpArray = {backDerp};
 
-        this.RoomComputer.setBackground(new Background(backDerpArray));
+//        this.RoomComputer.setBackground(new Background(backDerpArray));
 //        this.characterflowPaneComputer.setStyle("-fx-background-image: derp");
-
+        this.setRoomBackgrounds();
+    }
+    
+    private void setRoomBackgrounds(){
+        this.setRoomBackground(roomBiolab, "Pictures/Biolab.png");
+        this.setRoomBackground(roomControl, "Pictures/ControlRoom.png");
+        this.setRoomBackground(roomDock, "Pictures/Dock.png");
+        this.setRoomBackground(roomDorm, "Pictures/Dorm.png");
+        this.setRoomBackground(roomMedbay, "Pictures/Medbay.png");
+        this.setRoomBackground(roomPhysicslab, "Pictures/Physicslab.png");
+        this.setRoomBackground(roomStorage, "Pictures/Storage.png");
+        this.setRoomBackground(RoomComputer, "Pictures/computerRoom.png");
+    }
+    
+    private void setRoomBackground(BorderPane room, String picturePath){
+        Image roomImage = new Image(picturePath);
+        BackgroundImage roomBackground = new BackgroundImage(roomImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage[] roomBackgroundArray = {roomBackground};
+        room.setBackground(new Background(roomBackgroundArray));
     }
 
     @FXML
@@ -469,7 +503,6 @@ public class GUIController {
             GUIFacade.initializeGame(numberOfZuulAtStart, spawnTime, "Derp");
         }
         
-
         this.updateAllDropdown();
 
         this.switchScreen(startScreen, outerSpace);
@@ -620,13 +653,20 @@ public class GUIController {
             }
     }
 
-    
     @FXML
     private void backToStartScreenButtonEventHandler(ActionEvent event) {
         this.switchScreen(outerSpace, startScreen);
         this.bigGridPane.setDisable(false);
         this.backToStartScreenButton.setDisable(true);
         this.backToStartScreenButton.setVisible(false);
+    }
+
+    @FXML
+    private void dropButtonHandler(RotateEvent event) {
+    }
+
+    @FXML
+    private void dropButtonHandler(SwipeEvent event) {
     }
 
 }

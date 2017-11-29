@@ -203,7 +203,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="600.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" rotate="-0.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomBiolab" layoutX="600.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" rotate="-0.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -258,7 +258,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomStorage" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -313,7 +313,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="149.0" layoutY="1050.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomMedbay" layoutX="149.0" layoutY="1050.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -368,7 +368,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="600.0" layoutY="1200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomDorm" layoutX="600.0" layoutY="1200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -423,7 +423,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="1050.0" layoutY="1050.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomPhysicslab" layoutX="1050.0" layoutY="1050.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -478,7 +478,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="1200.0" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomDock" layoutX="1200.0" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -533,7 +533,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="600.0" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomReactor" layoutX="600.0" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -588,7 +588,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="1050.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomControl" layoutX="1050.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -1468,7 +1468,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="1400.0" layoutY="680.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomPod" layoutX="1400.0" layoutY="680.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
