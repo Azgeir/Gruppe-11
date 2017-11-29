@@ -8,6 +8,7 @@ package GUI;
 import Acquaintance.IHighscore;
 import Acquaintance.IScore;
 import java.io.File;
+import java.util.Scanner;
 import java.util.Set;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -259,6 +260,11 @@ public class GUIController {
     @FXML
     private void talkButtonHandler(ActionEvent event) {
         String command = "talk";
+        
+        Scanner input = new Scanner(System.in);
+        
+        command += " " + input.next();
+        
         GUIFacade.sendCommand(command);
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
@@ -444,7 +450,13 @@ public class GUIController {
         double spawnTime = 200;
         String name = this.textfieldPlayerName.getText();
         
-        GUIFacade.initializeGame(numberOfZuulAtStart,spawnTime,name);
+        if (name.length()>0) {
+            GUIFacade.initializeGame(numberOfZuulAtStart,spawnTime,name);
+        }
+        else {
+            GUIFacade.initializeGame(numberOfZuulAtStart, spawnTime, "Derp");
+        }
+        
 
         this.updateAllDropdown();
 
