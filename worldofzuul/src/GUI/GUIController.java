@@ -521,22 +521,34 @@ public class GUIController {
     }
 
     private void updateAllDropdown() {
-
+        
+        String selectedPickup = this.pickupDropDown.getValue();
         this.pickupDropDown.getItems().clear();
         if (GUIFacade.isRoomLookedBefore()) {
             Set<String> itemSet = GUIFacade.getRoomItemSet();
             this.pickupDropDown.getItems().addAll(itemSet);
+            if (itemSet.contains(selectedPickup)) {
+                this.pickupDropDown.setValue(selectedPickup);
+            }
         }
         this.updateDropdownBackground(pickupDropDown);
 
+        String selectedUse = this.useDropDown.getValue();
         this.useDropDown.getItems().clear();
         Set<String> inventorySet = GUIFacade.getInventorySet();
         this.useDropDown.getItems().addAll(inventorySet);
+        if (inventorySet.contains(selectedUse)) {
+            this.useDropDown.setValue(selectedUse);
+        }
         this.updateDropdownBackground(useDropDown);
 
+        String selectedGo = this.goDropDown.getValue();
         Set<String> exits = GUIFacade.getExits();
         this.goDropDown.getItems().clear();
         this.goDropDown.getItems().addAll(exits);
+        if (exits.contains(selectedGo)) {
+            this.goDropDown.setValue(selectedGo);
+        }
         this.updateDropdownBackground(goDropDown);
 
         
