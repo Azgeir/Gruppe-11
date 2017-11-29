@@ -144,7 +144,7 @@ public class GUIController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 updateNumberBox(useDropDown);
                 numberBox.setValue("1");
-                //numberBox.getItems().add(Integer.toString(GUIFacade.getNumberOfItems("Character", useDropDown.getSelectionModel().getSelectedItem())));
+                pickupDropDown.setValue(null);
             }
         });
 
@@ -153,7 +153,8 @@ public class GUIController {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 updateNumberBox(pickupDropDown);
                 numberBox.setValue("1");
-                
+                useDropDown.setValue(null);
+
             }
         });
         // WORKS
@@ -190,7 +191,9 @@ public class GUIController {
         if (this.pickupDropDown.getValue() != null) {
             command = "pickup";
             String item = this.pickupDropDown.getValue();
-            command = command + " " + item;
+            String number = this.numberBox.getValue();
+            
+            command = command + " " + item + " " + number;
             GUIFacade.sendCommand(command);
 
             this.updateAllDropdown();
@@ -301,7 +304,7 @@ public class GUIController {
         String command;
         if (this.useDropDown.getValue() != null) {
             command = "drop";
-            command = command + " " + this.useDropDown.getValue();
+            command = command + " " + this.useDropDown.getValue() + " " + this.numberBox.getValue();
             GUIFacade.sendCommand(command);
             
             String message = GUIFacade.readAndDeleteGameMessage();
@@ -491,9 +494,6 @@ public class GUIController {
         this.goDropDown.getItems().clear();
         this.goDropDown.getItems().addAll(exits);
         this.updateDropdownBackground(goDropDown);
-
-        
-        
         this.updateDropdownBackground(numberBox);
 
     }
@@ -540,7 +540,7 @@ public class GUIController {
             number = GUIFacade.getNumberOfItems("Room", pickupDropDown.getSelectionModel().getSelectedItem());
         }
         if (number != 0) {
-            for (int i = 1; i <= number; i++) {
+            for (int i = number; i > 0; i--) {
                 numberBox.getItems().add(Integer.toString(i));
             }
         }
