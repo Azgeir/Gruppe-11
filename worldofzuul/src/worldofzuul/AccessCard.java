@@ -39,7 +39,7 @@ class AccessCard extends Item implements Serializable {
      * @return 0, because this action does not affect Zuul's initiative.
      */
     @Override
-    double use(Hero currentCharacter){
+    double use(Hero currentCharacter) {
         // Print message that indicates use.
         LogicFacade.appendMessage("You wave the access card around.");
         
