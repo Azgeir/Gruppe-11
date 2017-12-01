@@ -677,7 +677,7 @@ public class Game implements IGame, Serializable{
                 + "the left most one is direction dropdown you use this in \n"
                 + "conjunction with the buttons around it.");
         LogicFacade.appendMessage("");
-               LogicFacade.appendMessage("funktions for the buttons are:\n"
+               LogicFacade.appendMessage("functions for the buttons are:\n"
                 + "drop: choose an item from the inventory dropdown and press drop \n"
                 + "You drop the following item.\n"
                 + "pickup: choose an item from the room dropdown and press pickup \n"
@@ -695,7 +695,7 @@ public class Game implements IGame, Serializable{
                 + "look: gives information about the character and the room.\n"
                 + "activate: is used for activating specefik objects. \n"
                 + "quit: terminates the game session. \n"
-                + "stay: you skib a turn \n"
+                + "stay: you skip a turn \n"
                 + "help: prints the message you are reading. \n"
                 + "talk: you initiate a conversation with a character \n");
     }
