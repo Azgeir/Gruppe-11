@@ -667,9 +667,9 @@ public class Game implements IGame, Serializable{
         LogicFacade.appendMessage("You can find other crew members and save them.\n"
                 + "You must survive and reach the escape pod. Find items that can\n"
                 + "help you on your way.");
-        LogicFacade.appendMessage("");
-        LogicFacade.appendMessage("Your commands are:");
-        parser.showCommands();
+//        LogicFacade.appendMessage("");
+//        LogicFacade.appendMessage("Your commands are:");
+//        parser.showCommands();
         LogicFacade.appendMessage("");
         LogicFacade.appendMessage("The game works by using the command buttons to direct \n"
                 + "what you wish to do in the game. you have 3 dropdown menus \n"
