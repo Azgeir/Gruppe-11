@@ -241,7 +241,7 @@ public class GUIController {
 //        this.RoomComputer.getChildren().add(derp);
 //        this.RoomComputerStackPane.getChildren().add(derp);
 //
-        Image herp1 = new Image("Pictures/Zuul.png");
+        Image herp1 = new Image("Pictures/Zuul Transparant.png");
         ImageView derp1 = new ImageView(herp1);
 //        this.RoomComputerStackPane.getChildren().add(derp1);
         this.characterflowPaneComputer.getChildren().add(derp1);
