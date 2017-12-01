@@ -86,6 +86,10 @@ public class GUIController {
     @FXML
     private Button lockButton;
     @FXML
+    private FlowPane characterflowPaneComputer;
+    @FXML
+    private ImageView TestImageView;
+    @FXML
     private BorderPane RoomComputer;
     @FXML
     private StackPane RoomComputerStackPane;
@@ -724,13 +728,5 @@ public class GUIController {
         this.highscoreLabel.setText(highscoreString);
     }
 
-    @FXML
-    private void dropButtonHandler(RotateEvent event) {
-    }
 
-    @FXML
-    private void dropButtonHandler(SwipeEvent event) {
     }
-
-    
-}
