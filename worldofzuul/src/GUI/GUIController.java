@@ -167,6 +167,56 @@ public class GUIController {
     private BorderPane roomReactorComputer;
     @FXML
     private BorderPane roomReactorPhysicslab;
+    @FXML
+    private FlowPane characterPaneStorageComputer;
+    @FXML
+    private FlowPane characterPaneDormMedbay;
+    @FXML
+    private FlowPane characterPaneDockPhysicslab;
+    @FXML
+    private FlowPane characterPaneBiolabControl;
+    @FXML
+    private FlowPane characterPanePhysicslabDorm;
+    @FXML
+    private FlowPane characterPaneMedbayStorage;
+    @FXML
+    private FlowPane characterPaneControlDock;
+    @FXML
+    private FlowPane characterPaneComputerBiolab;
+    @FXML
+    private FlowPane characterPaneComputer;
+    @FXML
+    private FlowPane characterPaneBiolab;
+    @FXML
+    private FlowPane characterPaneStorage;
+    @FXML
+    private FlowPane characterPaneMedbay;
+    @FXML
+    private FlowPane characterPaneDorm;
+    @FXML
+    private FlowPane characterPanePhysicslab;
+    @FXML
+    private FlowPane characterPaneDock;
+    @FXML
+    private FlowPane characterPaneControl;
+    @FXML
+    private FlowPane characterPaneReactorBiolab;
+    @FXML
+    private FlowPane characterPaneReactorDock;
+    @FXML
+    private FlowPane characterPaneReactorStorage;
+    @FXML
+    private FlowPane characterPaneReactorDorm;
+    @FXML
+    private FlowPane characterPaneReactorControl;
+    @FXML
+    private FlowPane characterPaneReactorMedbay;
+    @FXML
+    private FlowPane characterPaneReactorComputer;
+    @FXML
+    private FlowPane characterPaneReactorPhysicslab;
+    @FXML
+    private FlowPane characterPanePod;
 
     public void initialize() {
         // TODO
@@ -194,43 +244,6 @@ public class GUIController {
         String highscoreString = this.loadAndFormatHighscore();
         this.highscoreLabel.setText(highscoreString);
 
-//        useDropDown.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-//            @Override
-//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-//                updateNumberBox(useDropDown);
-//                numberBox.setValue("1");
-//                //numberBox.getItems().add(Integer.toString(GUIFacade.getNumberOfItems("Character", useDropDown.getSelectionModel().getSelectedItem())));
-//            }
-//        });
-//
-//        pickupDropDown.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-//            @Override
-//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-//                updateNumberBox(pickupDropDown);
-//                numberBox.setValue("1");
-//                
-//            }
-//        });
-        
-////        this.useDropDown.onActionProperty()
-//        this.pickupDropDown.addEventHandler(ActionEvent.ACTION, eventHandler -> {
-//            updateNumberBox(pickupDropDown);
-////            if (useDropDown.getValue() != null){
-////                if (!useDropDown.getValue().equals("")) {
-////                    useDropDown.setValue("");
-////                }
-////            }
-//        });
-//        this.useDropDown.addEventHandler(ActionEvent.ACTION, eventHandler -> {
-//            updateNumberBox(useDropDown);
-////            if (pickupDropDown.getValue() != null){
-////                if (!pickupDropDown.getValue().equals("")) {
-////                    pickupDropDown.setValue("");
-////                }
-////            }
-//        });
-        
-        
         
         // WORKS
 //        Image herp = new Image("Pictures/ComputerRoom.png");
@@ -246,7 +259,7 @@ public class GUIController {
         Image herp1 = new Image("Pictures/Zuul Transparant.png");
         ImageView derp1 = new ImageView(herp1);
 //        this.RoomComputerStackPane.getChildren().add(derp1);
-        this.characterflowPaneComputer.getChildren().add(derp1);
+        this.characterPaneComputer.getChildren().add(derp1);
 
         // WORKS END
 //        Image[] derpArray = {herp};
@@ -286,7 +299,7 @@ public class GUIController {
         this.setRoomBackground(roomReactorPhysicslab, "Pictures/HallwayVertical.png");
         this.setRoomBackground(roomReactorStorage, "Pictures/HallwayHorizontal.png");
         this.setRoomBackground(roomStorageComputer, "Pictures/HallwayHorizontal.png");
-        
+        this.setRoomBackground(roomPod, "Pictures/Pod.png");
         
     }
     
@@ -720,5 +733,5 @@ public class GUIController {
         this.highscoreLabel.setText(highscoreString);
     }
 
-    
-}
+
+    }
