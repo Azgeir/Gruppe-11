@@ -313,10 +313,9 @@ public class GUIController {
             this.labelMessageField.setText(message);
 
         } else {
-            System.out.println("choose something to pickup from the dropbox");
+            this.labelMessageField.setText("choose something to pickup from the dropbox");
         }
         this.isGameFinished();
-
     }
  
     @FXML
@@ -334,7 +333,7 @@ public class GUIController {
             this.labelMessageField.setText(message);
             
         } else {
-            System.out.println("choose something to use from the dropbox");
+            this.labelMessageField.setText("choose something to use from the dropbox");
         }
         this.isGameFinished();
 //        game.play("use");
@@ -411,7 +410,7 @@ public class GUIController {
     private void saveButtonHandler(ActionEvent event) {
         GUIFacade.saveGame();
 
-        System.out.println("You saved the game");
+        this.labelMessageField.setText("You saved the game");
         this.isGameFinished();
     }
 
@@ -430,7 +429,7 @@ public class GUIController {
             this.updateAllDropdown();
 
         } else {
-            System.out.println("choose something to drop from the dropbox");
+            this.labelMessageField.setText("choose something to drop from the dropbox");
         }
         this.isGameFinished();
     }
@@ -451,7 +450,7 @@ public class GUIController {
 
 //            game.play(command);
         } else {
-            System.out.println("choose a direction from the dropbox");
+            this.labelMessageField.setText("choose a direction from the dropbox");
         }
 
         this.isGameFinished();
@@ -471,7 +470,7 @@ public class GUIController {
             this.labelMessageField.setText(message);
 //            game.play(command);
         } else {
-            System.out.println("choose a direction from the dropbox");
+            this.labelMessageField.setText("choose a direction from the dropbox");
         }
         this.isGameFinished();
 
@@ -490,7 +489,7 @@ public class GUIController {
             this.labelMessageField.setText(message);
 //            game.play(command);
         } else {
-            System.out.println("choose a direction from the dropbox");
+            this.labelMessageField.setText("choose a direction from the dropbox");
         }
 
         this.isGameFinished();
@@ -509,7 +508,7 @@ public class GUIController {
             this.labelMessageField.setText(message);
 //            game.play(command);
         } else {
-            System.out.println("choose a direction from the dropbox");
+            this.labelMessageField.setText("choose a direction from the dropbox");
         }
         this.isGameFinished();
     }
@@ -593,7 +592,7 @@ public class GUIController {
         GUIFacade.loadGame();
         this.switchScreen(startScreen, outerSpace);
         
-        System.out.println("You loaded the game");
+        this.labelMessageField.setText("You loaded the game");
         
         this.updateAllDropdown();
     }
