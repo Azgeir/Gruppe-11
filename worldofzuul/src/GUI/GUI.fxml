@@ -1529,7 +1529,7 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <Label fx:id="labelMessageField" prefWidth="200.0" text="This is going to be the info box" textFill="#f5f103" wrapText="true" GridPane.halignment="LEFT" GridPane.valignment="TOP" />
+            <Label fx:id="labelMessageField" text="This is going to be the info box" textFill="#f5f103" wrapText="true" GridPane.halignment="LEFT" GridPane.valignment="TOP" />
             <Button fx:id="backToStartScreenButton" disable="true" mnemonicParsing="false" onAction="#backToStartScreenButtonEventHandler" text="Start new game" visible="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
