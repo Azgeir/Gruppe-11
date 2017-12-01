@@ -664,37 +664,28 @@ public class Game implements IGame, Serializable{
 
     // This method prints a help message, including available commands
     private void printHelp() {
-        LogicFacade.appendMessage("You can find other crew members and save them.\n"
-                + "You must survive and reach the escape pod. Find items that can\n"
-                + "help you on your way.");
+        LogicFacade.appendMessage("Your goal is to survive and reach the escape"
+                + " pod. You may find and rescue other crew members. There will"
+                + " also be items that can help you on your way.");
         LogicFacade.appendMessage("");
-        LogicFacade.appendMessage("The game works by using the command buttons to direct \n"
-                + "what you wish to do in the game. you have 3 dropdown menus \n"
-                + "the first to the right is the room objects scond is player inventory \n"
-                + "the left most one is direction dropdown you use this in \n"
-                + "conjunction with the buttons around it.");
+        LogicFacade.appendMessage("The following command buttons are used to "
+                + "direct your actions:");
         LogicFacade.appendMessage("");
-               LogicFacade.appendMessage("functions for the buttons are:\n"
-                + "drop: choose an item from the inventory dropdown and press drop \n"
-                + "You drop the following item.\n"
-                + "pickup: choose an item from the room dropdown and press pickup \n"
-                + "You pickup the following item if you can carry it.\n"
-                + "unlock: choose direction from the direction dropdown then press unlock \n"
-                + "You unlock the specified door.\n"
-                + "lock: choose direction from the direction dropdown then press lock \n"
-                + "You lock the specified door.\n"
-                + "go: choose direction from the direction dropdown then press go. \n"
-                + "You go in the specified direction.\n"
-                + "peek: choose direction from the direction dropdown then press peek \n"
-                + "Checks, the neighboring rooms and perhaps two rooms in the specified direction, for enemies.\n"
-                + "use: select an item from the character dropdown menu. \n"
-                + "then press the use button.\n"
-                + "look: gives information about the character and the room.\n"
-                + "activate: is used for activating specefik objects. \n"
-                + "quit: terminates the game session. \n"
-                + "stay: you skip a turn \n"
-                + "help: prints the message you are reading. \n"
-                + "talk: you initiate a conversation with a character \n");
+                LogicFacade.appendMessage(
+                    "Pickup: select an item from the dropdown above and press Pickup to pickup the item (use the dropdown above Activate to specify the number of items to pickup).\n"
+                    + "Drop: select an item from the dropdown above and press Drop to drop the item (use the dropdown above Activate to specify the number of items to drop).\n"
+                    + "Use: select an item from the dropdown above and press Use to use the item.\n"
+                    + "Activate: press to activate specific objects.\n"
+                    + "Save: press to save the current game.\n"
+                    + "Look: press to get information about the room.\n"
+                    + "Quit: press to end the game.\n"
+                    + "Talk: press to initiate a conversation.\n"
+                    + "Stay: press to skip a turn.\n"
+                    + "Help: press to read this message.\n"
+                    + "Peek: select a direction from the dropdown to the right and press Peek to peek around you and in the specified direction.\n"
+                    + "Go: select a direction from the dropdown below and press Go to go in that direction.\n"
+                    + "Lock: select a direction from the dropdown to the left and press Lock to lock the door.\n"
+                    + "Unlock: select a direction from the dropdown above and press Unlock to unlock the door.\n");
     }
 
     // This method iterates over the different characters to determine whose turn it is.
