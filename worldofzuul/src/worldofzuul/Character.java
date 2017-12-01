@@ -74,6 +74,23 @@ public class Character implements Serializable {
     }
 
     /**
+     * This constructor creates a character with the specified current room,
+     * name, speed factor, and initiative. This constructor is used when
+     * creating more Zuuls during the game, as their initiative has to be set to
+     * a value greater than 0.
+     * 
+     * @param currentRoom indicates current room of character.
+     * @param name indicates character type.
+     * @param speedFactor used to update character initiative during game play.
+     * @param initiative used to determine whose turn it is.
+     */
+    Character(Room currentRoom, String name, double speedFactor,
+        double initiative) {
+        this(currentRoom, name, speedFactor);
+        this.characterInitiative = initiative;
+    }
+    
+    /**
      * This method returns a command. It is overridden in Hero, TechDude, and 
      * Zuul, so it is never called on Character.
      * 

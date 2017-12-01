@@ -449,7 +449,7 @@ public class Game implements IGame, Serializable{
     private void timeAddedZuul(){
         if (this.timeSinceSpawn>spawnTime) {
             Room randomRoom = this.randomRoom();
-            this.characters.add(new Zuul(randomRoom,"Zuul",1.15));
+            this.characters.add(new Zuul(randomRoom,"Zuul",1.15,this.currentCharacter.getCharacterInitiative()));
             this.timeSinceSpawn -= spawnTime;
         }
         else {
@@ -668,16 +668,13 @@ public class Game implements IGame, Serializable{
                 + "You must survive and reach the escape pod. Find items that can\n"
                 + "help you on your way.");
         LogicFacade.appendMessage("");
-        LogicFacade.appendMessage("Your commands are:");
-        parser.showCommands();
-        LogicFacade.appendMessage("");
         LogicFacade.appendMessage("The game works by using the command buttons to direct \n"
                 + "what you wish to do in the game. you have 3 dropdown menus \n"
                 + "the first to the right is the room objects scond is player inventory \n"
                 + "the left most one is direction dropdown you use this in \n"
                 + "conjunction with the buttons around it.");
         LogicFacade.appendMessage("");
-               LogicFacade.appendMessage("funktions for the buttons are:\n"
+               LogicFacade.appendMessage("functions for the buttons are:\n"
                 + "drop: choose an item from the inventory dropdown and press drop \n"
                 + "You drop the following item.\n"
                 + "pickup: choose an item from the room dropdown and press pickup \n"
@@ -695,7 +692,7 @@ public class Game implements IGame, Serializable{
                 + "look: gives information about the character and the room.\n"
                 + "activate: is used for activating specefik objects. \n"
                 + "quit: terminates the game session. \n"
-                + "stay: you skib a turn \n"
+                + "stay: you skip a turn \n"
                 + "help: prints the message you are reading. \n"
                 + "talk: you initiate a conversation with a character \n");
     }

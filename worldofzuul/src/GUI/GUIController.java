@@ -135,6 +135,38 @@ public class GUIController {
     private BorderPane roomControl;
     @FXML
     private BorderPane roomPod;
+    @FXML
+    private BorderPane roomComputerBiolab;
+    @FXML
+    private BorderPane roomReactorBiolab;
+    @FXML
+    private BorderPane roomControlDock;
+    @FXML
+    private BorderPane roomReactorDock;
+    @FXML
+    private BorderPane roomReactorStorage;
+    @FXML
+    private BorderPane roomReactorDorm;
+    @FXML
+    private BorderPane roomBiolabControl;
+    @FXML
+    private BorderPane roomDockPhysicslab;
+    @FXML
+    private BorderPane roomPhysicslabDorm;
+    @FXML
+    private BorderPane roomMedbayStorage;
+    @FXML
+    private BorderPane roomDormMedbay;
+    @FXML
+    private BorderPane roomStorageComputer;
+    @FXML
+    private BorderPane roomReactorControl;
+    @FXML
+    private BorderPane roomReactorMedbay;
+    @FXML
+    private BorderPane roomReactorComputer;
+    @FXML
+    private BorderPane roomReactorPhysicslab;
 
     public void initialize() {
         // TODO
@@ -211,7 +243,7 @@ public class GUIController {
 //        this.RoomComputer.getChildren().add(derp);
 //        this.RoomComputerStackPane.getChildren().add(derp);
 //
-        Image herp1 = new Image("Pictures/Zuul.png");
+        Image herp1 = new Image("Pictures/Zuul Transparant.png");
         ImageView derp1 = new ImageView(herp1);
 //        this.RoomComputerStackPane.getChildren().add(derp1);
         this.characterflowPaneComputer.getChildren().add(derp1);
@@ -236,6 +268,26 @@ public class GUIController {
         this.setRoomBackground(roomPhysicslab, "Pictures/Physicslab.png");
         this.setRoomBackground(roomStorage, "Pictures/Storage.png");
         this.setRoomBackground(RoomComputer, "Pictures/computerRoom.png");
+        this.setRoomBackground(roomReactor, "Pictures/Reactor.png");
+        
+        this.setRoomBackground(roomComputerBiolab, "Pictures/HallwayHorizontal.png");
+        this.setRoomBackground(roomBiolabControl, "Pictures/HallwayHorizontal.png");
+        this.setRoomBackground(roomControlDock, "Pictures/HallwayHorizontal.png");
+        this.setRoomBackground(roomDockPhysicslab, "Pictures/HallwayHorizontal.png");
+        this.setRoomBackground(roomDormMedbay, "Pictures/HallwayHorizontal.png");
+        this.setRoomBackground(roomMedbayStorage, "Pictures/HallwayHorizontal.png");
+        this.setRoomBackground(roomPhysicslabDorm, "Pictures/HallwayHorizontal.png");
+        this.setRoomBackground(roomReactorBiolab, "Pictures/HallwayVertical.png");
+        this.setRoomBackground(roomReactorComputer, "Pictures/HallwayVertical.png");
+        this.setRoomBackground(roomReactorControl, "Pictures/HallwayVertical.png");
+        this.setRoomBackground(roomReactorDock, "Pictures/HallwayHorizontal.png");
+        this.setRoomBackground(roomReactorDorm, "Pictures/HallwayHorizontal.png");
+        this.setRoomBackground(roomReactorMedbay, "Pictures/HallwayVertical.png");
+        this.setRoomBackground(roomReactorPhysicslab, "Pictures/HallwayVertical.png");
+        this.setRoomBackground(roomReactorStorage, "Pictures/HallwayHorizontal.png");
+        this.setRoomBackground(roomStorageComputer, "Pictures/HallwayHorizontal.png");
+        
+        
     }
     
     private void setRoomBackground(BorderPane room, String picturePath){
@@ -266,9 +318,8 @@ public class GUIController {
             this.labelMessageField.setText("choose something to pickup from the dropbox");
         }
         this.isGameFinished();
-
     }
-
+ 
     @FXML
     private void useButtonAction(ActionEvent event) {
 
@@ -664,7 +715,10 @@ public class GUIController {
         this.bigGridPane.setDisable(false);
         this.backToStartScreenButton.setDisable(true);
         this.backToStartScreenButton.setVisible(false);
+        
+        String highscoreString = this.loadAndFormatHighscore();
+        this.highscoreLabel.setText(highscoreString);
     }
 
-
+    
 }

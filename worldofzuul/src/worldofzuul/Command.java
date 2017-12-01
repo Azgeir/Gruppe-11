@@ -13,8 +13,7 @@ import java.io.Serializable;
  * Serializable to allow the game to be saved.
  */
 
-public class Command implements Serializable
-{
+public class Command implements Serializable {
     /**
      * Data fields.
      * commandWord: the command's command word
@@ -33,8 +32,7 @@ public class Command implements Serializable
      * @param secondWord
      * @param thirdWord 
      */
-    Command(CommandWord commandWord, String secondWord, String thirdWord)
-    {
+    Command(CommandWord commandWord, String secondWord, String thirdWord) {
         this.commandWord = commandWord;
         this.secondWord = secondWord;
         this.thirdWord = thirdWord;
@@ -45,8 +43,7 @@ public class Command implements Serializable
      * 
      * @return commandWord
      */
-    CommandWord getCommandWord()
-    {
+    CommandWord getCommandWord() {
         return commandWord;
     }
 
@@ -55,8 +52,7 @@ public class Command implements Serializable
      * 
      * @return secondWord
      */
-    String getSecondWord()
-    {
+    String getSecondWord() {
         return secondWord;
     }
     
@@ -65,8 +61,7 @@ public class Command implements Serializable
      * 
      * @return thirdWord
      */
-    String getThirdWord()
-    {
+    String getThirdWord() {
         return thirdWord;
     }
     
@@ -75,8 +70,7 @@ public class Command implements Serializable
      * 
      * @return true if the command is unknown; else it returns false.
      */
-    boolean isUnknown()
-    {
+    boolean isUnknown() {
         return (commandWord == CommandWord.UNKNOWN);
     }
 
@@ -85,8 +79,7 @@ public class Command implements Serializable
      * 
      * @return true if the command has a second word; else it returns false.
      */
-    public boolean hasSecondWord()
-    {
+    public boolean hasSecondWord() {
         return (secondWord != null);
     }
     
@@ -95,8 +88,7 @@ public class Command implements Serializable
      * 
      * @return true if the command has a third word; else it returns false.
      */
-    public boolean hasThirdWord()
-    {
+    public boolean hasThirdWord() {
         return (thirdWord != null);
     }
 }

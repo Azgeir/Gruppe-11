@@ -78,7 +78,7 @@
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </padding>
                   </GridPane>
-                  <ComboBox fx:id="pickupDropDown" onAction="#pickupDropDownEventHandler" prefWidth="150.0" />
+                  <ComboBox fx:id="pickupDropDown" onAction="#pickupDropDownEventHandler" onRotate="#dropButtonHandler" onSwipeUp="#dropButtonHandler" prefWidth="150.0" />
                   <ComboBox fx:id="useDropDown" onAction="#useDropDownEventHandler" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="2" />
                   <ComboBox fx:id="numberBox" prefWidth="150.0" GridPane.columnIndex="3" />
                </children>
@@ -93,7 +93,392 @@
                      <children>
                         <AnchorPane fx:id="innerSpace">
                            <children>
-                              <BorderPane layoutX="309.0" layoutY="128.0" maxHeight="30.0" maxWidth="301.0" minHeight="30.0" minWidth="301.0" prefHeight="30.0" prefWidth="301.0" rotate="-16.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomStorageComputer" layoutX="-7.0" layoutY="446.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="106.0" style="-fx-border-color: black;">
+                                 <bottom>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </bottom>
+                                 <center>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </StackPane>
+                                 </center>
+                                 <left>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </left>
+                                 <right>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </right>
+                                 <top>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </top>
+                              </BorderPane>
+                              <BorderPane fx:id="roomDormMedbay" layoutX="309.0" layoutY="1245.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="16.0" style="-fx-border-color: black;">
+                                 <bottom>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </bottom>
+                                 <center>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </StackPane>
+                                 </center>
+                                 <left>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </left>
+                                 <right>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </right>
+                                 <top>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </top>
+                              </BorderPane>
+                              <BorderPane fx:id="roomDockPhysicslab" layoutX="1110.0" layoutY="926.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="106.0" style="-fx-border-color: black;">
+                                 <bottom>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </bottom>
+                                 <center>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </StackPane>
+                                 </center>
+                                 <left>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </left>
+                                 <right>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </right>
+                                 <top>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </top>
+                              </BorderPane>
+                              <BorderPane fx:id="roomBiolabControl" layoutX="790.0" layoutY="126.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="16.0" style="-fx-border-color: black;">
+                                 <bottom>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </bottom>
+                                 <center>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </StackPane>
+                                 </center>
+                                 <left>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </left>
+                                 <right>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </right>
+                                 <top>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </top>
+                              </BorderPane>
+                              <BorderPane fx:id="roomPhysicslabDorm" layoutX="790.0" layoutY="1240.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="-16.0" style="-fx-border-color: black;">
+                                 <bottom>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </bottom>
+                                 <center>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </StackPane>
+                                 </center>
+                                 <left>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </left>
+                                 <right>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </right>
+                                 <top>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </top>
+                              </BorderPane>
+                              <BorderPane fx:id="roomMedbayStorage" layoutX="-6.0" layoutY="924.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="74.0" style="-fx-border-color: black;">
+                                 <bottom>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </bottom>
+                                 <center>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </StackPane>
+                                 </center>
+                                 <left>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </left>
+                                 <right>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </right>
+                                 <top>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </top>
+                              </BorderPane>
+                              <BorderPane fx:id="roomControlDock" layoutX="1112.0" layoutY="446.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="74.0" style="-fx-border-color: black;">
+                                 <bottom>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </bottom>
+                                 <center>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                                       </children>
+                                    </StackPane>
+                                 </center>
+                                 <left>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </left>
+                                 <right>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </right>
+                                 <top>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </top>
+                              </BorderPane>
+                              <BorderPane fx:id="roomComputerBiolab" layoutX="309.0" layoutY="128.0" maxHeight="30.0" maxWidth="301.0" minHeight="30.0" minWidth="301.0" prefHeight="30.0" prefWidth="301.0" rotate="-16.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -643,7 +1028,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="685.0" layoutY="200.0" minWidth="30.0" prefHeight="400.0" prefWidth="30.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomReactorBiolab" layoutX="685.0" layoutY="200.0" minWidth="30.0" prefHeight="400.0" prefWidth="30.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -698,7 +1083,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="1112.0" layoutY="446.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="74.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomReactorDock" layoutX="800.0" layoutY="685.0" minHeight="30.0" prefHeight="30.0" prefWidth="400.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -753,7 +1138,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="800.0" layoutY="685.0" minHeight="30.0" prefHeight="30.0" prefWidth="400.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomReactorStorage" layoutX="200.0" layoutY="685.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="400.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -808,7 +1193,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="200.0" layoutY="685.0" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="400.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomReactorDorm" layoutX="500.0" layoutY="985.0" minHeight="30.0" prefHeight="30.0" prefWidth="400.0" rotate="90.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -863,7 +1248,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="500.0" layoutY="985.0" minHeight="30.0" prefHeight="30.0" prefWidth="400.0" rotate="90.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomReactorControl" layoutX="922.0" layoutY="261.0" minWidth="30.0" prefHeight="410.0" prefWidth="30.0" rotate="45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -918,7 +1303,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="790.0" layoutY="126.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="16.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomReactorMedbay" layoutX="451.0" layoutY="728.0" minWidth="30.0" prefHeight="410.0" prefWidth="30.0" rotate="45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -973,7 +1358,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="1110.0" layoutY="926.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="106.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomReactorComputer" layoutX="450.0" layoutY="260.0" minWidth="30.0" prefHeight="410.0" prefWidth="30.0" rotate="-45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -1028,392 +1413,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="790.0" layoutY="1240.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="-16.0" style="-fx-border-color: black;">
-                                 <bottom>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </bottom>
-                                 <center>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                       <children>
-                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
-                                       </children>
-                                    </StackPane>
-                                 </center>
-                                 <left>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </left>
-                                 <right>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </right>
-                                 <top>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </top>
-                              </BorderPane>
-                              <BorderPane layoutX="-6.0" layoutY="924.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="74.0" style="-fx-border-color: black;">
-                                 <bottom>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </bottom>
-                                 <center>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                       <children>
-                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
-                                       </children>
-                                    </StackPane>
-                                 </center>
-                                 <left>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </left>
-                                 <right>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </right>
-                                 <top>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </top>
-                              </BorderPane>
-                              <BorderPane layoutX="309.0" layoutY="1245.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="16.0" style="-fx-border-color: black;">
-                                 <bottom>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </bottom>
-                                 <center>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                       <children>
-                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
-                                       </children>
-                                    </StackPane>
-                                 </center>
-                                 <left>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </left>
-                                 <right>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </right>
-                                 <top>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </top>
-                              </BorderPane>
-                              <BorderPane layoutX="-7.0" layoutY="446.0" minHeight="30.0" prefHeight="30.0" prefWidth="301.0" rotate="106.0" style="-fx-border-color: black;">
-                                 <bottom>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </bottom>
-                                 <center>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                       <children>
-                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
-                                       </children>
-                                    </StackPane>
-                                 </center>
-                                 <left>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </left>
-                                 <right>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </right>
-                                 <top>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </top>
-                              </BorderPane>
-                              <BorderPane layoutX="922.0" layoutY="261.0" minWidth="30.0" prefHeight="410.0" prefWidth="30.0" rotate="45.0" style="-fx-border-color: black;">
-                                 <bottom>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </bottom>
-                                 <center>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                       <children>
-                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
-                                       </children>
-                                    </StackPane>
-                                 </center>
-                                 <left>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </left>
-                                 <right>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </right>
-                                 <top>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </top>
-                              </BorderPane>
-                              <BorderPane layoutX="451.0" layoutY="728.0" minWidth="30.0" prefHeight="410.0" prefWidth="30.0" rotate="45.0" style="-fx-border-color: black;">
-                                 <bottom>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </bottom>
-                                 <center>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                       <children>
-                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
-                                       </children>
-                                    </StackPane>
-                                 </center>
-                                 <left>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </left>
-                                 <right>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </right>
-                                 <top>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </top>
-                              </BorderPane>
-                              <BorderPane layoutX="450.0" layoutY="260.0" minWidth="30.0" prefHeight="410.0" prefWidth="30.0" rotate="-45.0" style="-fx-border-color: black;">
-                                 <bottom>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </bottom>
-                                 <center>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                       <children>
-                                          <FlowPane prefHeight="200.0" prefWidth="200.0" />
-                                       </children>
-                                    </StackPane>
-                                 </center>
-                                 <left>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </left>
-                                 <right>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </right>
-                                 <top>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </top>
-                              </BorderPane>
-                              <BorderPane layoutX="921.0" layoutY="729.0" minWidth="30.0" prefHeight="410.0" prefWidth="30.0" rotate="-45.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomReactorPhysicslab" layoutX="921.0" layoutY="729.0" minWidth="30.0" prefHeight="410.0" prefWidth="30.0" rotate="-45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>

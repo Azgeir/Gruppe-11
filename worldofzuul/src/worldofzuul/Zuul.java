@@ -18,14 +18,33 @@ import java.util.ArrayList;
  */
 public class Zuul extends Character implements Serializable {
     
+    /**
+     * Data fields.
+     * previousRoomName: indicates the previous room of Zuul. This is used to
+     * allow Zuul to move forwards instead of backwards.
+     * triedLockedExits: ArrayList of locked exits that Zuul has tried to go
+     * through. This is used to prevent Zuul from repeatedly trying to go
+     * through a locked door.
+     * stayCounter: counts the number of times that Zuul has stayed in the
+     * current room.
+     * STAY_COUNTER_MAX: the maximum number of turns that Zuul can stay in the
+     * same room (set to 1).
+     * heroIsInSameRoom: boolean value that indicates if the player is in the
+     * same room as Zuul.
+     * heroWasInSameRoom: boolean value that indicates if the player has just
+     * left Zuul's current room.
+     * heroInRoomInitiative: this value is set to Zuul's initiative when it
+     * detects the presence of the player. It is used to allow the player to
+     * escape Zuul. The value is initially set to -Double.MAX_VALUE so it always
+     * fails its test in getCommand() unless it has been updated.
+     */
     private String previousRoomName;
     private ArrayList<String> triedLockedExits = new ArrayList<>();
     private int stayCounter = 0;
-    private int stayCounterMax = 1;
+    private final int STAY_COUNTER_MAX = 1;
     private boolean heroIsInSameRoom;
     private boolean heroWasInSameRoom;
     private double heroInRoomInitiative = -Double.MAX_VALUE;
-    private boolean heroHadTurn;
     
     /**
      * This constructor creates a Zuul with the specified current room, name,
@@ -37,16 +56,30 @@ public class Zuul extends Character implements Serializable {
      * @param name name of the character (i.e., "Zuul").
      * @param speedFactor used when updating Zuul's initiative.
      */
-    Zuul(Room currentRoom, String name, double speedFactor){
-        super(currentRoom, name, speedFactor);
+    Zuul(Room currentRoom, String name, double speedFactor) {
+        this(currentRoom, name, speedFactor, 0);
+    }
+    
+    /**
+    * This constructor creates a Zuul with the specified current room, name,
+     * and speed factor. The constructor calls the constructor from the
+     * superclass via constructor chaining. As part of the construction, it is
+     * determined whether or not the player (hero) is in the same room as Zuul.
+     * 
+     * @param currentRoom current room of Zuul.
+     * @param name name of the character (i.e., "Zuul").
+     * @param speedFactor used when updating Zuul's initiative.
+     * @param initiative used to set when the zuul gets it's turn
+     */
+    Zuul (Room currentRoom, String name, double speedFactor, double initiative){
+        super(currentRoom, name, speedFactor, initiative);
         // Check if the player is in the same room as Zuul.
         this.heroIsInSameRoom = currentRoom.hasCharacter("Hero");
         /*
         When a Zuul is created, it does not know if the player has been in the
-        room or if the player has had its turn.
+        room.
         */
         this.heroWasInSameRoom = false;
-        this.heroHadTurn = false;
     }
     
     /**
@@ -79,57 +112,109 @@ public class Zuul extends Character implements Serializable {
             }
         }
         
-        if (this.heroIsInSameRoom || this.heroWasInSameRoom) {
-            this.heroHadTurn = true;
-        }
-        else {
-            this.heroHadTurn = false;
-        }
-        
+        /*
+        If Zuul's current initiative is less than or equal to Zuul's initiative
+        when it detected the presence of the player + 10 times Zuul's speed
+        factor AND the player either is in the same room as Zuul or has just
+        left the room, Zuul's command word is set to "kill". The initiative
+        comparison is designed to allow the player to escape Zuul by using an
+        acid vial, while all other actions will lead to the player's death.
+        */
         if ((this.getCharacterInitiative() <= (this.heroInRoomInitiative
             + 10 * this.getSpeedFactor())) && (this.heroIsInSameRoom 
-            || this.heroWasInSameRoom) && this.heroHadTurn) {
+            || this.heroWasInSameRoom)) {
             word1 = "kill";
         }
+        /*
+        Else if the player is in the same room as Zuul, Zuul's command word is
+        set to "stay". This gives the player a chance to react to the presence
+        of Zuul, before the player is killed.
+        */
         else if (this.getCurrentRoom().hasCharacter("Hero")) {
             word1 = "stay";
         }
+        /*
+        Else the player's presence is "erased" and Zuul's move is either a "go"
+        command or a "stay" command.
+        */
         else {
+            // "Erase" the presence of the player.
             this.heroIsInSameRoom = false;
             this.heroWasInSameRoom = false;
             this.heroInRoomInitiative = -Double.MAX_VALUE;
-            this.heroHadTurn = false;
-            // This creates a array list based on the rooms and where the
-            // commands changes the payers position
+            
+            /*
+            Create an ArrayList based on the available exits from the current
+            room.
+            */
             ArrayList<String> exits = new ArrayList(
                 this.getCurrentRoom().getExits().keySet());
             
+            /*
+            Remove the locked exits that Zuul has already tried from the
+            ArrayList of exits.
+            */
             exits.removeAll(triedLockedExits);
             
-            if (exits.size()!=1) {
+            /*
+            If there is more than one exit available, remove the exit that leads
+            to Zuul's previous room. This is done to allow Zuul to move forwards
+            instead of moving back and forth between rooms.
+            */
+            if (exits.size() != 1) {
                 exits.remove(this.previousRoomName);    
             }
             
-            if (stayCounter<stayCounterMax || exits.size()==0) {
+            /*
+            If Zuul has not stayed in the room before (stayCounter <
+            stayCounterMax, where stayCounterMax is 1) or the ArrayList of exits
+            is empty, add "stay" to the ArrayList of exits.
+            */
+            if (stayCounter < STAY_COUNTER_MAX || exits.isEmpty()) {
                 exits.add("stay");
             }
             
+            /*
+            The number of available moves for Zuul is set to the size of the
+            ArrayList of exits.
+            */
             int numberMoveActions = exits.size();
-            int action = (int)(Math.random()*numberMoveActions);
             
+            /*
+            The action to be performed is determined by a random integer from 0
+            to (numberMoveActions - 1).
+            */
+            int action = (int)(Math.random() * numberMoveActions);
+            
+            /*
+            If the random integer indicates the "stay" entry in the ArrayList of
+            exits, the command word is set to "stay" and the stay counter is
+            incremented.
+            */
             if (exits.get(action).equals("stay")) {
                 word1 = exits.get(action);
                 stayCounter++;
             }
+            /*
+            Else the command word is set to "go", and the second word of the
+            command (i.e., the direction) is determined by the String specified
+            by the random integer. Furthermore, the stay counter is reset to 0.
+            */
             else {
                 word1 = "go";
                 word2 = exits.get(action);
                 stayCounter = 0;
-            }
-            
+            } 
         }
         
+        // Check if the player is in the same room as Zuul.
         heroIsInSameRoom = this.getCurrentRoom().hasCharacter("Hero");
+        
+        /*
+        If the player is in the same room, Zuul's current initiative is recorded
+        in heroInRoomInitiative. This value is used to determine whether Zuul is
+        allowed to kill the player in its next turn.
+        */
         if (heroIsInSameRoom) {
             heroInRoomInitiative = this.getCharacterInitiative();
         }
@@ -189,7 +274,7 @@ public class Zuul extends Character implements Serializable {
      * @param command the command to be executed.
      */
     @Override
-    void go(Command command){
+    void go(Command command) {
         /*
         If the command does not have a second word (i.e., a direction), break
         out of the method, as Zuul cannot go in an undefined direction.
@@ -265,7 +350,7 @@ public class Zuul extends Character implements Serializable {
      * character's message. This message is later read, when the kill message
      * is to be printed.
      */
-    private void kill(){
+    private void kill() {
         // Genereate a random integer (0, 1, or 2)
         int whichKillMessage = (int)(Math.random() * 3);
         
