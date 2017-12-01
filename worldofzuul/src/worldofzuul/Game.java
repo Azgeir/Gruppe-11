@@ -488,6 +488,15 @@ public class Game implements IGame, Serializable{
             if (!finished) {
                 finished = healthTest();
             }
+            
+            
+//            if (currentCharacter.getName().equals("TechDude")) {
+//                TechDude temp = (TechDude)currentCharacter;
+//                if (temp.isWantToTalk()) {
+//                    break;
+//                }
+//            }
+            
             currentCharacter = this.chooseCharacter();
         } while(!currentCharacter.getName().equals("Hero") && !finished);
     }
@@ -568,7 +577,6 @@ public class Game implements IGame, Serializable{
                             character.setCharacterInitiative(character.getCharacterInitiative() + zuulInitiativeReduction);
                         }
                     }
-                    
                     break;
                 // If command is "lock", call lock() command on current character
                 case LOCK:
@@ -593,7 +601,35 @@ public class Game implements IGame, Serializable{
                             techDudeIsThere = true;
                             for (Character character : characters) {
                                 if (character.getName().equals("TechDude")) {
-                                    this.conversation(character);
+                                    TechDude temp = (TechDude)character;
+
+                                    Boolean isFollowingBefore = temp.isFollowsHero();
+                                    character.performCommand(command);
+                                    boolean isFollowingAfter = temp.isFollowsHero();
+                                    boolean conversationIsOver = temp.isWantToTalk();
+                                    
+                                    if (!isFollowingAfter && isFollowingBefore) {
+                                        Character hero = null;
+                                        
+                                        temp.followsHero(hero, false);
+                                        LogicFacade.appendMessage("Tech dude no longer follows you.");
+                                        
+                                    }
+                                    else if (isFollowingAfter && !isFollowingBefore) {
+                                        Character hero = null;
+                                        for (Character character1 : characters) {
+                                            if (character1.getName().equals("Hero")) {
+                                                hero = character1;
+                                                break;
+                                            }
+                                        }
+                                        
+                                        LogicFacade.appendMessage("Tech dude is now following you");
+                                        temp.followsHero(hero, true);
+                                    }
+                                    else {
+                                    }
+                                    
                                     break;
                                 }
                             }    
@@ -604,7 +640,13 @@ public class Game implements IGame, Serializable{
                         LogicFacade.appendMessage("You talk to yourself as you begin to question your sanity.");
                     }
                     
-                    this.currentCharacter.setCharacterInitiative(this.currentCharacter.getCharacterInitiative() + 10 * this.currentCharacter.getSpeedFactor());
+                    if (currentCharacter instanceof Hero) {
+                        this.currentCharacter.setCharacterInitiative(this.currentCharacter.getCharacterInitiative() + 1 * this.currentCharacter.getSpeedFactor());
+                    }
+                    else {
+                        this.currentCharacter.setCharacterInitiative(this.currentCharacter.getCharacterInitiative() + 10 * this.currentCharacter.getSpeedFactor());
+                    }
+                    
                     break;
                 case KILL:
                     this.currentCharacter.performCommand(command);
@@ -907,7 +949,7 @@ public class Game implements IGame, Serializable{
                                 }
                                 break;
                             case 3:
-                                if (counter == 3) {
+                                if (counter == 4) {
                                     wantToTalk = false;
                                     counter++;
                                 } else {

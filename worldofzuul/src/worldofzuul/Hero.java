@@ -416,9 +416,6 @@ public class Hero extends Character implements Serializable {
         String word2 = null;
         String word3 = null;
 
-        // Print "> " to prompt user input
-        System.out.print("> ");
-
         // Use Scanner to read input line from user
         inputLine = reader.nextLine();
 
@@ -433,6 +430,9 @@ public class Hero extends Character implements Serializable {
                 //if the input line has a third word assign it to word3
                 if (tokenizer.hasNext()) {
                     word3 = tokenizer.next();
+                }
+                else if (word1.equals("talk")){
+                    word3 = "TRUE";
                 }
             }
         }
@@ -562,6 +562,7 @@ public class Hero extends Character implements Serializable {
                     break;
                 case STAY:
                     this.stay(command);
+                    LogicFacade.appendMessage("You stay in this room");
                     break;
                 // If command is "pickup", call pickup() method on current character
                 case PICKUP:

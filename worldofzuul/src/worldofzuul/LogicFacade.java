@@ -109,6 +109,9 @@ public class LogicFacade implements ILogicFacade {
 
     @Override
     public int getNumberOfItems(String inventory, String item) {
+        
+        if (game.getCurrentCharacter().getName().equals("Hero")) {
+            
             if (inventory.equals("Room")) {
                 return game.getCurrentCharacter().getCurrentRoom().getInventory().getNumberOfItems(item);
             }
@@ -116,6 +119,10 @@ public class LogicFacade implements ILogicFacade {
                 Hero temp = (Hero)game.getCurrentCharacter();
                 return temp.getInventory().getNumberOfItems(item);
             }
-        return -1;
+            return -1;
+        }
+        else {
+            return -1;
+        }
     }
 }

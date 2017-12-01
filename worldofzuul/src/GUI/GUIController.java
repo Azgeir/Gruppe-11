@@ -8,11 +8,15 @@ package GUI;
 import Acquaintance.IHighscore;
 import Acquaintance.IScore;
 import java.io.File;
+import java.util.Scanner;
 import java.util.Set;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -25,6 +29,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.RotateEvent;
+import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -107,6 +113,28 @@ public class GUIController {
     private GridPane smallGridPane;
     @FXML
     private ComboBox<String> numberBox;
+    @FXML
+    private Label warningLabel;
+    @FXML
+    private Button backToStartScreenButton;
+    @FXML
+    private BorderPane roomBiolab;
+    @FXML
+    private BorderPane roomStorage;
+    @FXML
+    private BorderPane roomMedbay;
+    @FXML
+    private BorderPane roomDorm;
+    @FXML
+    private BorderPane roomPhysicslab;
+    @FXML
+    private BorderPane roomDock;
+    @FXML
+    private BorderPane roomReactor;
+    @FXML
+    private BorderPane roomControl;
+    @FXML
+    private BorderPane roomPod;
 
     public void initialize() {
         // TODO
@@ -129,17 +157,53 @@ public class GUIController {
         fillButtons(smallGridPane);
 
         this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
-
         String highscoreString = this.loadAndFormatHighscore();
-
         this.highscoreLabel.setText(highscoreString);
 
+//        useDropDown.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                updateNumberBox(useDropDown);
+//                numberBox.setValue("1");
+//                //numberBox.getItems().add(Integer.toString(GUIFacade.getNumberOfItems("Character", useDropDown.getSelectionModel().getSelectedItem())));
+//            }
+//        });
+//
+//        pickupDropDown.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                updateNumberBox(pickupDropDown);
+//                numberBox.setValue("1");
+//                
+//            }
+//        });
+        
+////        this.useDropDown.onActionProperty()
+//        this.pickupDropDown.addEventHandler(ActionEvent.ACTION, eventHandler -> {
+//            updateNumberBox(pickupDropDown);
+////            if (useDropDown.getValue() != null){
+////                if (!useDropDown.getValue().equals("")) {
+////                    useDropDown.setValue("");
+////                }
+////            }
+//        });
+//        this.useDropDown.addEventHandler(ActionEvent.ACTION, eventHandler -> {
+//            updateNumberBox(useDropDown);
+////            if (pickupDropDown.getValue() != null){
+////                if (!pickupDropDown.getValue().equals("")) {
+////                    pickupDropDown.setValue("");
+////                }
+////            }
+//        });
+        
+        
+        
         // WORKS
-        Image herp = new Image("Pictures/ComputerRoom.png");
-        ImageView derp = new ImageView(herp);
+//        Image herp = new Image("Pictures/ComputerRoom.png");
+//        ImageView derp = new ImageView(herp);
 //        this.TestImageView.setImage(herp);
-        derp.setFitHeight(200);
-        derp.setFitWidth(200);
+//        derp.setFitHeight(200);
+//        derp.setFitWidth(200);
 //////        this.characterflowPaneComputer.getChildren().add(this.ImageViewZuul); // defined in scene builder
 //        this.TestImageView.setImage(herp); // defined in scene builder
 //        this.RoomComputer.getChildren().add(derp);
@@ -151,14 +215,32 @@ public class GUIController {
         this.characterflowPaneComputer.getChildren().add(derp1);
 
         // WORKS END
-        Image[] derpArray = {herp};
-        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+//        Image[] derpArray = {herp};
+//        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 
-        BackgroundImage[] backDerpArray = {backDerp};
+//        BackgroundImage[] backDerpArray = {backDerp};
 
-        this.RoomComputer.setBackground(new Background(backDerpArray));
+//        this.RoomComputer.setBackground(new Background(backDerpArray));
 //        this.characterflowPaneComputer.setStyle("-fx-background-image: derp");
-
+        this.setRoomBackgrounds();
+    }
+    
+    private void setRoomBackgrounds(){
+        this.setRoomBackground(roomBiolab, "Pictures/Biolab.png");
+        this.setRoomBackground(roomControl, "Pictures/ControlRoom.png");
+        this.setRoomBackground(roomDock, "Pictures/Dock.png");
+        this.setRoomBackground(roomDorm, "Pictures/Dorm.png");
+        this.setRoomBackground(roomMedbay, "Pictures/Medbay.png");
+        this.setRoomBackground(roomPhysicslab, "Pictures/Physicslab.png");
+        this.setRoomBackground(roomStorage, "Pictures/Storage.png");
+        this.setRoomBackground(RoomComputer, "Pictures/computerRoom.png");
+    }
+    
+    private void setRoomBackground(BorderPane room, String picturePath){
+        Image roomImage = new Image(picturePath);
+        BackgroundImage roomBackground = new BackgroundImage(roomImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage[] roomBackgroundArray = {roomBackground};
+        room.setBackground(new Background(roomBackgroundArray));
     }
 
     @FXML
@@ -169,13 +251,15 @@ public class GUIController {
             command = "pickup";
             String item = this.pickupDropDown.getValue();
             command = command + " " + item;
+            command = command + " " + this.numberBox.getValue();
+
             GUIFacade.sendCommand(command);
 
             this.updateAllDropdown();
-            String message = GUIFacade.readAndDeleteGameMessage();
-                    
-            this.labelMessageField.setText(message);
             
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
+
         } else {
             System.out.println("choose something to pickup from the dropbox");
         }
@@ -193,7 +277,10 @@ public class GUIController {
             GUIFacade.sendCommand(command);
 
             this.updateAllDropdown();
-
+            
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
+            
         } else {
             System.out.println("choose something to use from the dropbox");
         }
@@ -205,13 +292,22 @@ public class GUIController {
     private void activateButtonHandler(ActionEvent event) {
         String command = "activate reactor";
         GUIFacade.sendCommand(command);
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
         this.isGameFinished();
     }
 
     @FXML
     private void talkButtonHandler(ActionEvent event) {
         String command = "talk";
+        
+        Scanner input = new Scanner(System.in);
+        
+        command += " " + input.next();
+        
         GUIFacade.sendCommand(command);
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
         this.isGameFinished();
 //        game.play("talk");
     }
@@ -220,6 +316,8 @@ public class GUIController {
     private void quitButtonHandler(ActionEvent event) {
         String command = "quit";
         GUIFacade.sendCommand(command);
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
         this.isGameFinished();
 //        game.play("quit");
     }
@@ -228,6 +326,8 @@ public class GUIController {
     private void helpButtonHandler(ActionEvent event) {
         String command = "help";
         GUIFacade.sendCommand(command);
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
         this.isGameFinished();
 //        game.play("help");
     }
@@ -236,6 +336,8 @@ public class GUIController {
     private void stayButtonHandler(ActionEvent event) {
         String command = "stay";
         GUIFacade.sendCommand(command);
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
         this.isGameFinished();
 //        game.play("stay");
     }
@@ -244,7 +346,9 @@ public class GUIController {
     private void lookButtonHandler(ActionEvent event) {
         String command = "look around";
         GUIFacade.sendCommand(command);
-
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
+        
         this.updateAllDropdown();
         this.isGameFinished();
 
@@ -254,6 +358,8 @@ public class GUIController {
     @FXML
     private void saveButtonHandler(ActionEvent event) {
         GUIFacade.saveGame();
+
+        System.out.println("You saved the game");
         this.isGameFinished();
     }
 
@@ -263,8 +369,12 @@ public class GUIController {
         if (this.useDropDown.getValue() != null) {
             command = "drop";
             command = command + " " + this.useDropDown.getValue();
+            command = command + " " + this.numberBox.getValue();
             GUIFacade.sendCommand(command);
-
+            
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
+            
             this.updateAllDropdown();
 
         } else {
@@ -281,7 +391,10 @@ public class GUIController {
             command = "go";
             command = command + " " + this.goDropDown.getValue();
             GUIFacade.sendCommand(command);
-
+            
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
+            
             this.updateAllDropdown();
 
 //            game.play(command);
@@ -301,6 +414,9 @@ public class GUIController {
             command = "peek";
             command = command + " " + this.goDropDown.getValue();
             GUIFacade.sendCommand(command);
+            
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
 //            game.play(command);
         } else {
             System.out.println("choose a direction from the dropbox");
@@ -317,6 +433,9 @@ public class GUIController {
             command = "unlock";
             command = command + " " + this.goDropDown.getValue();
             GUIFacade.sendCommand(command);
+            
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
 //            game.play(command);
         } else {
             System.out.println("choose a direction from the dropbox");
@@ -333,6 +452,9 @@ public class GUIController {
             command = "lock";
             command = command + " " + this.goDropDown.getValue();
             GUIFacade.sendCommand(command);
+            
+            String message = GUIFacade.readAndDeleteGameMessage();
+            this.labelMessageField.setText(message);
 //            game.play(command);
         } else {
             System.out.println("choose a direction from the dropbox");
@@ -342,23 +464,29 @@ public class GUIController {
 
     private void isGameFinished() {
         if (GUIFacade.isGameFinished()) {
-            this.goButton.setDisable(true);
-            this.goDropDown.setDisable(true);
-            this.activateButton.setDisable(true);
-            this.dropButton.setDisable(true);
-            this.helpButton.setDisable(true);
-            this.lookButton.setDisable(true);
-            this.peekButton.setDisable(true);
-            this.pickupButton.setDisable(true);
-            this.pickupDropDown.setDisable(true);
-            this.quitButton.setDisable(true);
-            this.saveButton.setDisable(true);
-            this.stayButton.setDisable(true);
-            this.talkButton.setDisable(true);
-            this.unlockButton.setDisable(true);
-            this.useButton.setDisable(true);
-            this.useDropDown.setDisable(true);
-            this.lockButton.setDisable(true);
+//            this.goButton.setDisable(true);
+//            this.goDropDown.setDisable(true);
+//            this.activateButton.setDisable(true);
+//            this.dropButton.setDisable(true);
+//            this.helpButton.setDisable(true);
+//            this.lookButton.setDisable(true);
+//            this.peekButton.setDisable(true);
+//            this.pickupButton.setDisable(true);
+//            this.pickupDropDown.setDisable(true);
+//            this.quitButton.setDisable(true);
+//            this.saveButton.setDisable(true);
+//            this.stayButton.setDisable(true);
+//            this.talkButton.setDisable(true);
+//            this.unlockButton.setDisable(true);
+//            this.useButton.setDisable(true);
+//            this.useDropDown.setDisable(true);
+//            this.lockButton.setDisable(true);
+//            this.numberBox.setDisable(true);
+
+            this.bigGridPane.setDisable(true);
+            
+            this.backToStartScreenButton.setVisible(true);
+            this.backToStartScreenButton.setDisable(false);
         }
     }
 
@@ -368,18 +496,29 @@ public class GUIController {
         double spawnTime = 200;
         String name = this.textfieldPlayerName.getText();
         
-
-        GUIFacade.initializeGame(numberOfZuulAtStart,spawnTime,name);
-
+        if (name.length()>0) {
+            GUIFacade.initializeGame(numberOfZuulAtStart,spawnTime,name);
+        }
+        else {
+            GUIFacade.initializeGame(numberOfZuulAtStart, spawnTime, "Derp");
+        }
+        
         this.updateAllDropdown();
 
         this.switchScreen(startScreen, outerSpace);
+        
+        String message = GUIFacade.readAndDeleteGameMessage();
+        this.labelMessageField.setText(message);
+        
+        this.updateAllDropdown();
     }
 
     private void updateDropdownBackground(ComboBox<String> box) {
-        Image button = new Image("Pictures/button.png");
-        BackgroundSize stuff = new BackgroundSize(box.getLayoutBounds().getWidth(), box.getLayoutBounds().getHeight(), false, false, false, true);
-        BackgroundImage buttonBackground = new BackgroundImage(button, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, stuff);
+        Image buttonImage = new Image("Pictures/button.png");
+        
+        BackgroundSize buttonBackgroundSize = new BackgroundSize(box.getLayoutBounds().getWidth(), box.getLayoutBounds().getHeight(), false, false, false, true);
+        BackgroundImage buttonBackground = new BackgroundImage(buttonImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, buttonBackgroundSize);
+       
         box.setBackground(new Background(buttonBackground));
         box.setButtonCell(new ListCell<String>() {
             @Override
@@ -390,6 +529,7 @@ public class GUIController {
                 } else {
                     setText(item);
                     setTextFill(Color.WHITE);
+                    setAlignment(Pos.CENTER);
                 }
 
             }
@@ -400,6 +540,9 @@ public class GUIController {
     private void loadButtonActionEvent(ActionEvent event) {
         GUIFacade.loadGame();
         this.switchScreen(startScreen, outerSpace);
+        
+        System.out.println("You loaded the game");
+        
         this.updateAllDropdown();
     }
 
@@ -411,26 +554,38 @@ public class GUIController {
     }
 
     private void updateAllDropdown() {
-
+        
+        String selectedPickup = this.pickupDropDown.getValue();
         this.pickupDropDown.getItems().clear();
         if (GUIFacade.isRoomLookedBefore()) {
             Set<String> itemSet = GUIFacade.getRoomItemSet();
             this.pickupDropDown.getItems().addAll(itemSet);
+            if (itemSet.contains(selectedPickup)) {
+                this.pickupDropDown.setValue(selectedPickup);
+            }
         }
         this.updateDropdownBackground(pickupDropDown);
 
+        String selectedUse = this.useDropDown.getValue();
         this.useDropDown.getItems().clear();
         Set<String> inventorySet = GUIFacade.getInventorySet();
         this.useDropDown.getItems().addAll(inventorySet);
+        if (inventorySet.contains(selectedUse)) {
+            this.useDropDown.setValue(selectedUse);
+        }
         this.updateDropdownBackground(useDropDown);
 
+        String selectedGo = this.goDropDown.getValue();
         Set<String> exits = GUIFacade.getExits();
         this.goDropDown.getItems().clear();
         this.goDropDown.getItems().addAll(exits);
+        if (exits.contains(selectedGo)) {
+            this.goDropDown.setValue(selectedGo);
+        }
         this.updateDropdownBackground(goDropDown);
 
-        this.updateDropdownBackground(numberBox);
         
+        this.updateDropdownBackground(numberBox);
     }
 
     private String loadAndFormatHighscore() {
@@ -459,22 +614,59 @@ public class GUIController {
 
         for (Node node : pane.getChildren()) {
             if (node instanceof Button) {
-                Button temp = (Button) node;
-                temp.setBackground(new Background(buttonBackground));
-                temp.setTextFill(Color.WHITE);
+                Button button = (Button) node;
+                button.setBackground(new Background(buttonBackground));
+                button.setTextFill(Color.WHITE);
             }
         }
     }
 
-    @FXML
-    private void numberBoxHandler(ActionEvent event) {
-            if (useDropDown.getSelectionModel().getSelectedItem() != null) {
-                useDropDown.getItems().addAll(Integer.toString(GUIFacade.getNumberOfItems("Character", useDropDown.getSelectionModel().getSelectedItem())));
-            }
-            if (pickupDropDown.getSelectionModel().getSelectedItem() != null) {
-                pickupDropDown.getItems().addAll(Integer.toString(GUIFacade.getNumberOfItems("Room", pickupDropDown.getSelectionModel().getSelectedItem())));
-
+    private void updateNumberBox(ComboBox<String> box) {
+        int number = 0;
+        numberBox.getItems().clear();
+        if (box.equals(useDropDown)) {
+            number = GUIFacade.getNumberOfItems("Character", useDropDown.getValue());
+        } else if (box.equals(pickupDropDown)) {
+            number = GUIFacade.getNumberOfItems("Room", pickupDropDown.getValue());
+        }
+        if (number != 0) {
+            for (int i = 1; i <= number; i++) {
+                numberBox.getItems().add(Integer.toString(i));
             }
         }
-    
+        this.numberBox.setValue("1");
+    }
+
+    @FXML
+    private void pickupDropDownEventHandler(ActionEvent event) {
+        updateNumberBox(pickupDropDown);
+            if (useDropDown.getValue() != null){
+                    useDropDown.setValue(null);
+            }
+    }
+
+    @FXML
+    private void useDropDownEventHandler(ActionEvent event) {
+        updateNumberBox(useDropDown);
+            if (pickupDropDown.getValue() != null){
+                    pickupDropDown.setValue(null);
+            }
+    }
+
+    @FXML
+    private void backToStartScreenButtonEventHandler(ActionEvent event) {
+        this.switchScreen(outerSpace, startScreen);
+        this.bigGridPane.setDisable(false);
+        this.backToStartScreenButton.setDisable(true);
+        this.backToStartScreenButton.setVisible(false);
+    }
+
+    @FXML
+    private void dropButtonHandler(RotateEvent event) {
+    }
+
+    @FXML
+    private void dropButtonHandler(SwipeEvent event) {
+    }
+
 }

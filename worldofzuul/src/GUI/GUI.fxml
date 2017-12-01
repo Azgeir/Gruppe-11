@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
@@ -77,9 +78,9 @@
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </padding>
                   </GridPane>
-                  <ComboBox fx:id="pickupDropDown" prefWidth="150.0" />
-                  <ComboBox fx:id="useDropDown" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="2" />
-                  <ComboBox fx:id="numberBox" onAction="#numberBoxHandler" prefWidth="150.0" GridPane.columnIndex="3" />
+                  <ComboBox fx:id="pickupDropDown" onAction="#pickupDropDownEventHandler" onRotate="#dropButtonHandler" onSwipeUp="#dropButtonHandler" prefWidth="150.0" />
+                  <ComboBox fx:id="useDropDown" onAction="#useDropDownEventHandler" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+                  <ComboBox fx:id="numberBox" prefWidth="150.0" GridPane.columnIndex="3" />
                </children>
                <padding>
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -202,7 +203,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="600.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" rotate="-0.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomBiolab" layoutX="600.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" rotate="-0.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -257,7 +258,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomStorage" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -312,7 +313,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="149.0" layoutY="1050.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomMedbay" layoutX="149.0" layoutY="1050.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -367,7 +368,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="600.0" layoutY="1200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomDorm" layoutX="600.0" layoutY="1200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -422,7 +423,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="1050.0" layoutY="1050.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomPhysicslab" layoutX="1050.0" layoutY="1050.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -477,7 +478,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="1200.0" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomDock" layoutX="1200.0" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -532,7 +533,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="600.0" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomReactor" layoutX="600.0" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -587,7 +588,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="1050.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomControl" layoutX="1050.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -1467,7 +1468,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane layoutX="1400.0" layoutY="680.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomPod" layoutX="1400.0" layoutY="680.0" maxHeight="40.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -1530,6 +1531,7 @@
               </content>
             </ScrollPane>
             <Label fx:id="labelMessageField" prefWidth="181.0" text="This is going to be the info box" textFill="#f5f103" wrapText="true" GridPane.halignment="LEFT" GridPane.valignment="TOP" />
+            <Button fx:id="backToStartScreenButton" disable="true" mnemonicParsing="false" onAction="#backToStartScreenButtonEventHandler" text="Start new game" visible="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
       <GridPane fx:id="startScreen" prefHeight="750.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -1551,6 +1553,14 @@
             <Slider GridPane.rowIndex="3" />
             <TextField fx:id="textfieldPlayerName" alignment="CENTER" promptText="Enter name" GridPane.rowIndex="2" />
             <Label fx:id="highscoreLabel" alignment="CENTER" text="This is going to be highscore" textFill="#e0e408" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
+            <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Warning: This game is not for children or the easily offended!" textAlignment="CENTER" textFill="RED" underline="true" wrapText="true" GridPane.columnIndex="1">
+               <effect>
+                  <Glow />
+               </effect>
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </children>
