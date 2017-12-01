@@ -506,14 +506,14 @@ public class Game implements IGame, Serializable{
         // Print welcome message
         message += ("\n");
         message += ("Welcome to Escape Pod!\n");
-        message += ("\nYou are a Software engineer in a space station, and "
-                + "the emergency alarm has just gone off and the station is under "
+        message += ("\nYou are a software engineer in a space station. "
+                + "The emergency alarm has just gone off, and the station is under "
                 + "quarantine. You must find items and other survivors and escape "
                 + "the station through the escape pod before you are caught by what "
                 + "is ravaging the station. \n"
-                + "\nYou suddenly hear a rumbling voice emanating from everywhere: \n"
-                + "\"We are Zuul, devourers of worlds.\"\n");
-        message += ("Type '" + CommandWord.HELP + "' for more information about controls and the game.\n");
+                + "\nYou suddenly hear a rumbling voice emanating from everywhere:\n"
+                + "\n\"We are Zuul, devourers of worlds.\"\n");
+        message += ("\nPress 'Help' for more information about controls and the game.\n");
         message += ("\n");
         // Description of current room of the player, including available exits.
         message += (characterStartRooms.get("Computer").getLongDescription() + "\n");
