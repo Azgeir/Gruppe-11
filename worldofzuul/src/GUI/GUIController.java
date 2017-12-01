@@ -245,9 +245,21 @@ public class GUIController {
 //
         Image herp1 = new Image("Pictures/Zuul Transparant.png");
         ImageView derp1 = new ImageView(herp1);
-//        this.RoomComputerStackPane.getChildren().add(derp1);
-        this.characterflowPaneComputer.getChildren().add(derp1);
+        derp1.setFitHeight(60);
+        derp1.setFitWidth(60);
+                this.characterflowPaneComputer.getChildren().add(derp1);
+                
+        Image transdude = new Image("Pictures/TechDude Transparant.png");
+        ImageView techdude = new ImageView(transdude);
+        techdude.setFitHeight(40);
+        techdude.setFitWidth(40);
+                this.characterflowPaneComputer.getChildren().add(techdude);
 
+        Image transhero = new Image("Pictures/Hero Transparant.png");
+        ImageView hero = new ImageView(transhero);
+        hero.setFitHeight(40);
+        hero.setFitWidth(40);
+                this.characterflowPaneComputer.getChildren().add(hero);
         // WORKS END
 //        Image[] derpArray = {herp};
 //        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
