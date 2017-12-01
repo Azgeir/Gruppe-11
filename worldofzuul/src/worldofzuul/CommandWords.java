@@ -78,21 +78,4 @@ public class CommandWords  implements Serializable
         // Check if the given string is a key in the HashMap of valid commands
         return validCommands.containsKey(aString);
     }
-
-    /**
-     * This method prints the valid commands. It traverses all keys in the
-     * HashMap and prints these. "kill" is not printed as this command can
-     * only be executed by Zuul and thus should not be shown to the player.
-     */
-    void showAll() {
-        // Traverse all command strings in the HashMap of valid commands.
-        for(String command : validCommands.keySet()) {
-            // Check that the command is not "kill"
-            if (command != "kill"){
-                // Print the valid command strings
-                System.out.print(command + "  ");
-            }
-        }
-        LogicFacade.appendMessage("");
-    }
 }
