@@ -155,7 +155,9 @@ public class GUIController {
 
         fillButtons(bigGridPane);
         fillButtons(smallGridPane);
-
+        fillButtons(startScreen);
+        fillButton(backToStartScreenButton);
+        
         this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
         String highscoreString = this.loadAndFormatHighscore();
         this.highscoreLabel.setText(highscoreString);
@@ -609,16 +611,19 @@ public class GUIController {
     }
 
     private void fillButtons(GridPane pane) {
-        Image buttonImage = new Image("Pictures/button.png");
-        BackgroundImage buttonBackground = new BackgroundImage(buttonImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-
         for (Node node : pane.getChildren()) {
             if (node instanceof Button) {
-                Button button = (Button) node;
-                button.setBackground(new Background(buttonBackground));
-                button.setTextFill(Color.WHITE);
+                this.fillButton(node);
             }
         }
+    }
+    
+    private void fillButton(Node node){
+        Image buttonImage = new Image("Pictures/button.png");
+        BackgroundImage buttonBackground = new BackgroundImage(buttonImage,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        Button button = (Button) node;
+        button.setBackground(new Background(buttonBackground));
+        button.setTextFill(Color.WHITE);
     }
 
     private void updateNumberBox(ComboBox<String> box) {
