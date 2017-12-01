@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package worldofzuul;
 
 import java.io.Serializable;
@@ -11,28 +12,48 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
- *
+ * This class represents an inventory in the game. The class implements the
+ * interface Serializable.
+ * 
  * @author Aske Wulf
  */
+
 public class Inventory implements Serializable {
 
-    private HashMap<String, ArrayList<Item>> inventory; //Declares the hashmap "inventory"
-    private int stack; //The amount of duplicate items, eg. 2 vials
-    private int maxWeight; //The maximum weight, mostly used for the player
-    private int totalWeight = 0; //The current weight of the inventory
+    /**
+     * Data fields.
+     * inventory: a HashMap that represents the items in the inventory. The keys
+     * are Strings that identify the item, while the values are ArrayLists of
+     * Item objects.
+     * maxWeight: maximum weight of an inventory. This is mostly used for
+     * player's whose inventory has limited capacity.
+     * totalWeight: current weight of the inventory.
+     */
+    private HashMap<String, ArrayList<Item>> inventory;
+    private int maxWeight;
+    private int totalWeight = 0;
 
-    //Constructor for the inventory, with the maximum weight as a parameter
-    //and initializes the hashmap
-    Inventory(int newMaxWeight) {
-        maxWeight = newMaxWeight;
-        inventory = new HashMap<>();
-    }
-
-    //No-args constructor for inventory which sets the max weight to the max
-    //value for integers
+    /**
+     * This constructor creates an Inventory object with a default maximum
+     * weight. This constructor is called when a room is created in the game.
+     * The maximum weight is set to the maximum positive integer, as the room
+     * should have a practically unlimited capacity.
+     */
     Inventory() {
-        maxWeight = Integer.MAX_VALUE;
-        inventory = new HashMap<>();
+        this.maxWeight = Integer.MAX_VALUE;
+        this.inventory = new HashMap<>();
+    }
+    
+    /**
+     * This constructor creates an Inventory object with the specified maximum
+     * weight. This constructor is called when a player is created, as the
+     * player has a specified limited inventory capacity.
+     * 
+     * @param maxWeight maximum weight of the inventory.
+     */
+    Inventory(int maxWeight) {
+        this.maxWeight = maxWeight;
+        this.inventory = new HashMap<>();
     }
 
     //Changed it to return true if successfully added the item and false otherwise
@@ -152,7 +173,7 @@ public class Inventory implements Serializable {
         String returnString = "";
         Set<HashMap.Entry<String, ArrayList<Item>>> entrySet = inventory.entrySet();
         for (HashMap.Entry<String, ArrayList<Item>> entry : entrySet) {
-            stack = entry.getValue().size();//Checks the length of each itemlist
+            int stack = entry.getValue().size();//Checks the length of each itemlist
             //System.out.println(stack); 
             //System.out.println("I'm in the loop");
             //Prints the name of each list and the length of the list
