@@ -270,12 +270,12 @@ public class Game implements IGame, Serializable{
         characterStartRooms.put("Dock", dock);
         characterStartRooms.put("Control", controlRoom);
         characterStartRooms.put("Reactor", reactor);
-        characterStartRooms.put("ReactorBio", hallwayReactorBiology);
+        characterStartRooms.put("ReactorBiolab", hallwayReactorBiology);
         characterStartRooms.put("ReactorControl", hallwayReactorControl);
         characterStartRooms.put("ReactorDock", hallwayReactorDock);
-        characterStartRooms.put("ReactorPhysics", hallwayReactorPhysics);
+        characterStartRooms.put("ReactorPhysicslab", hallwayReactorPhysics);
         characterStartRooms.put("ReactorDorm", hallwayReactorDormitory);
-        characterStartRooms.put("ReactorMedBay", hallwayReactorMedical);
+        characterStartRooms.put("ReactorMedbay", hallwayReactorMedical);
         characterStartRooms.put("ReactorStorage", hallwayReactorStorage);
         characterStartRooms.put("ReactorComputer", hallwayReactorComputer);
         characterStartRooms.put("StorageComputer",hallwayStorageComputer);

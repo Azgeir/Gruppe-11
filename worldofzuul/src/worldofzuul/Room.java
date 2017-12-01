@@ -1,6 +1,7 @@
 package worldofzuul;
 
 // Imports:
+import Acquaintance.IRoom;
 import java.io.Serializable;
 import java.util.Set;
 import java.util.HashMap;
@@ -17,7 +18,7 @@ import java.util.Map.Entry;
  * This class represents a room. The class implements the Serializable
  * interface.
  */
-public class Room implements Serializable {
+public class Room implements Serializable, IRoom {
     /**
      * Data fields.
      * description: short description of the room.
@@ -108,7 +109,8 @@ public class Room implements Serializable {
      * 
      * @return name
      */
-    String getName() {
+    @Override
+    public String getName() {
         return this.name;
     }
     
