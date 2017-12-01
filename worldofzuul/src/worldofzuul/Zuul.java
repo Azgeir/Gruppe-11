@@ -38,6 +38,10 @@ public class Zuul extends Character implements Serializable {
      * @param speedFactor used when updating Zuul's initiative.
      */
     Zuul(Room currentRoom, String name, double speedFactor){
+        this(currentRoom, name, speedFactor, 0);
+    }
+    
+    Zuul (Room currentRoom, String name, double speedFactor, double initiative){
         super(currentRoom, name, speedFactor);
         // Check if the player is in the same room as Zuul.
         this.heroIsInSameRoom = currentRoom.hasCharacter("Hero");
@@ -47,6 +51,7 @@ public class Zuul extends Character implements Serializable {
         */
         this.heroWasInSameRoom = false;
         this.heroHadTurn = false;
+        this.setCharacterInitiative(initiative);
     }
     
     /**

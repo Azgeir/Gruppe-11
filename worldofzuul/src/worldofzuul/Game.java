@@ -449,7 +449,7 @@ public class Game implements IGame, Serializable{
     private void timeAddedZuul(){
         if (this.timeSinceSpawn>spawnTime) {
             Room randomRoom = this.randomRoom();
-            this.characters.add(new Zuul(randomRoom,"Zuul",1.15));
+            this.characters.add(new Zuul(randomRoom,"Zuul",1.15,this.currentCharacter.getCharacterInitiative()));
             this.timeSinceSpawn -= spawnTime;
         }
         else {
