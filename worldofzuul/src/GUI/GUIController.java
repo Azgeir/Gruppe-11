@@ -246,9 +246,7 @@ public class GUIController {
         this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
         String highscoreString = this.loadAndFormatHighscore();
         this.highscoreLabel.setText(highscoreString);
-
-        
-        // WORKS
+      // WORKS
 //        Image herp = new Image("Pictures/ComputerRoom.png");
 //        ImageView derp = new ImageView(herp);
 //        this.TestImageView.setImage(herp);
@@ -261,9 +259,22 @@ public class GUIController {
 //
         Image herp1 = new Image("Pictures/Zuul Transparant.png");
         ImageView derp1 = new ImageView(herp1);
+        derp1.setFitHeight(60);
+        derp1.setFitWidth(60);
+                this.characterflowPaneComputer.getChildren().add(derp1);
+                
+        Image transdude = new Image("Pictures/TechDude Transparant.png");
+        ImageView techdude = new ImageView(transdude);
+        techdude.setFitHeight(40);
+        techdude.setFitWidth(40);
+                this.characterflowPaneComputer.getChildren().add(techdude);
 //        this.RoomComputerStackPane.getChildren().add(derp1);
         this.characterPaneComputer.getChildren().add(derp1);
-
+        Image transhero = new Image("Pictures/Hero Transparant.png");
+        ImageView hero = new ImageView(transhero);
+        hero.setFitHeight(40);
+        hero.setFitWidth(40);
+                this.characterflowPaneComputer.getChildren().add(hero);
         // WORKS END
 //        Image[] derpArray = {herp};
 //        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
