@@ -78,7 +78,7 @@
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                      </padding>
                   </GridPane>
-                  <ComboBox fx:id="pickupDropDown" onAction="#pickupDropDownEventHandler" onRotate="#dropButtonHandler" onSwipeUp="#dropButtonHandler" prefWidth="150.0" />
+                  <ComboBox fx:id="pickupDropDown" onAction="#pickupDropDownEventHandler" prefWidth="150.0" />
                   <ComboBox fx:id="useDropDown" onAction="#useDropDownEventHandler" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="2" />
                   <ComboBox fx:id="numberBox" prefWidth="150.0" GridPane.columnIndex="3" />
                </children>
