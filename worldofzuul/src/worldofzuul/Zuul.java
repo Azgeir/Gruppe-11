@@ -79,57 +79,110 @@ public class Zuul extends Character implements Serializable {
             }
         }
         
-        if (this.heroIsInSameRoom || this.heroWasInSameRoom) {
-            this.heroHadTurn = true;
-        }
-        else {
-            this.heroHadTurn = false;
-        }
-        
+        /*
+        If Zuul's current initiative is less than or equal to Zuul's initiative
+        when it detected the presence of the player + 10 times Zuul's speed
+        factor AND the player either is in the same room as Zuul or has just
+        left the room, Zuul's command word is set to "kill". The initiative
+        comparison is designed to allow the player to escape Zuul by using an
+        acid vial, while all other actions will lead to the player's death.
+        */
         if ((this.getCharacterInitiative() <= (this.heroInRoomInitiative
             + 10 * this.getSpeedFactor())) && (this.heroIsInSameRoom 
-            || this.heroWasInSameRoom) && this.heroHadTurn) {
+            || this.heroWasInSameRoom)) {
             word1 = "kill";
         }
+        /*
+        Else if the player is in the same room as Zuul, Zuul's command word is
+        set to "stay". This gives the player a chance to react to the presence
+        of Zuul, before the player is killed.
+        */
         else if (this.getCurrentRoom().hasCharacter("Hero")) {
             word1 = "stay";
         }
+        /*
+        Else the player's presence is "erased" and Zuul's move is either a "go"
+        command or a "stay" command.
+        */
         else {
+            // "Erase" the presence of the player.
             this.heroIsInSameRoom = false;
             this.heroWasInSameRoom = false;
             this.heroInRoomInitiative = -Double.MAX_VALUE;
             this.heroHadTurn = false;
-            // This creates a array list based on the rooms and where the
-            // commands changes the payers position
+            
+            /*
+            Create an ArrayList based on the available exits from the current
+            room.
+            */
             ArrayList<String> exits = new ArrayList(
                 this.getCurrentRoom().getExits().keySet());
             
+            /*
+            Remove the locked exits that Zuul has already tried from the
+            ArrayList of exits.
+            */
             exits.removeAll(triedLockedExits);
             
-            if (exits.size()!=1) {
+            /*
+            If there is more than one exit available, remove the exit that leads
+            to Zuul's previous room. This is done to allow Zuul to move forwards
+            instead of moving back and forth between rooms.
+            */
+            if (exits.size() != 1) {
                 exits.remove(this.previousRoomName);    
             }
             
-            if (stayCounter<stayCounterMax || exits.size()==0) {
+            /*
+            If Zuul has not stayed in the room before (stayCounter <
+            stayCounterMax, where stayCounterMax is 1) or the ArrayList of exits
+            is empty, add "stay" to the ArrayList of exits.
+            */
+            if (stayCounter < stayCounterMax || exits.size() == 0) {
                 exits.add("stay");
             }
             
+            /*
+            The number of available moves for Zuul is set to the size of the
+            ArrayList of exits.
+            */
             int numberMoveActions = exits.size();
-            int action = (int)(Math.random()*numberMoveActions);
             
+            /*
+            The action to be performed is determined by a random integer from 0
+            to (numberMoveActions - 1).
+            */
+            int action = (int)(Math.random() * numberMoveActions);
+            
+            /*
+            If the random integer indicates the "stay" entry in the ArrayList of
+            exits, the command word is set to "stay" and the stay counter is
+            incremented.
+            */
             if (exits.get(action).equals("stay")) {
                 word1 = exits.get(action);
                 stayCounter++;
             }
+            /*
+            Else the command word is set to "go", and the second word of the
+            command (i.e., the direction) is determined by the String specified
+            by the random integer. Furthermore, the stay counter is reset to 0.
+            */
             else {
                 word1 = "go";
                 word2 = exits.get(action);
                 stayCounter = 0;
-            }
-            
+            } 
         }
         
+        // Check if the player is in the same room as Zuul.
         heroIsInSameRoom = this.getCurrentRoom().hasCharacter("Hero");
+        
+        /*
+        If the player is in the same room, Zuul's current initiative is recorded
+        in heroInRoomInitiative. This value is used to determine whether Zuul is
+        allowed to kill the player in its next turn.
+        */
         if (heroIsInSameRoom) {
             heroInRoomInitiative = this.getCharacterInitiative();
         }
