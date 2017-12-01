@@ -31,10 +31,4 @@ public class Parser implements Serializable
         
         return characterCommand;
     }
-
-//    // This method prints the available commands.
-//    void showCommands()
-//    {
-//        commands.showAll();
-//    }
 }
