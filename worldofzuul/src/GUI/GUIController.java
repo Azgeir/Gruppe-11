@@ -659,6 +659,9 @@ public class GUIController {
         this.bigGridPane.setDisable(false);
         this.backToStartScreenButton.setDisable(true);
         this.backToStartScreenButton.setVisible(false);
+        
+        String highscoreString = this.loadAndFormatHighscore();
+        this.highscoreLabel.setText(highscoreString);
     }
 
     @FXML
