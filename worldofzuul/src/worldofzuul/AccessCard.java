@@ -23,7 +23,7 @@ class AccessCard extends Item implements Serializable {
      * and name by calling the superclass's constructor via constructor
      * chaining.
      */
-    AccessCard (){
+    AccessCard () {
         super(5, "accesscard");
     }
     
@@ -39,14 +39,14 @@ class AccessCard extends Item implements Serializable {
      * @return 0, because this action does not affect Zuul's initiative.
      */
     @Override
-    double use(Hero currentCharacter){
+    double use(Hero currentCharacter) {
         // Print message that indicates use.
         LogicFacade.appendMessage("You wave the access card around.");
         
         // Increase the character's initiaitve.
         currentCharacter.setCharacterInitiative(
-            currentCharacter.getCharacterInitiative() + 3 * 
-            currentCharacter.getSpeedFactor());
+            currentCharacter.getCharacterInitiative()
+            + 3 * currentCharacter.getSpeedFactor());
         
         // Return 0, as the action does not affect Zuul's initiative.
         return 0;

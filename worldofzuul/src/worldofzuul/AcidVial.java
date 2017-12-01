@@ -21,7 +21,8 @@ public class AcidVial extends Item implements Serializable {
     /**
      * Data fields.
      * damageAmount: Damage caused to the player when the acid vial is used.
-     * initiativeReduction: Added to Zuul's initiative when used against Zuul.
+     * initiativeReduction: Added to Zuul's initiative when used against Zuul,
+     * which gives the player a chance to escape.
      */
     private int damageAmount;
     private double initiativeReduction;
@@ -42,7 +43,7 @@ public class AcidVial extends Item implements Serializable {
      * constructor chaining. The constructor overwrites the default value of
      * damageAmount.
      * 
-     * @param damageAmount caused to player when used.
+     * @param damageAmount damage caused to player when used.
      */
     AcidVial(int damageAmount) {
         this();
@@ -54,7 +55,7 @@ public class AcidVial extends Item implements Serializable {
      * initiative reduction via constructor chaining. The constructor overwrites
      * the default values for damageAmount and initiativeReduction.
      * 
-     * @param damageAmount caused to player by acid vial when used.
+     * @param damageAmount damage caused to player by acid vial when used.
      * @param initiativeReduction added to Zuul's initiative when used against
      * Zuul.
      */
@@ -77,42 +78,43 @@ public class AcidVial extends Item implements Serializable {
      * reduces the player's health, removes the item from the player's
      * inventory, and increases their initiative (because it takes time to throw
      * an acid vial). If Zuul is in the room, its initiative is also increased,
-     * giving the player a chance to escape.
+     * giving the player a chance to escape. The method overrides the use()
+     * method in the superclass Item.
      * 
-     * @param currentCharacter is an instance of Hero and represents the player. 
+     * @param currentCharacter an instance of Hero and represents the player. 
      * 
      * @return initiativeReduction if Zuul is in the room; else it returns 0.
      */
-    @Override // Overrides method from the Item class
+    @Override
     double use(Hero currentCharacter){
         // Reduce player's health by acid vial's damage amount
-        currentCharacter.setHealth(currentCharacter.getHealth() - 
-            this.damageAmount);
+        currentCharacter.setHealth(currentCharacter.getHealth()
+            - this.damageAmount);
         
         // Remove acid vial from player's inventory
         currentCharacter.getInventory().removeItem(this);
         
         // Increase the player's intiative
         currentCharacter.setCharacterInitiative(
-            currentCharacter.getCharacterInitiative() +
-            1.5 * currentCharacter.getSpeedFactor());
+            currentCharacter.getCharacterInitiative()
+            + 1.5 * currentCharacter.getSpeedFactor());
         
         /*
-        If Zuul is in the current room, player hits Zuul with the acid vial,
+        If Zuul is in the current room, the player hits Zuul with the acid vial,
         and Zuul's initiative is increased.
         */
         if (currentCharacter.getCurrentRoom().hasCharacter("Zuul")) {
-            LogicFacade.appendMessage("You throw an acid vial at the terrifying Zuul."
-                + "\nYou hit it in the face. You were hit\nby a splash of acid,"
-                + " but now you have a chance to flee.");
+            LogicFacade.appendMessage("You throw an acid vial at the terrifying"
+                + " Zuul. You hit it in the face. You were hit by a splash of "
+                + "acid, but now you have a chance to flee.");
             return this.initiativeReduction;
         }
         /*
         If Zuul is not in the current room, the player throws acid at the wall.
         */
         else {
-            LogicFacade.appendMessage("For some reason, you throw an acidvial at the"
-                + " wall.\nYou where hit by a splash of acid and hurt "
+            LogicFacade.appendMessage("For some reason, you throw an acid vial"
+                + " at the wall. You were hit by a splash of acid and hurt "
                 + "yourself.");
             return 0;
         }

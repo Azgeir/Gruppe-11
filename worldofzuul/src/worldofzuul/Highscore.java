@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package worldofzuul;
 
 import Acquaintance.IHighscore;
@@ -11,11 +12,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
+ * This class represents a high score in the game. The class implements the
+ * interfaces IHighscore and Serializable.
+ * 
  * @author HCHB
  */
+
 public class Highscore implements IHighscore, Serializable {
- 
+
     private IScore[] highscore;
     
     public Highscore(){

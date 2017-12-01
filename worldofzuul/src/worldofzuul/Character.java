@@ -10,8 +10,7 @@ import java.io.Serializable;
 
 /**
  * This class represents a character. This is the superclass for Hero, TechDude,
- * and Zuul. The class implements the interface Serializable, which is used for
- * saving the game.
+ * and Zuul. The class implements the interface Serializable.
  * 
  * @author HCHB
  */
@@ -20,14 +19,14 @@ public class Character implements Serializable {
 
     /**
      * Data fields.
-     * currentRoom: character's current room
-     * characterInitiative: used to determine whose turn it is
-     * speedFactor: used to update character initiative
-     * name: used to identify character type in other classes
+     * currentRoom: character's current room.
+     * characterInitiative: used to determine whose turn it is.
+     * speedFactor: used to update character initiative.
+     * name: used to identify character type in other classes.
      * hostility: used when conversing with a character (currently only used for
      * TechDude, but it is put in Character to allow future development of
      * characters that the player can converse with).
-     * message: used for various purposes throughout the game
+     * message: used for various purposes throughout the game.
      */
     private Room currentRoom;
     private double characterInitiative;
@@ -62,7 +61,8 @@ public class Character implements Serializable {
     /**
      * This constructor creates a character with the specified current room,
      * name, and speed factor. The character has default character initiative 
-     * (via constructor chaining), while the default speed factor is overwritten.
+     * (via constructor chaining), while the default speed factor is
+     * overwritten.
      * 
      * @param currentRoom indicates current room of character.
      * @param name indicates character type.
@@ -110,7 +110,7 @@ public class Character implements Serializable {
      * This method is used to perform a command. It is overridden in Zuul, Hero
      * and TechDude, so is never called from Character.
      * 
-     * @param command to be executed
+     * @param command commmand to be executed
      * 
      * @return double value depending on the command being executed (most
      * commands return 0).
@@ -155,7 +155,7 @@ public class Character implements Serializable {
     /**
      * This method sets the current room of the character to the specified room.
      * 
-     * @param currentRoom, which is the new current room of the character.
+     * @param currentRoom the new current room of the character.
      */
     void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
@@ -173,8 +173,7 @@ public class Character implements Serializable {
     /**
      * This method sets the character's initiative to the specified value.
      * 
-     * @param characterInitiative, which is the new value of the character's
-     * initiative.
+     * @param characterInitiative the new value of the character's initiative.
      */
     void setCharacterInitiative(double characterInitiative) {
         this.characterInitiative = characterInitiative;
@@ -192,7 +191,7 @@ public class Character implements Serializable {
     /**
      * This method sets the character's speed factor to the specified value.
      * 
-     * @param speedFactor, which is the new value of the character's speed factor.
+     * @param speedFactor the new value of the character's speed factor.
      */
     void setSpeedFactor(double speedFactor) {
         this.speedFactor = speedFactor;
@@ -219,7 +218,7 @@ public class Character implements Serializable {
     /**
      * This method sets the character's hostility value.
      * 
-     * @param hostility, which is the new hostility value
+     * @param hostility the new hostility value
      */
     void setHostility(int hostility) {
         this.hostility = hostility;
@@ -228,7 +227,7 @@ public class Character implements Serializable {
     /**
      * This method sets the value of the message.
      * 
-     * @param message, which is the new value of message
+     * @param message the new value of message
      */
     void setMessage(String message) {
         this.message = message;
