@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 /**
  * This enum class defines the available command words. It implements the
- * interface Serializable, which allows the game to be saved.
+ * interface Serializable.
  */
 public enum CommandWord implements Serializable
 {
