@@ -8,6 +8,8 @@ package GUI;
 import Acquaintance.IHighscore;
 import Acquaintance.IScore;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import javafx.beans.value.ChangeListener;
@@ -214,10 +216,11 @@ public class GUIController {
     private FlowPane characterPaneReactorPhysicslab;
     @FXML
     private FlowPane characterPanePod;
+    
+    private HashMap<String,RoomGUI> rooms;
     @FXML
-    private Slider spawnTimeSlider;
-    @FXML
-    private Slider numberOfZuulSlider;
+    private FlowPane characterPaneReactor;
+
 
     public void initialize() {
         // TODO
@@ -244,9 +247,7 @@ public class GUIController {
         this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
         String highscoreString = this.loadAndFormatHighscore();
         this.highscoreLabel.setText(highscoreString);
-
-        
-        // WORKS
+      // WORKS
 //        Image herp = new Image("Pictures/ComputerRoom.png");
 //        ImageView derp = new ImageView(herp);
 //        this.TestImageView.setImage(herp);
@@ -259,9 +260,22 @@ public class GUIController {
 //
         Image herp1 = new Image("Pictures/Zuul Transparant.png");
         ImageView derp1 = new ImageView(herp1);
+        derp1.setFitHeight(60);
+        derp1.setFitWidth(60);
+                this.characterflowPaneComputer.getChildren().add(derp1);
+                
+        Image transdude = new Image("Pictures/TechDude Transparant.png");
+        ImageView techdude = new ImageView(transdude);
+        techdude.setFitHeight(40);
+        techdude.setFitWidth(40);
+                this.characterflowPaneComputer.getChildren().add(techdude);
 //        this.RoomComputerStackPane.getChildren().add(derp1);
         this.characterPaneComputer.getChildren().add(derp1);
-
+        Image transhero = new Image("Pictures/Hero Transparant.png");
+        ImageView hero = new ImageView(transhero);
+        hero.setFitHeight(40);
+        hero.setFitWidth(40);
+                this.characterflowPaneComputer.getChildren().add(hero);
         // WORKS END
 //        Image[] derpArray = {herp};
 //        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -270,45 +284,56 @@ public class GUIController {
 
 //        this.RoomComputer.setBackground(new Background(backDerpArray));
 //        this.characterflowPaneComputer.setStyle("-fx-background-image: derp");
+        this.createRooms();
         this.setRoomBackgrounds();
     }
     
     private void setRoomBackgrounds(){
-        this.setRoomBackground(roomBiolab, "Pictures/Biolab.png");
-        this.setRoomBackground(roomControl, "Pictures/ControlRoom.png");
-        this.setRoomBackground(roomDock, "Pictures/Dock.png");
-        this.setRoomBackground(roomDorm, "Pictures/Dorm.png");
-        this.setRoomBackground(roomMedbay, "Pictures/Medbay.png");
-        this.setRoomBackground(roomPhysicslab, "Pictures/Physicslab.png");
-        this.setRoomBackground(roomStorage, "Pictures/Storage.png");
-        this.setRoomBackground(RoomComputer, "Pictures/computerRoom.png");
-        this.setRoomBackground(roomReactor, "Pictures/Reactor.png");
-        
-        this.setRoomBackground(roomComputerBiolab, "Pictures/HallwayHorizontal.png");
-        this.setRoomBackground(roomBiolabControl, "Pictures/HallwayHorizontal.png");
-        this.setRoomBackground(roomControlDock, "Pictures/HallwayHorizontal.png");
-        this.setRoomBackground(roomDockPhysicslab, "Pictures/HallwayHorizontal.png");
-        this.setRoomBackground(roomDormMedbay, "Pictures/HallwayHorizontal.png");
-        this.setRoomBackground(roomMedbayStorage, "Pictures/HallwayHorizontal.png");
-        this.setRoomBackground(roomPhysicslabDorm, "Pictures/HallwayHorizontal.png");
-        this.setRoomBackground(roomReactorBiolab, "Pictures/HallwayVertical.png");
-        this.setRoomBackground(roomReactorComputer, "Pictures/HallwayVertical.png");
-        this.setRoomBackground(roomReactorControl, "Pictures/HallwayVertical.png");
-        this.setRoomBackground(roomReactorDock, "Pictures/HallwayHorizontal.png");
-        this.setRoomBackground(roomReactorDorm, "Pictures/HallwayHorizontal.png");
-        this.setRoomBackground(roomReactorMedbay, "Pictures/HallwayVertical.png");
-        this.setRoomBackground(roomReactorPhysicslab, "Pictures/HallwayVertical.png");
-        this.setRoomBackground(roomReactorStorage, "Pictures/HallwayHorizontal.png");
-        this.setRoomBackground(roomStorageComputer, "Pictures/HallwayHorizontal.png");
-        this.setRoomBackground(roomPod, "Pictures/Pod.png");
+//        this.setRoomBackground(roomBiolab, "Pictures/Biolab.png");
+//        this.setRoomBackground(roomControl, "Pictures/ControlRoom.png");
+//        this.setRoomBackground(roomDock, "Pictures/Dock.png");
+//        this.setRoomBackground(roomDorm, "Pictures/Dorm.png");
+//        this.setRoomBackground(roomMedbay, "Pictures/Medbay.png");
+//        this.setRoomBackground(roomPhysicslab, "Pictures/Physicslab.png");
+//        this.setRoomBackground(roomStorage, "Pictures/Storage.png");
+//        this.setRoomBackground(RoomComputer, "Pictures/computerRoom.png");
+//        this.setRoomBackground(roomReactor, "Pictures/Reactor.png");
+//        
+//        this.setRoomBackground(roomComputerBiolab, "Pictures/HallwayHorizontal.png");
+//        this.setRoomBackground(roomBiolabControl, "Pictures/HallwayHorizontal.png");
+//        this.setRoomBackground(roomControlDock, "Pictures/HallwayHorizontal.png");
+//        this.setRoomBackground(roomDockPhysicslab, "Pictures/HallwayHorizontal.png");
+//        this.setRoomBackground(roomDormMedbay, "Pictures/HallwayHorizontal.png");
+//        this.setRoomBackground(roomMedbayStorage, "Pictures/HallwayHorizontal.png");
+//        this.setRoomBackground(roomPhysicslabDorm, "Pictures/HallwayHorizontal.png");
+//        this.setRoomBackground(roomReactorBiolab, "Pictures/HallwayVertical.png");
+//        this.setRoomBackground(roomReactorComputer, "Pictures/HallwayVertical.png");
+//        this.setRoomBackground(roomReactorControl, "Pictures/HallwayVertical.png");
+//        this.setRoomBackground(roomReactorDock, "Pictures/HallwayHorizontal.png");
+//        this.setRoomBackground(roomReactorDorm, "Pictures/HallwayHorizontal.png");
+//        this.setRoomBackground(roomReactorMedbay, "Pictures/HallwayVertical.png");
+//        this.setRoomBackground(roomReactorPhysicslab, "Pictures/HallwayVertical.png");
+//        this.setRoomBackground(roomReactorStorage, "Pictures/HallwayHorizontal.png");
+//        this.setRoomBackground(roomStorageComputer, "Pictures/HallwayHorizontal.png");
+//        this.setRoomBackground(roomPod, "Pictures/Pod.png");
+        for (Map.Entry<String, RoomGUI> entry : rooms.entrySet()) {
+            this.setRoomBackground(entry.getValue());
+        }
         
     }
     
-    private void setRoomBackground(BorderPane room, String picturePath){
+    private <T extends Pane> void setRoomBackground(T room, String picturePath){
         Image roomImage = new Image(picturePath);
         BackgroundImage roomBackground = new BackgroundImage(roomImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         BackgroundImage[] roomBackgroundArray = {roomBackground};
         room.setBackground(new Background(roomBackgroundArray));
+    }
+    
+    private void setRoomBackground(RoomGUI room){
+        Image roomImage = new Image(room.getKnownRoomFilePath());
+        BackgroundImage roomBackground = new BackgroundImage(roomImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage[] roomBackgroundArray = {roomBackground};
+        room.getLocation().setBackground(new Background(roomBackgroundArray));
     }
 
     @FXML
@@ -734,6 +759,51 @@ public class GUIController {
         this.highscoreLabel.setText(highscoreString);
     }
 
+    private void showRooms(){
+        
+//        for (Map.Entry<String, FlowPane> entry : roomsGUI.entrySet()) {
+//            boolean roomKnown = GUIFacade.isRoomKnown();
+//            if (roomKnown) {
+//                String filePath = this.r
+//                this.setRoomBackgrounds(room,);
+//            }
+//            else {
+//                
+//            }
+//            
+//        }
+    }
+    
+    private void createRooms(){
+        rooms = new HashMap<>();
+        rooms.put("Biolab", new RoomGUI(roomBiolab,characterPaneBiolab,"Pictures/Biolab.png","Pictures/Biolab.png FoW","Biolab"));
+        rooms.put("Computer", new RoomGUI(RoomComputer,characterPaneComputer,"Pictures/computerRoom.png","Pictures/computerRoom FoW.png","Computer"));
+        rooms.put("Dock", new RoomGUI(roomDock,characterPaneDock,"Pictures/Dock.png","Pictures/Dock FoW.png","Dock"));
+        rooms.put("BiolabControl", new RoomGUI(roomBiolabControl,characterPaneBiolabControl,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","BiolabControl"));
+        rooms.put("ComputerBiolab", new RoomGUI(roomComputerBiolab,characterPaneComputerBiolab,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","ComputerBiolab"));
+        rooms.put("Control", new RoomGUI(roomControl,characterPaneControl,"Pictures/ControlRoom.png","Pictures/ControlRoom FoW.png","Control"));
+        rooms.put("ControlDock", new RoomGUI(roomControlDock,characterPaneControlDock,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","ControlDock"));
+        rooms.put("DockPhysicslab", new RoomGUI(roomDockPhysicslab,characterPaneDockPhysicslab,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","DockPhysicslab"));
+        rooms.put("Dorm", new RoomGUI(roomDorm,characterPaneDorm,"Pictures/Dorm.png","Pictures/Dorm FoW.png","Dorm"));
+        rooms.put("DormMedbay", new RoomGUI(roomDormMedbay,characterPaneDormMedbay,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","DormMedbay"));
+        rooms.put("Medbay", new RoomGUI(roomMedbay,characterPaneMedbay,"Pictures/Medbay.png","Pictures/Medbay FoW.png","Medbay"));
+        rooms.put("MedbayStorage", new RoomGUI(roomMedbayStorage,characterPaneMedbayStorage,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","MedbayStorage"));
+        rooms.put("Physicslab", new RoomGUI(roomPhysicslab,characterPanePhysicslab,"Pictures/Physicslab.png","Pictures/Physicslab FoW.png","Physicslab"));
+        rooms.put("PhysicslabDorm", new RoomGUI(roomPhysicslabDorm,characterPanePhysicslabDorm,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","PhysicslabDorm"));
+        rooms.put("Pod", new RoomGUI(roomPod,characterPanePod,"Pictures/Pod.png","Pictures/Pod.png","Pod"));
+        rooms.put("Reactor", new RoomGUI(roomReactor,characterPaneReactor,"Pictures/Reactor.png","Pictures/Reactor FoW.png","Reactor"));
+        rooms.put("ReactorBiolab", new RoomGUI(roomReactorBiolab,characterPaneReactorBiolab,"Pictures/HallwayVertical.png","Pictures/HallwayVertical.png","ReactorBiolab"));
+        rooms.put("ReactorComputer", new RoomGUI(roomReactorComputer,characterPaneReactorComputer,"Pictures/HallwayVertical.png","Pictures/HallwayVertical.png","ReactorComputer"));
+        rooms.put("ReactorControl", new RoomGUI(roomReactorControl,characterPaneReactorControl,"Pictures/HallwayVertical.png","Pictures/HallwayVertical.png","ReactorControl"));
+        rooms.put("ReactorDock", new RoomGUI(roomReactorDock,characterPaneReactorDock,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","ReactorDock"));
+        rooms.put("ReactorDorm", new RoomGUI(roomReactorDorm,characterPaneReactorDorm,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","ReactorDorm"));
+        rooms.put("ReactorMedbay", new RoomGUI(roomReactorMedbay,characterPaneReactorMedbay,"Pictures/HallwayVertical.png","Pictures/HallwayVertical.png","ReactorMedbay"));
+        rooms.put("ReactorPhysicslab", new RoomGUI(roomReactorPhysicslab,characterPaneReactorPhysicslab,"Pictures/HallwayVertical.png","Pictures/HallwayVertical.png","ReactorPhysicslab"));
+        rooms.put("ReactorStorage", new RoomGUI(roomReactorStorage,characterPaneReactorStorage,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","ReactorStorage"));
+        rooms.put("Storage", new RoomGUI(roomStorage,characterPaneStorage,"Pictures/Storage.png","Pictures/Storage FoW.png","Storage"));
+        rooms.put("StorageComputer", new RoomGUI(roomStorageComputer,characterPaneStorageComputer,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","StorageComputer"));
+    }
+
     @FXML
     private void dropButtonHandler(RotateEvent event) {
     }
@@ -741,6 +811,9 @@ public class GUIController {
     @FXML
     private void dropButtonHandler(SwipeEvent event) {
     }
+    
+}
+    
 
 
-    }
+

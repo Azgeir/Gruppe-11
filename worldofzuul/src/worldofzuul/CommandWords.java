@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 /**
  * This class represents the command words of the game. It implements the
- * interface Serializable, which allows the game to be saved.
+ * interface Serializable.
  */
 public class CommandWords  implements Serializable
 {

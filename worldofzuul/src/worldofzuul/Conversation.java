@@ -8,8 +8,7 @@ package worldofzuul;
 import java.io.Serializable;
 
 /**
- * This class represents a conversation. The class implements Serializable,
- * which allows the game to be saved.
+ * This class represents a conversation. The class implements Serializable.
  * 
  * @author Aske Wulf
  */
@@ -28,13 +27,15 @@ public class Conversation implements Serializable {
      */
     // Tech dude statements
     final String TECHTALK1 = "Is the Zuul gone?";
-    final String TECHTALK2 = "The arrival of Zuul has triggered the station's quarantine mechanism,\n"
-            + "causing the doors to all the escape pods to be locked.";
-    final String TECHTALK3 = "Yes, I can override the mechanism and unlock one of the pods,\n"
-            + "but I will have to be in the dock to do this.";
-    final String TECHTALK4 = "I can overload the reactor, causing it to self-destruct along with the whole space station.\n"
-            + "This will give you a short time to get off the station before it blows.\n"
-            + "But I must be near the reactor to overload it.";
+    final String TECHTALK2 = "The arrival of Zuul has triggered the station's"
+        + " quarantine mechanism, causing the doors to all the escape pods to "
+        + "be locked.";
+    final String TECHTALK3 = "Yes, I can override the mechanism and unlock one"
+        + " of the pods, but I will have to be in the dock to do this.";
+    final String TECHTALK4 = "I can overload the reactor, causing it to "
+        + "self-destruct along with the whole space station. This will give you"
+        + " a short time to get off the station before it blows up. But I must"
+        + " be near the reactor to overload it.";
     // Player responses
     final String TECHANSWER1 = "For now. What has happened to the station?";
     final String TECHANSWER2 = "Can you help me get off this station?";
@@ -46,13 +47,13 @@ public class Conversation implements Serializable {
      * This method prints the tech dude's statements when conversing with the
      * tech dude. The statement is determined by the argument string.
      * 
-     * @param string, which determines the statement to be printed. The string
+     * @param string determines the statement to be printed. The string
      * is created in Game by adding a counter (which indicates the progress in
      * the conversation) to the name of the character.
      */
     void talk(String string){
         if (string == null){
-            LogicFacade.appendMessage("String is null");
+            LogicFacade.appendMessage("String is null.");
         }
         else switch (string){
             case "TechDude1":
@@ -74,10 +75,10 @@ public class Conversation implements Serializable {
     }
     
     /**
-     * This class prints the player's options when conversing with the tech dude.
-     * The options are determined by the string argument.
+     * This class prints the player's options when conversing with the tech
+     * dude. The options are determined by the string argument.
      * 
-     * @param string, which determines the options. It is created in Game by
+     * @param string determines the options. It is created in Game by
      * adding a counter (which indicates the progress in the conversation) to
      * the name of the character.
      */

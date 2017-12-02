@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 /**
  * This class represents a command in the game. It implements the interface
- * Serializable to allow the game to be saved.
+ * Serializable.
  */
 
 public class Command implements Serializable {

@@ -63,7 +63,7 @@ public class USB extends Item implements Serializable {
      * @return 0, because using the USB has no effect on Zuul's initiative.
      */
     @Override
-    double use(Hero currentCharacter){
+    double use(Hero currentCharacter) {
         // Create a String variable for the character's current room.
         String roomName = currentCharacter.getCurrentRoom().getName();
         
@@ -74,13 +74,13 @@ public class USB extends Item implements Serializable {
         switch (roomName) {
             case "biolab":
                 this.dataType = "bio";
-                LogicFacade.appendMessage("Important biological experimental data was "
-                    + "saved. The USB is now full.");
+                LogicFacade.appendMessage("Important biological experimental "
+                    + "data was saved. The USB is now full.");
                 break;
             case "physicslab":
                 this.dataType = "physics";
-                LogicFacade.appendMessage("Important physics experimental data was "
-                    + "saved. The USB is now full.");
+                LogicFacade.appendMessage("Important physics experimental data "
+                    + "was saved. The USB is now full.");
                 break;
             case "control":
                 this.dataType = "control" ;
@@ -88,15 +88,15 @@ public class USB extends Item implements Serializable {
                     + "infestation was optained. The USB is now full.");
                 break;
             default:
-                LogicFacade.appendMessage("There is nowhere to obtain useful data in "
-                    + "this room.");
+                LogicFacade.appendMessage("There is nowhere to obtain useful "
+                    + "data in this room.");
                 break;
         }
         
         // Update the character's initiative.
         currentCharacter.setCharacterInitiative(
-            currentCharacter.getCharacterInitiative() + 
-            7.5 * currentCharacter.getSpeedFactor());
+            currentCharacter.getCharacterInitiative() 
+            + 7.5 * currentCharacter.getSpeedFactor());
         
         // Return 0, as the action does not affect Zuul's initiative.
         return 0;
