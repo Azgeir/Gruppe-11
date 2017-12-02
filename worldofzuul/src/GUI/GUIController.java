@@ -24,6 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.BlendMode;
@@ -85,10 +86,6 @@ public class GUIController {
     private ComboBox<String> pickupDropDown;
     @FXML
     private Button lockButton;
-    @FXML
-    private FlowPane characterflowPaneComputer;
-    @FXML
-    private ImageView TestImageView;
     @FXML
     private BorderPane RoomComputer;
     @FXML
@@ -217,6 +214,10 @@ public class GUIController {
     private FlowPane characterPaneReactorPhysicslab;
     @FXML
     private FlowPane characterPanePod;
+    @FXML
+    private Slider spawnTimeSlider;
+    @FXML
+    private Slider numberOfZuulSlider;
 
     public void initialize() {
         // TODO
@@ -731,6 +732,14 @@ public class GUIController {
         
         String highscoreString = this.loadAndFormatHighscore();
         this.highscoreLabel.setText(highscoreString);
+    }
+
+    @FXML
+    private void dropButtonHandler(RotateEvent event) {
+    }
+
+    @FXML
+    private void dropButtonHandler(SwipeEvent event) {
     }
 
 
