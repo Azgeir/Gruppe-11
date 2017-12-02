@@ -182,9 +182,7 @@ public class GUIController {
     private FlowPane characterPaneControlDock;
     @FXML
     private FlowPane characterPaneComputerBiolab;
-    @FXML
     private FlowPane characterPaneComputer;
-    @FXML
     private FlowPane characterPaneBiolab;
     @FXML
     private FlowPane characterPaneStorage;
@@ -220,6 +218,14 @@ public class GUIController {
     private HashMap<String,RoomGUI> rooms;
     @FXML
     private FlowPane characterPaneReactor;
+    @FXML
+    private FlowPane characterflowPaneComputer;
+    @FXML
+    private FlowPane characterflowPaneBiolab;
+    @FXML
+    private Slider spawnTimeSlider;
+    @FXML
+    private Slider numberOfZuulSlider;
 
 
     public void initialize() {
@@ -262,20 +268,20 @@ public class GUIController {
         ImageView derp1 = new ImageView(herp1);
         derp1.setFitHeight(60);
         derp1.setFitWidth(60);
-                this.characterflowPaneComputer.getChildren().add(derp1);
+                this.characterPaneComputer.getChildren().add(derp1);
                 
         Image transdude = new Image("Pictures/TechDude Transparant.png");
         ImageView techdude = new ImageView(transdude);
         techdude.setFitHeight(40);
         techdude.setFitWidth(40);
-                this.characterflowPaneComputer.getChildren().add(techdude);
+                this.characterPaneComputer.getChildren().add(techdude);
 //        this.RoomComputerStackPane.getChildren().add(derp1);
         this.characterPaneComputer.getChildren().add(derp1);
         Image transhero = new Image("Pictures/Hero Transparant.png");
         ImageView hero = new ImageView(transhero);
         hero.setFitHeight(40);
         hero.setFitWidth(40);
-                this.characterflowPaneComputer.getChildren().add(hero);
+                this.characterPaneComputer.getChildren().add(hero);
         // WORKS END
 //        Image[] derpArray = {herp};
 //        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -584,8 +590,8 @@ public class GUIController {
 
     @FXML
     private void startButtonActionEvent(ActionEvent event) {
-        int numberOfZuulAtStart = 3;
-        double spawnTime = 200;
+        int numberOfZuulAtStart = (int)this.numberOfZuulSlider.getValue();
+        double spawnTime = this.spawnTimeSlider.getValue();
         String name = this.textfieldPlayerName.getText();
         
         if (name.length()>0) {
@@ -703,15 +709,15 @@ public class GUIController {
     private void fillButtons(GridPane pane) {
         for (Node node : pane.getChildren()) {
             if (node instanceof Button) {
-                this.fillButton(node);
+                Button button = (Button) node;
+                this.fillButton(button);
             }
         }
     }
     
-    private void fillButton(Node node){
+    private void fillButton(Button button){
         Image buttonImage = new Image("Pictures/button.png");
         BackgroundImage buttonBackground = new BackgroundImage(buttonImage,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        Button button = (Button) node;
         button.setBackground(new Background(buttonBackground));
         button.setTextFill(Color.WHITE);
     }
@@ -811,6 +817,7 @@ public class GUIController {
     @FXML
     private void dropButtonHandler(SwipeEvent event) {
     }
+
     
 }
     
