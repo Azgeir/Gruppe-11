@@ -250,6 +250,8 @@ public class GUIController {
         fillButtons(startScreen);
         fillButton(backToStartScreenButton);
         
+//        this.spawnTimeSlider.setLabelFormatter();
+        
         this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
         String highscoreString = this.loadAndFormatHighscore();
         this.highscoreLabel.setText(highscoreString);
@@ -268,20 +270,20 @@ public class GUIController {
         ImageView derp1 = new ImageView(herp1);
         derp1.setFitHeight(60);
         derp1.setFitWidth(60);
-                this.characterPaneComputer.getChildren().add(derp1);
+                this.characterflowPaneComputer.getChildren().add(derp1);
                 
         Image transdude = new Image("Pictures/TechDude Transparant.png");
         ImageView techdude = new ImageView(transdude);
         techdude.setFitHeight(40);
         techdude.setFitWidth(40);
-                this.characterPaneComputer.getChildren().add(techdude);
+                this.characterflowPaneComputer.getChildren().add(techdude);
 //        this.RoomComputerStackPane.getChildren().add(derp1);
-        this.characterPaneComputer.getChildren().add(derp1);
+//        this.characterPaneComputer.getChildren().add(derp1);
         Image transhero = new Image("Pictures/Hero Transparant.png");
         ImageView hero = new ImageView(transhero);
         hero.setFitHeight(40);
         hero.setFitWidth(40);
-                this.characterPaneComputer.getChildren().add(hero);
+                this.characterflowPaneComputer.getChildren().add(hero);
         // WORKS END
 //        Image[] derpArray = {herp};
 //        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -591,7 +593,7 @@ public class GUIController {
     @FXML
     private void startButtonActionEvent(ActionEvent event) {
         int numberOfZuulAtStart = (int)this.numberOfZuulSlider.getValue();
-        double spawnTime = this.spawnTimeSlider.getValue();
+        double spawnTime = (int)this.spawnTimeSlider.getValue();
         String name = this.textfieldPlayerName.getText();
         
         if (name.length()>0) {

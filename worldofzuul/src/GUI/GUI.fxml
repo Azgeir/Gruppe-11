@@ -1554,8 +1554,8 @@
          <children>
             <Button mnemonicParsing="false" onAction="#startButtonActionEvent" text="Start" GridPane.halignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#loadButtonActionEvent" text="Load" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Slider fx:id="spawnTimeSlider" max="500.0" min="100.0" value="200.0" GridPane.rowIndex="4" />
-            <Slider fx:id="numberOfZuulSlider" max="10.0" min="1.0" value="1.0" GridPane.rowIndex="3" />
+            <Slider fx:id="spawnTimeSlider" blockIncrement="20.0" majorTickUnit="100.0" max="500.0" min="100.0" minorTickCount="50" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="200.0" GridPane.rowIndex="4" />
+            <Slider fx:id="numberOfZuulSlider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" GridPane.rowIndex="3" />
             <TextField fx:id="textfieldPlayerName" alignment="CENTER" promptText="Enter name" GridPane.rowIndex="2" />
             <Label fx:id="highscoreLabel" alignment="CENTER" text="This is going to be highscore" textFill="#e0e408" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="5" GridPane.valignment="CENTER" />
             <Label fx:id="warningLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Warning: This game is not for children or the easily offended!" textAlignment="CENTER" textFill="RED" underline="true" wrapText="true" GridPane.columnIndex="1">
