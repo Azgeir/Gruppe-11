@@ -125,7 +125,7 @@ public class Data {
         }
         catch (ClassNotFoundException ex) {
             ex.printStackTrace();
-        }
+        } 
 
         return game;
     }

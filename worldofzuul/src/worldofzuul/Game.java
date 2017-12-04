@@ -599,19 +599,27 @@ public class Game implements IGame, Serializable{
                     boolean techDudeIsThere = false;
                         if (currentCharacter.getCurrentRoom().hasCharacter("TechDude")) {
                             techDudeIsThere = true;
+                            Hero tempHero = null;
+                            for (Character character : characters) {
+                                if (character instanceof Hero) {
+                                    tempHero = (Hero)character;
+                                }
+                            }
+                            
                             for (Character character : characters) {
                                 if (character.getName().equals("TechDude")) {
-                                    TechDude temp = (TechDude)character;
+                                    TechDude techDude = (TechDude)character;
 
-                                    Boolean isFollowingBefore = temp.isFollowsHero();
+                                    Boolean isFollowingBefore = techDude.isFollowsHero();
                                     character.performCommand(command);
-                                    boolean isFollowingAfter = temp.isFollowsHero();
-                                    boolean conversationIsOver = temp.isWantToTalk();
+                                    boolean isFollowingAfter = techDude.isFollowsHero();
+                                    
+                                    tempHero.setTalking(techDude.isWantToTalk());
                                     
                                     if (!isFollowingAfter && isFollowingBefore) {
                                         Character hero = null;
                                         
-                                        temp.followsHero(hero, false);
+                                        techDude.followsHero(hero, false);
                                         LogicFacade.appendMessage("Tech dude no longer follows you.");
                                         
                                     }
@@ -625,7 +633,7 @@ public class Game implements IGame, Serializable{
                                         }
                                         
                                         LogicFacade.appendMessage("Tech dude is now following you");
-                                        temp.followsHero(hero, true);
+                                        techDude.followsHero(hero, true);
                                     }
                                     else {
                                     }
@@ -887,88 +895,6 @@ public class Game implements IGame, Serializable{
         return false;
     }
 
-    private void conversation(Character character) {
-        
-        TechDude temp = (TechDude) character;
-        Character hero = null;
-        for (Character character1 : characters) {
-            if (character1.getName().equals("Hero")) {
-                hero = character1;
-                break;
-            }
-        }
-        
-        Conversation Talk = new Conversation();
-        boolean wantToTalk = false;
-        int counter = 1;
-        if (character.getHostility() != 3) {
-            do {
-                java.util.Scanner input = new java.util.Scanner(System.in);
-                int number = 0;
-                String name = character.getName() + counter;
-                Talk.talk(name);
-                Talk.options(name);
-
-                if (input.hasNextInt()) {
-                    number = input.nextInt();
-                    if (number != 0) {
-                        switch (number) {
-                            case 1:
-                                if (counter < 4) {
-                                    wantToTalk = true;
-                                } else {
-                                    wantToTalk = false;
-                                }
-                                counter++;
-                                break;
-                            case 2:
-                                character.setHostility(character.getHostility() + 1);
-                                if (character.getHostility() < 3) {
-                                    LogicFacade.appendMessage("The tech dude got annoyed at you.");
-                                    wantToTalk = false;
-                                }
-                                if (character.getHostility() == 3) {
-                                    LogicFacade.appendMessage("The tech dude hates you and will no longer talk to you.");
-                                    if (temp.isFollowsHero()) {
-                                        temp.followsHero(hero, false);
-                                        LogicFacade.appendMessage("Tech dude no longer follows you.");
-                                        counter++;
-                                    }
-                                }
-                                break;
-                            case 3:
-                                if (counter == 4) {
-                                    wantToTalk = false;
-                                    counter++;
-                                } else {
-                                    LogicFacade.appendMessage("You only have 2 options");
-                                }
-                                break;
-                            default:
-                                LogicFacade.appendMessage("Wrong input");
-                                wantToTalk = false;
-                                break;
-                        }
-                        if (number != 2) {
-                            if (counter == 5 || (counter == 4 && character.getHostility() < 3 && wantToTalk == false)) {
-                                if (!temp.isFollowsHero()) {
-                                    LogicFacade.appendMessage("Tech dude is now following you");
-                                    temp.followsHero(hero, true);
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    LogicFacade.appendMessage("The input wasn't a number");
-                    wantToTalk = false;
-                }
-
-            } while (wantToTalk);
-        } else {
-            LogicFacade.appendMessage("Fuck you. I hate you");
-        }
-    }
-
     public Character getCurrentCharacter() {
         return currentCharacter;
     }
@@ -999,5 +925,15 @@ public class Game implements IGame, Serializable{
         return returnMessage;
     }
     
+    boolean isTalking(){
+        boolean talking;
+        if (currentCharacter instanceof Hero) {
+            talking = ((Hero)currentCharacter).isTalking();
+        }
+        else {
+            talking = false;
+        }
+        return talking;
+    }
     
 }

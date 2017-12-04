@@ -40,4 +40,6 @@ public interface ILogicFacade {
     boolean isRoomKnown(IRoom room);
     
     int getNumberOfItems(String inventory, String item);
+    
+    boolean isTalking();
 }
