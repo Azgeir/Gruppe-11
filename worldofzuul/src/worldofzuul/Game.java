@@ -825,7 +825,7 @@ public class Game implements IGame, Serializable{
         IHighscore highscoreData = LogicFacade.getHighscore();
         IScore[] scores = highscoreData.getScores();
         Highscore highscore = new Highscore(scores);
-        highscore.updataHighscore(newScore);
+        highscore.updateHighscore(newScore);
         LogicFacade.saveHighscore(highscore);
         return point;
     }
