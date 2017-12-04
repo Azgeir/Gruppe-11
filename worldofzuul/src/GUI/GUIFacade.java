@@ -76,4 +76,14 @@ public class GUIFacade implements IGUIFacade  {
    static int getNumberOfItems(String inventory, String item){
        return logic.getNumberOfItems(inventory, item);
    }
+   
+   static boolean isRoomKnown(IRoom room){
+       boolean isKnown = logic.isRoomKnown(room);
+       return isKnown;
+   }
+   
+   static boolean isTalking(){
+       boolean talking = logic.isTalking();
+       return talking;
+   }
 }
