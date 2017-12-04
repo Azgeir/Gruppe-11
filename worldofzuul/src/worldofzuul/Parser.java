@@ -18,9 +18,10 @@ class Parser implements Serializable {
     
     /**
      * Data field.
-     * commands: a CommandWords object that represents the valid commands.
+     * commands: a CommandWords object that represents the valid commands. The
+     * data field is final as it is a constant.
      */
-    private CommandWords commands;
+    private final CommandWords commands;
 
     /**
      * This constructor creates an instance of the Parser class by initializing
