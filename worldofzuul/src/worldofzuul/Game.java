@@ -311,7 +311,7 @@ public class Game implements IGame, Serializable{
     // This method initialises the inventory of the given room
     private void fillRoom(Room room) {
         switch (room.getName()) {
-            case "biolab":
+            case "Biolab":
                 room.getInventory().addItem(new Item(10, "notebook", "smash it down on the floor in pure anger."));
                 room.getInventory().addItem(new Item(50, "microscope"), 3);
                 room.getInventory().addItem(new Item(1000, "DNA-sequencing-machine"));
@@ -332,7 +332,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(99, "cat", "pet it. It scratces your hand."));
                 room.getInventory().addItem(new AcidVial(4, 25), 10);
                 break;
-            case "computer":
+            case "Computer":
                 room.getInventory().addItem(new USB(3));
                 room.getInventory().addItem(new USB(2));
                 room.getInventory().addItem(new USB(1));
@@ -341,7 +341,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(20, "keyboard", "write code, but it dosen't work, so you smash it into pieces."), 10);
                 room.getInventory().addItem(new AccessCard());
                 break;
-            case "storage":
+            case "Storage":
                 room.getInventory().addItem(new AcidVial(4, 25), 5);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(400, "box"), 30);
@@ -357,7 +357,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(30, "nailgun", "shoot all over the place like a stormtrooper."), 8);
                 room.getInventory().addItem(new AccessCard());
                 break;
-            case "medbay":
+            case "Medbay":
                 room.getInventory().addItem(new AcidVial(4, 25), 7);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(5, "syringe", "stick it at yourself to see, if you end up tripping balls."), 17);
@@ -369,7 +369,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(400, "desk"), 8);
                 room.getInventory().addItem(new Item(100, "display-skeleton"), 5);
                 break;
-            case "dorm":
+            case "Dorm":
                 room.getInventory().addItem(new Item(10, "dehydrated-food"), 50);
                 room.getInventory().addItem(new Item(600, "bed"), 20);
                 room.getInventory().addItem(new Item(10, "pillow", "remind yourself that Mommy is not going to save you."), 20);
@@ -383,7 +383,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(75, "chair", "sit down on it to contemplate about your life choices at the moment. "
                         + "Honestly, don't you have better things to do!"), 6);
                 break;
-            case "physicslab":
+            case "Physicslab":
                 room.getInventory().addItem(new AcidVial(4, 25), 7);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
@@ -399,7 +399,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
                 room.getInventory().addItem(new Item(10, "funny-chemical", "sniff at it, then lick at it and then scream 'LEEROY JENKINS'."), 25);
                 break;
-            case "dock":
+            case "Dock":
                 room.getInventory().addItem(new Item(1500, "crate"), 30);
                 room.getInventory().addItem(new Item(500, "fuel-station"), 1);
                 room.getInventory().addItem(new Item(400, "barrel"), 40);
@@ -409,7 +409,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(200, "corpse"), 2);
                 room.getInventory().addItem(new Item(500, "3D-printer", "scan your ass and print it for science."), 1);
                 break;
-            case "control":
+            case "Control":
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(175, "computer"), 5);
                 room.getInventory().addItem(new Item(150, "computer-monitor"), 15);
@@ -418,7 +418,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(20, "hammer"), 4);
                 room.getInventory().addItem(new Item(1, "paper", "fold a paper plane and make StarWars sounds."), 20);
                 break;
-            case "reactor":
+            case "Reactor":
                 room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
                 room.getInventory().addItem(new Item(175, "computer"), 4);
                 room.getInventory().addItem(new Item(10, "screwdriver"), 8);
@@ -426,7 +426,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(20, "Geiger-counter"), 2);
                 room.getInventory().addItem(new Item(100, "spacesuit"), 2);
                 break;
-            case "pod":
+            case "Pod":
                 room.getInventory().addItem(new MedKit());
                 room.getInventory().addItem(new Item(10, "dehydrated-food"), 5);
                 room.getInventory().addItem(new Item(20, "hammer"), 2);
