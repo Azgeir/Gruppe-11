@@ -26,6 +26,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.BlendMode;
@@ -181,9 +182,7 @@ public class GUIController {
     private FlowPane characterPaneControlDock;
     @FXML
     private FlowPane characterPaneComputerBiolab;
-    @FXML
     private FlowPane characterPaneComputer;
-    @FXML
     private FlowPane characterPaneBiolab;
     @FXML
     private FlowPane characterPaneStorage;
@@ -219,6 +218,14 @@ public class GUIController {
     private HashMap<String,RoomGUI> rooms;
     @FXML
     private FlowPane characterPaneReactor;
+    @FXML
+    private FlowPane characterflowPaneComputer;
+    @FXML
+    private FlowPane characterflowPaneBiolab;
+    @FXML
+    private Slider spawnTimeSlider;
+    @FXML
+    private Slider numberOfZuulSlider;
 
 
     public void initialize() {
@@ -242,6 +249,8 @@ public class GUIController {
         fillButtons(smallGridPane);
         fillButtons(startScreen);
         fillButton(backToStartScreenButton);
+        
+//        this.spawnTimeSlider.setLabelFormatter();
         
         this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
         String highscoreString = this.loadAndFormatHighscore();
@@ -564,8 +573,8 @@ public class GUIController {
 
     @FXML
     private void startButtonActionEvent(ActionEvent event) {
-        int numberOfZuulAtStart = 3;
-        double spawnTime = 200;
+        int numberOfZuulAtStart = (int)this.numberOfZuulSlider.getValue();
+        double spawnTime = (int)this.spawnTimeSlider.getValue();
         String name = this.textfieldPlayerName.getText();
         
         if (name.length()>0) {
@@ -685,15 +694,15 @@ public class GUIController {
     private void fillButtons(GridPane pane) {
         for (Node node : pane.getChildren()) {
             if (node instanceof Button) {
-                this.fillButton(node);
+                Button button = (Button) node;
+                this.fillButton(button);
             }
         }
     }
     
-    private void fillButton(Node node){
+    private void fillButton(Button button){
         Image buttonImage = new Image("Pictures/button.png");
         BackgroundImage buttonBackground = new BackgroundImage(buttonImage,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        Button button = (Button) node;
         button.setBackground(new Background(buttonBackground));
         button.setTextFill(Color.WHITE);
     }
@@ -778,6 +787,7 @@ public class GUIController {
     @FXML
     private void dropButtonHandler(SwipeEvent event) {
     }
+
     
 }
     
