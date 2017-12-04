@@ -3,49 +3,63 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package worldofzuul;
 
 // Imports:
 import java.io.Serializable;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * This class represents the hero (the player). The class extends the superclass
- * Character and implements the interface Serializable.
+ * Character and implements the interface Serializable. The class has default
+ * visibility as it is only used from within this package.
+ * 
  * @author HCHB
  */
 
-public class Hero extends Character implements Serializable {
+class Hero extends Character implements Serializable {
 
     /**
      * Data fields.
      * health: the hero's health (default value of 10)
      * inventory: an instance of Inventory that represents the hero's inventory
-     * reactorActivated: boolean value that indicates if the player has activated
-     * the reactor (default value of false).
+     * reactorActivated: boolean value that indicates if the player has
+     * activated the reactor (default value of false).
+     * knownRooms: a Set of Strings that indicate the rooms that the character
+     * knows of. This is used when peeking.
      */
     private int health = 10;
     private Inventory inventory;
     private boolean reactorActivated = false;
+    private Set<String> knownRooms;
+    private boolean talking;
 
     /**
      * This constructor creates a Hero object with the specified current room
-     * and name. The hero has an inventory of default size 100.
+     * and name. The hero has an inventory of default size 100. The set of
+     * known rooms is initialized and the current room of the character is added
+     * to the set.
      * 
-     * @param currentRoom, the hero's current room
-     * @param name, represents the character type (e.g. "Hero")
+     * @param currentRoom the hero's current room
+     * @param name represents the character type (e.g. "Hero")
      */
     Hero(Room currentRoom, String name) {
         super(currentRoom, name);
         this.inventory = new Inventory(100);
+        this.knownRooms = new HashSet<String>();
+        this.knownRooms.add(currentRoom.getName());
+        this.talking = false;
     }
     
     /**
      * This constructor creates a Hero object with the specified current room,
-     * name, inventory capacity and health. The hero has an inventory of default size 100.
+     * name, inventory capacity and health. The hero has an inventory of default
+     * size 100.
      * 
      * @param health  The amount of health the hero gets.
      * @param inventoryCapacity  The total weight of items the hero can carry.
@@ -90,10 +104,12 @@ public class Hero extends Character implements Serializable {
         else {
             // Remove character from current room
             this.getCurrentRoom().setHasCharacter(this.getName(), false);
+            this.knownRooms.clear();
             // Change the value of currentRoom to the specified neighbouring room
             this.setCurrentRoom(nextRoom);
             // Add character to the new current room
             this.getCurrentRoom().setHasCharacter(this.getName(), true);
+            this.knownRooms.add(this.getCurrentRoom().getName());
             // Print description of the current room
             LogicFacade.appendMessage(this.getCurrentRoom().getLongDescription());
         }
@@ -292,6 +308,7 @@ public class Hero extends Character implements Serializable {
 
         if (this.getCurrentRoom().getExit(direction) != null) {
             for (Room neighbor : this.getCurrentRoom().getExits().values()) {
+                this.knownRooms.add(neighbor.getName());
                 if (neighbor.hasCharacter("Zuul")) {
                     LogicFacade.appendMessage("Zuul is " + neighbor.getShortDescription());
                     zuulNearby = true;
@@ -300,6 +317,7 @@ public class Hero extends Character implements Serializable {
 
             Room neighbor = this.getCurrentRoom().getExit(direction);
             if (neighbor.getExit(direction) != null) {
+                this.knownRooms.add(neighbor.getExit(direction).getName());
 //                    neighbor.getHasCharacter("Zuul")) {
                 if (neighbor.getExit(direction).hasCharacter("Zuul")) {
                     LogicFacade.appendMessage("Zuul is " + neighbor.getShortDescription());
@@ -553,6 +571,8 @@ public class Hero extends Character implements Serializable {
         // Create instance of CommandWord using the command word of the specified command (from Parser)
         CommandWord commandWord = command.getCommandWord();
         
+        this.talking = false;
+        
         if (null != commandWord) // Execute the command if the input matches a valid command
         {
             switch (commandWord) {
@@ -603,4 +623,20 @@ public class Hero extends Character implements Serializable {
         // Return boolean value (false = continue playing; true = quit game)
         return 0;
     }
+
+    public Set<String> getKnownRooms() {
+        return knownRooms;
+    }
+
+    public boolean isTalking() {
+        return talking;
+    }
+
+    public void setTalking(boolean talking) {
+        this.talking = talking;
+    }
+    
+    
+    
+    
 }

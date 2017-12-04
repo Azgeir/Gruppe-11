@@ -1,6 +1,6 @@
 package worldofzuul;
-// Imports:
 
+// Imports:
 import Acquaintance.IGame;
 import Acquaintance.IHighscore;
 import Acquaintance.IScore;
@@ -70,7 +70,7 @@ public class Game implements IGame, Serializable{
                 physicsLaboratory, dock, controlRoom, reactor, escapePod;
 
         // Initialize the biology laboratory
-        biologyLaboratory = new Room("in the biology laboratory", "biolab",
+        biologyLaboratory = new Room("in the biology laboratory", "Biolab",
                 ("You are in the biology laboratory. On the table to your right\n"
                 + "there is a row of microscopes, and the shelf above contains a\n"
                 + "collection of test tubes with liquids of different colours.\n"
@@ -78,60 +78,60 @@ public class Game implements IGame, Serializable{
                 + "able to save some of the research.\n"));
 
         // Initialise the computer room
-        computerRoom = new Room("in the computer room", "computer",
+        computerRoom = new Room("in the computer room", "Computer",
                 ("You are in the computer room. This is where you had your working\n"
                 + "hours. You see several computers, chairs, USBs, and larger storage\n"
                 + "units. You also see your access card lying on the desk.\n"));
 
         // Initialise the storage room
-        storage = new Room("in the storage room", "storage",
+        storage = new Room("in the storage room", "Storage",
                 ("You are in the storage facility. Here you see several drawers and\n"
                 + "shelves, containing everything from dried food to different tools,\n"
                 + "medkits and reseach compartments.\n"));
 
         // Initialise the medical bay
-        medicalBay = new Room("in the medical bay", "medbay",
+        medicalBay = new Room("in the medical bay", "Medbay",
                 ("You are in the medical bay. This is where you would get treated and\n"
                 + "contained if you fell sick or got minor injuries. There are beds\n"
                 + "and several drawers with medkits, pills and syringes.\n"));
 
         // Initialise the dormitory
-        dormitory = new Room("in the dormitory", "dorm",
+        dormitory = new Room("in the dormitory", "Dorm",
                 ("You are in the dormitory. This is where you used to sleep and\n"
                 + "relax with your colleagues. Sadly, this is also where the monster\n"
                 + "arrived. You see the corpses of your beloved colleagues scattered\n"
                 + "around the room.\n"));
 
         // Initialise the physics laboratory
-        physicsLaboratory = new Room("in the physics laboratory", "physicslab",
+        physicsLaboratory = new Room("in the physics laboratory", "Physicslab",
                 "You are in the physics laboratory. The room is filled with various\n"
                 + "equipment. On a table nearby, you see a Helmholtz coil, and on your\n"
                 + "right, there is a mass spectrometer. In the corner of the room, you\n"
                 + "see a computer. Maybe you'll be able to save some of the research.\n");
 
         // Initialise the dock
-        dock = new Room("in the dock", "dock",
+        dock = new Room("in the dock", "Dock",
                 "You are in the dock. This is where supply ships come and go and also \n"
                 + "the only way off the space station via the pod. However, the space station \n"
                 + "is currently under quarantine and you don't know how to overwrite\n"
                 + "it. Around you, you see tools for repairs, 3D printers and space suits \n");
 
         // Initialise the control room
-        controlRoom = new Room("in the control room", "control",
+        controlRoom = new Room("in the control room", "Control",
                 ("You are in the control room. This is where information goes to and\n"
                 + "from the space station. This is where you find the tech dude. He was \n"
                 + "trying to reestablish the connection to earth, but to no avail.\n"
                 + "Maybe you could get surveilliance data back with you."));
 
         // Initialise the reactor
-        reactor = new Room("near the reactor", "reactor",
+        reactor = new Room("near the reactor", "Reactor",
                 ("You are in the reactor room. The reactor is a very dense nuclear\n"
                 + "reactor. If it were to melt down the space station would be annihilated.\n"
                 + "You see some basic tools, some Geiger counters, and a coupple of\n"
                 + "space suits.\n"));
 
         // Initialise the escape pod
-        escapePod = new Room("in the escape pod", "pod");
+        escapePod = new Room("in the escape pod", "Pod");
 
         // Declare hallways between rooms
         Room hallwayStorageComputer, hallwayComputerBiology, hallwayBiologyControl,
@@ -139,14 +139,14 @@ public class Game implements IGame, Serializable{
                 hallwayDormitoryMedical, hallwayMedicalStorage;
 
         // Initialize the hallways between the outer rooms
-        hallwayStorageComputer = new Room("in the hallway between the storage and computer rooms");
-        hallwayComputerBiology = new Room("in the hallway between the storage room and the biology laboratory");
-        hallwayBiologyControl = new Room("in the hallway between the biology laboratory and the control room");
-        hallwayControlDock = new Room("in the hallway between the control room and the dock");
-        hallwayDockPhysics = new Room("in the hallway between the dock and the physics laboratory");
-        hallwayPhysicsDormitory = new Room("in the hallway between the physics laboratory and the dormitory");
-        hallwayDormitoryMedical = new Room("in the hallway between the dormitory and the medical bay");
-        hallwayMedicalStorage = new Room("in the hallway between the medical bay and the storage room");
+        hallwayStorageComputer = new Room("in the hallway between the storage and computer rooms", "StorageComputer");
+        hallwayComputerBiology = new Room("in the hallway between the computer room and the biology laboratory","ComputerBiolab");
+        hallwayBiologyControl = new Room("in the hallway between the biology laboratory and the control room", "BiolabControl");
+        hallwayControlDock = new Room("in the hallway between the control room and the dock", "ControlDock");
+        hallwayDockPhysics = new Room("in the hallway between the dock and the physics laboratory", "DockPhysicslab");
+        hallwayPhysicsDormitory = new Room("in the hallway between the physics laboratory and the dormitory", "PhysicslabDorm");
+        hallwayDormitoryMedical = new Room("in the hallway between the dormitory and the medical bay", "DormMedbay");
+        hallwayMedicalStorage = new Room("in the hallway between the medical bay and the storage room", "MedbayStorage");
 
         // Declare hallways connected to the reactor
         Room hallwayReactorBiology, hallwayReactorControl, hallwayReactorDock,
@@ -154,14 +154,14 @@ public class Game implements IGame, Serializable{
                 hallwayReactorStorage, hallwayReactorComputer;
 
         // Initialize the hallways connected to the reactor
-        hallwayReactorBiology = new Room("in the hallway between the reactor and the biology laboratory");
-        hallwayReactorControl = new Room("in the hallway between the reactor and the control room");
-        hallwayReactorDock = new Room("in the hallway between the reactor and the dock");
-        hallwayReactorPhysics = new Room("in the hallway between the reactor and the physics laboratory");
-        hallwayReactorDormitory = new Room("in the hallway between the reactor and the dormitory");
-        hallwayReactorMedical = new Room("in the hallway between the reactor and the medical bay");
-        hallwayReactorStorage = new Room("in the hallway between the reactor and the storage room");
-        hallwayReactorComputer = new Room("in the hallway between the reactor and the computer room");
+        hallwayReactorBiology = new Room("in the hallway between the reactor and the biology laboratory", "ReactorBiolab");
+        hallwayReactorControl = new Room("in the hallway between the reactor and the control room", "ReactorControl");
+        hallwayReactorDock = new Room("in the hallway between the reactor and the dock", "ReactorDock");
+        hallwayReactorPhysics = new Room("in the hallway between the reactor and the physics laboratory", "ReactorPhysicslab");
+        hallwayReactorDormitory = new Room("in the hallway between the reactor and the dormitory", "ReactorDorm");
+        hallwayReactorMedical = new Room("in the hallway between the reactor and the medical bay", "ReactorMedbay");
+        hallwayReactorStorage = new Room("in the hallway between the reactor and the storage room", "ReactorStorage");
+        hallwayReactorComputer = new Room("in the hallway between the reactor and the computer room", "ReactorComputer");
 
         // Set possible exits for hallways between rooms
         hallwayStorageComputer.setExit("storage", storage, false);
@@ -311,7 +311,7 @@ public class Game implements IGame, Serializable{
     // This method initialises the inventory of the given room
     private void fillRoom(Room room) {
         switch (room.getName()) {
-            case "biolab":
+            case "Biolab":
                 room.getInventory().addItem(new Item(10, "notebook", "smash it down on the floor in pure anger."));
                 room.getInventory().addItem(new Item(50, "microscope"), 3);
                 room.getInventory().addItem(new Item(1000, "DNA-sequencing-machine"));
@@ -332,7 +332,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(99, "cat", "pet it. It scratces your hand."));
                 room.getInventory().addItem(new AcidVial(4, 25), 10);
                 break;
-            case "computer":
+            case "Computer":
                 room.getInventory().addItem(new USB(3));
                 room.getInventory().addItem(new USB(2));
                 room.getInventory().addItem(new USB(1));
@@ -341,7 +341,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(20, "keyboard", "write code, but it dosen't work, so you smash it into pieces."), 10);
                 room.getInventory().addItem(new AccessCard());
                 break;
-            case "storage":
+            case "Storage":
                 room.getInventory().addItem(new AcidVial(4, 25), 5);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(400, "box"), 30);
@@ -357,7 +357,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(30, "nailgun", "shoot all over the place like a stormtrooper."), 8);
                 room.getInventory().addItem(new AccessCard());
                 break;
-            case "medbay":
+            case "Medbay":
                 room.getInventory().addItem(new AcidVial(4, 25), 7);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(5, "syringe", "stick it at yourself to see, if you end up tripping balls."), 17);
@@ -369,7 +369,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(400, "desk"), 8);
                 room.getInventory().addItem(new Item(100, "display-skeleton"), 5);
                 break;
-            case "dorm":
+            case "Dorm":
                 room.getInventory().addItem(new Item(10, "dehydrated-food"), 50);
                 room.getInventory().addItem(new Item(600, "bed"), 20);
                 room.getInventory().addItem(new Item(10, "pillow", "remind yourself that Mommy is not going to save you."), 20);
@@ -383,7 +383,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(75, "chair", "sit down on it to contemplate about your life choices at the moment. "
                         + "Honestly, don't you have better things to do!"), 6);
                 break;
-            case "physicslab":
+            case "Physicslab":
                 room.getInventory().addItem(new AcidVial(4, 25), 7);
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
@@ -399,7 +399,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(5, "test-tube"), 20);
                 room.getInventory().addItem(new Item(10, "funny-chemical", "sniff at it, then lick at it and then scream 'LEEROY JENKINS'."), 25);
                 break;
-            case "dock":
+            case "Dock":
                 room.getInventory().addItem(new Item(1500, "crate"), 30);
                 room.getInventory().addItem(new Item(500, "fuel-station"), 1);
                 room.getInventory().addItem(new Item(400, "barrel"), 40);
@@ -409,7 +409,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(200, "corpse"), 2);
                 room.getInventory().addItem(new Item(500, "3D-printer", "scan your ass and print it for science."), 1);
                 break;
-            case "control":
+            case "Control":
                 room.getInventory().addItem(new MedKit(), 10);
                 room.getInventory().addItem(new Item(175, "computer"), 5);
                 room.getInventory().addItem(new Item(150, "computer-monitor"), 15);
@@ -418,7 +418,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(20, "hammer"), 4);
                 room.getInventory().addItem(new Item(1, "paper", "fold a paper plane and make StarWars sounds."), 20);
                 break;
-            case "reactor":
+            case "Reactor":
                 room.getInventory().addItem(new Item(150, "computer-monitor"), 10);
                 room.getInventory().addItem(new Item(175, "computer"), 4);
                 room.getInventory().addItem(new Item(10, "screwdriver"), 8);
@@ -426,7 +426,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(20, "Geiger-counter"), 2);
                 room.getInventory().addItem(new Item(100, "spacesuit"), 2);
                 break;
-            case "pod":
+            case "Pod":
                 room.getInventory().addItem(new MedKit());
                 room.getInventory().addItem(new Item(10, "dehydrated-food"), 5);
                 room.getInventory().addItem(new Item(20, "hammer"), 2);
@@ -599,19 +599,27 @@ public class Game implements IGame, Serializable{
                     boolean techDudeIsThere = false;
                         if (currentCharacter.getCurrentRoom().hasCharacter("TechDude")) {
                             techDudeIsThere = true;
+                            Hero tempHero = null;
+                            for (Character character : characters) {
+                                if (character instanceof Hero) {
+                                    tempHero = (Hero)character;
+                                }
+                            }
+                            
                             for (Character character : characters) {
                                 if (character.getName().equals("TechDude")) {
-                                    TechDude temp = (TechDude)character;
+                                    TechDude techDude = (TechDude)character;
 
-                                    Boolean isFollowingBefore = temp.isFollowsHero();
+                                    Boolean isFollowingBefore = techDude.isFollowsHero();
                                     character.performCommand(command);
-                                    boolean isFollowingAfter = temp.isFollowsHero();
-                                    boolean conversationIsOver = temp.isWantToTalk();
+                                    boolean isFollowingAfter = techDude.isFollowsHero();
+                                    
+                                    tempHero.setTalking(techDude.isWantToTalk());
                                     
                                     if (!isFollowingAfter && isFollowingBefore) {
                                         Character hero = null;
                                         
-                                        temp.followsHero(hero, false);
+                                        techDude.followsHero(hero, false);
                                         LogicFacade.appendMessage("Tech dude no longer follows you.");
                                         
                                     }
@@ -625,7 +633,7 @@ public class Game implements IGame, Serializable{
                                         }
                                         
                                         LogicFacade.appendMessage("Tech dude is now following you");
-                                        temp.followsHero(hero, true);
+                                        techDude.followsHero(hero, true);
                                     }
                                     else {
                                     }
@@ -825,7 +833,7 @@ public class Game implements IGame, Serializable{
         IHighscore highscoreData = LogicFacade.getHighscore();
         IScore[] scores = highscoreData.getScores();
         Highscore highscore = new Highscore(scores);
-        highscore.updataHighscore(newScore);
+        highscore.updateHighscore(newScore);
         LogicFacade.saveHighscore(highscore);
         return point;
     }
@@ -887,88 +895,6 @@ public class Game implements IGame, Serializable{
         return false;
     }
 
-    private void conversation(Character character) {
-        
-        TechDude temp = (TechDude) character;
-        Character hero = null;
-        for (Character character1 : characters) {
-            if (character1.getName().equals("Hero")) {
-                hero = character1;
-                break;
-            }
-        }
-        
-        Conversation Talk = new Conversation();
-        boolean wantToTalk = false;
-        int counter = 1;
-        if (character.getHostility() != 3) {
-            do {
-                java.util.Scanner input = new java.util.Scanner(System.in);
-                int number = 0;
-                String name = character.getName() + counter;
-                Talk.talk(name);
-                Talk.options(name);
-
-                if (input.hasNextInt()) {
-                    number = input.nextInt();
-                    if (number != 0) {
-                        switch (number) {
-                            case 1:
-                                if (counter < 4) {
-                                    wantToTalk = true;
-                                } else {
-                                    wantToTalk = false;
-                                }
-                                counter++;
-                                break;
-                            case 2:
-                                character.setHostility(character.getHostility() + 1);
-                                if (character.getHostility() < 3) {
-                                    LogicFacade.appendMessage("The tech dude got annoyed at you.");
-                                    wantToTalk = false;
-                                }
-                                if (character.getHostility() == 3) {
-                                    LogicFacade.appendMessage("The tech dude hates you and will no longer talk to you.");
-                                    if (temp.isFollowsHero()) {
-                                        temp.followsHero(hero, false);
-                                        LogicFacade.appendMessage("Tech dude no longer follows you.");
-                                        counter++;
-                                    }
-                                }
-                                break;
-                            case 3:
-                                if (counter == 4) {
-                                    wantToTalk = false;
-                                    counter++;
-                                } else {
-                                    LogicFacade.appendMessage("You only have 2 options");
-                                }
-                                break;
-                            default:
-                                LogicFacade.appendMessage("Wrong input");
-                                wantToTalk = false;
-                                break;
-                        }
-                        if (number != 2) {
-                            if (counter == 5 || (counter == 4 && character.getHostility() < 3 && wantToTalk == false)) {
-                                if (!temp.isFollowsHero()) {
-                                    LogicFacade.appendMessage("Tech dude is now following you");
-                                    temp.followsHero(hero, true);
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    LogicFacade.appendMessage("The input wasn't a number");
-                    wantToTalk = false;
-                }
-
-            } while (wantToTalk);
-        } else {
-            LogicFacade.appendMessage("Fuck you. I hate you");
-        }
-    }
-
     public Character getCurrentCharacter() {
         return currentCharacter;
     }
@@ -999,5 +925,15 @@ public class Game implements IGame, Serializable{
         return returnMessage;
     }
     
+    boolean isTalking(){
+        boolean talking;
+        if (currentCharacter instanceof Hero) {
+            talking = ((Hero)currentCharacter).isTalking();
+        }
+        else {
+            talking = false;
+        }
+        return talking;
+    }
     
 }

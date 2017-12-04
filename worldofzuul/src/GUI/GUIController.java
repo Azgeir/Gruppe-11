@@ -8,6 +8,7 @@ package GUI;
 import Acquaintance.IHighscore;
 import Acquaintance.IScore;
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -48,6 +49,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 import worldofzuul.Game;
 
 /**
@@ -248,9 +250,11 @@ public class GUIController {
         fillButtons(startScreen);
         fillButton(backToStartScreenButton);
         
-//        this.spawnTimeSlider.setLabelFormatter();
-        
-        this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
+        this.numberOfZuulSlider.getStylesheets().add("GUI/test.css");
+        this.numberOfZuulSlider.getStyleClass().add("Slider");
+        this.spawnTimeSlider.getStylesheets().add("GUI/test.css");
+        this.spawnTimeSlider.getStyleClass().add("Slider"); 
+
         String highscoreString = this.loadAndFormatHighscore();
         this.highscoreLabel.setText(highscoreString);
       // WORKS
@@ -271,7 +275,7 @@ public class GUIController {
 
 //        BackgroundImage[] backDerpArray = {backDerp};
 
-//        this.RoomComputer.setBackground(new Background(backDerpArray));
+//        this.RoomComputer.setBackg round(new Background(backDerpArray));
 //        this.characterflowPaneComputer.setStyle("-fx-background-image: derp");
         this.createRooms();
 //        this.setRoomBackgrounds();
@@ -298,37 +302,9 @@ public class GUIController {
     }
     
     private void setRoomBackgrounds(){
-//        this.setRoomBackground(roomBiolab, "Pictures/Biolab.png");
-//        this.setRoomBackground(roomControl, "Pictures/ControlRoom.png");
-//        this.setRoomBackground(roomDock, "Pictures/Dock.png");
-//        this.setRoomBackground(roomDorm, "Pictures/Dorm.png");
-//        this.setRoomBackground(roomMedbay, "Pictures/Medbay.png");
-//        this.setRoomBackground(roomPhysicslab, "Pictures/Physicslab.png");
-//        this.setRoomBackground(roomStorage, "Pictures/Storage.png");
-//        this.setRoomBackground(RoomComputer, "Pictures/computerRoom.png");
-//        this.setRoomBackground(roomReactor, "Pictures/Reactor.png");
-//        
-//        this.setRoomBackground(roomComputerBiolab, "Pictures/HallwayHorizontal.png");
-//        this.setRoomBackground(roomBiolabControl, "Pictures/HallwayHorizontal.png");
-//        this.setRoomBackground(roomControlDock, "Pictures/HallwayHorizontal.png");
-//        this.setRoomBackground(roomDockPhysicslab, "Pictures/HallwayHorizontal.png");
-//        this.setRoomBackground(roomDormMedbay, "Pictures/HallwayHorizontal.png");
-//        this.setRoomBackground(roomMedbayStorage, "Pictures/HallwayHorizontal.png");
-//        this.setRoomBackground(roomPhysicslabDorm, "Pictures/HallwayHorizontal.png");
-//        this.setRoomBackground(roomReactorBiolab, "Pictures/HallwayVertical.png");
-//        this.setRoomBackground(roomReactorComputer, "Pictures/HallwayVertical.png");
-//        this.setRoomBackground(roomReactorControl, "Pictures/HallwayVertical.png");
-//        this.setRoomBackground(roomReactorDock, "Pictures/HallwayHorizontal.png");
-//        this.setRoomBackground(roomReactorDorm, "Pictures/HallwayHorizontal.png");
-//        this.setRoomBackground(roomReactorMedbay, "Pictures/HallwayVertical.png");
-//        this.setRoomBackground(roomReactorPhysicslab, "Pictures/HallwayVertical.png");
-//        this.setRoomBackground(roomReactorStorage, "Pictures/HallwayHorizontal.png");
-//        this.setRoomBackground(roomStorageComputer, "Pictures/HallwayHorizontal.png");
-//        this.setRoomBackground(roomPod, "Pictures/Pod.png");
         for (Map.Entry<String, RoomGUI> entry : rooms.entrySet()) {
             this.setRoomBackground(entry.getValue());
         }
-        
     }
     
     private <T extends Pane> void setRoomBackground(T room, String picturePath){
@@ -339,10 +315,18 @@ public class GUIController {
     }
     
     private void setRoomBackground(RoomGUI room){
-        Image roomImage = new Image(room.getKnownRoomFilePath());
-        BackgroundImage roomBackground = new BackgroundImage(roomImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        BackgroundImage[] roomBackgroundArray = {roomBackground};
-        room.getLocation().setBackground(new Background(roomBackgroundArray));
+        if (GUIFacade.isRoomKnown(room)) {
+            Image roomImage = new Image(room.getKnownRoomFilePath());
+            BackgroundImage roomBackground = new BackgroundImage(roomImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+            BackgroundImage[] roomBackgroundArray = {roomBackground};
+            room.getLocation().setBackground(new Background(roomBackgroundArray));    
+        }
+        else {
+            Image roomImage = new Image(room.getUnknownRoomFilePath());
+            BackgroundImage roomBackground = new BackgroundImage(roomImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+            BackgroundImage[] roomBackgroundArray = {roomBackground};
+            room.getLocation().setBackground(new Background(roomBackgroundArray));
+        }
     }
 
     @FXML
@@ -402,13 +386,14 @@ public class GUIController {
     private void talkButtonHandler(ActionEvent event) {
         String command = "talk";
         
-        Scanner input = new Scanner(System.in);
+//        Scanner input = new Scanner(System.in);
         
-        command += " " + input.next();
+        command += " " + this.numberBox.getValue();
         
         GUIFacade.sendCommand(command);
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
+        this.updateAllDropdown();
         this.isGameFinished();
 //        game.play("talk");
     }
@@ -496,6 +481,7 @@ public class GUIController {
             String message = GUIFacade.readAndDeleteGameMessage();
             this.labelMessageField.setText(message);
             
+            this.setRoomBackgrounds();
             this.updateAllDropdown();
 
 //            game.play(command);
@@ -518,6 +504,7 @@ public class GUIController {
             
             String message = GUIFacade.readAndDeleteGameMessage();
             this.labelMessageField.setText(message);
+            this.setRoomBackgrounds();
 //            game.play(command);
         } else {
             this.labelMessageField.setText("choose a direction from the dropbox");
@@ -609,6 +596,8 @@ public class GUIController {
         this.updateAllDropdown();
 
         this.switchScreen(startScreen, outerSpace);
+        this.setRoomBackgrounds();
+
         
                 this.setRoomBackgrounds();
         this.setCharacters();
@@ -649,6 +638,7 @@ public class GUIController {
         this.labelMessageField.setText("You loaded the game");
         
         this.updateAllDropdown();
+        this.setRoomBackgrounds();
     }
 
     private void switchScreen(Pane from, Pane to) {
@@ -689,14 +679,30 @@ public class GUIController {
         }
         this.updateDropdownBackground(goDropDown);
 
-        
+        if (GUIFacade.isTalking()) {
+            this.numberBox.getItems().clear();
+            this.numberBox.getItems().add("3");
+            this.numberBox.getItems().add("2");
+            this.numberBox.getItems().add("1");
+            this.numberBox.setValue("1");
+            this.useDropDown.setDisable(true);
+            this.pickupDropDown.setDisable(true);
+            this.useDropDown.setValue(null);
+            this.pickupDropDown.setValue(null);
+        }
+        else {
+            this.useDropDown.setDisable(false);
+            this.pickupDropDown.setDisable(false);
+            this.numberBox.setValue(null);
+        }
         this.updateDropdownBackground(numberBox);
     }
 
     private String loadAndFormatHighscore() {
         IHighscore highscore = GUIFacade.loadHighscore();
         IScore[] scores = highscore.getScores();
-
+        boolean hasScores = false;
+        
         String highscoreString = "";
 
         for (int i = 0; i < scores.length; i++) {
@@ -706,10 +712,18 @@ public class GUIController {
                 highscoreString += "Rank: " + (i + 1) + "\t";
                 highscoreString += "Player: " + score.getName() + "\t";
                 highscoreString += "Score: " + ((int) (score.getScore() * 100)) / 100.0 + "\n";
+                hasScores = true;
             } else {
                 break;
             }
         }
+        
+        if (!hasScores) {
+            for (int i = 1; i <= 10; i++) {
+                highscoreString += "rank: "+ i +"\tplayer: derp\tscore: 0\n";
+            }
+        }
+        
         return highscoreString;
     }
 
@@ -771,25 +785,10 @@ public class GUIController {
         String highscoreString = this.loadAndFormatHighscore();
         this.highscoreLabel.setText(highscoreString);
     }
-
-    private void showRooms(){
-        
-//        for (Map.Entry<String, FlowPane> entry : roomsGUI.entrySet()) {
-//            boolean roomKnown = GUIFacade.isRoomKnown();
-//            if (roomKnown) {
-//                String filePath = this.r
-//                this.setRoomBackgrounds(room,);
-//            }
-//            else {
-//                
-//            }
-//            
-//        }
-    }
     
     private void createRooms(){
         rooms = new HashMap<>();
-        rooms.put("Biolab", new RoomGUI(roomBiolab,characterPaneBiolab,"Pictures/Biolab.png","Pictures/Biolab.png FoW","Biolab"));
+        rooms.put("Biolab", new RoomGUI(roomBiolab,characterPaneBiolab,"Pictures/Biolab.png","Pictures/Biolab FoW.png","Biolab"));
         rooms.put("Computer", new RoomGUI(RoomComputer,characterPaneComputer,"Pictures/computerRoom.png","Pictures/computerRoom FoW.png","Computer"));
         rooms.put("Dock", new RoomGUI(roomDock,characterPaneDock,"Pictures/Dock.png","Pictures/Dock FoW.png","Dock"));
         rooms.put("BiolabControl", new RoomGUI(roomBiolabControl,characterPaneBiolabControl,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","BiolabControl"));

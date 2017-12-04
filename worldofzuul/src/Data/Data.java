@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Data;
 
+// Imports:
 import Acquaintance.IGame;
 import Acquaintance.IHighscore;
 import Acquaintance.IScore;
@@ -21,37 +23,62 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * This class represents the data layer of the application.
+ * 
  * @author HCHB
  */
 public class Data {
-    
+    /**
+     * Data fields.
+     * saveGameFileName: a String that specifies the name of the file that
+     * stores the saved game.
+     * highscoreFileName: a String that specifies the name of the file that
+     * stores the high score.
+     */
     private String saveGameFileName;
     private String highscoreFileName;
     
-    public Data(){
+    /**
+     * This constructor creates a Data object with default names for the saved
+     * game and high score files.
+     */
+    public Data() {
         this.saveGameFileName = "Escape pod.Zuul";
         this.highscoreFileName = "Escape pod highscore.txt";
     }
     
+    /**
+     * This method is used to save the game.
+     * 
+     * @param game the game to be saved (instance of IGame).
+     */
     void saveGame(IGame game){
+        // Define and initialize fileStream and objectStream.
         FileOutputStream fileStream = null;
         ObjectOutputStream objectStream = null;
         
-        try{
+        // Save game.
+        try {
             fileStream = new FileOutputStream(this.saveGameFileName);
             objectStream = new ObjectOutputStream(fileStream);
             objectStream.writeObject(game);
             
+            // Close object stream.
             objectStream.close();
         }
+        // Catch exception
         catch (IOException ex){
             ex.printStackTrace();
         }   
     }
     
-    
+    /**
+     * This method is used to save the high score.
+     * 
+     * @param highscore high score to be saved.
+     */
     void saveHighscore(IHighscore highscore){
+        // Create new File for high score.
         File highscoreFile = new File(this.highscoreFileName);
 
         try {
@@ -71,12 +98,18 @@ public class Data {
             
             output.close();
         
-        } catch (FileNotFoundException ex) {
+        }
+        catch (FileNotFoundException ex) {
             Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
     
+    /**
+     * This method is used to load the game.
+     * 
+     * @return game (an instance of IGame) that represents the loaded game.
+     */
     IGame loadGame() {
         FileInputStream fileStream = null;
         ObjectInputStream objectStream = null;
@@ -85,16 +118,24 @@ public class Data {
         try {
             fileStream = new FileInputStream(this.saveGameFileName);
             objectStream = new ObjectInputStream(fileStream);
-            game = (IGame) objectStream.readObject();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
+            game = (IGame)objectStream.readObject();
+        }
+        catch (IOException ex) {
             ex.printStackTrace();
         }
+        catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } 
 
         return game;
     }
     
+    /**
+     * This method is used to load the high score.
+     * 
+     * @return highscore (an instance of IHighscore) which represents the loaded
+     * high score.
+     */
     IHighscore loadHighscore(){
         File highscoreFile = new File(highscoreFileName);
         IHighscore highscore;
@@ -113,11 +154,11 @@ public class Data {
             
             highscore = new HighscoreData(scores);
             
-        } catch (FileNotFoundException ex) {
+        }
+        catch (FileNotFoundException ex) {
             highscore = new HighscoreData();
         }
             
         return highscore;
     }
-    
 }
