@@ -5,6 +5,7 @@
  */
 package Acquaintance;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -42,4 +43,6 @@ public interface ILogicFacade {
     int getNumberOfItems(String inventory, String item);
     
     boolean isTalking();
+    
+    Collection<String> charactersInRoom(IRoom room);
 }

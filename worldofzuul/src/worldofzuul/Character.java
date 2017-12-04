@@ -56,6 +56,7 @@ public class Character implements Serializable {
         this();
         this.currentRoom = currentRoom;
         this.name = name;
+        this.currentRoom.setHasCharacter(name, true);
     }
 
     /**

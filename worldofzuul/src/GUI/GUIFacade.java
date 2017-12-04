@@ -5,6 +5,7 @@
  */
 package GUI;
 import Acquaintance.*;
+import java.util.Collection;
 import java.util.Set;
 /**
  *
@@ -86,4 +87,9 @@ public class GUIFacade implements IGUIFacade  {
        boolean talking = logic.isTalking();
        return talking;
    }
+   
+   static Collection<String> charactersInRoom(IRoom room){
+       return logic.charactersInRoom(room);
+   }
+   
 }

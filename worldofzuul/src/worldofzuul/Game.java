@@ -3,6 +3,7 @@ package worldofzuul;
 // Imports:
 import Acquaintance.IGame;
 import Acquaintance.IHighscore;
+import Acquaintance.IRoom;
 import Acquaintance.IScore;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class Game implements IGame, Serializable{
     // ArrayList is chosen because it allows us to know which character is chosen when the initiative is the same.
     private ArrayList<Character> characters = new ArrayList<>(); // This is an arraylist because it offer a simple way to break an initiative tie in a predefined way
     private Character currentCharacter;
-    private HashMap<String, Room> characterStartRooms;
+    private HashMap<String, Room> rooms;
     private Room winConditionRoom;
     private double maxInititative = Double.MAX_VALUE;
     private boolean reactorActivated = false;
@@ -49,7 +50,7 @@ public class Game implements IGame, Serializable{
         this.finished = false;
         this.timeSinceSpawn = 0;
         this.spawnTime = spawnTime;
-        this.characterStartRooms = new HashMap<>();
+        this.rooms = new HashMap<>();
         this.name = name;
         this.message = "";
         //Create all rooms by calling the createRooms method
@@ -260,40 +261,40 @@ public class Game implements IGame, Serializable{
         reactor.setExit("storage", hallwayReactorStorage, false);
 
         // Set the current room to "computer" (Possibly moved to character class)
-        characterStartRooms.put("Computer", computerRoom);
-        characterStartRooms.put("Control", controlRoom);
-        characterStartRooms.put("Dorm", dormitory);
-        characterStartRooms.put("Biolab", biologyLaboratory);
-        characterStartRooms.put("Storage", storage);
-        characterStartRooms.put("Medbay", medicalBay);
-        characterStartRooms.put("Physicslab", physicsLaboratory);
-        characterStartRooms.put("Dock", dock);
-        characterStartRooms.put("Control", controlRoom);
-        characterStartRooms.put("Reactor", reactor);
-        characterStartRooms.put("ReactorBiolab", hallwayReactorBiology);
-        characterStartRooms.put("ReactorControl", hallwayReactorControl);
-        characterStartRooms.put("ReactorDock", hallwayReactorDock);
-        characterStartRooms.put("ReactorPhysicslab", hallwayReactorPhysics);
-        characterStartRooms.put("ReactorDorm", hallwayReactorDormitory);
-        characterStartRooms.put("ReactorMedbay", hallwayReactorMedical);
-        characterStartRooms.put("ReactorStorage", hallwayReactorStorage);
-        characterStartRooms.put("ReactorComputer", hallwayReactorComputer);
-        characterStartRooms.put("StorageComputer",hallwayStorageComputer);
-        characterStartRooms.put("ComputerBiolab",hallwayComputerBiology);
-        characterStartRooms.put("BiolabControl",hallwayBiologyControl);
-        characterStartRooms.put("ControlDock",hallwayControlDock);
-        characterStartRooms.put("DockPhysicslab",hallwayDockPhysics);
-        characterStartRooms.put("PhysicslabDorm",hallwayPhysicsDormitory);
-        characterStartRooms.put("DormMedBay",hallwayDormitoryMedical);
-        characterStartRooms.put("MedBayStorage",hallwayMedicalStorage);
+        rooms.put("Computer", computerRoom);
+        rooms.put("Control", controlRoom);
+        rooms.put("Dorm", dormitory);
+        rooms.put("Biolab", biologyLaboratory);
+        rooms.put("Storage", storage);
+        rooms.put("Medbay", medicalBay);
+        rooms.put("Physicslab", physicsLaboratory);
+        rooms.put("Dock", dock);
+        rooms.put("Control", controlRoom);
+        rooms.put("Reactor", reactor);
+        rooms.put("ReactorBiolab", hallwayReactorBiology);
+        rooms.put("ReactorControl", hallwayReactorControl);
+        rooms.put("ReactorDock", hallwayReactorDock);
+        rooms.put("ReactorPhysicslab", hallwayReactorPhysics);
+        rooms.put("ReactorDorm", hallwayReactorDormitory);
+        rooms.put("ReactorMedbay", hallwayReactorMedical);
+        rooms.put("ReactorStorage", hallwayReactorStorage);
+        rooms.put("ReactorComputer", hallwayReactorComputer);
+        rooms.put("StorageComputer",hallwayStorageComputer);
+        rooms.put("ComputerBiolab",hallwayComputerBiology);
+        rooms.put("BiolabControl",hallwayBiologyControl);
+        rooms.put("ControlDock",hallwayControlDock);
+        rooms.put("DockPhysicslab",hallwayDockPhysics);
+        rooms.put("PhysicslabDorm",hallwayPhysicsDormitory);
+        rooms.put("DormMedBay",hallwayDormitoryMedical);
+        rooms.put("MedBayStorage",hallwayMedicalStorage);
 
         // Set the value of the win condition
         winConditionRoom = escapePod;
 
         // Set the initial positions of Zuul, hero, and tech dude
-        dormitory.setHasCharacter("Zuul", true);
-        computerRoom.setHasCharacter("Hero", true);
-        controlRoom.setHasCharacter("TechDude", true);
+//        dormitory.setHasCharacter("Zuul", true);
+//        computerRoom.setHasCharacter("Hero", true);
+//        controlRoom.setHasCharacter("TechDude", true);
 
         // Add items to the inventory of the rooms
         this.fillRoom(computerRoom);
@@ -439,11 +440,11 @@ public class Game implements IGame, Serializable{
 
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
     private void createCharacter(int numberOfZuul) {
-        this.characters.add(new Hero(characterStartRooms.get("Computer"), "Hero"));
+        this.characters.add(new Hero(rooms.get("Computer"), "Hero"));
         for (int i = 0; i < numberOfZuul; i++) {
-            this.characters.add(new Zuul(characterStartRooms.get("Dorm"), "Zuul", 1.15));
+            this.characters.add(new Zuul(rooms.get("Dorm"), "Zuul", 1.15));
         }
-        this.characters.add(new TechDude(characterStartRooms.get("Control"), "TechDude", 0.5));
+        this.characters.add(new TechDude(rooms.get("Control"), "TechDude", 0.5));
     }
     
     private void timeAddedZuul(){
@@ -516,7 +517,7 @@ public class Game implements IGame, Serializable{
         message += ("\nPress 'Help' for more information about controls and the game.\n");
         message += ("\n");
         // Description of current room of the player, including available exits.
-        message += (characterStartRooms.get("Computer").getLongDescription() + "\n");
+        message += (rooms.get("Computer").getLongDescription() + "\n");
     }
 
     // This method processes the command of the player (returns true if player wants to quit)
@@ -904,15 +905,15 @@ public class Game implements IGame, Serializable{
     }
     
     private Room randomRoom(){
-        ArrayList<Entry<String,Room>> allRooms = new ArrayList<>(this.characterStartRooms.entrySet());
+        ArrayList<Entry<String,Room>> allRooms = new ArrayList<>(this.rooms.entrySet());
         int randomRoomKeyIndex = (int)(Math.random()*allRooms.size());
         Room randomRoom = allRooms.get(randomRoomKeyIndex).getValue();
         
         return randomRoom;
     }
 
-    HashMap<String, Room> getCharacterStartRooms() {
-        return characterStartRooms;
+    HashMap<String, Room> getRooms() {
+        return rooms;
     }
     
     void appendMessage(String appendMessage){
@@ -934,6 +935,11 @@ public class Game implements IGame, Serializable{
             talking = false;
         }
         return talking;
+    }
+    
+    ArrayList<String> charactersInRoom(IRoom room){
+        Room tempRoom = rooms.get(room.getName());
+        return tempRoom.getCharacterInRoom();
     }
     
 }
