@@ -8,7 +8,6 @@ package worldofzuul;
 
 // Imports:
 import java.io.Serializable;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -17,18 +16,22 @@ import java.util.Set;
 
 /**
  * This class represents the hero (the player). The class extends the superclass
- * Character and implements the interface Serializable.
+ * Character and implements the interface Serializable. The class has default
+ * visibility as it is only used from within this package.
+ * 
  * @author HCHB
  */
 
-public class Hero extends Character implements Serializable {
+class Hero extends Character implements Serializable {
 
     /**
      * Data fields.
      * health: the hero's health (default value of 10)
      * inventory: an instance of Inventory that represents the hero's inventory
-     * reactorActivated: boolean value that indicates if the player has activated
-     * the reactor (default value of false).
+     * reactorActivated: boolean value that indicates if the player has
+     * activated the reactor (default value of false).
+     * knownRooms: a Set of Strings that indicate the rooms that the character
+     * knows of. This is used when peeking.
      */
     private int health = 10;
     private Inventory inventory;
@@ -37,10 +40,12 @@ public class Hero extends Character implements Serializable {
 
     /**
      * This constructor creates a Hero object with the specified current room
-     * and name. The hero has an inventory of default size 100.
+     * and name. The hero has an inventory of default size 100. The set of
+     * known rooms is initialized and the current room of the character is added
+     * to the set.
      * 
-     * @param currentRoom, the hero's current room
-     * @param name, represents the character type (e.g. "Hero")
+     * @param currentRoom the hero's current room
+     * @param name represents the character type (e.g. "Hero")
      */
     Hero(Room currentRoom, String name) {
         super(currentRoom, name);
@@ -51,7 +56,8 @@ public class Hero extends Character implements Serializable {
     
     /**
      * This constructor creates a Hero object with the specified current room,
-     * name, inventory capacity and health. The hero has an inventory of default size 100.
+     * name, inventory capacity and health. The hero has an inventory of default
+     * size 100.
      * 
      * @param health  The amount of health the hero gets.
      * @param inventoryCapacity  The total weight of items the hero can carry.
