@@ -125,4 +125,18 @@ public class LogicFacade implements ILogicFacade {
             return -1;
         }
     }
+    
+    @Override
+    public boolean isRoomKnown(IRoom room){
+        Character character = game.getCurrentCharacter();
+        boolean isKnown = false;
+        if (character instanceof Hero) {
+            Hero hero = (Hero)character;
+            if (hero.getKnownRooms().contains(room.getName())) {
+                isKnown = true;
+            }
+        }
+        
+        return isKnown;
+    }
 }

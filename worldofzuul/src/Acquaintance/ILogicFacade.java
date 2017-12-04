@@ -37,6 +37,7 @@ public interface ILogicFacade {
     
     String readAndDeleteMessage();
 
+    boolean isRoomKnown(IRoom room);
     
     int getNumberOfItems(String inventory, String item);
 }
