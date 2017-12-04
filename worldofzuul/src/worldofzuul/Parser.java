@@ -2,8 +2,6 @@ package worldofzuul;
 
 // Imports:
 import java.io.Serializable;
-import java.util.Scanner;
-import java.util.StringTokenizer;
 
 /**
  * @author  Michael Kolling and David J. Barnes

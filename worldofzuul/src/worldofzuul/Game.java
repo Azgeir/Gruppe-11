@@ -1,6 +1,6 @@
 package worldofzuul;
-// Imports:
 
+// Imports:
 import Acquaintance.IGame;
 import Acquaintance.IHighscore;
 import Acquaintance.IScore;

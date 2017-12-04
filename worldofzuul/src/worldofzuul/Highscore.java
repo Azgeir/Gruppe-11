@@ -9,7 +9,6 @@ package worldofzuul;
 import Acquaintance.IHighscore;
 import Acquaintance.IScore;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * This class represents a high score in the game. The class implements the
