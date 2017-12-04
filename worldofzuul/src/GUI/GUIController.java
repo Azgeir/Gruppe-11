@@ -182,7 +182,9 @@ public class GUIController {
     private FlowPane characterPaneControlDock;
     @FXML
     private FlowPane characterPaneComputerBiolab;
+    @FXML
     private FlowPane characterPaneComputer;
+    @FXML
     private FlowPane characterPaneBiolab;
     @FXML
     private FlowPane characterPaneStorage;
@@ -218,10 +220,6 @@ public class GUIController {
     private HashMap<String,RoomGUI> rooms;
     @FXML
     private FlowPane characterPaneReactor;
-    @FXML
-    private FlowPane characterflowPaneComputer;
-    @FXML
-    private FlowPane characterflowPaneBiolab;
     @FXML
     private Slider spawnTimeSlider;
     @FXML
@@ -266,24 +264,7 @@ public class GUIController {
 //        this.RoomComputer.getChildren().add(derp);
 //        this.RoomComputerStackPane.getChildren().add(derp);
 //
-        Image herp1 = new Image("Pictures/Zuul Transparant.png");
-        ImageView derp1 = new ImageView(herp1);
-        derp1.setFitHeight(60);
-        derp1.setFitWidth(60);
-                this.characterflowPaneComputer.getChildren().add(derp1);
-                
-        Image transdude = new Image("Pictures/TechDude Transparant.png");
-        ImageView techdude = new ImageView(transdude);
-        techdude.setFitHeight(40);
-        techdude.setFitWidth(40);
-                this.characterflowPaneComputer.getChildren().add(techdude);
-//        this.RoomComputerStackPane.getChildren().add(derp1);
-//        this.characterPaneComputer.getChildren().add(derp1);
-        Image transhero = new Image("Pictures/Hero Transparant.png");
-        ImageView hero = new ImageView(transhero);
-        hero.setFitHeight(40);
-        hero.setFitWidth(40);
-                this.characterflowPaneComputer.getChildren().add(hero);
+
         // WORKS END
 //        Image[] derpArray = {herp};
 //        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -293,7 +274,27 @@ public class GUIController {
 //        this.RoomComputer.setBackground(new Background(backDerpArray));
 //        this.characterflowPaneComputer.setStyle("-fx-background-image: derp");
         this.createRooms();
-        this.setRoomBackgrounds();
+//        this.setRoomBackgrounds();
+    }
+    
+    private void setCharacters(){
+        Image herp1 = new Image("Pictures/Zuul Transparant.png");
+        ImageView derp1 = new ImageView(herp1);
+        derp1.setFitHeight(35);
+        derp1.setFitWidth(30);
+                this.characterPaneDock.getChildren().add(derp1);
+                
+        Image transdude = new Image("Pictures/TechDude Transparant.png");
+        ImageView techdude = new ImageView(transdude);
+        techdude.setFitHeight(25);
+        techdude.setFitWidth(20);
+                this.characterPaneDock.getChildren().add(techdude);
+
+        Image transhero = new Image("Pictures/Hero Transparant.png");
+        ImageView hero = new ImageView(transhero);
+        hero.setFitHeight(25);
+        hero.setFitWidth(20);
+                this.characterPanePod.getChildren().add(hero);    
     }
     
     private void setRoomBackgrounds(){
@@ -592,6 +593,8 @@ public class GUIController {
 
     @FXML
     private void startButtonActionEvent(ActionEvent event) {
+
+        
         int numberOfZuulAtStart = (int)this.numberOfZuulSlider.getValue();
         double spawnTime = (int)this.spawnTimeSlider.getValue();
         String name = this.textfieldPlayerName.getText();
@@ -607,6 +610,8 @@ public class GUIController {
 
         this.switchScreen(startScreen, outerSpace);
         
+                this.setRoomBackgrounds();
+        this.setCharacters();
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
         
