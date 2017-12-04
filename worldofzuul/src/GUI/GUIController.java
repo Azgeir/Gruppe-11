@@ -8,6 +8,7 @@ package GUI;
 import Acquaintance.IHighscore;
 import Acquaintance.IScore;
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -48,6 +49,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 import worldofzuul.Game;
 
 /**
@@ -250,8 +252,11 @@ public class GUIController {
         fillButtons(startScreen);
         fillButton(backToStartScreenButton);
         
-//        this.spawnTimeSlider.setLabelFormatter();
-        
+        this.numberOfZuulSlider.getStylesheets().add("GUI/test.css");
+        this.numberOfZuulSlider.getStyleClass().add("Slider");
+        this.spawnTimeSlider.getStylesheets().add("GUI/test.css");
+        this.spawnTimeSlider.getStyleClass().add("Slider"); 
+
         this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
         String highscoreString = this.loadAndFormatHighscore();
         this.highscoreLabel.setText(highscoreString);
