@@ -257,7 +257,6 @@ public class GUIController {
         this.spawnTimeSlider.getStylesheets().add("GUI/test.css");
         this.spawnTimeSlider.getStyleClass().add("Slider"); 
 
-        this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
         String highscoreString = this.loadAndFormatHighscore();
         this.highscoreLabel.setText(highscoreString);
       // WORKS
@@ -696,7 +695,8 @@ public class GUIController {
     private String loadAndFormatHighscore() {
         IHighscore highscore = GUIFacade.loadHighscore();
         IScore[] scores = highscore.getScores();
-
+        boolean hasScores = false;
+        
         String highscoreString = "";
 
         for (int i = 0; i < scores.length; i++) {
@@ -706,10 +706,18 @@ public class GUIController {
                 highscoreString += "Rank: " + (i + 1) + "\t";
                 highscoreString += "Player: " + score.getName() + "\t";
                 highscoreString += "Score: " + ((int) (score.getScore() * 100)) / 100.0 + "\n";
+                hasScores = true;
             } else {
                 break;
             }
         }
+        
+        if (!hasScores) {
+            for (int i = 1; i <= 10; i++) {
+                highscoreString += "rank: "+ i +"\tplayer: derp\tscore: 0\n";
+            }
+        }
+        
         return highscoreString;
     }
 

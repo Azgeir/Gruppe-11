@@ -90,7 +90,7 @@ public class Data {
             ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
-        }
+        } 
 
         return game;
     }
