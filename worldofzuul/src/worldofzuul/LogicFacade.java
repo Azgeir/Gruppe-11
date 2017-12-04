@@ -250,4 +250,26 @@ public class LogicFacade implements ILogicFacade {
             return -1;
         }
     }
+    
+    /**
+     * This method is used to check if the character knows a room. This is used
+     * when peeking.
+     * 
+     * @param room the room which is to be checked (instance of IRoom).
+     * 
+     * @return true if the room is known; else it returns false.
+     */
+    @Override
+    public boolean isRoomKnown(IRoom room){
+        Character character = LogicFacade.game.getCurrentCharacter();
+        // Declare and initialize isKnown. It is set to false as default.
+        boolean isKnown = false;
+        // Check if current character is Hero.
+        if (character instanceof Hero) {
+            if (((Hero)character).getKnownRooms().contains(room.getName())) {
+                isKnown = true;
+            }
+        }
+        return isKnown;
+    }
 }

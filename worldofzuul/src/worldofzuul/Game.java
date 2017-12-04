@@ -70,7 +70,7 @@ public class Game implements IGame, Serializable{
                 physicsLaboratory, dock, controlRoom, reactor, escapePod;
 
         // Initialize the biology laboratory
-        biologyLaboratory = new Room("in the biology laboratory", "biolab",
+        biologyLaboratory = new Room("in the biology laboratory", "Biolab",
                 ("You are in the biology laboratory. On the table to your right\n"
                 + "there is a row of microscopes, and the shelf above contains a\n"
                 + "collection of test tubes with liquids of different colours.\n"
@@ -78,60 +78,60 @@ public class Game implements IGame, Serializable{
                 + "able to save some of the research.\n"));
 
         // Initialise the computer room
-        computerRoom = new Room("in the computer room", "computer",
+        computerRoom = new Room("in the computer room", "Computer",
                 ("You are in the computer room. This is where you had your working\n"
                 + "hours. You see several computers, chairs, USBs, and larger storage\n"
                 + "units. You also see your access card lying on the desk.\n"));
 
         // Initialise the storage room
-        storage = new Room("in the storage room", "storage",
+        storage = new Room("in the storage room", "Storage",
                 ("You are in the storage facility. Here you see several drawers and\n"
                 + "shelves, containing everything from dried food to different tools,\n"
                 + "medkits and reseach compartments.\n"));
 
         // Initialise the medical bay
-        medicalBay = new Room("in the medical bay", "medbay",
+        medicalBay = new Room("in the medical bay", "Medbay",
                 ("You are in the medical bay. This is where you would get treated and\n"
                 + "contained if you fell sick or got minor injuries. There are beds\n"
                 + "and several drawers with medkits, pills and syringes.\n"));
 
         // Initialise the dormitory
-        dormitory = new Room("in the dormitory", "dorm",
+        dormitory = new Room("in the dormitory", "Dorm",
                 ("You are in the dormitory. This is where you used to sleep and\n"
                 + "relax with your colleagues. Sadly, this is also where the monster\n"
                 + "arrived. You see the corpses of your beloved colleagues scattered\n"
                 + "around the room.\n"));
 
         // Initialise the physics laboratory
-        physicsLaboratory = new Room("in the physics laboratory", "physicslab",
+        physicsLaboratory = new Room("in the physics laboratory", "Physicslab",
                 "You are in the physics laboratory. The room is filled with various\n"
                 + "equipment. On a table nearby, you see a Helmholtz coil, and on your\n"
                 + "right, there is a mass spectrometer. In the corner of the room, you\n"
                 + "see a computer. Maybe you'll be able to save some of the research.\n");
 
         // Initialise the dock
-        dock = new Room("in the dock", "dock",
+        dock = new Room("in the dock", "Dock",
                 "You are in the dock. This is where supply ships come and go and also \n"
                 + "the only way off the space station via the pod. However, the space station \n"
                 + "is currently under quarantine and you don't know how to overwrite\n"
                 + "it. Around you, you see tools for repairs, 3D printers and space suits \n");
 
         // Initialise the control room
-        controlRoom = new Room("in the control room", "control",
+        controlRoom = new Room("in the control room", "Control",
                 ("You are in the control room. This is where information goes to and\n"
                 + "from the space station. This is where you find the tech dude. He was \n"
                 + "trying to reestablish the connection to earth, but to no avail.\n"
                 + "Maybe you could get surveilliance data back with you."));
 
         // Initialise the reactor
-        reactor = new Room("near the reactor", "reactor",
+        reactor = new Room("near the reactor", "Reactor",
                 ("You are in the reactor room. The reactor is a very dense nuclear\n"
                 + "reactor. If it were to melt down the space station would be annihilated.\n"
                 + "You see some basic tools, some Geiger counters, and a coupple of\n"
                 + "space suits.\n"));
 
         // Initialise the escape pod
-        escapePod = new Room("in the escape pod", "pod");
+        escapePod = new Room("in the escape pod", "Pod");
 
         // Declare hallways between rooms
         Room hallwayStorageComputer, hallwayComputerBiology, hallwayBiologyControl,
@@ -139,14 +139,14 @@ public class Game implements IGame, Serializable{
                 hallwayDormitoryMedical, hallwayMedicalStorage;
 
         // Initialize the hallways between the outer rooms
-        hallwayStorageComputer = new Room("in the hallway between the storage and computer rooms");
-        hallwayComputerBiology = new Room("in the hallway between the storage room and the biology laboratory");
-        hallwayBiologyControl = new Room("in the hallway between the biology laboratory and the control room");
-        hallwayControlDock = new Room("in the hallway between the control room and the dock");
-        hallwayDockPhysics = new Room("in the hallway between the dock and the physics laboratory");
-        hallwayPhysicsDormitory = new Room("in the hallway between the physics laboratory and the dormitory");
-        hallwayDormitoryMedical = new Room("in the hallway between the dormitory and the medical bay");
-        hallwayMedicalStorage = new Room("in the hallway between the medical bay and the storage room");
+        hallwayStorageComputer = new Room("in the hallway between the storage and computer rooms", "StorageComputer");
+        hallwayComputerBiology = new Room("in the hallway between the computer room and the biology laboratory","ComputerBiolab");
+        hallwayBiologyControl = new Room("in the hallway between the biology laboratory and the control room", "BiolabControl");
+        hallwayControlDock = new Room("in the hallway between the control room and the dock", "ControlDock");
+        hallwayDockPhysics = new Room("in the hallway between the dock and the physics laboratory", "DockPhysicslab");
+        hallwayPhysicsDormitory = new Room("in the hallway between the physics laboratory and the dormitory", "PhysicslabDorm");
+        hallwayDormitoryMedical = new Room("in the hallway between the dormitory and the medical bay", "DormMedbay");
+        hallwayMedicalStorage = new Room("in the hallway between the medical bay and the storage room", "MedbayStorage");
 
         // Declare hallways connected to the reactor
         Room hallwayReactorBiology, hallwayReactorControl, hallwayReactorDock,
@@ -154,14 +154,14 @@ public class Game implements IGame, Serializable{
                 hallwayReactorStorage, hallwayReactorComputer;
 
         // Initialize the hallways connected to the reactor
-        hallwayReactorBiology = new Room("in the hallway between the reactor and the biology laboratory");
-        hallwayReactorControl = new Room("in the hallway between the reactor and the control room");
-        hallwayReactorDock = new Room("in the hallway between the reactor and the dock");
-        hallwayReactorPhysics = new Room("in the hallway between the reactor and the physics laboratory");
-        hallwayReactorDormitory = new Room("in the hallway between the reactor and the dormitory");
-        hallwayReactorMedical = new Room("in the hallway between the reactor and the medical bay");
-        hallwayReactorStorage = new Room("in the hallway between the reactor and the storage room");
-        hallwayReactorComputer = new Room("in the hallway between the reactor and the computer room");
+        hallwayReactorBiology = new Room("in the hallway between the reactor and the biology laboratory", "ReactorBiolab");
+        hallwayReactorControl = new Room("in the hallway between the reactor and the control room", "ReactorControl");
+        hallwayReactorDock = new Room("in the hallway between the reactor and the dock", "ReactorDock");
+        hallwayReactorPhysics = new Room("in the hallway between the reactor and the physics laboratory", "ReactorPhysicslab");
+        hallwayReactorDormitory = new Room("in the hallway between the reactor and the dormitory", "ReactorDorm");
+        hallwayReactorMedical = new Room("in the hallway between the reactor and the medical bay", "ReactorMedbay");
+        hallwayReactorStorage = new Room("in the hallway between the reactor and the storage room", "ReactorStorage");
+        hallwayReactorComputer = new Room("in the hallway between the reactor and the computer room", "ReactorComputer");
 
         // Set possible exits for hallways between rooms
         hallwayStorageComputer.setExit("storage", storage, false);

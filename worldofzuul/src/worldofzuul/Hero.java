@@ -11,7 +11,9 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * This class represents the hero (the player). The class extends the superclass
@@ -31,6 +33,7 @@ public class Hero extends Character implements Serializable {
     private int health = 10;
     private Inventory inventory;
     private boolean reactorActivated = false;
+    private Set<String> knownRooms;
 
     /**
      * This constructor creates a Hero object with the specified current room
@@ -42,6 +45,8 @@ public class Hero extends Character implements Serializable {
     Hero(Room currentRoom, String name) {
         super(currentRoom, name);
         this.inventory = new Inventory(100);
+        this.knownRooms = new HashSet<String>();
+        this.knownRooms.add(currentRoom.getName());
     }
     
     /**
@@ -91,10 +96,12 @@ public class Hero extends Character implements Serializable {
         else {
             // Remove character from current room
             this.getCurrentRoom().setHasCharacter(this.getName(), false);
+            this.knownRooms.clear();
             // Change the value of currentRoom to the specified neighbouring room
             this.setCurrentRoom(nextRoom);
             // Add character to the new current room
             this.getCurrentRoom().setHasCharacter(this.getName(), true);
+            this.knownRooms.add(this.getCurrentRoom().getName());
             // Print description of the current room
             LogicFacade.appendMessage(this.getCurrentRoom().getLongDescription());
         }
@@ -293,6 +300,7 @@ public class Hero extends Character implements Serializable {
 
         if (this.getCurrentRoom().getExit(direction) != null) {
             for (Room neighbor : this.getCurrentRoom().getExits().values()) {
+                this.knownRooms.add(neighbor.getName());
                 if (neighbor.hasCharacter("Zuul")) {
                     LogicFacade.appendMessage("Zuul is " + neighbor.getShortDescription());
                     zuulNearby = true;
@@ -301,6 +309,7 @@ public class Hero extends Character implements Serializable {
 
             Room neighbor = this.getCurrentRoom().getExit(direction);
             if (neighbor.getExit(direction) != null) {
+                this.knownRooms.add(neighbor.getExit(direction).getName());
 //                    neighbor.getHasCharacter("Zuul")) {
                 if (neighbor.getExit(direction).hasCharacter("Zuul")) {
                     LogicFacade.appendMessage("Zuul is " + neighbor.getShortDescription());
@@ -604,4 +613,10 @@ public class Hero extends Character implements Serializable {
         // Return boolean value (false = continue playing; true = quit game)
         return 0;
     }
+
+    public Set<String> getKnownRooms() {
+        return knownRooms;
+    }
+    
+    
 }
