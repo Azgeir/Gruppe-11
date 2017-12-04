@@ -81,4 +81,9 @@ public class GUIFacade implements IGUIFacade  {
        boolean isKnown = logic.isRoomKnown(room);
        return isKnown;
    }
+   
+   static boolean isTalking(){
+       boolean talking = logic.isTalking();
+       return talking;
+   }
 }

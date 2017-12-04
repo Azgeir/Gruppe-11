@@ -599,19 +599,27 @@ public class Game implements IGame, Serializable{
                     boolean techDudeIsThere = false;
                         if (currentCharacter.getCurrentRoom().hasCharacter("TechDude")) {
                             techDudeIsThere = true;
+                            Hero tempHero = null;
+                            for (Character character : characters) {
+                                if (character instanceof Hero) {
+                                    tempHero = (Hero)character;
+                                }
+                            }
+                            
                             for (Character character : characters) {
                                 if (character.getName().equals("TechDude")) {
-                                    TechDude temp = (TechDude)character;
+                                    TechDude techDude = (TechDude)character;
 
-                                    Boolean isFollowingBefore = temp.isFollowsHero();
+                                    Boolean isFollowingBefore = techDude.isFollowsHero();
                                     character.performCommand(command);
-                                    boolean isFollowingAfter = temp.isFollowsHero();
-                                    boolean conversationIsOver = temp.isWantToTalk();
+                                    boolean isFollowingAfter = techDude.isFollowsHero();
+                                    
+                                    tempHero.setTalking(techDude.isWantToTalk());
                                     
                                     if (!isFollowingAfter && isFollowingBefore) {
                                         Character hero = null;
                                         
-                                        temp.followsHero(hero, false);
+                                        techDude.followsHero(hero, false);
                                         LogicFacade.appendMessage("Tech dude no longer follows you.");
                                         
                                     }
@@ -625,7 +633,7 @@ public class Game implements IGame, Serializable{
                                         }
                                         
                                         LogicFacade.appendMessage("Tech dude is now following you");
-                                        temp.followsHero(hero, true);
+                                        techDude.followsHero(hero, true);
                                     }
                                     else {
                                     }
@@ -999,5 +1007,15 @@ public class Game implements IGame, Serializable{
         return returnMessage;
     }
     
+    boolean isTalking(){
+        boolean talking;
+        if (currentCharacter instanceof Hero) {
+            talking = ((Hero)currentCharacter).isTalking();
+        }
+        else {
+            talking = false;
+        }
+        return talking;
+    }
     
 }

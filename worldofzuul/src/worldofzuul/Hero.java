@@ -34,6 +34,7 @@ public class Hero extends Character implements Serializable {
     private Inventory inventory;
     private boolean reactorActivated = false;
     private Set<String> knownRooms;
+    private boolean talking;
 
     /**
      * This constructor creates a Hero object with the specified current room
@@ -47,6 +48,7 @@ public class Hero extends Character implements Serializable {
         this.inventory = new Inventory(100);
         this.knownRooms = new HashSet<String>();
         this.knownRooms.add(currentRoom.getName());
+        this.talking = false;
     }
     
     /**
@@ -563,6 +565,8 @@ public class Hero extends Character implements Serializable {
         // Create instance of CommandWord using the command word of the specified command (from Parser)
         CommandWord commandWord = command.getCommandWord();
         
+        this.talking = false;
+        
         if (null != commandWord) // Execute the command if the input matches a valid command
         {
             switch (commandWord) {
@@ -617,6 +621,16 @@ public class Hero extends Character implements Serializable {
     public Set<String> getKnownRooms() {
         return knownRooms;
     }
+
+    public boolean isTalking() {
+        return talking;
+    }
+
+    public void setTalking(boolean talking) {
+        this.talking = talking;
+    }
+    
+    
     
     
 }

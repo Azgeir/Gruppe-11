@@ -272,4 +272,10 @@ public class LogicFacade implements ILogicFacade {
         }
         return isKnown;
     }
+    
+    @Override
+    public boolean isTalking(){
+        boolean talking = game.isTalking();
+        return talking;
+    }
 }
