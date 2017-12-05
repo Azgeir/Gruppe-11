@@ -55,11 +55,11 @@ public class TechDude extends Character implements Serializable {
     // This method changes the current room of tech dude to that of hero
     void go(Command command){
         // Remove tech dude from current room
-        this.getCurrentRoom().setHasCharacter(this.getName(), false);
+        this.getCurrentRoom().removeCharacterInRoom(this.getName());
         // Change current room of tech dude to current room of hero.
         this.setCurrentRoom(this.hero.getCurrentRoom());
         // Add tech dude to the new current room
-        this.getCurrentRoom().setHasCharacter(this.getName(), true);
+        this.getCurrentRoom().addCharacterInRoom(this.getName());
         // Set character initiative
         this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
     }

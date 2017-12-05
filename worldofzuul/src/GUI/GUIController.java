@@ -283,7 +283,7 @@ public class GUIController {
 //        this.setRoomBackgrounds();
     }
     
-    private void setCharacters(){
+    private void setCharactersPeek(){
         
         for (RoomGUI room : rooms.values()) {
             ArrayList<ImageView> characterImages = new ArrayList<>();
@@ -292,35 +292,37 @@ public class GUIController {
             room.getCharacterLocation().getChildren().clear();
             if (GUIFacade.isRoomKnown(room)) {
                 Collection<String> characters = GUIFacade.charactersInRoom(room);
-                for (String character : characters) {
-                    if (character.equals("Zuul")) {
-                        characterImages.add(new ImageView(new Image("Pictures/Zuul Transparant.png")));
-                        characterImages.get(i).setFitHeight(35);
-                        characterImages.get(i).setFitWidth(30);
-                        
-                        room.getCharacterLocation().getChildren().add(characterImages.get(i));
-                        i++;
-                    }
-                    else if (character.equals("Hero")) {
-                        characterImages.add(new ImageView(new Image("Pictures/Hero Transparant.png")));
-                        characterImages.get(i).setFitHeight(35);
-                        characterImages.get(i).setFitWidth(30);
-                        
-                        room.getCharacterLocation().getChildren().add(characterImages.get(i));
-                        i++;
-                    }
-                    else {
-                        characterImages.add(new ImageView(new Image("Pictures/TechDude Transparant.png")));
-                        characterImages.get(i).setFitHeight(35);
-                        characterImages.get(i).setFitWidth(30);
-                        
-                        room.getCharacterLocation().getChildren().add(characterImages.get(i));
-                        i++;
-                        
+                if (characters.size() != 0) {
+                    for (String character : characters) {
+                        if (character.equals("Zuul")) {
+                            characterImages.add(new ImageView(new Image("Pictures/Zuul Transparant.png")));
+                            characterImages.get(i).setFitHeight(35);
+                            characterImages.get(i).setFitWidth(30);
+                            
+                            room.getCharacterLocation().getChildren().add(characterImages.get(i));
+                            i++;
+                        }
+                        else if (character.equals("Hero")) {
+                            characterImages.add(new ImageView(new Image("Pictures/Hero Transparant.png")));
+                            characterImages.get(i).setFitHeight(35);
+                            characterImages.get(i).setFitWidth(30);
+                            
+                            room.getCharacterLocation().getChildren().add(characterImages.get(i));
+                            i++;
+                        }
+                        else {
+                            characterImages.add(new ImageView(new Image("Pictures/TechDude Transparant.png")));
+                            characterImages.get(i).setFitHeight(35);
+                            characterImages.get(i).setFitWidth(30);
+                            
+                            room.getCharacterLocation().getChildren().add(characterImages.get(i));
+                            i++;
+                            
+                        }
                     }
                 }
             }
-        }    
+        }
     }
     
     private void setRoomBackgrounds(){
@@ -504,7 +506,7 @@ public class GUIController {
             this.labelMessageField.setText(message);
             
             this.setRoomBackgrounds();
-            this.setCharacters();
+            this.setCharactersPeek();
             this.updateAllDropdown();
 
 //            game.play(command);
@@ -528,7 +530,7 @@ public class GUIController {
             String message = GUIFacade.readAndDeleteGameMessage();
             this.labelMessageField.setText(message);
             this.setRoomBackgrounds();
-            this.setCharacters();
+            this.setCharactersPeek();
 //            game.play(command);
         } else {
             this.labelMessageField.setText("choose a direction from the dropbox");
@@ -621,7 +623,7 @@ public class GUIController {
 
         this.switchScreen(startScreen, outerSpace);
         this.setRoomBackgrounds();
-        this.setCharacters();
+        this.setCharactersPeek();
 
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);

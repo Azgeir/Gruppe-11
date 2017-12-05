@@ -320,9 +320,9 @@ public class Zuul extends Character implements Serializable {
                 As Zuul moves from one room to another, update its presence/
                 absence in the two rooms.
                 */
-                this.getCurrentRoom().setHasCharacter(this.getName(), false);
+                this.getCurrentRoom().removeCharacterInRoom(this.getName());
                 this.setCurrentRoom(nextRoom);
-                this.getCurrentRoom().setHasCharacter(this.getName(), true);
+                this.getCurrentRoom().addCharacterInRoom(this.getName());
             }
         }
         

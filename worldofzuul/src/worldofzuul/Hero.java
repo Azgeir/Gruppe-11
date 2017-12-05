@@ -103,12 +103,12 @@ class Hero extends Character implements Serializable {
         // If the specified exit exists and is not locked, move character
         else {
             // Remove character from current room
-            this.getCurrentRoom().setHasCharacter(this.getName(), false);
+            this.getCurrentRoom().removeCharacterInRoom(this.getName());
             this.knownRooms.clear();
             // Change the value of currentRoom to the specified neighbouring room
             this.setCurrentRoom(nextRoom);
             // Add character to the new current room
-            this.getCurrentRoom().setHasCharacter(this.getName(), true);
+            this.getCurrentRoom().addCharacterInRoom(this.getName());
             this.knownRooms.add(this.getCurrentRoom().getName());
             // Print description of the current room
             LogicFacade.appendMessage(this.getCurrentRoom().getLongDescription());
@@ -300,6 +300,9 @@ class Hero extends Character implements Serializable {
         String direction = command.getSecondWord();
 
         boolean zuulNearby = false;
+        
+        this.knownRooms.clear();
+        this.knownRooms.add(this.getCurrentRoom().getName());
 
         if (this.getCurrentRoom().hasCharacter("Zuul")) {
             LogicFacade.appendMessage("Zuul is in this room, you idiot.");
@@ -320,7 +323,7 @@ class Hero extends Character implements Serializable {
                 this.knownRooms.add(neighbor.getExit(direction).getName());
 //                    neighbor.getHasCharacter("Zuul")) {
                 if (neighbor.getExit(direction).hasCharacter("Zuul")) {
-                    LogicFacade.appendMessage("Zuul is " + neighbor.getShortDescription());
+                    LogicFacade.appendMessage("Zuul is " + neighbor.getExit(direction).getShortDescription());
                     zuulNearby = true;
 
                 }

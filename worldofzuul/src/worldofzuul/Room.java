@@ -287,14 +287,8 @@ public class Room implements Serializable, IRoom {
      * present in the room; true indicates that the room contains the character,
      * while false indicates that the character is not in the room.
      */
-    void setHasCharacter(String character, boolean presence){
+    private void setHasCharacter(String character, boolean presence){
         this.hasCharacter.put(character, presence);
-        if (presence) {
-            this.addCharacterInRoom(character);
-        }
-        else {
-            this.removeCharacterInRoom(character);
-        }
     }
 
     /**
@@ -323,12 +317,20 @@ public class Room implements Serializable, IRoom {
         this.hasBeenLookedUpon = hasBeenLookedUpon;
     } 
     
-    private void addCharacterInRoom(String character){
+    void addCharacterInRoom(String character){
         this.charactersInRoom.add(character);
+        this.setHasCharacter(character, true);
     }
     
-    private void removeCharacterInRoom(String character){
+    void removeCharacterInRoom(String character){
         this.charactersInRoom.remove(character);
+        if (this.charactersInRoom.contains(character)) {
+            this.setHasCharacter(character, true);
+        }
+        else {
+            this.setHasCharacter(character, false);
+        }
+        
     }
     
     ArrayList<String> getCharacterInRoom(){
