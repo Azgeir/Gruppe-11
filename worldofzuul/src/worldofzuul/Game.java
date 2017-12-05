@@ -619,6 +619,8 @@ public class Game implements IGame, Serializable{
                                     Boolean isFollowingBefore = techDude.isFollowsHero();
                                     character.performCommand(command);
                                     boolean isFollowingAfter = techDude.isFollowsHero();
+                                    tempHero.setPreviousCommand(command.getCommandWord().toString());
+                                    System.out.println(tempHero.getPreviousCommand());
                                     
                                     tempHero.setTalking(techDude.isWantToTalk());
                                     

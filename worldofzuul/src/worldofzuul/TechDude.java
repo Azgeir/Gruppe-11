@@ -161,17 +161,22 @@ public class TechDude extends Character implements Serializable {
                 }
                 if (command.hasThirdWord()) {
                     try {
-                        wantToTalk = Boolean.parseBoolean(command.getThirdWord());
-                        if (wantToTalk) {
-                            isTalking = true;
-                        }
-                        else {
+                        isTalking = Boolean.parseBoolean(command.getThirdWord());
+                        wantToTalk = true;
+                        if (!isTalking) {
+                            counter = 1;
                             isTalking = false;
                         }
+//                        if (wantToTalk) {
+//                            isTalking = true;
+//                        }
+//                        else {
+//                            isTalking = false;
+//                        }
                     }
                     catch (NumberFormatException ex) {
                         LogicFacade.appendMessage("The input wasn't a boolean");
-                        isTalking = false;
+//                        isTalking = false;
                     }
                 }
             }
@@ -222,9 +227,10 @@ public class TechDude extends Character implements Serializable {
 //                talk.options(messsageChooser);
 //            }
             if (wantToTalk){
-               String messsageChooser = this.getName()+counter;
+                String messsageChooser = this.getName()+counter;
                 talk.talk(messsageChooser);
                 talk.options(messsageChooser); 
+                isTalking = true;
             }
             
             

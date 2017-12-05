@@ -38,6 +38,8 @@ class Hero extends Character implements Serializable {
     private boolean reactorActivated = false;
     private Set<String> knownRooms;
     private boolean talking;
+    private String previousCommand;
+    
 
     /**
      * This constructor creates a Hero object with the specified current room
@@ -453,7 +455,13 @@ class Hero extends Character implements Serializable {
                     word3 = tokenizer.next();
                 }
                 else if (word1.equals("talk")){
-                    word3 = "TRUE";
+                    if (previousCommand.equals("talk")) {
+                        word3 = "TRUE";
+                    }
+                    else {
+                        word3 = "FALSE";
+                    }
+                    
                 }
             }
         }
@@ -624,6 +632,8 @@ class Hero extends Character implements Serializable {
             }
         }
         // Return boolean value (false = continue playing; true = quit game)
+        previousCommand = commandWord.toString();
+        System.out.println(previousCommand);
         return 0;
     }
 
@@ -638,6 +648,16 @@ class Hero extends Character implements Serializable {
     public void setTalking(boolean talking) {
         this.talking = talking;
     }
+
+    public String getPreviousCommand() {
+        return previousCommand;
+    }
+
+    public void setPreviousCommand(String previousCommand) {
+        this.previousCommand = previousCommand;
+    }
+    
+    
     
     
     
