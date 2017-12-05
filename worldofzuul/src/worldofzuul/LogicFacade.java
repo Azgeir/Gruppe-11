@@ -284,4 +284,10 @@ public class LogicFacade implements ILogicFacade {
     public Collection<String> charactersInRoom(IRoom room){
         return game.charactersInRoom(room);
     }
+    
+    @Override
+    public String getCurrentRoomName(){
+        String roomName = game.getCurrentRoomName();
+        return roomName;
+    }
 }

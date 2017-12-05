@@ -901,11 +901,11 @@ public class Game implements IGame, Serializable{
         return false;
     }
 
-    public Character getCurrentCharacter() {
+    Character getCurrentCharacter() {
         return currentCharacter;
     }
 
-    public boolean isFinished() {
+    boolean isFinished() {
         return finished;
     }
     
@@ -946,6 +946,11 @@ public class Game implements IGame, Serializable{
         Room tempRoom = rooms.get(room.getName());
         ArrayList<String> charactersInRoom = tempRoom.getCharacterInRoom();
         return charactersInRoom;
+    }
+    
+    String getCurrentRoomName(){
+        String roomName = this.currentCharacter.getCurrentRoom().getName();
+        return roomName;
     }
     
 }

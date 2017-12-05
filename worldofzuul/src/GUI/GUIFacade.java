@@ -46,7 +46,6 @@ public class GUIFacade implements IGUIFacade  {
    static boolean isRoomLookedBefore(){
        boolean lookedBefore = logic.isRoomLookedBefore();
        return lookedBefore;
-       
    }
    
    static boolean isGameFinished(){
@@ -90,6 +89,11 @@ public class GUIFacade implements IGUIFacade  {
    
    static Collection<String> charactersInRoom(IRoom room){
        return logic.charactersInRoom(room);
+   }
+   
+   static String getCurrentRoomName(){
+       String roomName = logic.getCurrentRoomName();
+       return roomName;
    }
    
 }

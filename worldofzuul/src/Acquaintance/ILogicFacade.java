@@ -45,4 +45,6 @@ public interface ILogicFacade {
     boolean isTalking();
     
     Collection<String> charactersInRoom(IRoom room);
+    
+    String getCurrentRoomName();
 }
