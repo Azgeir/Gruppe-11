@@ -80,6 +80,12 @@ public class Zuul extends Character implements Serializable {
         room.
         */
         this.heroWasInSameRoom = false;
+        
+        if (heroIsInSameRoom) {
+            LogicFacade.appendMessage("A boarding pod comes crashing through the wall of the space station.\n"
+                    + "Then a Zuul steps out of it and says in the voice of Little Nicky\n"
+                    + "\"I will eat your hearts\"");
+        }
     }
     
     /**

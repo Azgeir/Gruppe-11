@@ -23,6 +23,7 @@ public class TechDude extends Character implements Serializable {
     
     private boolean wantToTalk = false;
     private int counter = 1;
+    private boolean isTalking;
 
 
     
@@ -34,6 +35,7 @@ public class TechDude extends Character implements Serializable {
     TechDude(Room currentRoom, String name){
         super(currentRoom, name);
         metHero = false;
+        isTalking = false;
 }
     // This constructor creates a tech dude with the specified current room, name, and speed factor.
     TechDude(Room currentRoom, String name, double speedFactor){
@@ -146,9 +148,9 @@ public class TechDude extends Character implements Serializable {
     
     private void talk(Command command){
         Conversation talk = new Conversation();
-
+        boolean validAnswer = true;
+        
         if (this.hostility < 3) {
-            
             int number = -1;
             if (command.hasSecondWord()) {
                 try {
@@ -160,17 +162,24 @@ public class TechDude extends Character implements Serializable {
                 if (command.hasThirdWord()) {
                     try {
                         wantToTalk = Boolean.parseBoolean(command.getThirdWord());
+                        if (wantToTalk) {
+                            isTalking = true;
+                        }
+                        else {
+                            isTalking = false;
+                        }
                     }
                     catch (NumberFormatException ex) {
                         LogicFacade.appendMessage("The input wasn't a boolean");
+                        isTalking = false;
                     }
                 }
             }
             
-            if (counter != 1) {
+            if (isTalking) {
                 switch(number){
                     case 1:
-                        if (counter == 5) {
+                        if (counter == 4) {
                             wantToTalk = false;
                             this.followsHero = true;
                         }
@@ -187,27 +196,35 @@ public class TechDude extends Character implements Serializable {
                         wantToTalk = false;
                         break;
                     case 3:
-                        if (counter == 4) {
+                        if (counter == 3) {
                             wantToTalk = false;
                             followsHero = true;
                         }
                         else {
                             LogicFacade.appendMessage("Not a valid answer");
+                            validAnswer = false;
                         }
                         break;
                         
                     default:
                         break;
                 }
+                if (validAnswer) {
+                    counter++;
+                }
             }
             
             
             
-            
+//            if (wantToTalk && validAnswer){
+//                String messsageChooser = this.getName()+counter++;
+//                talk.talk(messsageChooser);
+//                talk.options(messsageChooser);
+//            }
             if (wantToTalk){
-                String messsageChooser = this.getName()+counter++;
+               String messsageChooser = this.getName()+counter;
                 talk.talk(messsageChooser);
-                talk.options(messsageChooser);
+                talk.options(messsageChooser); 
             }
             
             
@@ -220,6 +237,7 @@ public class TechDude extends Character implements Serializable {
         
         if (!wantToTalk){
             counter = 1;
+            isTalking = false;
         }
     }
     
