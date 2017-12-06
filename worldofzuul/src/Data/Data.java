@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  * @author HCHB
  */
 
-public class Data {
+class Data {
     
     /**
      * Data fields.
@@ -45,7 +45,7 @@ public class Data {
      * This constructor creates a Data object with default names for the saved
      * game and high score files.
      */
-    public Data() {
+    Data() {
         this.saveGameFileName = "Escape pod.Zuul";
         this.highscoreFileName = "Escape pod highscore.txt";
     }
