@@ -120,7 +120,7 @@ public class TechDude extends Character implements Serializable {
     }
     
     @Override
-    public double performCommand(Command command) {
+    double performCommand(Command command) {
         // Create instance of CommandWord using the command word of the specified command (from Parser)
         CommandWord commandWord = command.getCommandWord();
         
@@ -255,7 +255,7 @@ public class TechDude extends Character implements Serializable {
     }
     
 
-    public boolean isWantToTalk() {
+    boolean isWantToTalk() {
         return wantToTalk;
     }
     

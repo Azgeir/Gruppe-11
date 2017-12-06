@@ -24,6 +24,7 @@ public class ZuulGUI extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
         Scene scene = new Scene(root);
         
+        stage.setTitle("Escape Pod");
         stage.setScene(scene);
         stage.show();
     }
