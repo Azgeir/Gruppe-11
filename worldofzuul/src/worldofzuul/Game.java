@@ -489,21 +489,8 @@ public class Game implements IGame, Serializable{
                 finished = healthTest();
             }
             
-            
-//            if (currentCharacter.getName().equals("TechDude")) {
-//                TechDude temp = (TechDude)currentCharacter;
-//                if (temp.isWantToTalk()) {
-//                    break;
-//                }
-//            }
-            
             currentCharacter = this.chooseCharacter();
         } while(!currentCharacter.getName().equals("Hero") && !finished);
-        
-        for (Character character : characters) {
-            System.out.println(character.getName() + " " + character.getCurrentRoom().getName());
-        }
-        
     }
 
     // This method prints the welcome message.
@@ -619,7 +606,6 @@ public class Game implements IGame, Serializable{
                                     character.performCommand(command);
                                     boolean isFollowingAfter = techDude.isFollowsHero();
                                     tempHero.setPreviousCommand(command.getCommandWord().toString());
-                                    System.out.println(tempHero.getPreviousCommand());
                                     
                                     tempHero.setTalking(techDude.isWantToTalk());
                                     
@@ -760,6 +746,10 @@ public class Game implements IGame, Serializable{
                 }
                 LogicFacade.appendMessage("Congratulations, you escaped the space station. You won.");
                 System.out.printf("You got %1.2f points\n", point);
+                point = ((int)(point*100))/100.0;
+                
+                LogicFacade.appendMessage("You got " + point +" points\n");
+
                 break;
             case "lose":    // If the player is killed by Zuul, print message
                 if (techDudeIsThere) {

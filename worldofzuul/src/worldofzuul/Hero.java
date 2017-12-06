@@ -625,7 +625,6 @@ class Hero extends Character implements Serializable {
                 // If command is "activate", set MaxInitiative to the return value of the activate() method
                 case ACTIVATE:
                     return this.activate(command, reactorActivated);
-                    
                 // If command does not match any of the options, break.
                 default:
                     break;
@@ -633,7 +632,6 @@ class Hero extends Character implements Serializable {
         }
         // Return boolean value (false = continue playing; true = quit game)
         previousCommand = commandWord.toString();
-        System.out.println(previousCommand);
         return 0;
     }
 

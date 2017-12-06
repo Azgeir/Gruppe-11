@@ -252,9 +252,9 @@ public class GUIController {
         fillButtons(startScreen);
         fillButton(backToStartScreenButton);
         
-        this.numberOfZuulSlider.getStylesheets().add("GUI/test.css");
+        this.numberOfZuulSlider.getStylesheets().add("GUI/Slider.css");
         this.numberOfZuulSlider.getStyleClass().add("Slider");
-        this.spawnTimeSlider.getStylesheets().add("GUI/test.css");
+        this.spawnTimeSlider.getStylesheets().add("GUI/Slider.css");
         this.spawnTimeSlider.getStyleClass().add("Slider"); 
 
         String highscoreString = this.loadAndFormatHighscore();
