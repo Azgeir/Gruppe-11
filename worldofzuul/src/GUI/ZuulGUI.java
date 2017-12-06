@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package GUI;
 
+// Imports:
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,5 +34,4 @@ public class ZuulGUI extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
 }
