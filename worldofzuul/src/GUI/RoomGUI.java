@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+// This class is located in the GUI layer.
 package GUI;
 
 // Imports:
@@ -18,7 +19,7 @@ import javafx.scene.layout.FlowPane;
  * @author HCHB
  */
 
-public class RoomGUI implements IRoom {
+class RoomGUI implements IRoom {
     
     /**
      * Data fields.
@@ -61,7 +62,7 @@ public class RoomGUI implements IRoom {
      * 
      * @return location
      */
-    public BorderPane getLocation() {
+    BorderPane getLocation() {
         return this.location;
     }
 
@@ -71,7 +72,7 @@ public class RoomGUI implements IRoom {
      * 
      * @return characterLocation
      */
-    public FlowPane getCharacterLocation() {
+    FlowPane getCharacterLocation() {
         return this.characterLocation;
     }
 
@@ -81,7 +82,7 @@ public class RoomGUI implements IRoom {
      * 
      * @return knownRoomFilePath
      */
-    public String getKnownRoomFilePath() {
+    String getKnownRoomFilePath() {
         return this.knownRoomFilePath;
     }
 
@@ -91,7 +92,7 @@ public class RoomGUI implements IRoom {
      * 
      * @return unknownRoomFilePath
      */
-    public String getUnknownRoomFilePath() {
+    String getUnknownRoomFilePath() {
         return this.unknownRoomFilePath;
     }
     
