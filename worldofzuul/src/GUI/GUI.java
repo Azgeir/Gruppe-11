@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+// The class is located in the GUI package.
 package GUI;
 
 // Imports:
@@ -14,11 +15,20 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
+ * This class is used to create the GUI. The class extends the superclass
+ * Application.
+ * 
  * @author Aske Wulf
  */
-public class ZuulGUI extends Application {
+
+public class GUI extends Application {
     
+    /**
+     * This method is used to start the GUI.
+     * 
+     * @param stage
+     * @throws Exception 
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
@@ -29,7 +39,9 @@ public class ZuulGUI extends Application {
     }
 
     /**
-     * @param args the command line arguments
+     * This method is used to launch the application.
+     * 
+     * @param args String array sent from the main method
      */
     public static void main(String[] args) {
         launch(args);
