@@ -164,19 +164,12 @@ public class TechDude extends Character implements Serializable {
                         if (wantToTalk) {
                             isTalking = Boolean.parseBoolean(command.getThirdWord());
                         }
-                                                    wantToTalk = true;
+                        wantToTalk = true;
 
-                        
                         if (!isTalking) {
                             counter = 1;
                             isTalking = false;
                         }
-//                        if (wantToTalk) {
-//                            isTalking = true;
-//                        }
-//                        else {
-//                            isTalking = false;
-//                        }
                     }
                     catch (NumberFormatException ex) {
                         LogicFacade.appendMessage("The input wasn't a boolean");
@@ -224,9 +217,7 @@ public class TechDude extends Character implements Serializable {
                 }
             }
             
-            if (isTalking) {
-                wantToTalk = true;
-            }
+            
             
 //            if (wantToTalk && validAnswer){
 //                String messsageChooser = this.getName()+counter++;
