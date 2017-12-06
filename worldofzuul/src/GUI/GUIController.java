@@ -756,15 +756,15 @@ public class GUIController {
         this.updateDropdownBackground(goDropDown);
 
         if (GUIFacade.isTalking()) {
+            this.useDropDown.setDisable(true);
+            this.pickupDropDown.setDisable(true);
+            this.useDropDown.setValue(null);
+            this.pickupDropDown.setValue(null);
             this.numberBox.getItems().clear();
             this.numberBox.getItems().add("3");
             this.numberBox.getItems().add("2");
             this.numberBox.getItems().add("1");
             this.numberBox.setValue("1");
-            this.useDropDown.setDisable(true);
-            this.pickupDropDown.setDisable(true);
-            this.useDropDown.setValue(null);
-            this.pickupDropDown.setValue(null);
         }
         else {
             this.useDropDown.setDisable(false);
