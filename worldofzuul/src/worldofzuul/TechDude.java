@@ -161,8 +161,12 @@ public class TechDude extends Character implements Serializable {
                 }
                 if (command.hasThirdWord()) {
                     try {
-                        isTalking = Boolean.parseBoolean(command.getThirdWord());
-                        wantToTalk = true;
+                        if (wantToTalk) {
+                            isTalking = Boolean.parseBoolean(command.getThirdWord());
+                        }
+                                                    wantToTalk = true;
+
+                        
                         if (!isTalking) {
                             counter = 1;
                             isTalking = false;
@@ -199,6 +203,7 @@ public class TechDude extends Character implements Serializable {
                             LogicFacade.appendMessage("The tech dude got annoyed at you.");
                         }
                         wantToTalk = false;
+                        isTalking = false;
                         break;
                     case 3:
                         if (counter == 3) {
@@ -219,7 +224,9 @@ public class TechDude extends Character implements Serializable {
                 }
             }
             
-            
+            if (isTalking) {
+                wantToTalk = true;
+            }
             
 //            if (wantToTalk && validAnswer){
 //                String messsageChooser = this.getName()+counter++;
