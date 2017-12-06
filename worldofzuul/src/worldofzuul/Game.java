@@ -353,8 +353,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(20, "saw"), 9);
                 room.getInventory().addItem(new Item(20, "crowbar", "smash some stuff and pretend that you are Gordon Freeman. "
                         + "This isn't Half Life 3, you dumbass!"), 7);
-                room.getInventory().addItem(new Item(20, "plasma-saw", "try to cut a hole in the wall to get away from the Zuul. Though, you end "
-                        + "up being sucked out into space, because you cannot think for shit!"), 6);
+                room.getInventory().addItem(new Item(20, "plasma-saw"), 6);
                 room.getInventory().addItem(new Item(30, "nailgun", "shoot all over the place like a stormtrooper."), 8);
                 room.getInventory().addItem(new AccessCard());
                 break;
@@ -512,10 +511,10 @@ public class Game implements IGame, Serializable{
         // Print welcome message
         message += ("\n");
         message += ("Welcome to Escape Pod!\n");
-        message += ("\nYou are a software engineer in a space station. "
-                + "The emergency alarm has just gone off, and the station is under "
-                + "quarantine. You must find items and other survivors and escape "
-                + "the station through the escape pod before you are caught by what "
+        message += ("\nYou are a software engineer in a space station. \n"
+                + "The emergency alarm has just gone off, and the station is under \n"
+                + "quarantine. You must find items and other survivors and escape \n"
+                + "the station through the escape pod before you are caught by what \n"
                 + "is ravaging the station. \n"
                 + "\nYou suddenly hear a rumbling voice emanating from everywhere:\n"
                 + "\n\"We are Zuul, devourers of worlds.\"\n");
