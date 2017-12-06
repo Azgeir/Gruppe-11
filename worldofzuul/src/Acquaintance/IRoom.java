@@ -8,7 +8,7 @@
 package Acquaintance;
 
 /**
- * This class is used to represent a room in the game. The interface is
+ * This interface is used to represent a room in the game. The interface is
  * implemented by RoomGUI in the GUI layer and by Room in the logic layer.
  * 
  * @author HCHB
