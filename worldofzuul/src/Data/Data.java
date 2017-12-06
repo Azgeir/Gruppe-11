@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+// The class is located in the data layer.
 package Data;
 
 // Imports:
@@ -27,7 +28,9 @@ import java.util.logging.Logger;
  * 
  * @author HCHB
  */
+
 public class Data {
+    
     /**
      * Data fields.
      * saveGameFileName: a String that specifies the name of the file that
