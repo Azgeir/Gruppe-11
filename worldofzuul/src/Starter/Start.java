@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+// The class is located in the Starter package.
 package Starter;
 
 // Imports:
