@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+// The class is located in the data layer.
 package Data;
 
 // Imports:
@@ -17,6 +18,7 @@ import Acquaintance.IScore;
  * 
  * @author HCHB
  */
+
 class HighscoreData implements IHighscore {
     
     /**

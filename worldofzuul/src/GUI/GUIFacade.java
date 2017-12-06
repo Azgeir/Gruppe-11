@@ -47,7 +47,7 @@ public class GUIFacade implements IGUIFacade {
      */
     @Override
     public void startApplication(String[] args) {
-        ZuulGUI.main(args);
+        GUI.main(args);
     }
 
     /**

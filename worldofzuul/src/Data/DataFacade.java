@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+// The class is located in the data layer.
 package Data;
 
 // Imports:
@@ -18,6 +19,7 @@ import Acquaintance.IHighscore;
  * 
  * @author HCHB
  */
+
 public class DataFacade implements IDataFacade {
     
     /**
@@ -30,7 +32,7 @@ public class DataFacade implements IDataFacade {
      * This constructor creates a DataFacade object by initializing the data
      * data field.
      */
-    public DataFacade(){
+    public DataFacade() {
         this.data = new Data();
     }
     
@@ -41,7 +43,7 @@ public class DataFacade implements IDataFacade {
      * @return an instance of IGame.
      */
     @Override
-    public IGame loadGame(){
+    public IGame loadGame() {
         IGame game = this.data.loadGame();
         return game;
     }
@@ -53,7 +55,7 @@ public class DataFacade implements IDataFacade {
      * @return an instance of IHighscore
      */
     @Override
-    public IHighscore loadHighscore(){
+    public IHighscore loadHighscore() {
         IHighscore highscore = this.data.loadHighscore();
         return highscore;
     }
@@ -65,7 +67,7 @@ public class DataFacade implements IDataFacade {
      * @param game an instance of IGame that represents the game to be saved.
      */
     @Override
-    public void saveGame(IGame game){
+    public void saveGame(IGame game) {
         this.data.saveGame(game);
     }
     
@@ -77,7 +79,7 @@ public class DataFacade implements IDataFacade {
      * score to be saved.
      */
     @Override
-    public void saveHighscore(IHighscore highscore){
+    public void saveHighscore(IHighscore highscore) {
         this.data.saveHighscore(highscore);
     }
 }

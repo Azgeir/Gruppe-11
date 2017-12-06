@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-// This interface is located in the Acquaintance package.
+// The interface is located in the Acquaintance package.
 package Acquaintance;
 
 /**
