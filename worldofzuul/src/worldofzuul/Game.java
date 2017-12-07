@@ -602,12 +602,12 @@ public class Game implements IGame, Serializable{
                                 if (character.getName().equals("TechDude")) {
                                     TechDude techDude = (TechDude)character;
 
-                                    Boolean isFollowingBefore = techDude.isFollowsHero();
+                                    Boolean isFollowingBefore = techDude.followsHero();
                                     character.performCommand(command);
-                                    boolean isFollowingAfter = techDude.isFollowsHero();
+                                    boolean isFollowingAfter = techDude.followsHero();
                                     tempHero.setPreviousCommand(command.getCommandWord().toString());
                                     
-                                    tempHero.setTalking(techDude.isWantToTalk());
+                                    tempHero.setTalking(techDude.wantsToTalk());
                                     
                                     if (!isFollowingAfter && isFollowingBefore) {
                                         Character hero = null;
@@ -730,7 +730,7 @@ public class Game implements IGame, Serializable{
         for (Character character : characters) {
             if (character.getName().equals("TechDude")) {
                 TechDude temp = (TechDude)character;
-                if (temp.isFollowsHero()) {
+                if (temp.followsHero()) {
                     techDudeIsThere = true;
                 }
             }
