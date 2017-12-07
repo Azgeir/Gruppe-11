@@ -616,7 +616,7 @@ public class Game implements IGame, Serializable{
                                     if (!isFollowingAfter && isFollowingBefore) {
                                         Character hero = null;
                                         
-                                        techDude.followsHero(hero, false);
+                                        techDude.setFollowsHero(hero, false);
                                         LogicFacade.appendMessage("Tech dude no longer follows you.");
                                         
                                     }
@@ -630,7 +630,7 @@ public class Game implements IGame, Serializable{
                                         }
                                         
                                         LogicFacade.appendMessage("Tech dude is now following you");
-                                        techDude.followsHero(hero, true);
+                                        techDude.setFollowsHero(hero, true);
                                     }
                                     else {
                                     }

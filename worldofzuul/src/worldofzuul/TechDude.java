@@ -105,9 +105,13 @@ class TechDude extends Character implements Serializable {
         return this.wantsToTalk;
     }
     
-    // This method helps in defining what commands should be chosen when it is 
-    // the tech dude's turn.
-    void followsHero(Character hero, boolean follows) {
+    /**
+     * This method helps in defining what commands should be chosen when it is the tech dude's turn.
+     * 
+     * @param hero
+     * @param follows 
+     */
+    void setFollowsHero(Character hero, boolean follows) {
         // Set data fields
         metHero = true;
         if (follows){
