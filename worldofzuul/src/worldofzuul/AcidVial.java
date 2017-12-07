@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+// The class is located in the logic layer.
 package worldofzuul;
 
+// Import:
 import java.io.Serializable;
 
 /**
@@ -16,7 +18,7 @@ import java.io.Serializable;
  * @author laurabrinkholmjustesen
  */
 
-public class AcidVial extends Item implements Serializable {
+class AcidVial extends Item implements Serializable {
     
     /**
      * Data fields.
@@ -25,7 +27,7 @@ public class AcidVial extends Item implements Serializable {
      * which gives the player a chance to escape.
      */
     private int damageAmount;
-    private double initiativeReduction;
+    private int initiativeReduction;
     
     /**
      * This constructor creates an acid vial with a default damage amount and 
@@ -65,7 +67,7 @@ public class AcidVial extends Item implements Serializable {
     }
     
     /**
-     * This is a getter method for damageAmount.
+     * This method returns the damage amount.
      * 
      * @return damageAmount
      */
@@ -81,7 +83,7 @@ public class AcidVial extends Item implements Serializable {
      * giving the player a chance to escape. The method overrides the use()
      * method in the superclass Item.
      * 
-     * @param currentCharacter an instance of Hero and represents the player. 
+     * @param currentCharacter an instance of Hero that represents the player. 
      * 
      * @return initiativeReduction if Zuul is in the room; else it returns 0.
      */
