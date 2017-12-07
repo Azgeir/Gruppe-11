@@ -442,7 +442,7 @@ public class GUIController {
 
     @FXML
     private void activateButtonHandler(ActionEvent event) {
-        String command = "activate reactor";
+        String command = "activate Reactor";
         GUIFacade.sendCommand(command);
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
