@@ -256,6 +256,7 @@ public class GUIController {
         this.numberOfZuulSlider.getStyleClass().add("Slider");
         this.spawnTimeSlider.getStylesheets().add("GUI/test.css");
         this.spawnTimeSlider.getStyleClass().add("Slider"); 
+        
 
         this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
         String highscoreString = this.loadAndFormatHighscore();
@@ -802,15 +803,7 @@ public class GUIController {
         rooms.put("StorageComputer", new RoomGUI(roomStorageComputer,characterPaneStorageComputer,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","StorageComputer"));
     }
 
-    @FXML
-    private void dropButtonHandler(RotateEvent event) {
-    }
-
-    @FXML
-    private void dropButtonHandler(SwipeEvent event) {
-    }
-
-    
+   
 }
     
 
