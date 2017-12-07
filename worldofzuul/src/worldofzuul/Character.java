@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+// The class is located in the logic layer.
 package worldofzuul;
 
+// Import:
 import java.io.Serializable;
 
 /**
@@ -15,7 +17,7 @@ import java.io.Serializable;
  * @author HCHB
  */
 
-public class Character implements Serializable {
+class Character implements Serializable {
 
     /**
      * Data fields.
@@ -23,7 +25,6 @@ public class Character implements Serializable {
      * characterInitiative: used to determine whose turn it is.
      * speedFactor: used to update character initiative.
      * name: used to identify character type in other classes.
-     * hostility: used when conversing with a character (currently only used for
      * TechDude, but it is put in Character to allow future development of
      * characters that the player can converse with).
      * message: used for various purposes throughout the game.
@@ -32,7 +33,6 @@ public class Character implements Serializable {
     private double characterInitiative;
     private double speedFactor;
     private String name;
-    private int hostility;
     private String message;
 
     /**
@@ -205,24 +205,6 @@ public class Character implements Serializable {
      */
     String getName() {
         return name;
-    }
-    
-    /**
-     * This method returns the character's hostility value.
-     * 
-     * @return hostility
-     */
-    int getHostility() {
-        return hostility;
-    }
-
-    /**
-     * This method sets the character's hostility value.
-     * 
-     * @param hostility the new hostility value
-     */
-    void setHostility(int hostility) {
-        this.hostility = hostility;
     }
     
     /**
