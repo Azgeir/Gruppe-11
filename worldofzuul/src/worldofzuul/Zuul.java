@@ -112,6 +112,7 @@ public class Zuul extends Character implements Serializable {
         if (this.heroIsInSameRoom) {
             if (!this.getCurrentRoom().hasCharacter("Hero")) {
                 this.heroWasInSameRoom = true;
+                this.heroIsInSameRoom = false;
             }
             else {
                 this.heroWasInSameRoom = false;
