@@ -105,45 +105,82 @@ class TechDude extends Character implements Serializable {
         return this.wantsToTalk;
     }
     
-    // This method helps in defining what commands should be chosen when it is 
-    // the tech dude's turn.
-    void followsHero(Character hero, boolean follows) {
-        // Set data fields
+    /**
+     * This method is used to update the value of followsHero. The method helps
+     * in defining what commands should be chosen when it is the tech dude's
+     * turn, as this depends on whether or not tech dude is following the hero.
+     * 
+     * @param hero instance of Character that represents the player of the game.
+     * @param follows boolean value that indicates whether or not tech dude is
+     * to follow the hero.
+     */
+    void setFollowsHero(Character hero, boolean follows) {
+        // Tech dude has met the hero when this method is called.
         metHero = true;
-        if (follows){
+        /*
+        If tech dude is to follow hero, followsHero is set to true, and the
+        value of hero is set to the hero argument.
+        */
+        if (follows) {
            this.followsHero = true;
            this.hero = hero; 
         }
-        else{
+        /*
+        If tech dude is not to follow hero, followsHero is set to false, and
+        the value of hero is set to null.
+        */
+        else {
             this.followsHero = false;
             this.hero = null;
         }
-        
     }
     
-    // This method returns tech dude's command based on whether or not he has met the hero
+    /**
+     * This method returns tech dude's command based a String from the GUI
+     * layer. The command is based on whether or not tech dude has met the hero.
+     * The method overrides the getCommand() method from the Character
+     * superclass.
+     * 
+     * @param commands valid commands available
+     * @param GUICommand String that represents the command sent from the GUI
+     * layer
+     * 
+     * @return instance of Command that represents the command
+     */
     @Override
-    public Command getCommand(CommandWords commands, String GUICommand) {
-        // Declare String variables for the input
+    Command getCommand(CommandWords commands, String GUICommand) {
+        // Declare String variables for the command
         String word1, word2, word3;
 
-        if(this.followsHero == false && this.getCurrentRoom().hasCharacter("Hero") == true && metHero == false){
-            LogicFacade.appendMessage("You see a man in the corner of the room. He notices you and comes over.");
+        /*
+        If tech dude is not currently following the hero, the current room of
+        tech dude contains hero, and tech dude has not previously met hero,
+        a talk command is created.
+        */
+        if (this.followsHero == false &&
+            this.getCurrentRoom().hasCharacter("Hero") == true &&
+            metHero == false) {
+            // Send message to GUI
+            LogicFacade.appendMessage("You see a man in the corner of the room."
+                + " He notices you and comes over.");
+            // Set words of command
             word1 = "talk";
             word2 = null;
             word3 = null;
+            // Tech dude has now met the hero and wants to talk to them.
             metHero = true;
             wantsToTalk = true;
+            // Return "talk" command
             return new Command(commands.getCommandWord(word1), word2, word3);
         }
-        // If tech dude has not met the hero, return "stay" command
+        // Else if tech dude does not follow hero, return "stay" command.
         else if (this.followsHero == false){
             word1 = "stay";
             word2 = null;
             word3 = null;
             return new Command(commands.getCommandWord(word1), word2, word3);
         }
-        // If tech dude has met the hero, return "go" command
+        // Else if tech dude is following the hero, return "go" command.
         else {
             word1 = "go";
             word2 = null;
