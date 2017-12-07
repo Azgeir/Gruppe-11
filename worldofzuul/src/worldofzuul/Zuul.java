@@ -168,7 +168,7 @@ public class Zuul extends Character implements Serializable {
             to Zuul's previous room. This is done to allow Zuul to move forwards
             instead of moving back and forth between rooms.
             */
-            if (exits.size() != 1) {
+            if (exits.size() > 1) {
                 exits.remove(this.previousRoomName);    
             }
             
