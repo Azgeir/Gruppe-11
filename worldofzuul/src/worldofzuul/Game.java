@@ -3,12 +3,15 @@ package worldofzuul;
 // Imports:
 import Acquaintance.IGame;
 import Acquaintance.IHighscore;
+import Acquaintance.IRoom;
 import Acquaintance.IScore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -22,7 +25,7 @@ public class Game implements IGame, Serializable{
     // ArrayList is chosen because it allows us to know which character is chosen when the initiative is the same.
     private ArrayList<Character> characters = new ArrayList<>(); // This is an arraylist because it offer a simple way to break an initiative tie in a predefined way
     private Character currentCharacter;
-    private HashMap<String, Room> characterStartRooms;
+    private HashMap<String, Room> rooms;
     private Room winConditionRoom;
     private double maxInititative = Double.MAX_VALUE;
     private boolean reactorActivated = false;
@@ -49,7 +52,7 @@ public class Game implements IGame, Serializable{
         this.finished = false;
         this.timeSinceSpawn = 0;
         this.spawnTime = spawnTime;
-        this.characterStartRooms = new HashMap<>();
+        this.rooms = new HashMap<>();
         this.name = name;
         this.message = "";
         //Create all rooms by calling the createRooms method
@@ -164,136 +167,137 @@ public class Game implements IGame, Serializable{
         hallwayReactorComputer = new Room("in the hallway between the reactor and the computer room", "ReactorComputer");
 
         // Set possible exits for hallways between rooms
-        hallwayStorageComputer.setExit("storage", storage, false);
-        hallwayStorageComputer.setExit("computer", computerRoom, false);
+        hallwayStorageComputer.setExit("Storage", storage, false);
+        hallwayStorageComputer.setExit("Computer", computerRoom, false);
 
-        hallwayComputerBiology.setExit("computer", computerRoom, false);
-        hallwayComputerBiology.setExit("biolab", biologyLaboratory, false);
+        hallwayComputerBiology.setExit("Computer", computerRoom, false);
+        hallwayComputerBiology.setExit("Biolab", biologyLaboratory, false);
 
-        hallwayBiologyControl.setExit("control", controlRoom, true);
-        hallwayBiologyControl.setExit("biolab", biologyLaboratory, false);
+        hallwayBiologyControl.setExit("Control", controlRoom, true);
+        hallwayBiologyControl.setExit("Biolab", biologyLaboratory, false);
 
-        hallwayControlDock.setExit("control", controlRoom, true);
-        hallwayControlDock.setExit("dock", dock, false);
+        hallwayControlDock.setExit("Control", controlRoom, true);
+        hallwayControlDock.setExit("Dock", dock, false);
 
-        hallwayDockPhysics.setExit("physicslab", physicsLaboratory, false);
-        hallwayDockPhysics.setExit("dock", dock, false);
+        hallwayDockPhysics.setExit("Physicslab", physicsLaboratory, false);
+        hallwayDockPhysics.setExit("Dock", dock, false);
 
-        hallwayPhysicsDormitory.setExit("physicslab", physicsLaboratory, false);
-        hallwayPhysicsDormitory.setExit("dorm", dormitory, false);
+        hallwayPhysicsDormitory.setExit("Physicslab", physicsLaboratory, false);
+        hallwayPhysicsDormitory.setExit("Dorm", dormitory, false);
 
-        hallwayDormitoryMedical.setExit("medbay", medicalBay, false);
-        hallwayDormitoryMedical.setExit("dorm", dormitory, false);
+        hallwayDormitoryMedical.setExit("Medbay", medicalBay, false);
+        hallwayDormitoryMedical.setExit("Dorm", dormitory, false);
 
-        hallwayMedicalStorage.setExit("medbay", medicalBay, false);
-        hallwayMedicalStorage.setExit("storage", storage, false);
+        hallwayMedicalStorage.setExit("Medbay", medicalBay, false);
+        hallwayMedicalStorage.setExit("Storage", storage, false);
 
         // Set possible exits for hallways from the reactor
-        hallwayReactorBiology.setExit("reactor", reactor, false);
-        hallwayReactorBiology.setExit("biolab", biologyLaboratory, false);
+        hallwayReactorBiology.setExit("Reactor", reactor, false);
+        hallwayReactorBiology.setExit("Biolab", biologyLaboratory, false);
 
-        hallwayReactorControl.setExit("reactor", reactor, false);
-        hallwayReactorControl.setExit("control", controlRoom, true);
+        hallwayReactorControl.setExit("Reactor", reactor, false);
+        hallwayReactorControl.setExit("Control", controlRoom, true);
 
-        hallwayReactorDock.setExit("reactor", reactor, false);
-        hallwayReactorDock.setExit("dock", dock, false);
+        hallwayReactorDock.setExit("Reactor", reactor, false);
+        hallwayReactorDock.setExit("Dock", dock, false);
 
-        hallwayReactorPhysics.setExit("reactor", reactor, false);
-        hallwayReactorPhysics.setExit("physicslab", physicsLaboratory, false);
+        hallwayReactorPhysics.setExit("Reactor", reactor, false);
+        hallwayReactorPhysics.setExit("Physicslab", physicsLaboratory, false);
 
-        hallwayReactorDormitory.setExit("reactor", reactor, false);
-        hallwayReactorDormitory.setExit("dorm", dormitory, false);
+        hallwayReactorDormitory.setExit("Reactor", reactor, false);
+        hallwayReactorDormitory.setExit("Dorm", dormitory, false);
 
-        hallwayReactorMedical.setExit("reactor", reactor, false);
-        hallwayReactorMedical.setExit("medbay", medicalBay, false);
+        hallwayReactorMedical.setExit("Reactor", reactor, false);
+        hallwayReactorMedical.setExit("Medbay", medicalBay, false);
 
-        hallwayReactorStorage.setExit("reactor", reactor, false);
-        hallwayReactorStorage.setExit("storage", storage, false);
+        hallwayReactorStorage.setExit("Reactor", reactor, false);
+        hallwayReactorStorage.setExit("Storage", storage, false);
 
-        hallwayReactorComputer.setExit("reactor", reactor, false);
-        hallwayReactorComputer.setExit("computer", computerRoom, false);
+        hallwayReactorComputer.setExit("Reactor", reactor, false);
+        hallwayReactorComputer.setExit("Computer", computerRoom, false);
 
         // Set the possible exits for each room
-        biologyLaboratory.setExit("computer", hallwayComputerBiology, false);
-        biologyLaboratory.setExit("control", hallwayBiologyControl, false);
-        biologyLaboratory.setExit("reactor", hallwayReactorBiology, false);
+        biologyLaboratory.setExit("Computer", hallwayComputerBiology, false);
+        biologyLaboratory.setExit("Control", hallwayBiologyControl, false);
+        biologyLaboratory.setExit("Reactor", hallwayReactorBiology, false);
 
-        controlRoom.setExit("biolab", hallwayBiologyControl, true);
-        controlRoom.setExit("dock", hallwayControlDock, true);
-        controlRoom.setExit("reactor", hallwayReactorControl, true);
+        controlRoom.setExit("Biolab", hallwayBiologyControl, true);
+        controlRoom.setExit("Dock", hallwayControlDock, true);
+        controlRoom.setExit("Reactor", hallwayReactorControl, true);
 
-        dock.setExit("control", hallwayControlDock, false);
-        dock.setExit("physicslab", hallwayDockPhysics, false);
-        dock.setExit("reactor", hallwayReactorDock, false);
-        dock.setExit("pod", escapePod, true);
+        dock.setExit("Control", hallwayControlDock, false);
+        dock.setExit("Physicslab", hallwayDockPhysics, false);
+        dock.setExit("Reactor", hallwayReactorDock, false);
+        dock.setExit("Pod", escapePod, true);
 
-        physicsLaboratory.setExit("dock", hallwayDockPhysics, false);
-        physicsLaboratory.setExit("dorm", hallwayPhysicsDormitory, false);
-        physicsLaboratory.setExit("reactor", hallwayReactorPhysics, false);
+        physicsLaboratory.setExit("Dock", hallwayDockPhysics, false);
+        physicsLaboratory.setExit("Dorm", hallwayPhysicsDormitory, false);
+        physicsLaboratory.setExit("Reactor", hallwayReactorPhysics, false);
 
-        dormitory.setExit("physicslab", hallwayPhysicsDormitory, false);
-        dormitory.setExit("medbay", hallwayDormitoryMedical, false);
-        dormitory.setExit("reactor", hallwayReactorDormitory, false);
+        dormitory.setExit("Physicslab", hallwayPhysicsDormitory, false);
+        dormitory.setExit("Medbay", hallwayDormitoryMedical, false);
+        dormitory.setExit("Reactor", hallwayReactorDormitory, false);
 
-        medicalBay.setExit("dorm", hallwayDormitoryMedical, false);
-        medicalBay.setExit("storage", hallwayMedicalStorage, false);
-        medicalBay.setExit("reactor", hallwayReactorMedical, false);
+        medicalBay.setExit("Dorm", hallwayDormitoryMedical, false);
+        medicalBay.setExit("Storage", hallwayMedicalStorage, false);
+        medicalBay.setExit("Reactor", hallwayReactorMedical, false);
 
-        storage.setExit("medbay", hallwayMedicalStorage, false);
-        storage.setExit("computer", hallwayStorageComputer, false);
-        storage.setExit("reactor", hallwayReactorStorage, false);
+        storage.setExit("Medbay", hallwayMedicalStorage, false);
+        storage.setExit("Computer", hallwayStorageComputer, false);
+        storage.setExit("Reactor", hallwayReactorStorage, false);
 
-        computerRoom.setExit("storage", hallwayStorageComputer, false);
-        computerRoom.setExit("biolab", hallwayComputerBiology, false);
-        computerRoom.setExit("reactor", hallwayReactorComputer, false);
+        computerRoom.setExit("Storage", hallwayStorageComputer, false);
+        computerRoom.setExit("Biolab", hallwayComputerBiology, false);
+        computerRoom.setExit("Reactor", hallwayReactorComputer, false);
 
-        escapePod.setExit("dock", dock, false);
+        escapePod.setExit("Dock", dock, false);
 
         // Set the exits for the reactor room
-        reactor.setExit("computer", hallwayReactorComputer, false);
-        reactor.setExit("biolab", hallwayReactorBiology, false);
-        reactor.setExit("control", hallwayReactorControl, false);
-        reactor.setExit("dock", hallwayReactorDock, false);
-        reactor.setExit("physicslab", hallwayReactorPhysics, false);
-        reactor.setExit("dorm", hallwayReactorDormitory, false);
-        reactor.setExit("medbay", hallwayReactorMedical, false);
-        reactor.setExit("storage", hallwayReactorStorage, false);
+        reactor.setExit("Computer", hallwayReactorComputer, false);
+        reactor.setExit("Biolab", hallwayReactorBiology, false);
+        reactor.setExit("Control", hallwayReactorControl, false);
+        reactor.setExit("Dock", hallwayReactorDock, false);
+        reactor.setExit("Physicslab", hallwayReactorPhysics, false);
+        reactor.setExit("Dorm", hallwayReactorDormitory, false);
+        reactor.setExit("Medbay", hallwayReactorMedical, false);
+        reactor.setExit("Storage", hallwayReactorStorage, false);
 
         // Set the current room to "computer" (Possibly moved to character class)
-        characterStartRooms.put("Computer", computerRoom);
-        characterStartRooms.put("Control", controlRoom);
-        characterStartRooms.put("Dorm", dormitory);
-        characterStartRooms.put("Biolab", biologyLaboratory);
-        characterStartRooms.put("Storage", storage);
-        characterStartRooms.put("Medbay", medicalBay);
-        characterStartRooms.put("Physicslab", physicsLaboratory);
-        characterStartRooms.put("Dock", dock);
-        characterStartRooms.put("Control", controlRoom);
-        characterStartRooms.put("Reactor", reactor);
-        characterStartRooms.put("ReactorBiolab", hallwayReactorBiology);
-        characterStartRooms.put("ReactorControl", hallwayReactorControl);
-        characterStartRooms.put("ReactorDock", hallwayReactorDock);
-        characterStartRooms.put("ReactorPhysicslab", hallwayReactorPhysics);
-        characterStartRooms.put("ReactorDorm", hallwayReactorDormitory);
-        characterStartRooms.put("ReactorMedbay", hallwayReactorMedical);
-        characterStartRooms.put("ReactorStorage", hallwayReactorStorage);
-        characterStartRooms.put("ReactorComputer", hallwayReactorComputer);
-        characterStartRooms.put("StorageComputer",hallwayStorageComputer);
-        characterStartRooms.put("ComputerBiolab",hallwayComputerBiology);
-        characterStartRooms.put("BiolabControl",hallwayBiologyControl);
-        characterStartRooms.put("ControlDock",hallwayControlDock);
-        characterStartRooms.put("DockPhysicslab",hallwayDockPhysics);
-        characterStartRooms.put("PhysicslabDorm",hallwayPhysicsDormitory);
-        characterStartRooms.put("DormMedBay",hallwayDormitoryMedical);
-        characterStartRooms.put("MedBayStorage",hallwayMedicalStorage);
+        rooms.put("Computer", computerRoom);
+        rooms.put("Control", controlRoom);
+        rooms.put("Dorm", dormitory);
+        rooms.put("Biolab", biologyLaboratory);
+        rooms.put("Storage", storage);
+        rooms.put("Medbay", medicalBay);
+        rooms.put("Physicslab", physicsLaboratory);
+        rooms.put("Dock", dock);
+        rooms.put("Control", controlRoom);
+        rooms.put("Reactor", reactor);
+        rooms.put("ReactorBiolab", hallwayReactorBiology);
+        rooms.put("ReactorControl", hallwayReactorControl);
+        rooms.put("ReactorDock", hallwayReactorDock);
+        rooms.put("ReactorPhysicslab", hallwayReactorPhysics);
+        rooms.put("ReactorDorm", hallwayReactorDormitory);
+        rooms.put("ReactorMedbay", hallwayReactorMedical);
+        rooms.put("ReactorStorage", hallwayReactorStorage);
+        rooms.put("ReactorComputer", hallwayReactorComputer);
+        rooms.put("StorageComputer",hallwayStorageComputer);
+        rooms.put("ComputerBiolab",hallwayComputerBiology);
+        rooms.put("BiolabControl",hallwayBiologyControl);
+        rooms.put("ControlDock",hallwayControlDock);
+        rooms.put("DockPhysicslab",hallwayDockPhysics);
+        rooms.put("PhysicslabDorm",hallwayPhysicsDormitory);
+        rooms.put("DormMedBay",hallwayDormitoryMedical);
+        rooms.put("MedbayStorage",hallwayMedicalStorage);
+        rooms.put("Pod", escapePod);
 
         // Set the value of the win condition
         winConditionRoom = escapePod;
 
         // Set the initial positions of Zuul, hero, and tech dude
-        dormitory.setHasCharacter("Zuul", true);
-        computerRoom.setHasCharacter("Hero", true);
-        controlRoom.setHasCharacter("TechDude", true);
+//        dormitory.setHasCharacter("Zuul", true);
+//        computerRoom.setHasCharacter("Hero", true);
+//        controlRoom.setHasCharacter("TechDude", true);
 
         // Add items to the inventory of the rooms
         this.fillRoom(computerRoom);
@@ -352,8 +356,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(20, "saw"), 9);
                 room.getInventory().addItem(new Item(20, "crowbar", "smash some stuff and pretend that you are Gordon Freeman. "
                         + "This isn't Half Life 3, you dumbass!"), 7);
-                room.getInventory().addItem(new Item(20, "plasma-saw", "try to cut a hole in the wall to get away from the Zuul. Though, you end "
-                        + "up being sucked out into space, because you cannot think for shit!"), 6);
+                room.getInventory().addItem(new Item(20, "plasma-saw"), 6);
                 room.getInventory().addItem(new Item(30, "nailgun", "shoot all over the place like a stormtrooper."), 8);
                 room.getInventory().addItem(new AccessCard());
                 break;
@@ -439,11 +442,11 @@ public class Game implements IGame, Serializable{
 
     // This method creates the hero, monster, and tech dude and adds them to the array list of characters.
     private void createCharacter(int numberOfZuul) {
-        this.characters.add(new Hero(characterStartRooms.get("Computer"), "Hero"));
+        this.characters.add(new Hero(rooms.get("Computer"), "Hero"));
         for (int i = 0; i < numberOfZuul; i++) {
-            this.characters.add(new Zuul(characterStartRooms.get("Dorm"), "Zuul", 1.15));
+            this.characters.add(new Zuul(rooms.get("Dorm"), "Zuul", 1.15));
         }
-        this.characters.add(new TechDude(characterStartRooms.get("Control"), "TechDude", 0.5));
+        this.characters.add(new TechDude(rooms.get("Control"), "TechDude", 0.5));
     }
     
     private void timeAddedZuul(){
@@ -451,6 +454,7 @@ public class Game implements IGame, Serializable{
             Room randomRoom = this.randomRoom();
             this.characters.add(new Zuul(randomRoom,"Zuul",1.15,this.currentCharacter.getCharacterInitiative()));
             this.timeSinceSpawn -= spawnTime;
+            System.out.println("zuul created");
         }
         else {
             this.timeSinceSpawn += currentCharacter.getCharacterInitiative();
@@ -489,14 +493,6 @@ public class Game implements IGame, Serializable{
                 finished = healthTest();
             }
             
-            
-//            if (currentCharacter.getName().equals("TechDude")) {
-//                TechDude temp = (TechDude)currentCharacter;
-//                if (temp.isWantToTalk()) {
-//                    break;
-//                }
-//            }
-            
             currentCharacter = this.chooseCharacter();
         } while(!currentCharacter.getName().equals("Hero") && !finished);
     }
@@ -506,17 +502,17 @@ public class Game implements IGame, Serializable{
         // Print welcome message
         message += ("\n");
         message += ("Welcome to Escape Pod!\n");
-        message += ("\nYou are a software engineer in a space station. "
-                + "The emergency alarm has just gone off, and the station is under "
-                + "quarantine. You must find items and other survivors and escape "
-                + "the station through the escape pod before you are caught by what "
+        message += ("\nYou are a software engineer in a space station. \n"
+                + "The emergency alarm has just gone off, and the station is under \n"
+                + "quarantine. You must find items and other survivors and escape \n"
+                + "the station through the escape pod before you are caught by what \n"
                 + "is ravaging the station. \n"
                 + "\nYou suddenly hear a rumbling voice emanating from everywhere:\n"
                 + "\n\"We are Zuul, devourers of worlds.\"\n");
         message += ("\nPress 'Help' for more information about controls and the game.\n");
         message += ("\n");
         // Description of current room of the player, including available exits.
-        message += (characterStartRooms.get("Computer").getLongDescription() + "\n");
+        message += (rooms.get("Computer").getLongDescription() + "\n");
     }
 
     // This method processes the command of the player (returns true if player wants to quit)
@@ -610,16 +606,17 @@ public class Game implements IGame, Serializable{
                                 if (character.getName().equals("TechDude")) {
                                     TechDude techDude = (TechDude)character;
 
-                                    Boolean isFollowingBefore = techDude.isFollowsHero();
+                                    Boolean isFollowingBefore = techDude.followsHero();
                                     character.performCommand(command);
-                                    boolean isFollowingAfter = techDude.isFollowsHero();
+                                    boolean isFollowingAfter = techDude.followsHero();
+                                    tempHero.setPreviousCommand(command.getCommandWord().toString());
                                     
-                                    tempHero.setTalking(techDude.isWantToTalk());
+                                    tempHero.setTalking(techDude.wantsToTalk());
                                     
                                     if (!isFollowingAfter && isFollowingBefore) {
                                         Character hero = null;
                                         
-                                        techDude.followsHero(hero, false);
+                                        techDude.setFollowsHero(hero, false);
                                         LogicFacade.appendMessage("Tech dude no longer follows you.");
                                         
                                     }
@@ -633,7 +630,7 @@ public class Game implements IGame, Serializable{
                                         }
                                         
                                         LogicFacade.appendMessage("Tech dude is now following you");
-                                        techDude.followsHero(hero, true);
+                                        techDude.setFollowsHero(hero, true);
                                     }
                                     else {
                                     }
@@ -737,7 +734,7 @@ public class Game implements IGame, Serializable{
         for (Character character : characters) {
             if (character.getName().equals("TechDude")) {
                 TechDude temp = (TechDude)character;
-                if (temp.isFollowsHero()) {
+                if (temp.followsHero()) {
                     techDudeIsThere = true;
                 }
             }
@@ -753,6 +750,10 @@ public class Game implements IGame, Serializable{
                 }
                 LogicFacade.appendMessage("Congratulations, you escaped the space station. You won.");
                 System.out.printf("You got %1.2f points\n", point);
+                point = ((int)(point*100))/100.0;
+                
+                LogicFacade.appendMessage("You got " + point +" points\n");
+
                 break;
             case "lose":    // If the player is killed by Zuul, print message
                 if (techDudeIsThere) {
@@ -895,24 +896,34 @@ public class Game implements IGame, Serializable{
         return false;
     }
 
-    public Character getCurrentCharacter() {
+    Character getCurrentCharacter() {
         return currentCharacter;
     }
 
-    public boolean isFinished() {
+    boolean isFinished() {
         return finished;
     }
     
-    private Room randomRoom(){
-        ArrayList<Entry<String,Room>> allRooms = new ArrayList<>(this.characterStartRooms.entrySet());
-        int randomRoomKeyIndex = (int)(Math.random()*allRooms.size());
-        Room randomRoom = allRooms.get(randomRoomKeyIndex).getValue();
+    private Room randomRoom(){       
+        Set<String> allRooms = new HashSet<>(this.rooms.keySet());
+        allRooms.remove("Pod");
         
+        for (Character character : characters) {
+            if (character instanceof Zuul) {
+                allRooms.remove(character.getCurrentRoom().getName());
+            }
+        }
+        
+        int randomRoomKeyIndex = (int)(Math.random()*allRooms.size());       
+        
+        List<String> allRoomsList = new ArrayList<>(allRooms);
+        String randomRoomKey = allRoomsList.get(randomRoomKeyIndex);
+        Room randomRoom = rooms.get(randomRoomKey);
         return randomRoom;
     }
 
-    HashMap<String, Room> getCharacterStartRooms() {
-        return characterStartRooms;
+    HashMap<String, Room> getRooms() {
+        return rooms;
     }
     
     void appendMessage(String appendMessage){
@@ -934,6 +945,17 @@ public class Game implements IGame, Serializable{
             talking = false;
         }
         return talking;
+    }
+    
+    ArrayList<String> charactersInRoom(IRoom room){
+        Room tempRoom = rooms.get(room.getName());
+        ArrayList<String> charactersInRoom = tempRoom.getCharacterInRoom();
+        return charactersInRoom;
+    }
+    
+    String getCurrentRoomName(){
+        String roomName = this.currentCharacter.getCurrentRoom().getName();
+        return roomName;
     }
     
 }

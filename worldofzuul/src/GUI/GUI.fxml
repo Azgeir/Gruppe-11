@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -14,7 +8,6 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -24,7 +17,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GUIController">
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GUIController">
    <children>
       <GridPane fx:id="outerSpace" disable="true" prefHeight="750.0" prefWidth="750.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -112,10 +105,13 @@
                                     </GridPane>
                                  </bottom>
                                  <center>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <StackPane prefHeight="150.0" prefWidth="200.0">
                                        <children>
-                                          <FlowPane fx:id="characterPaneStorageComputer" prefHeight="200.0" prefWidth="200.0" />
+                                          <FlowPane fx:id="characterPaneStorageComputer" layoutX="-7.0" layoutY="446.0" prefHeight="0.0" prefWidth="140.0" rotate="-180.0" rowValignment="BASELINE" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets bottom="20.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -167,10 +163,13 @@
                                     </GridPane>
                                  </bottom>
                                  <center>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <StackPane prefHeight="150.0" prefWidth="200.0">
                                        <children>
                                           <FlowPane fx:id="characterPaneDormMedbay" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets bottom="20.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -224,8 +223,11 @@
                                  <center>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <FlowPane fx:id="characterPaneDockPhysicslab" prefHeight="200.0" prefWidth="200.0" />
+                                          <FlowPane fx:id="characterPaneDockPhysicslab" prefHeight="200.0" prefWidth="200.0" rotate="-180.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets bottom="20.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -281,6 +283,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPaneBiolabControl" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets bottom="20.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -336,6 +341,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPanePhysicslabDorm" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets bottom="20.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -391,6 +399,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPaneMedbayStorage" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets bottom="20.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -446,6 +457,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPaneControlDock" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets bottom="20.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -499,7 +513,10 @@
                                  <center>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <FlowPane fx:id="characterPaneComputerBiolab" prefHeight="200.0" prefWidth="200.0" />
+                                          <FlowPane fx:id="characterPaneComputerBiolab" prefHeight="200.0" prefWidth="200.0">
+                                             <StackPane.margin>
+                                                <Insets bottom="20.0" />
+                                             </StackPane.margin></FlowPane>
                                        </children>
                                     </StackPane>
                                  </center>
@@ -554,7 +571,7 @@
                                  <center>
                                     <StackPane fx:id="RoomComputerStackPane" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <FlowPane fx:id="characterflowPaneComputer" alignment="BOTTOM_LEFT" orientation="VERTICAL" prefHeight="80.0" prefWidth="200.0" />
+                                          <FlowPane fx:id="characterPaneComputer" alignment="BOTTOM_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="10.0" prefWidth="100.0" />
                                        </children>
                                     </StackPane>
                                  </center>
@@ -607,10 +624,13 @@
                                     </GridPane>
                                  </bottom>
                                  <center>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="10.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <FlowPane fx:id="characterflowPaneBiolab" alignment="BOTTOM_CENTER" prefHeight="80.0" prefWidth="200.0" />
+                                          <FlowPane fx:id="characterPaneBiolab" alignment="BOTTOM_CENTER" prefHeight="80.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets bottom="30.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -649,7 +669,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane fx:id="roomStorage" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomStorage" layoutY="600.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -704,7 +724,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane fx:id="roomMedbay" layoutX="149.0" layoutY="1050.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomMedbay" layoutX="149.0" layoutY="1050.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -759,7 +779,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane fx:id="roomDorm" layoutX="600.0" layoutY="1200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomDorm" layoutX="600.0" layoutY="1200.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -814,7 +834,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane fx:id="roomPhysicslab" layoutX="1050.0" layoutY="1050.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomPhysicslab" layoutX="1050.0" layoutY="1050.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -827,7 +847,7 @@
                                     </GridPane>
                                  </bottom>
                                  <center>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                    <StackPane prefHeight="150.0" prefWidth="200.0">
                                        <children>
                                           <FlowPane fx:id="characterPanePhysicslab" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
@@ -869,7 +889,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane fx:id="roomDock" layoutX="1200.0" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomDock" layoutX="1200.0" layoutY="600.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -924,7 +944,7 @@
                                     </GridPane>
                                  </top>
                               </BorderPane>
-                              <BorderPane fx:id="roomReactor" layoutX="600.0" layoutY="600.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomReactor" layoutX="600.0" layoutY="600.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -936,25 +956,6 @@
                                        </rowConstraints>
                                     </GridPane>
                                  </bottom>
-                                 <center>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                       <children>
-                                          <FlowPane fx:id="characterPaneReactor" prefHeight="200.0" prefWidth="200.0" />
-                                       </children>
-                                    </StackPane>
-                                 </center>
-                                 <left>
-                                    <GridPane BorderPane.alignment="CENTER">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                 </left>
                                  <right>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -978,8 +979,30 @@
                                        </rowConstraints>
                                     </GridPane>
                                  </top>
+                                 <left>
+                                    <GridPane BorderPane.alignment="CENTER">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </left>
+                                 <center>
+                                    <FlowPane fx:id="characterPaneReactor" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <padding>
+                                          <Insets left="50.0" />
+                                       </padding>
+                                       <BorderPane.margin>
+                                          <Insets left="90.0" top="50.0" />
+                                       </BorderPane.margin>
+                                    </FlowPane>
+                                 </center>
                               </BorderPane>
-                              <BorderPane fx:id="roomControl" layoutX="1050.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
+                              <BorderPane fx:id="roomControl" layoutX="1050.0" layoutY="150.0" maxHeight="200.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" rotate="45.0" style="-fx-border-color: black;">
                                  <bottom>
                                     <GridPane BorderPane.alignment="CENTER">
                                        <columnConstraints>
@@ -996,6 +1019,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPaneControl" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets top="60.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -1051,6 +1077,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPaneReactorBiolab" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets right="10.0" top="200.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -1106,6 +1135,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPaneReactorDock" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets bottom="20.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -1161,6 +1193,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPaneReactorStorage" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets bottom="20.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -1216,6 +1251,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPaneReactorDorm" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets bottom="20.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -1271,6 +1309,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPaneReactorControl" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets right="15.0" top="200.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -1326,6 +1367,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPaneReactorMedbay" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets right="15.0" top="100.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -1381,6 +1425,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPaneReactorComputer" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets right="15.0" top="100.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -1436,6 +1483,9 @@
                                        <children>
                                           <FlowPane fx:id="characterPaneReactorPhysicslab" prefHeight="200.0" prefWidth="200.0" />
                                        </children>
+                                       <BorderPane.margin>
+                                          <Insets right="15.0" top="100.0" />
+                                       </BorderPane.margin>
                                     </StackPane>
                                  </center>
                                  <left>
@@ -1489,8 +1539,11 @@
                                  <center>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <FlowPane fx:id="characterPanePod" prefHeight="200.0" prefWidth="200.0" />
+                                          <FlowPane fx:id="characterPanePod" prefHeight="200.0" prefWidth="200.0" rotate="90.0" />
                                        </children>
+                                       <padding>
+                                          <Insets bottom="20.0" right="10.0" />
+                                       </padding>
                                     </StackPane>
                                  </center>
                                  <left>

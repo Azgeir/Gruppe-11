@@ -38,6 +38,8 @@ class Hero extends Character implements Serializable {
     private boolean reactorActivated = false;
     private Set<String> knownRooms;
     private boolean talking;
+    private String previousCommand;
+    
 
     /**
      * This constructor creates a Hero object with the specified current room
@@ -103,12 +105,12 @@ class Hero extends Character implements Serializable {
         // If the specified exit exists and is not locked, move character
         else {
             // Remove character from current room
-            this.getCurrentRoom().setHasCharacter(this.getName(), false);
+            this.getCurrentRoom().removeCharacterInRoom(this.getName());
             this.knownRooms.clear();
             // Change the value of currentRoom to the specified neighbouring room
             this.setCurrentRoom(nextRoom);
             // Add character to the new current room
-            this.getCurrentRoom().setHasCharacter(this.getName(), true);
+            this.getCurrentRoom().addCharacterInRoom(this.getName());
             this.knownRooms.add(this.getCurrentRoom().getName());
             // Print description of the current room
             LogicFacade.appendMessage(this.getCurrentRoom().getLongDescription());
@@ -300,6 +302,9 @@ class Hero extends Character implements Serializable {
         String direction = command.getSecondWord();
 
         boolean zuulNearby = false;
+        
+        this.knownRooms.clear();
+        this.knownRooms.add(this.getCurrentRoom().getName());
 
         if (this.getCurrentRoom().hasCharacter("Zuul")) {
             LogicFacade.appendMessage("Zuul is in this room, you idiot.");
@@ -320,7 +325,7 @@ class Hero extends Character implements Serializable {
                 this.knownRooms.add(neighbor.getExit(direction).getName());
 //                    neighbor.getHasCharacter("Zuul")) {
                 if (neighbor.getExit(direction).hasCharacter("Zuul")) {
-                    LogicFacade.appendMessage("Zuul is " + neighbor.getShortDescription());
+                    LogicFacade.appendMessage("Zuul is " + neighbor.getExit(direction).getShortDescription());
                     zuulNearby = true;
 
                 }
@@ -450,7 +455,13 @@ class Hero extends Character implements Serializable {
                     word3 = tokenizer.next();
                 }
                 else if (word1.equals("talk")){
-                    word3 = "TRUE";
+                    if (previousCommand.equals("talk")) {
+                        word3 = "TRUE";
+                    }
+                    else {
+                        word3 = "FALSE";
+                    }
+                    
                 }
             }
         }
@@ -511,9 +522,9 @@ class Hero extends Character implements Serializable {
             LogicFacade.appendMessage("Activate what?");
             return Double.MAX_VALUE;
         }
-        if (command.getSecondWord().equals("reactor")) {
+        if (command.getSecondWord().equals("Reactor")) {
 
-            if (this.getCurrentRoom().getName().equals("reactor")) {
+            if (this.getCurrentRoom().getName().equals("Reactor")) {
                 if (this.getCurrentRoom().hasCharacter("TechDude")) {
                     if (!reactorActivated) {
                         LogicFacade.appendMessage("You activated the reactor. The space station will self-destruct in 10 turns.");
@@ -614,13 +625,13 @@ class Hero extends Character implements Serializable {
                 // If command is "activate", set MaxInitiative to the return value of the activate() method
                 case ACTIVATE:
                     return this.activate(command, reactorActivated);
-                    
                 // If command does not match any of the options, break.
                 default:
                     break;
             }
         }
         // Return boolean value (false = continue playing; true = quit game)
+        previousCommand = commandWord.toString();
         return 0;
     }
 
@@ -635,6 +646,16 @@ class Hero extends Character implements Serializable {
     public void setTalking(boolean talking) {
         this.talking = talking;
     }
+
+    public String getPreviousCommand() {
+        return previousCommand;
+    }
+
+    public void setPreviousCommand(String previousCommand) {
+        this.previousCommand = previousCommand;
+    }
+    
+    
     
     
     

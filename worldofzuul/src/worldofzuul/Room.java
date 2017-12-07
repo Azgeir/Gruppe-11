@@ -3,6 +3,7 @@ package worldofzuul;
 // Imports:
 import Acquaintance.IRoom;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -39,6 +40,7 @@ public class Room implements Serializable, IRoom {
     private Inventory inventory;
     private String name;
     private HashMap<String,Boolean> hasCharacter = new HashMap<>();
+    private ArrayList<String> charactersInRoom;
     private boolean hasBeenLookedUpon;
     
     /**
@@ -55,6 +57,7 @@ public class Room implements Serializable, IRoom {
         // Create HashMaps for exits
         this.exits = new HashMap<String, Room>();
         this.lockedExits = new HashMap<String, Boolean>();
+        this.charactersInRoom = new ArrayList<>();
         /*
         Create an inventory for the room with a standard capacity (int max
         value).
@@ -284,7 +287,7 @@ public class Room implements Serializable, IRoom {
      * present in the room; true indicates that the room contains the character,
      * while false indicates that the character is not in the room.
      */
-    void setHasCharacter(String character, boolean presence){
+    private void setHasCharacter(String character, boolean presence){
         this.hasCharacter.put(character, presence);
     }
 
@@ -313,4 +316,24 @@ public class Room implements Serializable, IRoom {
     void setHasBeenLookedUpon(boolean hasBeenLookedUpon) {
         this.hasBeenLookedUpon = hasBeenLookedUpon;
     } 
+    
+    void addCharacterInRoom(String character){
+        this.charactersInRoom.add(character);
+        this.setHasCharacter(character, true);
+    }
+    
+    void removeCharacterInRoom(String character){
+        this.charactersInRoom.remove(character);
+        if (this.charactersInRoom.contains(character)) {
+            this.setHasCharacter(character, true);
+        }
+        else {
+            this.setHasCharacter(character, false);
+        }
+        
+    }
+    
+    ArrayList<String> getCharacterInRoom(){
+        return this.charactersInRoom;
+    }
 }

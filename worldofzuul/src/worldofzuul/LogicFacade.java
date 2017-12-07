@@ -7,6 +7,7 @@
 package worldofzuul;
 
 import Acquaintance.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -277,5 +278,16 @@ public class LogicFacade implements ILogicFacade {
     public boolean isTalking(){
         boolean talking = game.isTalking();
         return talking;
+    }
+    
+    @Override
+    public Collection<String> charactersInRoom(IRoom room){
+        return game.charactersInRoom(room);
+    }
+    
+    @Override
+    public String getCurrentRoomName(){
+        String roomName = game.getCurrentRoomName();
+        return roomName;
     }
 }

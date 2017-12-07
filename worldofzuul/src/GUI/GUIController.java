@@ -9,6 +9,8 @@ import Acquaintance.IHighscore;
 import Acquaintance.IScore;
 import java.io.File;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -184,7 +186,9 @@ public class GUIController {
     private FlowPane characterPaneControlDock;
     @FXML
     private FlowPane characterPaneComputerBiolab;
+    @FXML
     private FlowPane characterPaneComputer;
+    @FXML
     private FlowPane characterPaneBiolab;
     @FXML
     private FlowPane characterPaneStorage;
@@ -221,10 +225,6 @@ public class GUIController {
     @FXML
     private FlowPane characterPaneReactor;
     @FXML
-    private FlowPane characterflowPaneComputer;
-    @FXML
-    private FlowPane characterflowPaneBiolab;
-    @FXML
     private Slider spawnTimeSlider;
     @FXML
     private Slider numberOfZuulSlider;
@@ -252,13 +252,12 @@ public class GUIController {
         fillButtons(startScreen);
         fillButton(backToStartScreenButton);
         
-        this.numberOfZuulSlider.getStylesheets().add("GUI/test.css");
+        this.numberOfZuulSlider.getStylesheets().add("GUI/Slider.css");
         this.numberOfZuulSlider.getStyleClass().add("Slider");
-        this.spawnTimeSlider.getStylesheets().add("GUI/test.css");
+        this.spawnTimeSlider.getStylesheets().add("GUI/Slider.css");
         this.spawnTimeSlider.getStyleClass().add("Slider"); 
         
 
-        this.highscoreLabel.setText("rank: 1\tplayer: derp\tscore: 0\nrank: 2\tplayer: derp\tscore: 0\nrank: 3\tplayer: derp\tscore: 0\nrank: 4\tplayer: derp\tscore: 0\nrank: 5\tplayer: derp\tscore: 0\nrank: 6\tplayer: derp\tscore: 0\nrank: 7\tplayer: derp\tscore: 0\nrank: 8\tplayer: derp\tscore: 0\nrank: 9\tplayer: derp\tscore: 0\nrank: 10\tplayer: derp\tscore: 0\n");
         String highscoreString = this.loadAndFormatHighscore();
         this.highscoreLabel.setText(highscoreString);
       // WORKS
@@ -272,24 +271,7 @@ public class GUIController {
 //        this.RoomComputer.getChildren().add(derp);
 //        this.RoomComputerStackPane.getChildren().add(derp);
 //
-        Image herp1 = new Image("Pictures/Zuul Transparant.png");
-        ImageView derp1 = new ImageView(herp1);
-        derp1.setFitHeight(60);
-        derp1.setFitWidth(60);
-//                this.characterflowPaneComputer.getChildren().add(derp1);
-                
-        Image transdude = new Image("Pictures/TechDude Transparant.png");
-        ImageView techdude = new ImageView(transdude);
-        techdude.setFitHeight(40);
-        techdude.setFitWidth(40);
-//                this.characterflowPaneComputer.getChildren().add(techdude);
-//        this.RoomComputerStackPane.getChildren().add(derp1);
-//        this.characterPaneComputer.getChildren().add(derp1);
-        Image transhero = new Image("Pictures/Hero Transparant.png");
-        ImageView hero = new ImageView(transhero);
-        hero.setFitHeight(40);
-        hero.setFitWidth(40);
-//                this.characterflowPaneComputer.getChildren().add(hero);
+
         // WORKS END
 //        Image[] derpArray = {herp};
 //        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -299,6 +281,90 @@ public class GUIController {
 //        this.RoomComputer.setBackg round(new Background(backDerpArray));
 //        this.characterflowPaneComputer.setStyle("-fx-background-image: derp");
         this.createRooms();
+//        this.setRoomBackgrounds();
+    }
+    
+    private void setCharactersPeek(){
+        
+        for (RoomGUI room : rooms.values()) {
+            ArrayList<ImageView> characterImages = new ArrayList<>();
+            
+            int i = 0;
+            room.getCharacterLocation().getChildren().clear();
+            if (GUIFacade.isRoomKnown(room)) {
+                Collection<String> characters = GUIFacade.charactersInRoom(room);
+                if (characters.size() != 0) {
+                    for (String character : characters) {
+                        if (character.equals("Zuul")) {
+                            characterImages.add(new ImageView(new Image("Pictures/Zuul Transparant.png")));
+                            characterImages.get(i).setFitHeight(35);
+                            characterImages.get(i).setFitWidth(30);
+                            
+                            room.getCharacterLocation().getChildren().add(characterImages.get(i));
+                            i++;
+                        }
+                        else if (character.equals("Hero")) {
+                            characterImages.add(new ImageView(new Image("Pictures/Hero Transparant.png")));
+                            characterImages.get(i).setFitHeight(35);
+                            characterImages.get(i).setFitWidth(30);
+                            
+                            room.getCharacterLocation().getChildren().add(characterImages.get(i));
+                            i++;
+                        }
+                        else {
+                            characterImages.add(new ImageView(new Image("Pictures/TechDude Transparant.png")));
+                            characterImages.get(i).setFitHeight(35);
+                            characterImages.get(i).setFitWidth(30);
+                            
+                            room.getCharacterLocation().getChildren().add(characterImages.get(i));
+                            i++;
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private void setCharacterCurrentRoom(){
+        String roomName = GUIFacade.getCurrentRoomName();
+        RoomGUI room = this.rooms.get(roomName);
+        
+        ArrayList<ImageView> characterImages = new ArrayList<>();
+        int i = 0;
+        room.getCharacterLocation().getChildren().clear();
+        if (GUIFacade.isRoomKnown(room)) {
+            Collection<String> characters = GUIFacade.charactersInRoom(room);
+            if (characters.size() != 0) {
+                for (String character : characters) {
+                    if (character.equals("Zuul")) {
+                        characterImages.add(new ImageView(new Image("Pictures/Zuul Transparant.png")));
+                        characterImages.get(i).setFitHeight(35);
+                        characterImages.get(i).setFitWidth(30);
+                        
+                        room.getCharacterLocation().getChildren().add(characterImages.get(i));
+                        i++;
+                    }
+                    else if (character.equals("Hero")) {
+                        characterImages.add(new ImageView(new Image("Pictures/Hero Transparant.png")));
+                        characterImages.get(i).setFitHeight(35);
+                        characterImages.get(i).setFitWidth(30);
+                        
+                        room.getCharacterLocation().getChildren().add(characterImages.get(i));
+                        i++;
+                    }
+                    else {
+                        characterImages.add(new ImageView(new Image("Pictures/TechDude Transparant.png")));
+                        characterImages.get(i).setFitHeight(35);
+                        characterImages.get(i).setFitWidth(30);
+                        
+                        room.getCharacterLocation().getChildren().add(characterImages.get(i));
+                        i++;
+                    }
+                }
+            }
+        }
+        
     }
     
     private void setRoomBackgrounds(){
@@ -349,6 +415,7 @@ public class GUIController {
         } else {
             this.labelMessageField.setText("choose something to pickup from the dropbox");
         }
+        this.setCharacterCurrentRoom();
         this.isGameFinished();
     }
  
@@ -369,16 +436,18 @@ public class GUIController {
         } else {
             this.labelMessageField.setText("choose something to use from the dropbox");
         }
+        this.setCharacterCurrentRoom();
         this.isGameFinished();
 //        game.play("use");
     }
 
     @FXML
     private void activateButtonHandler(ActionEvent event) {
-        String command = "activate reactor";
+        String command = "activate Reactor";
         GUIFacade.sendCommand(command);
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
+        this.setCharacterCurrentRoom();
         this.isGameFinished();
     }
 
@@ -394,6 +463,7 @@ public class GUIController {
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
         this.updateAllDropdown();
+        this.setCharacterCurrentRoom();
         this.isGameFinished();
 //        game.play("talk");
     }
@@ -404,6 +474,7 @@ public class GUIController {
         GUIFacade.sendCommand(command);
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
+        this.setCharacterCurrentRoom();
         this.isGameFinished();
 //        game.play("quit");
     }
@@ -414,6 +485,7 @@ public class GUIController {
         GUIFacade.sendCommand(command);
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
+        this.setCharacterCurrentRoom();
         this.isGameFinished();
 //        game.play("help");
     }
@@ -424,6 +496,7 @@ public class GUIController {
         GUIFacade.sendCommand(command);
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
+        this.setCharacterCurrentRoom();
         this.isGameFinished();
 //        game.play("stay");
     }
@@ -436,6 +509,7 @@ public class GUIController {
         this.labelMessageField.setText(message);
         
         this.updateAllDropdown();
+        this.setCharacterCurrentRoom();
         this.isGameFinished();
 
 //        game.play(command);
@@ -446,6 +520,7 @@ public class GUIController {
         GUIFacade.saveGame();
 
         this.labelMessageField.setText("You saved the game");
+        this.setCharacterCurrentRoom();
         this.isGameFinished();
     }
 
@@ -466,6 +541,7 @@ public class GUIController {
         } else {
             this.labelMessageField.setText("choose something to drop from the dropbox");
         }
+        this.setCharacterCurrentRoom();
         this.isGameFinished();
     }
 
@@ -483,12 +559,11 @@ public class GUIController {
             
             this.setRoomBackgrounds();
             this.updateAllDropdown();
-
+            this.setCharactersPeek();
 //            game.play(command);
         } else {
             this.labelMessageField.setText("choose a direction from the dropbox");
         }
-
         this.isGameFinished();
 
     }
@@ -505,9 +580,11 @@ public class GUIController {
             String message = GUIFacade.readAndDeleteGameMessage();
             this.labelMessageField.setText(message);
             this.setRoomBackgrounds();
+            this.setCharactersPeek();
 //            game.play(command);
         } else {
             this.labelMessageField.setText("choose a direction from the dropbox");
+            this.setCharacterCurrentRoom();
         }
         this.isGameFinished();
 
@@ -528,7 +605,7 @@ public class GUIController {
         } else {
             this.labelMessageField.setText("choose a direction from the dropbox");
         }
-
+        this.setCharacterCurrentRoom();
         this.isGameFinished();
     }
 
@@ -547,6 +624,7 @@ public class GUIController {
         } else {
             this.labelMessageField.setText("choose a direction from the dropbox");
         }
+        this.setCharacterCurrentRoom();
         this.isGameFinished();
     }
 
@@ -580,6 +658,8 @@ public class GUIController {
 
     @FXML
     private void startButtonActionEvent(ActionEvent event) {
+
+        
         int numberOfZuulAtStart = (int)this.numberOfZuulSlider.getValue();
         double spawnTime = (int)this.spawnTimeSlider.getValue();
         String name = this.textfieldPlayerName.getText();
@@ -595,8 +675,8 @@ public class GUIController {
 
         this.switchScreen(startScreen, outerSpace);
         this.setRoomBackgrounds();
+        this.setCharactersPeek();
 
-        
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
         
@@ -635,6 +715,7 @@ public class GUIController {
         
         this.updateAllDropdown();
         this.setRoomBackgrounds();
+        this.setCharactersPeek();
     }
 
     private void switchScreen(Pane from, Pane to) {
@@ -676,15 +757,15 @@ public class GUIController {
         this.updateDropdownBackground(goDropDown);
 
         if (GUIFacade.isTalking()) {
+            this.useDropDown.setDisable(true);
+            this.pickupDropDown.setDisable(true);
+            this.useDropDown.setValue(null);
+            this.pickupDropDown.setValue(null);
             this.numberBox.getItems().clear();
             this.numberBox.getItems().add("3");
             this.numberBox.getItems().add("2");
             this.numberBox.getItems().add("1");
             this.numberBox.setValue("1");
-            this.useDropDown.setDisable(true);
-            this.pickupDropDown.setDisable(true);
-            this.useDropDown.setValue(null);
-            this.pickupDropDown.setValue(null);
         }
         else {
             this.useDropDown.setDisable(false);
@@ -697,7 +778,8 @@ public class GUIController {
     private String loadAndFormatHighscore() {
         IHighscore highscore = GUIFacade.loadHighscore();
         IScore[] scores = highscore.getScores();
-
+        boolean hasScores = false;
+        
         String highscoreString = "";
 
         for (int i = 0; i < scores.length; i++) {
@@ -707,10 +789,18 @@ public class GUIController {
                 highscoreString += "Rank: " + (i + 1) + "\t";
                 highscoreString += "Player: " + score.getName() + "\t";
                 highscoreString += "Score: " + ((int) (score.getScore() * 100)) / 100.0 + "\n";
+                hasScores = true;
             } else {
                 break;
             }
         }
+        
+        if (!hasScores) {
+            for (int i = 1; i <= 10; i++) {
+                highscoreString += "rank: "+ i +"\tplayer: derp\tscore: 0\n";
+            }
+        }
+        
         return highscoreString;
     }
 

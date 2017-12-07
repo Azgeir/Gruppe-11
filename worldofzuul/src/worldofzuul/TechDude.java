@@ -3,71 +3,115 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+// The class is located in the logic layer.
 package worldofzuul;
 
+// Import:
 import java.io.Serializable;
 
 /**
- *
+ * This class represents the tech dude. The class extends the superclass
+ * Character since tech dude is a character. The class also implements the
+ * interface Serializable.
+ * 
  * @author HCHB
  */
 
-// This class represents the tech dude
-public class TechDude extends Character implements Serializable {
-    // Data fields:
-    private boolean followsHero = false; // This boolean value indicates if the tech dude has met hero
-    private int health = 10; // Tech dude's health
-    private Character hero; // Tech dude's hero
+class TechDude extends Character implements Serializable {
+    
+    /**
+     * Data fields.
+     * followsHero: boolean value that indicates whether tech dude is following
+     * the hero. This is initially set to false, as the tech dude does not
+     * follow the hero at the start of the game.
+     * 
+     * hero: instance of Character that represents the hero.
+     * 
+     * hostility: integer value that represents the tech dude's hostility. This
+     * is used when conversing with the hero. If the hero offends the tech dude,
+     * his hostility increases. Eventually, tech dude will no longer engage in
+     * conversation with the hero. The value is initially set to 0, as the hero
+     * has not yet offended the tech dude.
+     * 
+     * metHero: boolean value that indicates whether tech dude has met the
+     * hero. This is initially set to false, as tech dude has not met the hero
+     * at the start of the game.
+     * 
+     * wantsToTalk: boolean value that indicates whether the tech dude wants to
+     * talk to the hero.
+     * 
+     * counter: integer value that indicates how far the conversation with the
+     * hero has progressed.
+     * 
+     * isTalking: boolean value that indicates whether tech dude is currently
+     * talking to the hero.
+     */
+    private boolean followsHero = false;
+    private Character hero = null;
     private int hostility = 0;
-    private boolean metHero;
-    
-    private boolean wantToTalk = false;
+    private boolean metHero = false;
+    private boolean wantsToTalk = false;
     private int counter = 1;
+    private boolean isTalking = false;
 
-
-    
-    // (£) This is an empty no-arg constructor
+    /**
+     * This is an empty no-arg constructor. This is provided in case the class
+     * will be extended at a later point.
+     */
     TechDude() {
     }
     
-    // This constructor creates a tech dude with the specified current room and name
-    TechDude(Room currentRoom, String name){
+    /**
+     * This constructor creates a tech dude with the specified current room and
+     * name. The constructor calls the constructor of the Character superclass
+     * (constructor chaining).
+     * 
+     * @param currentRoom current room of tech dude
+     * @param name name of tech dude (i.e. "TechDude")
+     */
+    TechDude(Room currentRoom, String name) {
         super(currentRoom, name);
-        metHero = false;
 }
-    // This constructor creates a tech dude with the specified current room, name, and speed factor.
-    TechDude(Room currentRoom, String name, double speedFactor){
+    /**
+     * This constructor creates a tech dude with the specified current room,
+     * name, and speed factor. The constructor calls the constructor of the
+     * Character superclass (constructor chaining).
+     * 
+     * @param currentRoom current room of tech dude
+     * @param name name of tech dude (i.e. "TechDude")
+     * @param speedFactor speed factor of tech dude
+     */
+    TechDude(Room currentRoom, String name, double speedFactor) {
         super(currentRoom, name, speedFactor);
-        metHero = false;
     }
     
-    // This constructor creates a tech dude with the specified current room, name, speed factor, and health.
-    TechDude(Room currentRoom, String name, double speedFactor, int health){
-        this(currentRoom, name, speedFactor);
-        this.health = health;
+    /**
+     * This method is used to check whether tech dude is following the hero.
+     * 
+     * @return true if tech dude follows the hero; else it returns false.
+     */
+    boolean followsHero() {
+        return this.followsHero;
     }
     
-    /* This method overrides the original method because TechDude does not change
-    room according to his own command input.
-    Set and get methods are used because the attributes are private in the superclass
-    */
-    @Override
-    // This method changes the current room of tech dude to that of hero
-    void go(Command command){
-        // Remove tech dude from current room
-        this.getCurrentRoom().setHasCharacter(this.getName(), false);
-        // Change current room of tech dude to current room of hero.
-        this.setCurrentRoom(this.hero.getCurrentRoom());
-        // Add tech dude to the new current room
-        this.getCurrentRoom().setHasCharacter(this.getName(), true);
-        // Set character initiative
-        this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
+    /**
+     * This method is used to check whether the tech dude wants to talk to
+     * the hero.
+     * 
+     * @return true if tech dude wants to talk to hero; else it returns false.
+     */
+    boolean wantsToTalk() {
+        return this.wantsToTalk;
     }
     
-    // This method helps in defining what commands should be chosen when it is 
-    // the tech dude's turn.
-//    @Override
-    void followsHero(Character hero, boolean follows){
+    /**
+     * This method helps in defining what commands should be chosen when it is the tech dude's turn.
+     * 
+     * @param hero
+     * @param follows 
+     */
+    void setFollowsHero(Character hero, boolean follows) {
         // Set data fields
         metHero = true;
         if (follows){
@@ -93,7 +137,7 @@ public class TechDude extends Character implements Serializable {
             word2 = null;
             word3 = null;
             metHero = true;
-            wantToTalk = true;
+            wantsToTalk = true;
             return new Command(commands.getCommandWord(word1), word2, word3);
         }
         // If tech dude has not met the hero, return "stay" command
@@ -111,14 +155,9 @@ public class TechDude extends Character implements Serializable {
             return new Command(commands.getCommandWord(word1), word2, word3);
         }
     }
-
-//    @Override
-    boolean isFollowsHero() {
-        return followsHero;
-    }
     
     @Override
-    public double performCommand(Command command) {
+    double performCommand(Command command) {
         // Create instance of CommandWord using the command word of the specified command (from Parser)
         CommandWord commandWord = command.getCommandWord();
         
@@ -144,11 +183,31 @@ public class TechDude extends Character implements Serializable {
         return 0;
     }
     
+    /**
+     * This method overrides the original method because TechDude does not
+     * change room according to his own command input. Set and get methods are
+     * used because the attributes are private in the superclass.
+     * 
+     * @param command 
+     */
+    @Override
+    // This method changes the current room of tech dude to that of hero
+    void go(Command command){
+        // Remove tech dude from current room
+        this.getCurrentRoom().removeCharacterInRoom(this.getName());
+        // Change current room of tech dude to current room of hero.
+        this.setCurrentRoom(this.hero.getCurrentRoom());
+        // Add tech dude to the new current room
+        this.getCurrentRoom().addCharacterInRoom(this.getName());
+        // Set character initiative
+        this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
+    }
+    
     private void talk(Command command){
         Conversation talk = new Conversation();
-
+        boolean validAnswer = true;
+        
         if (this.hostility < 3) {
-            
             int number = -1;
             if (command.hasSecondWord()) {
                 try {
@@ -159,19 +218,28 @@ public class TechDude extends Character implements Serializable {
                 }
                 if (command.hasThirdWord()) {
                     try {
-                        wantToTalk = Boolean.parseBoolean(command.getThirdWord());
+                        if (wantsToTalk) {
+                            isTalking = Boolean.parseBoolean(command.getThirdWord());
+                        }
+                        wantsToTalk = true;
+
+                        if (!isTalking) {
+                            counter = 1;
+                            isTalking = false;
+                        }
                     }
                     catch (NumberFormatException ex) {
                         LogicFacade.appendMessage("The input wasn't a boolean");
+//                        isTalking = false;
                     }
                 }
             }
             
-            if (counter != 1) {
+            if (isTalking) {
                 switch(number){
                     case 1:
-                        if (counter == 5) {
-                            wantToTalk = false;
+                        if (counter == 4) {
+                            wantsToTalk = false;
                             this.followsHero = true;
                         }
                         break;
@@ -184,49 +252,53 @@ public class TechDude extends Character implements Serializable {
                         else {
                             LogicFacade.appendMessage("The tech dude got annoyed at you.");
                         }
-                        wantToTalk = false;
+                        wantsToTalk = false;
+                        isTalking = false;
                         break;
                     case 3:
-                        if (counter == 4) {
-                            wantToTalk = false;
+                        if (counter == 3) {
+                            wantsToTalk = false;
                             followsHero = true;
                         }
                         else {
                             LogicFacade.appendMessage("Not a valid answer");
+                            validAnswer = false;
                         }
                         break;
                         
                     default:
                         break;
                 }
+                if (validAnswer) {
+                    counter++;
+                }
             }
             
             
             
-            
-            if (wantToTalk){
-                String messsageChooser = this.getName()+counter++;
+//            if (wantToTalk && validAnswer){
+//                String messsageChooser = this.getName()+counter++;
+//                talk.talk(messsageChooser);
+//                talk.options(messsageChooser);
+//            }
+            if (wantsToTalk){
+                String messsageChooser = this.getName()+counter;
                 talk.talk(messsageChooser);
-                talk.options(messsageChooser);
+                talk.options(messsageChooser); 
+                isTalking = true;
             }
             
             
             
         } else {
             LogicFacade.appendMessage("Fuck you. I hate you");
-            wantToTalk = false;
+            wantsToTalk = false;
             followsHero = false;
         }
         
-        if (!wantToTalk){
+        if (!wantsToTalk){
             counter = 1;
+            isTalking = false;
         }
     }
-    
-
-    public boolean isWantToTalk() {
-        return wantToTalk;
-    }
-    
-    
 }

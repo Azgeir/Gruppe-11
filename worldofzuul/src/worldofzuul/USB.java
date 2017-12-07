@@ -72,17 +72,17 @@ public class USB extends Item implements Serializable {
         and print a message indicating the result of the action.
         */
         switch (roomName) {
-            case "biolab":
+            case "Biolab":
                 this.dataType = "bio";
                 LogicFacade.appendMessage("Important biological experimental "
                     + "data was saved. The USB is now full.");
                 break;
-            case "physicslab":
+            case "Physicslab":
                 this.dataType = "physics";
                 LogicFacade.appendMessage("Important physics experimental data "
                     + "was saved. The USB is now full.");
                 break;
-            case "control":
+            case "Control":
                 this.dataType = "control" ;
                 LogicFacade.appendMessage("Surveillance records of the Zuul "
                     + "infestation was optained. The USB is now full.");

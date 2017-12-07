@@ -80,6 +80,12 @@ public class Zuul extends Character implements Serializable {
         room.
         */
         this.heroWasInSameRoom = false;
+        
+        if (heroIsInSameRoom) {
+            LogicFacade.appendMessage("A boarding pod comes crashing through the wall of the space station.\n"
+                    + "Then a Zuul steps out of it and says in the voice of Little Nicky\n"
+                    + "\"I will eat your heart\"");
+        }
     }
     
     /**
@@ -320,9 +326,9 @@ public class Zuul extends Character implements Serializable {
                 As Zuul moves from one room to another, update its presence/
                 absence in the two rooms.
                 */
-                this.getCurrentRoom().setHasCharacter(this.getName(), false);
+                this.getCurrentRoom().removeCharacterInRoom(this.getName());
                 this.setCurrentRoom(nextRoom);
-                this.getCurrentRoom().setHasCharacter(this.getName(), true);
+                this.getCurrentRoom().addCharacterInRoom(this.getName());
             }
         }
         
