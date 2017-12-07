@@ -522,9 +522,9 @@ class Hero extends Character implements Serializable {
             LogicFacade.appendMessage("Activate what?");
             return Double.MAX_VALUE;
         }
-        if (command.getSecondWord().equals("reactor")) {
+        if (command.getSecondWord().equals("Reactor")) {
 
-            if (this.getCurrentRoom().getName().equals("reactor")) {
+            if (this.getCurrentRoom().getName().equals("Reactor")) {
                 if (this.getCurrentRoom().hasCharacter("TechDude")) {
                     if (!reactorActivated) {
                         LogicFacade.appendMessage("You activated the reactor. The space station will self-destruct in 10 turns.");
