@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -287,6 +289,7 @@ public class Game implements IGame, Serializable{
         rooms.put("PhysicslabDorm",hallwayPhysicsDormitory);
         rooms.put("DormMedBay",hallwayDormitoryMedical);
         rooms.put("MedbayStorage",hallwayMedicalStorage);
+        rooms.put("Pod", escapePod);
 
         // Set the value of the win condition
         winConditionRoom = escapePod;
@@ -451,6 +454,7 @@ public class Game implements IGame, Serializable{
             Room randomRoom = this.randomRoom();
             this.characters.add(new Zuul(randomRoom,"Zuul",1.15,this.currentCharacter.getCharacterInitiative()));
             this.timeSinceSpawn -= spawnTime;
+            System.out.println("zuul created");
         }
         else {
             this.timeSinceSpawn += currentCharacter.getCharacterInitiative();
@@ -900,11 +904,21 @@ public class Game implements IGame, Serializable{
         return finished;
     }
     
-    private Room randomRoom(){
-        ArrayList<Entry<String,Room>> allRooms = new ArrayList<>(this.rooms.entrySet());
-        int randomRoomKeyIndex = (int)(Math.random()*allRooms.size());
-        Room randomRoom = allRooms.get(randomRoomKeyIndex).getValue();
+    private Room randomRoom(){       
+        Set<String> allRooms = new HashSet<>(this.rooms.keySet());
+        allRooms.remove("Pod");
         
+        for (Character character : characters) {
+            if (character instanceof Zuul) {
+                allRooms.remove(character.getCurrentRoom().getName());
+            }
+        }
+        
+        int randomRoomKeyIndex = (int)(Math.random()*allRooms.size());       
+        
+        List<String> allRoomsList = new ArrayList<>(allRooms);
+        String randomRoomKey = allRoomsList.get(randomRoomKeyIndex);
+        Room randomRoom = rooms.get(randomRoomKey);
         return randomRoom;
     }
 
