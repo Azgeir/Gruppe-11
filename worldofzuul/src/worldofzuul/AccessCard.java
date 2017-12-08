@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+// The class is located in the logic layer.
 package worldofzuul;
 
+// Import:
 import java.io.Serializable;
 
 /**
@@ -33,10 +35,10 @@ class AccessCard extends Item implements Serializable {
      * character's initiative (because it takes time to wave around the access
      * card). The method overrides the use() method in the Item class.
      * 
-     * @param currentCharacter is an instance of Hero, which represents the 
+     * @param currentCharacter an instance of Hero, which represents the 
      * player.
      * 
-     * @return 0, because this action does not affect Zuul's initiative.
+     * @return 0 because this action does not affect Zuul's initiative.
      */
     @Override
     double use(Hero currentCharacter) {
@@ -48,7 +50,7 @@ class AccessCard extends Item implements Serializable {
             currentCharacter.getCharacterInitiative()
             + 3 * currentCharacter.getSpeedFactor());
         
-        // Return 0, as the action does not affect Zuul's initiative.
+        // Return 0 as the action does not affect Zuul's initiative.
         return 0;
     }
 }

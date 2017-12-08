@@ -450,15 +450,15 @@ public class Game implements IGame, Serializable{
         this.characters.add(new TechDude(rooms.get("Control"), "TechDude", 0.5));
     }
     
-    private void timeAddedZuul(){
+    private void timeAddedZuul(double initiativeBefore){
         if (this.timeSinceSpawn>spawnTime) {
             Room randomRoom = this.randomRoom();
             this.characters.add(new Zuul(randomRoom,"Zuul",1.15,this.currentCharacter.getCharacterInitiative()));
+            this.timeSinceSpawn += currentCharacter.getCharacterInitiative()-initiativeBefore;
             this.timeSinceSpawn -= spawnTime;
-            System.out.println("zuul created");
         }
         else {
-            this.timeSinceSpawn += currentCharacter.getCharacterInitiative();
+            this.timeSinceSpawn += currentCharacter.getCharacterInitiative()-initiativeBefore;
         }
     }
 
@@ -475,11 +475,13 @@ public class Game implements IGame, Serializable{
             //techDudeMeetHero();
             // Get command from parser
             Command command = parser.getCommand(this.currentCharacter, GUICommand);
+            // records character initiative before performing the command
+            double initiativeBefore = this.currentCharacter.getCharacterInitiative();
             // Process command
             finished = processCommand(command);
 
             if (currentCharacter.getName().equals("Hero")) {
-                this.timeAddedZuul();
+                this.timeAddedZuul(initiativeBefore);
             }
             
             // Check if player lost game because of reactor
@@ -525,7 +527,7 @@ public class Game implements IGame, Serializable{
         CommandWord commandWord = command.getCommandWord();
 
         // Check if the input equals any of the defined commands and print an "error" if it does not
-        if (commandWord == CommandWord.UNKNOWN) {
+        if (command.isUnknown()) {
             LogicFacade.appendMessage("I don't know what you mean...\nTyping 'help' will give you the valid commands.");
             return false;
         }

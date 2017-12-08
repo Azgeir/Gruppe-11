@@ -1,3 +1,4 @@
+// The class is located in the logic layer.
 package worldofzuul;
 
 // Imports:
@@ -14,8 +15,7 @@ import java.util.HashMap;
  * This class represents the command words of the game. It implements the
  * interface Serializable.
  */
-public class CommandWords  implements Serializable
-{
+class CommandWords implements Serializable {
     /**
      * Data field.
      * validCommands: HashMap of valid commands with a String key and
@@ -45,7 +45,7 @@ public class CommandWords  implements Serializable
      * This method returns the CommandWord associated with the given command
      * string.
      * 
-     * @param commandWord, a string which is associated with a CommandWord.
+     * @param commandWord a String which is associated with a CommandWord.
      * 
      * @return CommandWord associated with the given string.
      */
@@ -69,7 +69,7 @@ public class CommandWords  implements Serializable
      * This method checks if a specified string is associated with a valid
      * command in the HashMap validCommands.
      * 
-     * @param aString, which might be associated with a command.
+     * @param aString String which might be associated with a command.
      * 
      * @return true if the string is associated with a command; else it returns
      * false.

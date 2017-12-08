@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+// The class is located in the logic layer.
 package worldofzuul;
 
+// Import:
 import java.io.Serializable;
 
 /**
@@ -15,7 +17,7 @@ import java.io.Serializable;
  * @author HCHB
  */
 
-public class Character implements Serializable {
+abstract class Character implements Serializable {
 
     /**
      * Data fields.
@@ -23,16 +25,12 @@ public class Character implements Serializable {
      * characterInitiative: used to determine whose turn it is.
      * speedFactor: used to update character initiative.
      * name: used to identify character type in other classes.
-     * hostility: used when conversing with a character (currently only used for
-     * TechDude, but it is put in Character to allow future development of
-     * characters that the player can converse with).
      * message: used for various purposes throughout the game.
      */
     private Room currentRoom;
     private double characterInitiative;
     private double speedFactor;
     private String name;
-    private int hostility;
     private String message;
 
     /**
@@ -49,8 +47,9 @@ public class Character implements Serializable {
      * name. The character has default character initiative and speed factor via
      * constructor chaining.
      * 
-     * @param currentRoom indicates current room of character.
-     * @param name indicates character type.
+     * @param currentRoom instance  of Room that indicates current room of
+     * the character.
+     * @param name String that indicates character type.
      */
     Character(Room currentRoom, String name) {
         this();
@@ -92,33 +91,28 @@ public class Character implements Serializable {
     }
     
     /**
-     * This method returns a command. It is overridden in Hero, TechDude, and 
-     * Zuul, so it is never called on Character.
+     * This method returns a command. It is implemented in Hero, TechDude, and 
+     * Zuul.
      * 
-     * @param commands represents the valid commands
-     * @param GUICommand sent from GUI controller, which represents the command
+     * @param commands instance of CommandWords which represents the valid
+     * commands
+     * @param GUICommand String sent from GUI controller, which represents the
+     * command
      * 
      * @return Command object, which represents the specified command.
      */
-    Command getCommand(CommandWords commands, String GUICommand) {
-        String word1 = null;
-        String word2 = null;
-        String word3 = null;
-        return new Command(commands.getCommandWord(word1), word2, word3);
-    }
+    abstract Command getCommand(CommandWords commands, String GUICommand);
     
     /**
-     * This method is used to perform a command. It is overridden in Zuul, Hero
-     * and TechDude, so is never called from Character.
+     * This method is used to perform a command. It is implemented in Zuul, Hero
+     * and TechDude.
      * 
      * @param command commmand to be executed
      * 
      * @return double value depending on the command being executed (most
      * commands return 0).
      */
-    double performCommand(Command command) {
-        return 0;
-    }
+    abstract double performCommand(Command command);
 
     /**
      * This method is called from processCommand() in Game in response to a
@@ -134,15 +128,12 @@ public class Character implements Serializable {
     
     /**
      * This method is called from processCommand() in Game in response to a
-     * "go" command. This method is overridden in Hero, TechDude, and Zuul,
-     * and is never called from Character.
+     * "go" command. This method is implemented in Hero, TechDude, and Zuul.
      * 
      * @param command represents the command being executed whose commandWord
      * is "go".
      */
-    void go(Command command) {
-        LogicFacade.appendMessage("This does nothing.");
-    }
+    abstract void go(Command command);
 
     /**
      * This method returns the current room of the character.
@@ -150,7 +141,7 @@ public class Character implements Serializable {
      * @return currentRoom, which represents the current room of the character.
      */
     Room getCurrentRoom() {
-        return currentRoom;
+        return this.currentRoom;
     }
 
     /**
@@ -168,7 +159,7 @@ public class Character implements Serializable {
      * @return characterInitiative
      */
     double getCharacterInitiative() {
-        return characterInitiative;
+        return this.characterInitiative;
     }
 
     /**
@@ -186,7 +177,7 @@ public class Character implements Serializable {
      * @return speedFactor
      */
     double getSpeedFactor() {
-        return speedFactor;
+        return this.speedFactor;
     }
 
     /**
@@ -204,25 +195,7 @@ public class Character implements Serializable {
      * @return name
      */
     String getName() {
-        return name;
-    }
-    
-    /**
-     * This method returns the character's hostility value.
-     * 
-     * @return hostility
-     */
-    int getHostility() {
-        return hostility;
-    }
-
-    /**
-     * This method sets the character's hostility value.
-     * 
-     * @param hostility the new hostility value
-     */
-    void setHostility(int hostility) {
-        this.hostility = hostility;
+        return this.name;
     }
     
     /**
