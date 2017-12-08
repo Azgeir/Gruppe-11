@@ -526,7 +526,7 @@ public class Game implements IGame, Serializable{
         CommandWord commandWord = command.getCommandWord();
 
         // Check if the input equals any of the defined commands and print an "error" if it does not
-        if (commandWord == CommandWord.UNKNOWN) {
+        if (command.isUnknown()) {
             LogicFacade.appendMessage("I don't know what you mean...\nTyping 'help' will give you the valid commands.");
             return false;
         }

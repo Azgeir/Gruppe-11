@@ -1,5 +1,7 @@
+// The class is located in the logic layer.
 package worldofzuul;
 
+// Import:
 import java.io.Serializable;
 
 /** 
@@ -13,7 +15,7 @@ import java.io.Serializable;
  * Serializable.
  */
 
-public class Command implements Serializable {
+class Command implements Serializable {
     /**
      * Data fields.
      * commandWord: the command's command word
@@ -44,7 +46,7 @@ public class Command implements Serializable {
      * @return commandWord
      */
     CommandWord getCommandWord() {
-        return commandWord;
+        return this.commandWord;
     }
 
     /**
@@ -53,7 +55,7 @@ public class Command implements Serializable {
      * @return secondWord
      */
     String getSecondWord() {
-        return secondWord;
+        return this.secondWord;
     }
     
     /**
@@ -62,7 +64,7 @@ public class Command implements Serializable {
      * @return thirdWord
      */
     String getThirdWord() {
-        return thirdWord;
+        return this.thirdWord;
     }
     
     /**
@@ -71,7 +73,7 @@ public class Command implements Serializable {
      * @return true if the command is unknown; else it returns false.
      */
     boolean isUnknown() {
-        return (commandWord == CommandWord.UNKNOWN);
+        return (this.commandWord == CommandWord.UNKNOWN);
     }
 
     /**
@@ -79,7 +81,7 @@ public class Command implements Serializable {
      * 
      * @return true if the command has a second word; else it returns false.
      */
-    public boolean hasSecondWord() {
+    boolean hasSecondWord() {
         return (secondWord != null);
     }
     
@@ -88,7 +90,7 @@ public class Command implements Serializable {
      * 
      * @return true if the command has a third word; else it returns false.
      */
-    public boolean hasThirdWord() {
+    boolean hasThirdWord() {
         return (thirdWord != null);
     }
 }
