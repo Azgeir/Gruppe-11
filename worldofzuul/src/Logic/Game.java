@@ -648,62 +648,46 @@ class Game implements IGame, Serializable{
         do {
             // Get command from parser. The command is based on the GUI String.
             Command command = this.parser.getCommand(this.currentCharacter,
-                GUICommand);
+                    GUICommand);
             
             /*
             Record the character initiative before performing the command. This
             is used when adding additional Zuuls to the game.
             */
             double initiativeBefore =
-                this.currentCharacter.getCharacterInitiative();
+                    this.currentCharacter.getCharacterInitiative();
             
             // Process the command by calling the processCommand() method
             this.finished = processCommand(command);
-
+            
             /*
             If the current character is Hero, check if its time to add a new
             Zuul.
             */
             if (this.currentCharacter.getName().equals("Hero")) {
                 this.timeAddedZuul(initiativeBefore);
-                
-                // Check if player lost game because of the reactor
-                if (!finished) {
-                    finished = timerLose();
+                /*
+                Check if the player has lost the game because of the reactor. This
+                test is before the win test because it is not possible to win by
+                entering the escape pod as the space station blows up.
+                */
+                if (!this.finished) {
+                    this.finished = timerLose();
                 }
                 // Check if player won game
-                if (!finished) {
-                    finished = winTest();
+                if (!this.finished) {
+                    this.finished = winTest();
                 }
-                // Check if the player died due to low health
-                if (!finished) {
-                    finished = healthTest();
+                // Check if the player loses because of health problems.
+                if (!this.finished) {
+                    this.finished = healthTest();
                 }
-            }
-            
-            /*
-            Check if the player has lost the game because of the reactor. This
-            test is before the win test because it is not possible to win by
-            entering the escape pod as the space station blows up.
-            */
-            if (!this.finished) {
-                this.finished = timerLose();
-            }
-            
-            // Check if the player has won the game.
-            if (!this.finished) {
-                this.finished = winTest();
-            }
-            
-            // Check if the player loses because of health problems.
-            if (!this.finished) {
-                this.finished = healthTest();
             }
             
             // Choose the next character based on the characters' initiatives.
             this.currentCharacter = this.chooseCharacter();
-        } while(!this.currentCharacter.getName().equals("Hero")
-            && !this.finished);
+            
+        } while(!(this.currentCharacter instanceof Hero) && !this.finished);
     }
 
     /**
