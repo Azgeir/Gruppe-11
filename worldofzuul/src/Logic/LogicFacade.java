@@ -128,11 +128,13 @@ public class LogicFacade implements ILogicFacade {
     public Set<String> getInventorySet() {
         // Declare Set.
         Set<String> inventorySet;
+        //  Get the current character
+        Character currentCharacter = game.getCurrentCharacter();
         /*
         If current character is Hero, set inventorySet to be the list of items
         in the character's inventory.
         */
-        if (LogicFacade.game.getCurrentCharacter().getName().equals("Hero")) {
+        if (currentCharacter instanceof Hero) {
             inventorySet = ((Hero)game.getCurrentCharacter()).getInventory()
                 .listItems();
         }
@@ -241,20 +243,22 @@ public class LogicFacade implements ILogicFacade {
      */
     @Override
     public int getNumberOfItems(String inventory, String item) {
+        //  Get the current character
+        Character currentCharacter = game.getCurrentCharacter();
         // Check if current character is Hero.
-        if (LogicFacade.game.getCurrentCharacter().getName().equals("Hero")) {
+        if (currentCharacter instanceof Hero){
             // If inventory string is Room, search inventory of current room.
             if (inventory.equals("Room")) {
-                return LogicFacade.game.getCurrentCharacter().getCurrentRoom()
-                    .getInventory().getNumberOfItems(item);
+                return currentCharacter.getCurrentRoom().getInventory()
+                        .getNumberOfItems(item);
             }
             /*
             If inventory string is Character, search inventory of current
             character.
             */
             if (inventory.equals("Character")) {
-                return ((Hero)game.getCurrentCharacter()).getInventory()
-                    .getNumberOfItems(item);
+                return ((Hero)currentCharacter).getInventory()
+                        .getNumberOfItems(item);
             }
             return -1;
         }
