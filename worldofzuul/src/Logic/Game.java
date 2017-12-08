@@ -612,24 +612,19 @@ class Game implements IGame, Serializable{
      */
     private void timeAddedZuul(double initiativeBefore) {
         /*
+        Increase the value of time since spawn by the initiative difference.
+        */
+        this.timeSinceSpawn +=
+                this.currentCharacter.getCharacterInitiative()
+                - initiativeBefore;
+        /*
         If the time since spawn is greater than spawn time, add a new Zuul in a
         random room. Time since spawn is reset to allow for more spawning.
         */
         if (this.timeSinceSpawn > this.spawnTime) {
             this.characters.add(new Zuul(this.randomZuulSpawnRoom(), "Zuul", 
                     1.15, this.currentCharacter.getCharacterInitiative()));
-            this.timeSinceSpawn +=
-                (this.currentCharacter.getCharacterInitiative()
-                - initiativeBefore) - this.spawnTime;
-        }
-        /*
-        If time since spawn is less than spawn time, increase the value of time
-        since spawn by the initiative difference.
-        */
-        else {
-            this.timeSinceSpawn +=
-                this.currentCharacter.getCharacterInitiative()
-                - initiativeBefore;
+            this.timeSinceSpawn -= this.spawnTime;
         }
     }
 
