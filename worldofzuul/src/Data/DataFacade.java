@@ -19,7 +19,6 @@ import Acquaintance.IHighscore;
  * 
  * @author HCHB
  */
-
 public class DataFacade implements IDataFacade {
     
     /**

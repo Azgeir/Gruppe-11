@@ -412,12 +412,7 @@ class Hero extends Character implements Serializable {
 
         return 0;
     }
-
-//    //£ characterInitiative
-//    public void seeInventory(Command command) {
-//        this.inventory.showItems();
-//        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
-//    }
+    
     void speedFactorCalculation() {
         double newSpeedFactor = 1 + (this.inventory.getTotalWeight() / this.inventory.getMaxWeight()) / 2;
         this.setSpeedFactor(newSpeedFactor);
@@ -527,7 +522,7 @@ class Hero extends Character implements Serializable {
             if (this.getCurrentRoom().getName().equals("Reactor")) {
                 if (this.getCurrentRoom().hasCharacter("TechDude")) {
                     if (!reactorActivated) {
-                        LogicFacade.appendMessage("You activated the reactor. The space station will self-destruct in 10 turns.");
+                        LogicFacade.appendMessage("You activated the reactor. The space station will self-destruct in an unspecified amount of time.");
                         this.reactorActivated = true;
                         this.setMessage("Reactor activated");
                         return (this.getCharacterInitiative() + 80);
