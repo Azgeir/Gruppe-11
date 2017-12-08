@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+// The class is located in the logic layer.
 package Logic;
 
+// Import:
 import java.io.Serializable;
 
 /**
@@ -16,7 +18,7 @@ import java.io.Serializable;
  * @author laurabrinkholmjustesen
  */
 
-public class Item implements Serializable {
+class Item implements Serializable {
     /**
      * Data fields.
      * weight: the weight of the item

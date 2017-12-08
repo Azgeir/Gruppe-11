@@ -14,7 +14,6 @@ package Acquaintance;
  * 
  * @author HCHB
  */
-
 public interface IDataFacade {
     
     /**
