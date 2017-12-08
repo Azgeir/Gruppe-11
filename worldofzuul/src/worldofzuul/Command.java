@@ -82,7 +82,7 @@ class Command implements Serializable {
      * @return true if the command has a second word; else it returns false.
      */
     boolean hasSecondWord() {
-        return (secondWord != null);
+        return (this.secondWord != null);
     }
     
     /**
@@ -91,7 +91,7 @@ class Command implements Serializable {
      * @return true if the command has a third word; else it returns false.
      */
     boolean hasThirdWord() {
-        return (thirdWord != null);
+        return (this.thirdWord != null);
     }
 }
 
