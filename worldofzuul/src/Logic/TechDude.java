@@ -72,7 +72,8 @@ class TechDude extends Character implements Serializable {
      */
     TechDude(Room currentRoom, String name) {
         super(currentRoom, name);
-}
+    }
+    
     /**
      * This constructor creates a tech dude with the specified current room,
      * name, and speed factor. The constructor calls the constructor of the
@@ -151,6 +152,8 @@ class TechDude extends Character implements Serializable {
     Command getCommand(CommandWords commands, String GUICommand) {
         // Declare String variables for the command
         String word1, word2, word3;
+        word2 = null;
+        word3 = null;
 
         /*
         If tech dude is not currently following the hero, the current room of
@@ -165,8 +168,6 @@ class TechDude extends Character implements Serializable {
                 + " He notices you and comes over.");
             // Set words of command
             word1 = "talk";
-            word2 = null;
-            word3 = null;
             // Tech dude has now met the hero and wants to talk to them.
             metHero = true;
             wantsToTalk = true;
@@ -176,34 +177,50 @@ class TechDude extends Character implements Serializable {
         // Else if tech dude does not follow hero, return "stay" command.
         else if (this.followsHero == false){
             word1 = "stay";
-            word2 = null;
-            word3 = null;
             return new Command(commands.getCommandWord(word1), word2, word3);
         }
         // Else if tech dude is following the hero, return "go" command.
         else {
             word1 = "go";
-            word2 = null;
-            word3 = null;
             return new Command(commands.getCommandWord(word1), word2, word3);
         }
     }
     
+    /**
+     * This method is used when tech dude performs a command. The execution is
+     * based on the command parameter. The method overrides the performCommand()
+     * method in Character.
+     * 
+     * @param command instance of Command which represents the command to be
+     * executed.
+     * 
+     * @return 0 as tech dude's actions do not affect the initiative of Zuul.
+     */
     @Override
     double performCommand(Command command) {
-        // Create instance of CommandWord using the command word of the specified command (from Parser)
+        // Get the command word of the specified command.
         CommandWord commandWord = command.getCommandWord();
         
-        if (null != commandWord) // Execute the command if the input matches a valid command
-        {
+        /*
+        If the command word is different from null, perfrorm the specified
+        command.
+        */
+        if (null != commandWord) {
             switch (commandWord) {
                 // If command is "go", call go() method on current character
                 case GO:
                     this.go(command);
                     break;
+                /*
+                If command is "stay", call stay() method on current character.
+                */
                 case STAY:
                     this.stay(command);
                     break;
+                /*
+                If the command is "talk", call talk() method on current
+                character.
+                */
                 case TALK:
                     this.talk(command);
                     break;
@@ -212,20 +229,21 @@ class TechDude extends Character implements Serializable {
                     break;
             }
         }
-        // Return boolean value (false = continue playing; true = quit game)
+        // Return 0.
         return 0;
     }
     
     /**
-     * This method overrides the original method because TechDude does not
-     * change room according to his own command input. Set and get methods are
-     * used because the attributes are private in the superclass.
+     * This method is used to execute a "go" command. The method implements the
+     * go() method in Character. It changes the current room of tech dude to
+     * that of the hero. Set and get methods are used because the attributes
+     * are private in the Character superclass.
      * 
-     * @param command 
+     * @param command instance of Command, which represents the command to be
+     * executed.
      */
     @Override
-    // This method changes the current room of tech dude to that of hero
-    void go(Command command){
+    void go(Command command) {
         // Remove tech dude from current room
         this.getCurrentRoom().removeCharacterInRoom(this.getName());
         // Change current room of tech dude to current room of hero.
@@ -233,15 +251,43 @@ class TechDude extends Character implements Serializable {
         // Add tech dude to the new current room
         this.getCurrentRoom().addCharacterInRoom(this.getName());
         // Set character initiative
-        this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
+        this.setCharacterInitiative(this.getCharacterInitiative()
+            + 10 * this.getSpeedFactor());
     }
     
+    /**
+     * This method is used to execute a "talk" command. The method is private
+     * as it is only called from within the class.
+     * 
+     * @param command instance of Command, which represents the command to be
+     * executed.
+     */
     private void talk(Command command){
+        // Create instance of Conversation.
         Conversation talk = new Conversation();
+        /*
+        Initially set validAnswer to true, as the conversation starts with the
+        assumption of a valid answer.
+        */
         boolean validAnswer = true;
         
+        /*
+        Check if tech dude's hostility is less than 3, as a higher hostility
+        value causes tech dude to refuse to engage in a conversation with the
+        hero.
+        */
         if (this.hostility < 3) {
+            /*
+            Number is initially set to -1. If the talk command is valid, number
+            is set to the integer value of the second word of the command.
+            */
             int number = -1;
+            /*
+            Check if the command has a second word. This should be parsed to an
+            integer to update the value of number, which determines whether the
+            conversation starts. This value is chosen from a drop down menu in
+            the GUI.
+            */
             if (command.hasSecondWord()) {
                 try {
                     number = Integer.parseInt(command.getSecondWord());
@@ -249,6 +295,9 @@ class TechDude extends Character implements Serializable {
                 catch (NumberFormatException ex) {
                     LogicFacade.appendMessage("The input wasn't a number");
                 }
+                /*
+                Use the command's third word to update the value of isTalking.
+                */
                 if (command.hasThirdWord()) {
                     try {
                         if (wantsToTalk) {
@@ -258,12 +307,10 @@ class TechDude extends Character implements Serializable {
 
                         if (!isTalking) {
                             counter = 1;
-                            isTalking = false;
                         }
                     }
                     catch (NumberFormatException ex) {
                         LogicFacade.appendMessage("The input wasn't a boolean");
-//                        isTalking = false;
                     }
                 }
             }
@@ -307,21 +354,12 @@ class TechDude extends Character implements Serializable {
                 }
             }
             
-            
-            
-//            if (wantToTalk && validAnswer){
-//                String messsageChooser = this.getName()+counter++;
-//                talk.talk(messsageChooser);
-//                talk.options(messsageChooser);
-//            }
             if (wantsToTalk){
                 String messsageChooser = this.getName()+counter;
                 talk.talk(messsageChooser);
                 talk.options(messsageChooser); 
                 isTalking = true;
             }
-            
-            
             
         } else {
             LogicFacade.appendMessage("Fuck you. I hate you");
