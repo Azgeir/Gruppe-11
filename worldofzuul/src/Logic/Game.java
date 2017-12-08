@@ -901,9 +901,9 @@ class Game implements IGame, Serializable{
     // ArrayList
     private Character chooseCharacter() {
         // Set current character to null
-        Character currentCharacter = null;
+        currentCharacter = null;
         // Set minInitiative to maximum integer value
-        double minInitiative = Integer.MAX_VALUE;
+        double minInitiative = Double.MAX_VALUE;
         // Traverse all characters
         for (Character character : characters) {
             // Select character with the lowest initiative
