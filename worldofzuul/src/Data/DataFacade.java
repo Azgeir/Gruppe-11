@@ -11,6 +11,7 @@ package Data;
 import Acquaintance.IDataFacade;
 import Acquaintance.IGame;
 import Acquaintance.IHighscore;
+import java.io.FileNotFoundException;
 
 /**
  * This class represents the data facade. The class implements the interface
@@ -42,9 +43,14 @@ public class DataFacade implements IDataFacade {
      * @return an instance of IGame.
      */
     @Override
-    public IGame loadGame() {
-        IGame game = this.data.loadGame();
-        return game;
+    public IGame loadGame() throws FileNotFoundException {
+        try {
+            IGame game = this.data.loadGame();
+            return game;
+        }
+        catch (FileNotFoundException ex){
+            throw ex;
+        }
     }
     
     /**

@@ -146,8 +146,9 @@ public class GUIFacade implements IGUIFacade {
     /**
      * This method is used to load the game.
      */
-    static void loadGame() {
-        logic.loadGame();
+    static boolean loadGame() {
+        boolean success = logic.loadGame();
+        return success;
     }
     
     /**

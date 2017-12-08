@@ -7,6 +7,8 @@
 // The interface is located in the Acquaintance package.
 package Acquaintance;
 
+import java.io.FileNotFoundException;
+
 /**
  * This interface defines the behavior of the data facade. The methods are
  * implemented in the DataFacade class in the data layer. All methods are
@@ -21,7 +23,7 @@ public interface IDataFacade {
      * 
      * @return instance of IGame that represents the loaded game.
      */
-    public abstract IGame loadGame();
+    public abstract IGame loadGame() throws FileNotFoundException;
  
     /**
      * This method is used to save the game.

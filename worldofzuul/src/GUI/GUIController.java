@@ -211,6 +211,8 @@ public class GUIController {
     private Slider spawnTimeSlider;
     @FXML
     private Slider numberOfZuulSlider;
+    @FXML
+    private Label StartScreenMessageLabel;
 
 
     public void initialize() {
@@ -656,6 +658,7 @@ public class GUIController {
         
         this.updateAllDropdown();
 
+        this.StartScreenMessageLabel.setText("");
         this.switchScreen(startScreen, outerSpace);
         this.setRoomBackgrounds();
         this.setCharactersPeek();
@@ -691,14 +694,21 @@ public class GUIController {
 
     @FXML
     private void loadButtonActionEvent(ActionEvent event) {
-        GUIFacade.loadGame();
-        this.switchScreen(startScreen, outerSpace);
+        boolean success = GUIFacade.loadGame();
         
-        this.labelMessageField.setText("You loaded the game");
-        
-        this.updateAllDropdown();
-        this.setRoomBackgrounds();
-        this.setCharactersPeek();
+        if (success) {
+            this.switchScreen(startScreen, outerSpace);
+            
+            this.labelMessageField.setText("You loaded the game");
+            
+            this.updateAllDropdown();
+            this.setRoomBackgrounds();
+            this.setCharactersPeek();
+        }
+        else {
+            this.StartScreenMessageLabel.setText("There is no save file");
+            
+        }
     }
 
     private void switchScreen(Pane from, Pane to) {
