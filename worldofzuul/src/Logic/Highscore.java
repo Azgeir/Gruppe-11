@@ -5,7 +5,7 @@
  */
 
 // The class is located in the logic layer.
-package worldofzuul;
+package Logic;
 
 // Imports:
 import Acquaintance.IHighscore;

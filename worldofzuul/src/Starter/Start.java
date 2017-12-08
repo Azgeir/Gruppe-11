@@ -11,7 +11,7 @@ package Starter;
 import Acquaintance.*;
 import GUI.GUIFacade;
 import Data.DataFacade;
-import worldofzuul.LogicFacade;
+import Logic.LogicFacade;
 
 /**
  * This class is used to start the application.

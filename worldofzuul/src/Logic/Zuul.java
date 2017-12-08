@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package worldofzuul;
+package Logic;
 
 // Imports:
 import java.io.Serializable;

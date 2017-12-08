@@ -1,4 +1,4 @@
-package worldofzuul;
+package Logic;
 
 // Imports:
 import Acquaintance.IRoom;

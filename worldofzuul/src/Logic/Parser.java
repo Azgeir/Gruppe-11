@@ -1,4 +1,4 @@
-package worldofzuul;
+package Logic;
 
 // Import:
 import java.io.Serializable;

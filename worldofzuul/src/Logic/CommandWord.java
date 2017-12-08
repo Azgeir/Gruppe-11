@@ -1,5 +1,5 @@
 // The class is located in the logic layer.
-package worldofzuul;
+package Logic;
 
 // Import:
 import java.io.Serializable;

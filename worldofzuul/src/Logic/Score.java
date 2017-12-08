@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package worldofzuul;
+package Logic;
 
 import Acquaintance.IScore;
 import java.io.Serializable;
