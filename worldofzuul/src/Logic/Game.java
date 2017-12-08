@@ -664,7 +664,7 @@ class Game implements IGame, Serializable{
             If the current character is Hero, check if its time to add a new
             Zuul.
             */
-            if (this.currentCharacter.getName().equals("Hero")) {
+            if (this.currentCharacter instanceof Hero) {
                 this.timeAddedZuul(initiativeBefore);
                 /*
                 Check if the player has lost the game because of the reactor. This
@@ -781,7 +781,7 @@ class Game implements IGame, Serializable{
                     // Traverse all characters.
                     for (Character character : characters) {
                         
-                        if (character.getName().equals("Zuul")
+                        if ((character instanceof Zuul)
                             && character.getCurrentRoom().equals
                             (this.currentCharacter.getCurrentRoom())) {
                             character.setCharacterInitiative
