@@ -33,21 +33,18 @@ class Data {
     
     /**
      * Data fields.
-     * saveGameFileName: a String that specifies the name of the file that
+     * SAVE_GAME_FILE_NAME: a String that specifies the name of the file that
      * stores the saved game.
-     * highscoreFileName: a String that specifies the name of the file that
+     * HIGHSCORE_FILE_NAME: a String that specifies the name of the file that
      * stores the high score.
      */
-    private String saveGameFileName;
-    private String highscoreFileName;
+    private static final String SAVE_GAME_FILE_NAME = "Escape pod.Zuul";
+    private static final String HIGHSCORE_FILE_NAME = "Escape pod highscore.txt";
     
     /**
-     * This constructor creates a Data object with default names for the saved
-     * game and high score files.
+     * This empty no-arg constructor creates a Data object.
      */
     Data() {
-        this.saveGameFileName = "Escape pod.Zuul";
-        this.highscoreFileName = "Escape pod highscore.txt";
     }
     
     /**
@@ -62,7 +59,7 @@ class Data {
         
         // Save game.
         try {
-            fileStream = new FileOutputStream(this.saveGameFileName);
+            fileStream = new FileOutputStream(this.SAVE_GAME_FILE_NAME);
             objectStream = new ObjectOutputStream(fileStream);
             objectStream.writeObject(game);
             
@@ -82,7 +79,7 @@ class Data {
      */
     void saveHighscore(IHighscore highscore){
         // Create new File for high score.
-        File highscoreFile = new File(this.highscoreFileName);
+        File highscoreFile = new File(this.HIGHSCORE_FILE_NAME);
 
         try {
             PrintWriter output = new PrintWriter(highscoreFile);
@@ -119,7 +116,7 @@ class Data {
         IGame game = null;
 
         try {
-            fileStream = new FileInputStream(this.saveGameFileName);
+            fileStream = new FileInputStream(this.SAVE_GAME_FILE_NAME);
             objectStream = new ObjectInputStream(fileStream);
             game = (IGame)objectStream.readObject();
         }
@@ -140,7 +137,7 @@ class Data {
      * high score.
      */
     IHighscore loadHighscore(){
-        File highscoreFile = new File(highscoreFileName);
+        File highscoreFile = new File(HIGHSCORE_FILE_NAME);
         IHighscore highscore;
         
         try {
