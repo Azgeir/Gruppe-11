@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+// The class is located in the logic layer.
 package worldofzuul;
 
+// Imports:
 import Acquaintance.IHighscore;
 import Acquaintance.IScore;
 import java.io.Serializable;
@@ -51,7 +53,7 @@ class Highscore implements IHighscore, Serializable {
      */
     void updateHighscore(IScore newScore){
         // Traverse the high score.
-        for (int i = 0; i < highscore.length; i++) {
+        for (int i = 0; i < this.highscore.length; i++) {
             // Check if the score is null.
             if (this.highscore[i] != null) {
                 // Check if the new score is greater than the current score.
