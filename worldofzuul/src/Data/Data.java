@@ -111,7 +111,7 @@ class Data {
      * 
      * @return game (an instance of IGame) that represents the loaded game.
      */
-    IGame loadGame() {
+    IGame loadGame() throws FileNotFoundException {
         FileInputStream fileStream = null;
         ObjectInputStream objectStream = null;
         IGame game = null;
@@ -121,12 +121,12 @@ class Data {
             objectStream = new ObjectInputStream(fileStream);
             game = (IGame)objectStream.readObject();
         }
-        catch (IOException ex) {
+        catch (FileNotFoundException ex) {
+            throw ex;
+        }
+        catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-        catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        } 
 
         return game;
     }

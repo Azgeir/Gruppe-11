@@ -9,6 +9,7 @@ package Logic;
 
 // Imports:
 import Acquaintance.*;
+import java.io.FileNotFoundException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -152,8 +153,16 @@ public class LogicFacade implements ILogicFacade {
      * method on data.
      */
     @Override
-    public void loadGame() {
-        LogicFacade.game = (Game)data.loadGame();
+    public boolean loadGame() {
+        boolean success;
+        try {
+            LogicFacade.game = (Game)data.loadGame();
+            success = true;
+        }
+        catch (FileNotFoundException ex){
+            success = false;
+        }
+        return success;
     }
 
     /**

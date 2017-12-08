@@ -86,7 +86,7 @@ public interface ILogicFacade {
     /**
      * This method is used to load the game.
      */
-    public abstract void loadGame();
+    public abstract boolean loadGame();
 
     /**
      * This method is used to load a high score.
