@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+// The class is located in the logic layer.
 package worldofzuul;
 
+// Import:
 import java.io.Serializable;
 
 /**
@@ -13,7 +15,7 @@ import java.io.Serializable;
  * 
  * @author Aske Wulf
  */
-public class Conversation implements Serializable {
+class Conversation implements Serializable {
     
     /**
      * Data fields.
@@ -27,22 +29,28 @@ public class Conversation implements Serializable {
      * FUCKOFF: negative statement that increases tech dude's hostility
      */
     // Tech dude statements
-    final String TECHTALK1 = "Is the Zuul gone?";
-    final String TECHTALK2 = "The arrival of Zuul has triggered the station's"
+    private final String TECHTALK1 = "Is the Zuul gone?";
+    private final String TECHTALK2 = "The arrival of Zuul has triggered the station's"
         + " quarantine mechanism, causing the doors to all the escape pods to "
         + "be locked.";
-    final String TECHTALK3 = "Yes, I can override the mechanism and unlock one"
+    private final String TECHTALK3 = "Yes, I can override the mechanism and unlock one"
         + " of the pods, but I will have to be in the dock to do this.";
-    final String TECHTALK4 = "I can overload the reactor, causing it to "
+    private final String TECHTALK4 = "I can overload the reactor, causing it to "
         + "self-destruct along with the whole space station. This will give you"
         + " a short time to get off the station before it blows up. But I must"
         + " be near the reactor to overload it.";
     // Player responses
-    final String TECHANSWER1 = "For now. What has happened to the station?";
-    final String TECHANSWER2 = "Can you help me get off this station?";
-    final String TECHANSWER3 = "Anything else you can help with?";
-    final String LETSGO = "Let's go!";
-    final String FUCKOFF = "Fuck off.";
+    private final String TECHANSWER1 = "For now. What has happened to the station?";
+    private final String TECHANSWER2 = "Can you help me get off this station?";
+    private final String TECHANSWER3 = "Anything else you can help with?";
+    private final String LETSGO = "Let's go!";
+    private final String FUCKOFF = "Fuck off.";
+    
+    /**
+     * This is an empty no-arg constructor.
+     */
+    Conversation() {
+    }
     
     /**
      * This method prints the tech dude's statements when conversing with the
