@@ -52,7 +52,7 @@ class Data {
      * 
      * @param game the game to be saved (instance of IGame).
      */
-    void saveGame(IGame game){
+    void saveGame(IGame game) {
         // Define and initialize fileStream and objectStream.
         FileOutputStream fileStream = null;
         ObjectOutputStream objectStream = null;
@@ -67,7 +67,7 @@ class Data {
             objectStream.close();
         }
         // Catch exception
-        catch (IOException ex){
+        catch (IOException ex) {
             ex.printStackTrace();
         }   
     }
@@ -77,7 +77,7 @@ class Data {
      * 
      * @param highscore high score to be saved.
      */
-    void saveHighscore(IHighscore highscore){
+    void saveHighscore(IHighscore highscore) {
         // Create new File for high score.
         File highscoreFile = new File(this.HIGHSCORE_FILE_NAME);
 
@@ -89,7 +89,8 @@ class Data {
             for (int i = 0; i < scores.length; i++) {
                 IScore score = scores[i];
                 if (score != null) {
-                    output.println(i + " " + score.getName() + " " + score.getScore());
+                    output.println(i + " " + score.getName() + " " 
+                        + score.getScore());
                 }
                 else {
                     break;
@@ -136,7 +137,7 @@ class Data {
      * @return highscore (an instance of IHighscore) which represents the loaded
      * high score.
      */
-    IHighscore loadHighscore(){
+    IHighscore loadHighscore() {
         File highscoreFile = new File(HIGHSCORE_FILE_NAME);
         IHighscore highscore;
         
@@ -145,7 +146,7 @@ class Data {
             
             IScore[] scores = new IScore[10];
             
-            while (input.hasNext()){
+            while (input.hasNext()) {
                 int i = input.nextInt();
                 String name = input.next();
                 double score = input.nextDouble();
