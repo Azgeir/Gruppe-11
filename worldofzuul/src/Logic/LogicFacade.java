@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+// The class is located in the logic layer.
 package Logic;
 
+// Imports:
 import Acquaintance.*;
 import java.util.Collection;
 import java.util.HashSet;
