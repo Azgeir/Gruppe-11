@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
+// The class is located in the logic layer.
 package Logic;
 
+// Imports:
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +20,6 @@ import java.util.Set;
  * 
  * @author Aske Wulf
  */
-
 class Inventory implements Serializable {
 
     /**
