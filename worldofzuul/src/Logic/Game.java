@@ -293,11 +293,6 @@ public class Game implements IGame, Serializable{
         // Set the value of the win condition
         winConditionRoom = escapePod;
 
-        // Set the initial positions of Zuul, hero, and tech dude
-//        dormitory.setHasCharacter("Zuul", true);
-//        computerRoom.setHasCharacter("Hero", true);
-//        controlRoom.setHasCharacter("TechDude", true);
-
         // Add items to the inventory of the rooms
         this.fillRoom(computerRoom);
         this.fillRoom(storage);
@@ -451,7 +446,7 @@ public class Game implements IGame, Serializable{
     
     private void timeAddedZuul(double initiativeBefore){
         if (this.timeSinceSpawn>spawnTime) {
-            Room randomRoom = this.randomRoom();
+            Room randomRoom = this.randomZuulSpawnRoom();
             this.characters.add(new Zuul(randomRoom,"Zuul",1.15,this.currentCharacter.getCharacterInitiative()));
             this.timeSinceSpawn += currentCharacter.getCharacterInitiative()-initiativeBefore;
             this.timeSinceSpawn -= spawnTime;
@@ -463,40 +458,36 @@ public class Game implements IGame, Serializable{
 
     // This method plays the game
     void play(String GUICommand) {
-        // Call the printWelcome method to show a brief introduction to the game
-//        printWelcome();
-        // Check if the player is still playing
-        // As long as game is not finished, get and process user commands
-        //        while (!finished) {
+        /* Process the the input from the GUI and continues to process the 
+        other characters until it's the players turn again or the game ends */
         do {
-            
-            // checks if the TechDude has met the Hero
-            //techDudeMeetHero();
             // Get command from parser
             Command command = parser.getCommand(this.currentCharacter, GUICommand);
             // records character initiative before performing the command
             double initiativeBefore = this.currentCharacter.getCharacterInitiative();
             // Process command
             finished = processCommand(command);
-
-            if (currentCharacter.getName().equals("Hero")) {
+            
+            if (currentCharacter instanceof Hero) {
                 this.timeAddedZuul(initiativeBefore);
+                
+                // Check if player lost game because of the reactor
+                if (!finished) {
+                    finished = timerLose();
+                }
+                // Check if player won game
+                if (!finished) {
+                    finished = winTest();
+                }
+                // Check if the player died due to low health
+                if (!finished) {
+                    finished = healthTest();
+                }
             }
             
-            // Check if player lost game because of reactor
-            if (!finished) {
-                finished = timerLose();
-            }
-            // Check if player won game
-            if (!finished) {
-                finished = winTest();
-            }
-            if (!finished) {
-                finished = healthTest();
-            }
-            
+            // Choose the next character to get a turn
             currentCharacter = this.chooseCharacter();
-        } while(!currentCharacter.getName().equals("Hero") && !finished);
+        } while(!(currentCharacter instanceof Hero) && !finished);
     }
 
     // This method prints the welcome message.
@@ -566,12 +557,12 @@ public class Game implements IGame, Serializable{
                 case PEEK:
                     this.currentCharacter.performCommand(command);
                     break;
-                // (?)If command is "use", call use() method on current character and change Zuul's initiative
+                // (?)If command is "use", call use() method on current character and change Zuul's if appropriate initiative
                 case USE:
                     double zuulInitiativeReduction = this.currentCharacter.performCommand(command);
                     
                     for (Character character : characters) {
-                        if (character.getName().equals("Zuul") && character.getCurrentRoom().equals(this.currentCharacter.getCurrentRoom())) {
+                        if ((character instanceof Zuul) && character.getCurrentRoom().equals(this.currentCharacter.getCurrentRoom())) {
                             character.setCharacterInitiative(character.getCharacterInitiative() + zuulInitiativeReduction);
                         }
                     }
@@ -605,7 +596,7 @@ public class Game implements IGame, Serializable{
                             }
                             
                             for (Character character : characters) {
-                                if (character.getName().equals("TechDude")) {
+                                if (character instanceof TechDude){
                                     TechDude techDude = (TechDude)character;
 
                                     Boolean isFollowingBefore = techDude.followsHero();
@@ -625,7 +616,7 @@ public class Game implements IGame, Serializable{
                                     else if (isFollowingAfter && !isFollowingBefore) {
                                         Character hero = null;
                                         for (Character character1 : characters) {
-                                            if (character1.getName().equals("Hero")) {
+                                            if (character1 instanceof Hero) {
                                                 hero = character1;
                                                 break;
                                             }
@@ -734,7 +725,7 @@ public class Game implements IGame, Serializable{
         boolean techDudeIsThere = false;
         
         for (Character character : characters) {
-            if (character.getName().equals("TechDude")) {
+            if (character instanceof TechDude) {
                 TechDude temp = (TechDude)character;
                 if (temp.followsHero()) {
                     techDudeIsThere = true;
@@ -751,9 +742,7 @@ public class Game implements IGame, Serializable{
                     LogicFacade.appendMessage("Tech dude: Good job, mate! I knew we would make it!");
                 }
                 LogicFacade.appendMessage("Congratulations, you escaped the space station. You won.");
-                System.out.printf("You got %1.2f points\n", point);
                 point = ((int)(point*100))/100.0;
-                
                 LogicFacade.appendMessage("You got " + point +" points\n");
 
                 break;
@@ -846,12 +835,9 @@ public class Game implements IGame, Serializable{
         // Set finished to false
         boolean finished = false;
         // If the player is in the escape pod, set finished to true and print win message
-        for (Character character : characters) {
-            if (character.getCurrentRoom().equals(winConditionRoom)) {
-                finished = true;
-                printStopMessage("win");
-                break;
-            }
+        if (currentCharacter.getCurrentRoom().equals(winConditionRoom)) {
+            finished = true;
+            printStopMessage("win");
         }
         
         // Return value of finished (true if player has won)
@@ -860,42 +846,29 @@ public class Game implements IGame, Serializable{
 
     // This method tests if the player loses because of the reactor
     boolean timerLose() {
-        // If player's initiative is greater than maxInitiative, print lose 
+        // If player's initiative is greater than maxInitiative, print lose
         // message based on "timer" and return true.
-        
-        for (Character character : characters) {
-            if (character.getName().equals("Hero")) {
-                if (character.getCharacterInitiative() > maxInititative) {
-                    printStopMessage("timer");
-                    return true;
-                } // Else, return false
-                else {
-                    return false;
-                }
-            }
+        if (currentCharacter.getCharacterInitiative() > maxInititative) {
+            printStopMessage("timer");
+            return true;
+        } // Else, return false
+        else {
+            return false;
         }
-        return false;
     }
 
     // This method checks whether or not the player has died because of low health.
     private boolean healthTest() {
-        // Check if current player is hero
-        
-        for (Character character : characters) {
-            if (character.getName().equals("Hero")) {
-                // Set tempCharacter to current character
-                Hero tempCharacter = (Hero) character;
-                // If player's health is less than or equal to zero, print "health"
-                // lose message and return true.
-                if (tempCharacter.getHealth() <= 0) {
-                    printStopMessage("health");
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+        // Set tempCharacter to current character
+        Hero tempCharacter = (Hero) currentCharacter;
+        // If player's health is less than or equal to zero, print "health"
+        // lose message and return true.
+        if (tempCharacter.getHealth() <= 0) {
+            printStopMessage("health");
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     Character getCurrentCharacter() {
@@ -906,7 +879,7 @@ public class Game implements IGame, Serializable{
         return finished;
     }
     
-    private Room randomRoom(){       
+    private Room randomZuulSpawnRoom(){       
         Set<String> allRooms = new HashSet<>(this.rooms.keySet());
         allRooms.remove("Pod");
         
