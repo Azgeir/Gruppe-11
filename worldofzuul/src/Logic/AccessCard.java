@@ -15,8 +15,6 @@ import java.io.Serializable;
  * doors in the game. The class extends the superclass Item and implements the
  * interface Serializable.
  * 
- * Test
- * 
  * @author HCHB
  */
 
