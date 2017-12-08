@@ -868,29 +868,29 @@ public class GUIController {
         rooms.put("Biolab", new RoomGUI(roomBiolab,characterPaneBiolab,"Pictures/Biolab.png","Pictures/Biolab FoW.png","Biolab"));
         rooms.put("Computer", new RoomGUI(RoomComputer,characterPaneComputer,"Pictures/computerRoom.png","Pictures/computerRoom FoW.png","Computer"));
         rooms.put("Dock", new RoomGUI(roomDock,characterPaneDock,"Pictures/Dock.png","Pictures/Dock FoW.png","Dock"));
-        rooms.put("BiolabControl", new RoomGUI(roomBiolabControl,characterPaneBiolabControl,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","BiolabControl"));
-        rooms.put("ComputerBiolab", new RoomGUI(roomComputerBiolab,characterPaneComputerBiolab,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","ComputerBiolab"));
+        rooms.put("BiolabControl", new RoomGUI(roomBiolabControl,characterPaneBiolabControl,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal FoW.png","BiolabControl"));
+        rooms.put("ComputerBiolab", new RoomGUI(roomComputerBiolab,characterPaneComputerBiolab,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal FoW.png","ComputerBiolab"));
         rooms.put("Control", new RoomGUI(roomControl,characterPaneControl,"Pictures/ControlRoom.png","Pictures/ControlRoom FoW.png","Control"));
-        rooms.put("ControlDock", new RoomGUI(roomControlDock,characterPaneControlDock,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","ControlDock"));
-        rooms.put("DockPhysicslab", new RoomGUI(roomDockPhysicslab,characterPaneDockPhysicslab,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","DockPhysicslab"));
+        rooms.put("ControlDock", new RoomGUI(roomControlDock,characterPaneControlDock,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal FoW.png","ControlDock"));
+        rooms.put("DockPhysicslab", new RoomGUI(roomDockPhysicslab,characterPaneDockPhysicslab,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal FoW.png","DockPhysicslab"));
         rooms.put("Dorm", new RoomGUI(roomDorm,characterPaneDorm,"Pictures/Dorm.png","Pictures/Dorm FoW.png","Dorm"));
-        rooms.put("DormMedbay", new RoomGUI(roomDormMedbay,characterPaneDormMedbay,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","DormMedbay"));
+        rooms.put("DormMedbay", new RoomGUI(roomDormMedbay,characterPaneDormMedbay,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal FoW.png","DormMedbay"));
         rooms.put("Medbay", new RoomGUI(roomMedbay,characterPaneMedbay,"Pictures/Medbay.png","Pictures/Medbay FoW.png","Medbay"));
-        rooms.put("MedbayStorage", new RoomGUI(roomMedbayStorage,characterPaneMedbayStorage,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","MedbayStorage"));
+        rooms.put("MedbayStorage", new RoomGUI(roomMedbayStorage,characterPaneMedbayStorage,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal FoW.png","MedbayStorage"));
         rooms.put("Physicslab", new RoomGUI(roomPhysicslab,characterPanePhysicslab,"Pictures/Physicslab.png","Pictures/Physicslab FoW.png","Physicslab"));
-        rooms.put("PhysicslabDorm", new RoomGUI(roomPhysicslabDorm,characterPanePhysicslabDorm,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","PhysicslabDorm"));
-        rooms.put("Pod", new RoomGUI(roomPod,characterPanePod,"Pictures/Pod.png","Pictures/Pod.png","Pod"));
+        rooms.put("PhysicslabDorm", new RoomGUI(roomPhysicslabDorm,characterPanePhysicslabDorm,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal FoW.png","PhysicslabDorm"));
+        rooms.put("Pod", new RoomGUI(roomPod,characterPanePod,"Pictures/Pod.png","Pictures/Pod FoW.png","Pod"));
         rooms.put("Reactor", new RoomGUI(roomReactor,characterPaneReactor,"Pictures/Reactor.png","Pictures/Reactor FoW.png","Reactor"));
-        rooms.put("ReactorBiolab", new RoomGUI(roomReactorBiolab,characterPaneReactorBiolab,"Pictures/HallwayVertical.png","Pictures/HallwayVertical.png","ReactorBiolab"));
-        rooms.put("ReactorComputer", new RoomGUI(roomReactorComputer,characterPaneReactorComputer,"Pictures/HallwayVertical.png","Pictures/HallwayVertical.png","ReactorComputer"));
-        rooms.put("ReactorControl", new RoomGUI(roomReactorControl,characterPaneReactorControl,"Pictures/HallwayVertical.png","Pictures/HallwayVertical.png","ReactorControl"));
-        rooms.put("ReactorDock", new RoomGUI(roomReactorDock,characterPaneReactorDock,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","ReactorDock"));
-        rooms.put("ReactorDorm", new RoomGUI(roomReactorDorm,characterPaneReactorDorm,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","ReactorDorm"));
-        rooms.put("ReactorMedbay", new RoomGUI(roomReactorMedbay,characterPaneReactorMedbay,"Pictures/HallwayVertical.png","Pictures/HallwayVertical.png","ReactorMedbay"));
-        rooms.put("ReactorPhysicslab", new RoomGUI(roomReactorPhysicslab,characterPaneReactorPhysicslab,"Pictures/HallwayVertical.png","Pictures/HallwayVertical.png","ReactorPhysicslab"));
-        rooms.put("ReactorStorage", new RoomGUI(roomReactorStorage,characterPaneReactorStorage,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","ReactorStorage"));
+        rooms.put("ReactorBiolab", new RoomGUI(roomReactorBiolab,characterPaneReactorBiolab,"Pictures/HallwayVertical.png","Pictures/HallwayVertical FoW.png","ReactorBiolab"));
+        rooms.put("ReactorComputer", new RoomGUI(roomReactorComputer,characterPaneReactorComputer,"Pictures/HallwayVertical.png","Pictures/HallwayVertical FoW.png","ReactorComputer"));
+        rooms.put("ReactorControl", new RoomGUI(roomReactorControl,characterPaneReactorControl,"Pictures/HallwayVertical.png","Pictures/HallwayVertical FoW.png","ReactorControl"));
+        rooms.put("ReactorDock", new RoomGUI(roomReactorDock,characterPaneReactorDock,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal FoW.png","ReactorDock"));
+        rooms.put("ReactorDorm", new RoomGUI(roomReactorDorm,characterPaneReactorDorm,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal FoW.png","ReactorDorm"));
+        rooms.put("ReactorMedbay", new RoomGUI(roomReactorMedbay,characterPaneReactorMedbay,"Pictures/HallwayVertical.png","Pictures/HallwayVertical FoW.png","ReactorMedbay"));
+        rooms.put("ReactorPhysicslab", new RoomGUI(roomReactorPhysicslab,characterPaneReactorPhysicslab,"Pictures/HallwayVertical.png","Pictures/HallwayVertical FoW.png","ReactorPhysicslab"));
+        rooms.put("ReactorStorage", new RoomGUI(roomReactorStorage,characterPaneReactorStorage,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal FoW.png","ReactorStorage"));
         rooms.put("Storage", new RoomGUI(roomStorage,characterPaneStorage,"Pictures/Storage.png","Pictures/Storage FoW.png","Storage"));
-        rooms.put("StorageComputer", new RoomGUI(roomStorageComputer,characterPaneStorageComputer,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal.png","StorageComputer"));
+        rooms.put("StorageComputer", new RoomGUI(roomStorageComputer,characterPaneStorageComputer,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal FoW.png","StorageComputer"));
     }
 
    
