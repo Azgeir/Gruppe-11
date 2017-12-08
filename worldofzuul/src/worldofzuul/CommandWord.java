@@ -1,5 +1,7 @@
+// The class is located in the logic layer.
 package worldofzuul;
 
+// Import:
 import java.io.Serializable;
 
 /**
@@ -12,8 +14,8 @@ import java.io.Serializable;
  * This enum class defines the available command words. It implements the
  * interface Serializable.
  */
-public enum CommandWord implements Serializable
-{
+
+enum CommandWord implements Serializable {
     /**
      * This defines the available enums for the command words.
      */
@@ -34,7 +36,7 @@ public enum CommandWord implements Serializable
      * 
      * @param commandString 
      */
-    CommandWord(String commandString) {
+    private CommandWord(String commandString) {
         this.commandString = commandString;
     }
     
