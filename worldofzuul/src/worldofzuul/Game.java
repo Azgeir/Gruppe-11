@@ -373,6 +373,7 @@ public class Game implements IGame, Serializable{
                 room.getInventory().addItem(new Item(100, "display-skeleton"), 5);
                 break;
             case "Dorm":
+                room.getInventory().addItem(new Item(20, "cake", "you try to eat the cake but remember that the cake is a lie"));
                 room.getInventory().addItem(new Item(10, "dehydrated-food"), 50);
                 room.getInventory().addItem(new Item(600, "bed"), 20);
                 room.getInventory().addItem(new Item(10, "pillow", "remind yourself that Mommy is not going to save you."), 20);
