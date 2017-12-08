@@ -658,6 +658,7 @@ public class GUIController {
         
         this.updateAllDropdown();
 
+        this.StartScreenMessageLabel.setText("");
         this.switchScreen(startScreen, outerSpace);
         this.setRoomBackgrounds();
         this.setCharactersPeek();
@@ -708,7 +709,6 @@ public class GUIController {
             this.StartScreenMessageLabel.setText("There is no save file");
             
         }
-        
     }
 
     private void switchScreen(Pane from, Pane to) {
