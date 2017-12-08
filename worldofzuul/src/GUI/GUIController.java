@@ -52,7 +52,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
-import Logic.Game;
 
 /**
  *
