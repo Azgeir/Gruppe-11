@@ -37,6 +37,7 @@ public class Zuul extends Character implements Serializable {
      * detects the presence of the player. It is used to allow the player to
      * escape Zuul. The value is initially set to -Double.MAX_VALUE so it always
      * fails its test in getCommand() unless it has been updated.
+     * messageClass; A class for storing strings for to read later.
      */
     private String previousRoomName;
     private ArrayList<String> triedLockedExits = new ArrayList<>();
@@ -45,6 +46,7 @@ public class Zuul extends Character implements Serializable {
     private boolean heroIsInSameRoom;
     private boolean heroWasInSameRoom;
     private double heroInRoomInitiative = -Double.MAX_VALUE;
+    private LogicMessage messageClass;
     
     /**
      * This constructor creates a Zuul with the specified current room, name,
@@ -82,11 +84,58 @@ public class Zuul extends Character implements Serializable {
         this.heroWasInSameRoom = false;
         
         if (heroIsInSameRoom) {
-            LogicFacade.appendMessage("A boarding pod comes crashing through the wall of the space station.\n"
+            messageClass.appendMessage("A boarding pod comes crashing through the wall of the space station.\n"
                     + "Then a Zuul steps out of it and says in the voice of Little Nicky\n"
                     + "\"I will eat your heart\"");
         }
     }
+    
+    /**
+     * This constructor creates a Zuul with the specified current room, name,
+     * and speed factor. The constructor calls the constructor from the
+     * superclass via constructor chaining. As part of the construction, it is
+     * determined whether or not the player (hero) is in the same room as Zuul.
+     * 
+     * @param currentRoom current room of Zuul.
+     * @param name name of the character (i.e., "Zuul").
+     * @param speedFactor used when updating Zuul's initiative.
+     * @param messageClass A class for storing strings for to read later.
+     */
+    Zuul(Room currentRoom, String name, double speedFactor, LogicMessage messageClass) {
+        this(currentRoom, name, speedFactor, 0, messageClass);
+    }
+    
+    /**
+    * This constructor creates a Zuul with the specified current room, name,
+     * and speed factor. The constructor calls the constructor from the
+     * superclass via constructor chaining. As part of the construction, it is
+     * determined whether or not the player (hero) is in the same room as Zuul.
+     * 
+     * @param currentRoom current room of Zuul.
+     * @param name name of the character (i.e., "Zuul").
+     * @param speedFactor used when updating Zuul's initiative.
+     * @param initiative used to set when the zuul gets it's turn
+     * @param messageClass, A class for storing strings for to read later.
+     */
+    Zuul (Room currentRoom, String name, double speedFactor, double initiative, LogicMessage messageClass){
+        super(currentRoom, name, speedFactor, initiative);
+        // Check if the player is in the same room as Zuul.
+        this.heroIsInSameRoom = currentRoom.hasCharacter("Hero");
+        /*
+        When a Zuul is created, it does not know if the player has been in the
+        room.
+        */
+        this.heroWasInSameRoom = false;
+        
+        if (heroIsInSameRoom) {
+            messageClass.appendMessage("A boarding pod comes crashing through the wall of the space station.\n"
+                    + "Then a Zuul steps out of it and says in the voice of Little Nicky\n"
+                    + "\"I will eat your heart\"");
+        }
+        this.messageClass = messageClass;
+    }
+    
+    
     
     /**
      * This method is used to generate a command for Zuul. The method overrides
@@ -346,7 +395,7 @@ public class Zuul extends Character implements Serializable {
         */
         if (this.heroIsInSameRoom) {
             this.heroInRoomInitiative = this.getCharacterInitiative();
-            LogicFacade.appendMessage("The Zuul is in this room.");
+            messageClass.appendMessage("The Zuul is in this room.");
         }
     }
     

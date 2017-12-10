@@ -19,6 +19,7 @@ class Conversation implements Serializable {
     
     /**
      * Data fields.
+     * messageClass A class for storing strings for to read later.
      * TECHTALK1: tech dude's first statement
      * TECHTALK2: tech dude's second statement
      * TECHTALK3: tech dude's third statement
@@ -28,6 +29,7 @@ class Conversation implements Serializable {
      * LETSGO: player's last statement (positive)
      * FUCKOFF: negative statement that increases tech dude's hostility
      */
+    private LogicMessage messageClass;
     // Tech dude statements
     private final String TECHTALK1 = "Is the Zuul gone?";
     private final String TECHTALK2 = "The arrival of Zuul has triggered the station's"
@@ -53,6 +55,15 @@ class Conversation implements Serializable {
     }
     
     /**
+     * This constructor calls it's own no-args constructor and sets messageClass
+     * @param messageClass A class for storing strings for to read later.
+     */
+    Conversation(LogicMessage messageClass){
+        this();
+        this.messageClass = messageClass;
+    }
+    
+    /**
      * This method prints the tech dude's statements when conversing with the
      * tech dude. The statement is determined by the argument string.
      * 
@@ -62,23 +73,23 @@ class Conversation implements Serializable {
      */
     void talk(String string){
         if (string == null){
-            LogicFacade.appendMessage("String is null.");
+            messageClass.appendMessage("String is null.");
         }
         else switch (string){
             case "TechDude1":
-                LogicFacade.appendMessage(TECHTALK1);
+                messageClass.appendMessage(TECHTALK1);
                 break;
             case "TechDude2":
-                LogicFacade.appendMessage(TECHTALK2);
+                messageClass.appendMessage(TECHTALK2);
                 break;
             case "TechDude3":
-                LogicFacade.appendMessage(TECHTALK3);
+                messageClass.appendMessage(TECHTALK3);
                 break;
             case "TechDude4":
-                LogicFacade.appendMessage(TECHTALK4);
+                messageClass.appendMessage(TECHTALK4);
                 break;
             default:
-                LogicFacade.appendMessage("I don't know what you want.");
+                messageClass.appendMessage("I don't know what you want.");
                 break;
         }
     }
@@ -94,29 +105,29 @@ class Conversation implements Serializable {
     void options(String string){
         // Check if string is null
         if (string == null){
-            LogicFacade.appendMessage("String is null.");
+            messageClass.appendMessage("String is null.");
         }
         // Print conversation options depending on the string
         else switch (string) {
             case "TechDude1":
-                LogicFacade.appendMessage("1: " + TECHANSWER1);
-                LogicFacade.appendMessage("2: " + FUCKOFF);
+                messageClass.appendMessage("1: " + TECHANSWER1);
+                messageClass.appendMessage("2: " + FUCKOFF);
                 break;
             case "TechDude2":
-                LogicFacade.appendMessage("1: " + TECHANSWER2);
-                LogicFacade.appendMessage("2: " + FUCKOFF);
+                messageClass.appendMessage("1: " + TECHANSWER2);
+                messageClass.appendMessage("2: " + FUCKOFF);
                 break;
             case "TechDude3":
-                LogicFacade.appendMessage("1: " + TECHANSWER3);
-                LogicFacade.appendMessage("2: " + FUCKOFF);
-                LogicFacade.appendMessage("3: " + LETSGO);
+                messageClass.appendMessage("1: " + TECHANSWER3);
+                messageClass.appendMessage("2: " + FUCKOFF);
+                messageClass.appendMessage("3: " + LETSGO);
                 break;
             case "TechDude4":
-                LogicFacade.appendMessage("1: " + LETSGO);
-                LogicFacade.appendMessage("2: " + FUCKOFF);
+                messageClass.appendMessage("1: " + LETSGO);
+                messageClass.appendMessage("2: " + FUCKOFF);
                 break;
             default:
-                LogicFacade.appendMessage("I don't know what you mean.");
+                messageClass.appendMessage("I don't know what you mean.");
                 break;
         }
     }

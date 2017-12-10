@@ -24,10 +24,12 @@ class Item implements Serializable {
      * weight: the weight of the item
      * name: the name of the item
      * useDescription: describes how the item is used
+     * messageClass: A class for storing strings for to read later.
      */
     private int weight;
     private String name;
     private String useDescription;
+    private LogicMessage messageClass;
     
     /**
      * This constructor creates an Item object with the specified weight and
@@ -51,6 +53,34 @@ class Item implements Serializable {
      */
     Item(int weight, String name, String useDescription) {
         this(weight, name);
+        this.useDescription = useDescription;
+    }
+    
+        /**
+     * This constructor creates an Item object with the specified weight and
+     * name.
+     * 
+     * @param weight, the weight of the item.
+     * @param name, the name of the item.
+     * @param messageClass, A class for storing strings for to read later.
+     */
+    Item(int weight, String name, LogicMessage messageClass) {
+        this.weight = weight;
+        this.name = name;
+        this.messageClass = messageClass;
+    }
+    
+    /**
+     * This constructor creates an Item object with the specified weight, name,
+     * and use description. The constructor uses constructor chaining. 
+     * 
+     * @param weight, the weight of the item.
+     * @param name, the name of the item.
+     * @param useDescription, describes how the item is used.
+     * @param messageClass, A class for storing strings for to read later.
+     */
+    Item(int weight, String name, String useDescription, LogicMessage messageClass) {
+        this(weight, name, messageClass);
         this.useDescription = useDescription;
     }
 
@@ -90,18 +120,18 @@ class Item implements Serializable {
         */
         if (useDescription == null) {
             if (currentCharacter.getCurrentRoom().hasCharacter("Zuul")) {
-                LogicFacade.appendMessage("You throw the " + this.name + " in blind \n"
+                messageClass.appendMessage("You throw the " + this.name + " in blind \n"
                 + "panic. It doesn't have any effect.");
             } else {
-                LogicFacade.appendMessage("You wave around the " + this.name + ",\n"
+                messageClass.appendMessage("You wave around the " + this.name + ",\n"
                         + "seemingly with no purpose.");
             }
         } else {
             if (currentCharacter.getCurrentRoom().hasCharacter("Zuul")) {
-                LogicFacade.appendMessage("You use the " + this.name + " to " 
+                messageClass.appendMessage("You use the " + this.name + " to " 
                     + this.useDescription + ". It has no effect on the Zuul.");                
             } else {
-                LogicFacade.appendMessage("You use the " + this.name + " to " 
+                messageClass.appendMessage("You use the " + this.name + " to " 
                     + this.useDescription);
             }
         }

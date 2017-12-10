@@ -32,6 +32,7 @@ public class Room implements Serializable, IRoom {
      * in the room.
      * hasBeenLookedUpon: indicates whether the player has "looked" at the room,
      * thereby unlocking the room's inventory.
+     * messageClass: A class for storing strings for to read later.
      */
     private String description;
     private String detailedDescription;
@@ -42,6 +43,7 @@ public class Room implements Serializable, IRoom {
     private HashMap<String,Boolean> hasCharacter = new HashMap<>();
     private ArrayList<String> charactersInRoom;
     private boolean hasBeenLookedUpon;
+    private LogicMessage messageClass;
     
     /**
      * This constructor creates a room with a specified description string. The
@@ -62,7 +64,7 @@ public class Room implements Serializable, IRoom {
         Create an inventory for the room with a standard capacity (int max
         value).
         */
-        this.inventory = new Inventory();
+        this.inventory = new Inventory(messageClass);
         /*
         By default, the detailed description and name of the room represents a
         hallway.
@@ -104,6 +106,39 @@ public class Room implements Serializable, IRoom {
      */
     Room(String description, String roomName, String detailedDescription) {
         this(description, roomName);
+        this.detailedDescription = detailedDescription;
+    }
+    
+    /**
+     * This constructor creates a room with the specified description and name.
+     * The constructor is used to create the escape pod room, as it has a name
+     * different from hallway. Even so, since the escape pod is the win
+     * condition, it does not need a detailed description. Therefore, this is
+     * left at the hallway default. The constructor uses constructor chaining.
+     * 
+     * @param description, short description of the room.
+     * @param roomName, name of the room.
+     * @param messageClass, A class for storing strings for to read later.
+     */
+    Room(String description, String roomName, LogicMessage messageClass) {
+        this(description);
+        this.name = roomName;
+        this.messageClass = messageClass;
+    }
+    
+    /**
+     * This constructor creates a room with the specified description, name, and
+     * detailed description. The constructor is used to create the non-hallway
+     * rooms in the game. The constructor uses constructor chaining.
+     * 
+     * @param description, short description of the room.
+     * @param roomName, name of the room.
+     * @param detailedDescription, longer description of the room.
+     * @param messageClass, A class for storing strings for to read later.
+     * 
+     */
+    Room(String description, String roomName, String detailedDescription, LogicMessage messageClass) {
+        this(description, roomName, messageClass);
         this.detailedDescription = detailedDescription;
     }
 

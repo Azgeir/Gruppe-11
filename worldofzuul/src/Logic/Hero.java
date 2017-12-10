@@ -32,6 +32,7 @@ class Hero extends Character implements Serializable {
      * activated the reactor (default value of false).
      * knownRooms: a Set of Strings that indicate the rooms that the character
      * knows of. This is used when peeking.
+     * messageClass: A class for storing strings for to read later.
      */
     private int health = 10;
     private Inventory inventory;
@@ -39,7 +40,7 @@ class Hero extends Character implements Serializable {
     private Set<String> knownRooms;
     private boolean talking;
     private String previousCommand;
-    
+    private LogicMessage messageClass;
 
     /**
      * This constructor creates a Hero object with the specified current room
@@ -75,6 +76,24 @@ class Hero extends Character implements Serializable {
     }
     
     /**
+     * This constructor creates a Hero object with the specified current room,
+     * name, inventory capacity and health. The hero has an inventory of default
+     * size 100.
+     * 
+     * @param health  The amount of health the hero gets.
+     * @param inventoryCapacity  The total weight of items the hero can carry.
+     * @param currentRoom The room the hero starts in.
+     * @param name The name of the hero.
+     * @param messageClass: A class for storing strings for to read later.
+     */
+    Hero(int health, int inventoryCapacity, Room currentRoom, String name, LogicMessage messageClass) {
+        this(currentRoom, name);
+        this.health = health;
+        this.inventory = new Inventory(inventoryCapacity, messageClass);
+        this.messageClass = messageClass;
+    }
+    
+    /**
      * This method moves the hero according to the command passed.
      * 
      * @param command Is the command the hero receives. Consists of 3 words
@@ -84,7 +103,7 @@ class Hero extends Character implements Serializable {
     void go(Command command) {
         // If the command does not have a second word, print error message
         if (!command.hasSecondWord()) {
-            LogicFacade.appendMessage("Go where?");
+            messageClass.appendMessage("Go where?");
             return;
         }
 
@@ -96,11 +115,11 @@ class Hero extends Character implements Serializable {
 
         // If the specified exit does not exist, print error message
         if (nextRoom == null) {
-            LogicFacade.appendMessage("There is no door!");
+            messageClass.appendMessage("There is no door!");
         } 
         // If the specified exit is locked, print locked message
         else if (this.getCurrentRoom().isExitLocked(direction)){
-            LogicFacade.appendMessage("This exit is locked, so you can't get through.");
+            messageClass.appendMessage("This exit is locked, so you can't get through.");
         }
         // If the specified exit exists and is not locked, move character
         else {
@@ -113,11 +132,11 @@ class Hero extends Character implements Serializable {
             this.getCurrentRoom().addCharacterInRoom(this.getName());
             this.knownRooms.add(this.getCurrentRoom().getName());
             // Print description of the current room
-            LogicFacade.appendMessage(this.getCurrentRoom().getLongDescription());
+            messageClass.appendMessage(this.getCurrentRoom().getLongDescription());
         }
         
         if (this.getCurrentRoom().hasCharacter("Zuul")){
-            LogicFacade.appendMessage("The Zuul is in this room.");
+            messageClass.appendMessage("The Zuul is in this room.");
         }
         
         this.setCharacterInitiative(this.getCharacterInitiative() + 10 * this.getSpeedFactor());
@@ -138,7 +157,7 @@ class Hero extends Character implements Serializable {
             Item item = this.getCurrentRoom().getInventory().getItem(itemName);
 
             if (item == null) {
-                LogicFacade.appendMessage("The room doesn't contain that item.");
+                messageClass.appendMessage("The room doesn't contain that item.");
             } else {
                 if (command.hasThirdWord()) {
                     String numberString = command.getThirdWord();
@@ -162,29 +181,29 @@ class Hero extends Character implements Serializable {
                             }
                         }
                         if (numberAdded == 0) {
-                            LogicFacade.appendMessage("You can't carry any of that.");
+                            messageClass.appendMessage("You can't carry any of that.");
                         } else if ((numberAdded < number) && (numberNonExisting == 0)) {
-                            LogicFacade.appendMessage("You could only pick up " + numberAdded + " " + itemName);
+                            messageClass.appendMessage("You could only pick up " + numberAdded + " " + itemName);
                         } else if (numberNonExisting > 0 && (numberNonExisting + numberAdded) == number) {
-                            LogicFacade.appendMessage("You picked up " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in this room.");
+                            messageClass.appendMessage("You picked up " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in this room.");
                         } else {
-                            LogicFacade.appendMessage("You picked up " + number + " " + itemName);
+                            messageClass.appendMessage("You picked up " + number + " " + itemName);
                         }
                     } else {
-                        LogicFacade.appendMessage("The third word needs to be an integer.");
+                        messageClass.appendMessage("The third word needs to be an integer.");
                     }
                 } else {
                     boolean itemAdded = this.inventory.addItem(item);
                     if (itemAdded) {
                         this.getCurrentRoom().getInventory().removeItem(item);
-                        LogicFacade.appendMessage("You picked up " + item.getName());
+                        messageClass.appendMessage("You picked up " + item.getName());
                     } else {
-                        LogicFacade.appendMessage("You can't carry that.");
+                        messageClass.appendMessage("You can't carry that.");
                     }
                 }
             }
         } else {
-            LogicFacade.appendMessage("Pickup what?");
+            messageClass.appendMessage("Pickup what?");
         }
 
         this.speedFactorCalculation();
@@ -207,7 +226,7 @@ class Hero extends Character implements Serializable {
             Item item = this.inventory.getItem(itemName);
 
             if (item == null) {
-                LogicFacade.appendMessage("You don't have such an item.");
+                messageClass.appendMessage("You don't have such an item.");
             } else {
                 if (command.hasThirdWord()) {
                     String numberString = command.getThirdWord();
@@ -231,29 +250,29 @@ class Hero extends Character implements Serializable {
                             }
                         }
                         if (numberAdded == 0) {
-                            LogicFacade.appendMessage("There isn't room in this room for that.");
+                            messageClass.appendMessage("There isn't room in this room for that.");
                         } else if ((numberAdded < number) && (numberNonExisting == 0)) {
-                            LogicFacade.appendMessage("You could only drop " + numberAdded + " " + itemName + " because there is not room enought for all of them in this room.");
+                            messageClass.appendMessage("You could only drop " + numberAdded + " " + itemName + " because there is not room enought for all of them in this room.");
                         } else if (numberNonExisting > 0 && (numberNonExisting + numberAdded) == number) {
-                            LogicFacade.appendMessage("You dropped " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in your inventory.");
+                            messageClass.appendMessage("You dropped " + numberAdded + " " + itemName + " because there is only " + numberAdded + " in your inventory.");
                         } else {
-                            LogicFacade.appendMessage("You dropped " + number + " " + itemName);
+                            messageClass.appendMessage("You dropped " + number + " " + itemName);
                         }
                     } else {
-                        LogicFacade.appendMessage("The third word needs to be an integer.");
+                        messageClass.appendMessage("The third word needs to be an integer.");
                     }
                 } else {
                     boolean itemAdded = this.getCurrentRoom().getInventory().addItem(item);
                     if (itemAdded) {
                         this.inventory.removeItem(item);
-                        LogicFacade.appendMessage("You dropped " + item.getName());
+                        messageClass.appendMessage("You dropped " + item.getName());
                     } else {
-                        LogicFacade.appendMessage("There isn't room in this room for that item.");
+                        messageClass.appendMessage("There isn't room in this room for that item.");
                     }
                 }
             }
         } else {
-            LogicFacade.appendMessage("Drop what?");
+            messageClass.appendMessage("Drop what?");
         }
 
         this.speedFactorCalculation();
@@ -271,28 +290,28 @@ class Hero extends Character implements Serializable {
             String direction = command.getSecondWord();
             if (direction.equals("around")) {
                 // Print detailed description of room
-                LogicFacade.appendMessage(this.getCurrentRoom().getDetailedDescription());
+                messageClass.appendMessage(this.getCurrentRoom().getDetailedDescription());
                 // Prints out the characters present in the room, except for the player
                 for (Entry<String, Boolean> hasCharacter : this.getCurrentRoom().getHasCharacters().entrySet()) {
                     if (hasCharacter.getValue() && !hasCharacter.getKey().equals("Hero")) {
-                        LogicFacade.appendMessage("\n" + hasCharacter.getKey() + " is in this room");
+                        messageClass.appendMessage("\n" + hasCharacter.getKey() + " is in this room");
                     }
                 }
 
                 // Print inventory of current room
-                LogicFacade.appendMessage("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
+                messageClass.appendMessage("There is the following in the room:\n" + this.getCurrentRoom().getInventory().showItems());
                 // Print status of exits
-                LogicFacade.appendMessage(this.getCurrentRoom().getLockedExitString());
+                messageClass.appendMessage(this.getCurrentRoom().getLockedExitString());
                 this.getCurrentRoom().setHasBeenLookedUpon(true);
                 this.setCharacterInitiative(this.getCharacterInitiative() + 1 * this.getSpeedFactor());
             } else if (direction.equals("inventory")) {
-                LogicFacade.appendMessage("There is the following in your inventory:\n" + this.getInventory().showItems());
+                messageClass.appendMessage("There is the following in your inventory:\n" + this.getInventory().showItems());
                 this.setCharacterInitiative(this.getCharacterInitiative() + 1.5 * this.getSpeedFactor());
             } else {
-                LogicFacade.appendMessage("There is no such direction to look.");
+                messageClass.appendMessage("There is no such direction to look.");
             }
         } else {
-            LogicFacade.appendMessage("Look where");
+            messageClass.appendMessage("Look where");
         }
     }
 
@@ -307,7 +326,7 @@ class Hero extends Character implements Serializable {
         this.knownRooms.add(this.getCurrentRoom().getName());
 
         if (this.getCurrentRoom().hasCharacter("Zuul")) {
-            LogicFacade.appendMessage("Zuul is in this room, you idiot.");
+            messageClass.appendMessage("Zuul is in this room, you idiot.");
             zuulNearby = true;
         }
 
@@ -315,7 +334,7 @@ class Hero extends Character implements Serializable {
             for (Room neighbor : this.getCurrentRoom().getExits().values()) {
                 this.knownRooms.add(neighbor.getName());
                 if (neighbor.hasCharacter("Zuul")) {
-                    LogicFacade.appendMessage("Zuul is " + neighbor.getShortDescription());
+                    messageClass.appendMessage("Zuul is " + neighbor.getShortDescription());
                     zuulNearby = true;
                 }
             }
@@ -325,17 +344,17 @@ class Hero extends Character implements Serializable {
                 this.knownRooms.add(neighbor.getExit(direction).getName());
 //                    neighbor.getHasCharacter("Zuul")) {
                 if (neighbor.getExit(direction).hasCharacter("Zuul")) {
-                    LogicFacade.appendMessage("Zuul is " + neighbor.getExit(direction).getShortDescription());
+                    messageClass.appendMessage("Zuul is " + neighbor.getExit(direction).getShortDescription());
                     zuulNearby = true;
 
                 }
             }
 
             if (!zuulNearby) {
-                LogicFacade.appendMessage("There is no Zuul nearby.");
+                messageClass.appendMessage("There is no Zuul nearby.");
             }
         } else {
-            LogicFacade.appendMessage("There is no direction by that name.");
+            messageClass.appendMessage("There is no direction by that name.");
         }
 
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
@@ -351,15 +370,15 @@ class Hero extends Character implements Serializable {
         if (directionExists) {
             if (this.getInventory().getItem("accesscard") != null) {
                 this.lockUnlock(direction, lock);
-                LogicFacade.appendMessage("You locked the door.");
+                messageClass.appendMessage("You locked the door.");
             } else {
-                LogicFacade.appendMessage("You don't have an access card to do that with.");
+                messageClass.appendMessage("You don't have an access card to do that with.");
             }
         }
 
         // If there isn't any door that matches the secondWord, then this is print
         if (!directionExists) {
-            LogicFacade.appendMessage("There isn't an exit by that name.");
+            messageClass.appendMessage("There isn't an exit by that name.");
 
         }
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
@@ -377,16 +396,16 @@ class Hero extends Character implements Serializable {
             if (direction.equals(exit)) {
                 if (this.getInventory().getItem("accesscard") != null) {
                     this.lockUnlock(direction, lock);
-                    LogicFacade.appendMessage("You unlocked the door.");
+                    messageClass.appendMessage("You unlocked the door.");
                 } else {
-                    LogicFacade.appendMessage("You don't have an access card to do that with.");
+                    messageClass.appendMessage("You don't have an access card to do that with.");
                 }
                 directionExists = true;
             }
         }
         // If there isnt any door that matches the secondWord then this is print
         if (!directionExists) {
-            LogicFacade.appendMessage("There isn't any exit by that name.");
+            messageClass.appendMessage("There isn't any exit by that name.");
         }
         this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
     }
@@ -404,10 +423,10 @@ class Hero extends Character implements Serializable {
                 return initiativeReduction;
             } else {
                 this.setCharacterInitiative(this.getCharacterInitiative() + 2 * this.getSpeedFactor());
-                LogicFacade.appendMessage("You don't have any such item.");
+                messageClass.appendMessage("You don't have any such item.");
             }
         } else {
-            LogicFacade.appendMessage("You have to select something to use.");
+            messageClass.appendMessage("You have to select something to use.");
         }
 
         return 0;
@@ -489,7 +508,7 @@ class Hero extends Character implements Serializable {
                 }
 
             } else {
-                LogicFacade.appendMessage("The station is under quarantine and you therefore can't open the door.\n"
+                messageClass.appendMessage("The station is under quarantine and you therefore can't open the door.\n"
                         + "Perhaps you could find something or someone to force it open.");
             }
 
@@ -515,7 +534,7 @@ class Hero extends Character implements Serializable {
         this.clearMessage();
         this.setCharacterInitiative(this.getCharacterInitiative() + 15 * this.getSpeedFactor());
         if (!command.hasSecondWord()) {
-            LogicFacade.appendMessage("Activate what?");
+            messageClass.appendMessage("Activate what?");
             return Double.MAX_VALUE;
         }
         if (command.getSecondWord().equals("Reactor")) {
@@ -523,25 +542,25 @@ class Hero extends Character implements Serializable {
             if (this.getCurrentRoom().getName().equals("Reactor")) {
                 if (this.getCurrentRoom().hasCharacter("TechDude")) {
                     if (!reactorActivated) {
-                        LogicFacade.appendMessage("You activated the reactor. The space station will self-destruct in an unspecified amount of time.");
+                        messageClass.appendMessage("You activated the reactor. The space station will self-destruct in an unspecified amount of time.");
                         this.reactorActivated = true;
                         this.setMessage("Reactor activated");
                         return (this.getCharacterInitiative() + 80);
                     } else {
-                        LogicFacade.appendMessage("The reactor is already activated.");
+                        messageClass.appendMessage("The reactor is already activated.");
                         return Double.MAX_VALUE;
                     }
                 } else {
-                    LogicFacade.appendMessage("You need the tech dude to do this.");
+                    messageClass.appendMessage("You need the tech dude to do this.");
                     return Double.MAX_VALUE;
                 }
             } else {
-                LogicFacade.appendMessage("There is no reactor in this room.");
+                messageClass.appendMessage("There is no reactor in this room.");
                 return Double.MAX_VALUE;
             }
 
         } else {
-            LogicFacade.appendMessage("You can't activate anything by that name.");
+            messageClass.appendMessage("You can't activate anything by that name.");
         }
         return Double.MAX_VALUE;
     }
@@ -589,7 +608,7 @@ class Hero extends Character implements Serializable {
                     break;
                 case STAY:
                     this.stay(command);
-                    LogicFacade.appendMessage("You stay in this room");
+                    messageClass.appendMessage("You stay in this room");
                     break;
                 // If command is "pickup", call pickup() method on current character
                 case PICKUP:

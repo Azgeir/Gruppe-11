@@ -219,15 +219,15 @@ public class LogicFacade implements ILogicFacade {
         return message;
     }
 
-    /**
-     * This method is used to append a message. It calls the appendMessage()
-     * method on game.
-     * 
-     * @param appendMessage a String to be appended.
-     */
-    static void appendMessage(String appendMessage) {
-        LogicFacade.game.appendMessage(appendMessage);
-    }
+//    /**
+//     * This method is used to append a message. It calls the appendMessage()
+//     * method on game.
+//     * 
+//     * @param appendMessage a String to be appended.
+//     */
+//    static void appendMessage(String appendMessage) {
+//        LogicFacade.game.appendMessage(appendMessage);
+//    }
 
     /**
      * This method is used to get the number of items in the specified

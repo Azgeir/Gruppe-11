@@ -54,6 +54,7 @@ class Game implements IGame, Serializable{
     private double spawnTime;
     private String name;
     private String message;
+    private LogicMessage messageClass;
 
     /**
      * This no-arg constructor creates an instance of Game with one Zuul. It
@@ -94,6 +95,7 @@ class Game implements IGame, Serializable{
      * @param name name of the game.
      */
     Game(int numberOfZuul, double spawnTime, String name){
+        this.messageClass = new LogicMessage();
         // Set finished to false as the game is not finished when it is started.
         this.finished = false;
         // Time since spawn is reset at the beginning of the game.
@@ -116,6 +118,7 @@ class Game implements IGame, Serializable{
         this.printWelcome();
         // Select current character
         this.currentCharacter = this.chooseCharacter();
+        
     }
 
     /**
@@ -133,33 +136,34 @@ class Game implements IGame, Serializable{
             + "there is a row of microscopes, and the shelf above contains a\n"
             + "collection of test tubes with liquids of different colours.\nIn "
             + "the corner of the room there is a computer. Maybe you'll be\n"
-            + "able to save some of the research.\n");
+            + "able to save some of the research.\n", messageClass);
 
         // Initialise the computer room
         computerRoom = new Room("in the computer room", "Computer",
             "You are in the computer room. This is where you had your working\n"
             + "hours. You see several computers, chairs, USBs, and larger "
             + "storage\nunits. You also see your access card lying on the "
-            + "desk.\n");
+            + "desk.\n", messageClass);
 
         // Initialise the storage room
         storage = new Room("in the storage room", "Storage",
             "You are in the storage facility. Here you see several drawers and"
             + "\nshelves, containing everything from dried food to different "
-            + "tools,\nmedkits and reseach compartments.\n");
+            + "tools,\nmedkits and reseach compartments.\n", messageClass);
 
         // Initialise the medical bay
         medicalBay = new Room("in the medical bay", "Medbay",
             "You are in the medical bay. This is where you would get treated "
             + "and\ncontained if you fell sick or got minor injuries. There are"
-            + " beds\nand several drawers with medkits, pills and syringes.\n");
+            + " beds\nand several drawers with medkits, pills and syringes.\n"
+                , messageClass);
 
         // Initialise the dormitory
         dormitory = new Room("in the dormitory", "Dorm",
             "You are in the dormitory. This is where you used to sleep and\n"
             + "relax with your colleagues. Sadly, this is also where the "
             + "monster\narrived. You see the corpses of your beloved colleagues"
-            + " scattered\naround the room.\n");
+            + " scattered\naround the room.\n", messageClass);
 
         // Initialise the physics laboratory
         physicsLaboratory = new Room("in the physics laboratory", "Physicslab",
@@ -167,7 +171,7 @@ class Game implements IGame, Serializable{
             + "various\nequipment. On a table nearby, you see a Helmholtz coil,"
             + " and on your\nright, there is a mass spectrometer. In the corner"
             + " of the room, you\nsee a computer. Maybe you'll be able to save"
-            + " some of the research.\n");
+            + " some of the research.\n", messageClass);
 
         // Initialise the dock
         dock = new Room("in the dock", "Dock", "You are in the dock. This is "
@@ -175,24 +179,25 @@ class Game implements IGame, Serializable{
             + "space station via the pod. However, the space station \nis "
             + "currently under quarantine and you don't know how to overwrite\n"
             + "it. Around you, you see tools for repairs, 3D printers and space"
-            + " suits \n");
+            + " suits \n", messageClass);
 
         // Initialise the control room
         controlRoom = new Room("in the control room", "Control", "You are in "
             + "the control room. This is where information goes to and\nfrom "
             + "the space station. This is where you find the tech dude. He was"
             + " \ntrying to reestablish the connection to earth, but to no "
-            + "avail.\nMaybe you could get surveilliance data back with you.");
+            + "avail.\nMaybe you could get surveilliance data back with you."
+                , messageClass);
 
         // Initialise the reactor
         reactor = new Room("near the reactor", "Reactor", "You are in the "
             + "reactor room. The reactor is a very dense nuclear\nreactor. If "
             + "it were to melt down the space station would be annihilated.\n"
             + "You see some basic tools, some Geiger counters, and a coupple of"
-            + "\nspace suits.\n");
+            + "\nspace suits.\n", messageClass);
 
         // Initialise the escape pod
-        escapePod = new Room("in the escape pod", "Pod");
+        escapePod = new Room("in the escape pod", "Pod", messageClass);
 
         // Declare hallways between rooms
         Room hallwayStorageComputer, hallwayComputerBiology,
@@ -202,21 +207,21 @@ class Game implements IGame, Serializable{
 
         // Initialize the hallways between the outer rooms
         hallwayStorageComputer = new Room("in the hallway between the storage "
-            + "and computer rooms", "StorageComputer");
+            + "and computer rooms", "StorageComputer", messageClass);
         hallwayComputerBiology = new Room("in the hallway between the computer "
-            + "room and the biology laboratory","ComputerBiolab");
+            + "room and the biology laboratory","ComputerBiolab", messageClass);
         hallwayBiologyControl = new Room("in the hallway between the biology "
-            + "laboratory and the control room", "BiolabControl");
+            + "laboratory and the control room", "BiolabControl", messageClass);
         hallwayControlDock = new Room("in the hallway between the control room "
-            + "and the dock", "ControlDock");
+            + "and the dock", "ControlDock", messageClass);
         hallwayDockPhysics = new Room("in the hallway between the dock and the "
-            + "physics laboratory", "DockPhysicslab");
+            + "physics laboratory", "DockPhysicslab", messageClass);
         hallwayPhysicsDormitory = new Room("in the hallway between the physics "
-            + "laboratory and the dormitory", "PhysicslabDorm");
+            + "laboratory and the dormitory", "PhysicslabDorm", messageClass);
         hallwayDormitoryMedical = new Room("in the hallway between the "
-            + "dormitory and the medical bay", "DormMedbay");
+            + "dormitory and the medical bay", "DormMedbay", messageClass);
         hallwayMedicalStorage = new Room("in the hallway between the medical "
-            + "bay and the storage room", "MedbayStorage");
+            + "bay and the storage room", "MedbayStorage", messageClass);
 
         // Declare hallways connected to the reactor
         Room hallwayReactorBiology, hallwayReactorControl, hallwayReactorDock,
@@ -226,21 +231,21 @@ class Game implements IGame, Serializable{
 
         // Initialize the hallways connected to the reactor
         hallwayReactorBiology = new Room("in the hallway between the reactor "
-            + "and the biology laboratory", "ReactorBiolab");
+            + "and the biology laboratory", "ReactorBiolab", messageClass);
         hallwayReactorControl = new Room("in the hallway between the reactor "
-            + "and the control room", "ReactorControl");
+            + "and the control room", "ReactorControl", messageClass);
         hallwayReactorDock = new Room("in the hallway between the reactor and "
-            + "the dock", "ReactorDock");
+            + "the dock", "ReactorDock", messageClass);
         hallwayReactorPhysics = new Room("in the hallway between the reactor "
-            + "and the physics laboratory", "ReactorPhysicslab");
+            + "and the physics laboratory", "ReactorPhysicslab", messageClass);
         hallwayReactorDormitory = new Room("in the hallway between the reactor "
-            + "and the dormitory", "ReactorDorm");
+            + "and the dormitory", "ReactorDorm", messageClass);
         hallwayReactorMedical = new Room("in the hallway between the reactor "
-            + "and the medical bay", "ReactorMedbay");
+            + "and the medical bay", "ReactorMedbay", messageClass);
         hallwayReactorStorage = new Room("in the hallway between the reactor "
-            + "and the storage room", "ReactorStorage");
+            + "and the storage room", "ReactorStorage", messageClass);
         hallwayReactorComputer = new Room("in the hallway between the reactor "
-            + "and the computer room", "ReactorComputer");
+            + "and the computer room", "ReactorComputer", messageClass);
 
         // Set possible exits for hallways between rooms
         hallwayStorageComputer.setExit("Storage", storage, false);
@@ -399,173 +404,173 @@ class Game implements IGame, Serializable{
             // Fill biology laboratory.
             case "Biolab":
                 room.getInventory().addItem(new Item(10, "notebook", 
-                    "smash it down on the floor in pure anger."));
-                room.getInventory().addItem(new Item(50, "microscope"), 3);
+                    "smash it down on the floor in pure anger.", messageClass));
+                room.getInventory().addItem(new Item(50, "microscope", messageClass), 3);
                 room.getInventory().addItem(new Item(1000, 
-                    "DNA-sequencing-machine"));
-                room.getInventory().addItem(new Item(150, "incubator"), 2);
-                room.getInventory().addItem(new Item(500, "refrigerator"), 2);
-                room.getInventory().addItem(new Item(20, "animal-cell-model"));
-                room.getInventory().addItem(new Item(20, "plant-cell-model"));
+                    "DNA-sequencing-machine", messageClass));
+                room.getInventory().addItem(new Item(150, "incubator", messageClass), 2);
+                room.getInventory().addItem(new Item(500, "refrigerator", messageClass), 2);
+                room.getInventory().addItem(new Item(20, "animal-cell-model", messageClass));
+                room.getInventory().addItem(new Item(20, "plant-cell-model", messageClass));
                 room.getInventory().addItem(new Item(20, "water-sample",
-                    "piss in it to show dominance."));
-                room.getInventory().addItem(new Item(20, "air-sample"));
+                    "piss in it to show dominance.", messageClass));
+                room.getInventory().addItem(new Item(20, "air-sample", messageClass));
                 room.getInventory().addItem(new Item(10,
-                    "methylene-blue-stain"), 10);
+                    "methylene-blue-stain", messageClass), 10);
                 room.getInventory().addItem(new Item(10,
-                    "Gram's-iodine-solution"), 10);
-                room.getInventory().addItem(new Item(5, "pipette"), 20);
-                room.getInventory().addItem(new Item(5, "microscope-slide"),
+                    "Gram's-iodine-solution", messageClass), 10);
+                room.getInventory().addItem(new Item(5, "pipette", messageClass), 20);
+                room.getInventory().addItem(new Item(5, "microscope-slide", messageClass),
                     20);
-                room.getInventory().addItem(new Item(10, "cell-lysis-solution"),
+                room.getInventory().addItem(new Item(10, "cell-lysis-solution", messageClass),
                     10);
                 room.getInventory().addItem(new Item(10,
                     "DNA-precipitate-solution"), 10);
-                room.getInventory().addItem(new Item(5, "test-tube"), 20);
-                room.getInventory().addItem(new Item(400, "centrifuge"), 2);
+                room.getInventory().addItem(new Item(5, "test-tube", messageClass), 20);
+                room.getInventory().addItem(new Item(400, "centrifuge", messageClass), 2);
                 room.getInventory().addItem(new Item(99, "cat",
-                    "pet it. It scratces your hand."));
-                room.getInventory().addItem(new AcidVial(4, 25), 10);
+                    "pet it. It scratces your hand.", messageClass));
+                room.getInventory().addItem(new AcidVial(4, 25, this.messageClass), 10);
                 break;
             // Fill computer room.
             case "Computer":
-                room.getInventory().addItem(new USB(3));
-                room.getInventory().addItem(new USB(2));
-                room.getInventory().addItem(new USB(1));
-                room.getInventory().addItem(new Item(150, "computer-monitor"),
+                room.getInventory().addItem(new USB(3, messageClass));
+                room.getInventory().addItem(new USB(2, messageClass));
+                room.getInventory().addItem(new USB(1, messageClass));
+                room.getInventory().addItem(new Item(150, "computer-monitor", messageClass),
                     10);
-                room.getInventory().addItem(new Item(10, "computer-mouse"), 10);
+                room.getInventory().addItem(new Item(10, "computer-mouse", messageClass), 10);
                 room.getInventory().addItem(new Item(20, "keyboard",
                     "write code, but it dosen't work, so you smash it into "
-                    + "pieces."), 10);
-                room.getInventory().addItem(new AccessCard());
+                    + "pieces.", messageClass), 10);
+                room.getInventory().addItem(new AccessCard(this.messageClass));
                 break;
             // Fill storage room.
             case "Storage":
-                room.getInventory().addItem(new AcidVial(4, 25), 5);
-                room.getInventory().addItem(new MedKit(), 10);
-                room.getInventory().addItem(new Item(400, "box"), 30);
-                room.getInventory().addItem(new Item(600, "bed"), 15);
-                room.getInventory().addItem(new Item(75, "electronics"), 25);
-                room.getInventory().addItem(new Item(1350, "solarpanel"), 15);
+                room.getInventory().addItem(new AcidVial(4, 25, this.messageClass), 5);
+                room.getInventory().addItem(new MedKit(messageClass), 10);
+                room.getInventory().addItem(new Item(400, "box", messageClass), 30);
+                room.getInventory().addItem(new Item(600, "bed", messageClass), 15);
+                room.getInventory().addItem(new Item(75, "electronics", messageClass), 25);
+                room.getInventory().addItem(new Item(1350, "solarpanel", messageClass), 15);
                 room.getInventory().addItem(new Item(20, "hammer",
                     "hit yourself in hope of convincing yourself that this is "
-                    + "not reality."), 13); 
+                    + "not reality.", messageClass), 13); 
                 room.getInventory().addItem(new Item(20, "saw"), 9);
                 room.getInventory().addItem(new Item(20, "crowbar", "smash some"
                     + " stuff and pretend that you are Gordon Freeman. This "
-                    + "isn't Half Life 3, you dumbass!"), 7);
-                room.getInventory().addItem(new Item(20, "plasma-saw"), 6);
+                    + "isn't Half Life 3, you dumbass!", messageClass), 7);
+                room.getInventory().addItem(new Item(20, "plasma-saw", messageClass), 6);
                 room.getInventory().addItem(new Item(30, "nailgun", "shoot all"
-                    + " over the place like a stormtrooper."), 8);
-                room.getInventory().addItem(new AccessCard());
+                    + " over the place like a stormtrooper.", messageClass), 8);
+                room.getInventory().addItem(new AccessCard(this.messageClass));
                 break;
             // Fill medical bay.
             case "Medbay":
-                room.getInventory().addItem(new AcidVial(4, 25), 7);
-                room.getInventory().addItem(new MedKit(), 10);
+                room.getInventory().addItem(new AcidVial(4, 25, this.messageClass), 7);
+                room.getInventory().addItem(new MedKit(messageClass), 10);
                 room.getInventory().addItem(new Item(5, "syringe", "stick it at"
-                    + " yourself to see, if you end up tripping balls."), 17);
+                    + " yourself to see, if you end up tripping balls.", messageClass), 17);
                 room.getInventory().addItem(new Item(2, "pill", "try to aquire "
                     + "superpowers, but you end up having extreme explosive "
-                    + "diaherra being shot out of your ass as a cannon."), 29);
-                room.getInventory().addItem(new Item(6, "glass"), 49);
+                    + "diaherra being shot out of your ass as a cannon.", messageClass), 29);
+                room.getInventory().addItem(new Item(6, "glass", messageClass), 49);
                 room.getInventory().addItem(new Item(20, "book", "read up on "
-                    + "how to fart like a machine gun."), 50);
-                room.getInventory().addItem(new Item(20, "coat"), 19);
-                room.getInventory().addItem(new Item(400, "desk"), 8);
-                room.getInventory().addItem(new Item(100, "display-skeleton"),
+                    + "how to fart like a machine gun.", messageClass), 50);
+                room.getInventory().addItem(new Item(20, "coat", messageClass), 19);
+                room.getInventory().addItem(new Item(400, "desk", messageClass), 8);
+                room.getInventory().addItem(new Item(100, "display-skeleton", messageClass),
                     5);
                 break;
             // Fill dormitory.
             case "Dorm":
                 room.getInventory().addItem(new Item(20, "cake", "you try to "
-                    + "eat the cake but remember that the cake is a lie"));
-                room.getInventory().addItem(new Item(10, "dehydrated-food"),
+                    + "eat the cake but remember that the cake is a lie", messageClass));
+                room.getInventory().addItem(new Item(10, "dehydrated-food", messageClass),
                     50);
-                room.getInventory().addItem(new Item(600, "bed"), 20);
+                room.getInventory().addItem(new Item(600, "bed", messageClass), 20);
                 room.getInventory().addItem(new Item(10, "pillow", "remind "
-                    + "yourself that Mommy is not going to save you."), 20);
+                    + "yourself that Mommy is not going to save you.", messageClass), 20);
                 room.getInventory().addItem(new Item(500, "duvet", "clean the "
-                    + "stain where you pissed yourself at."), 20);
-                room.getInventory().addItem(new Item(200, "corpse"), 10);
-                room.getInventory().addItem(new Item(600, "couch"));
-                room.getInventory().addItem(new Item(200, "table"), 2);
-                room.getInventory().addItem(new Item(600, "bookcase"));
+                    + "stain where you pissed yourself at.", messageClass), 20);
+                room.getInventory().addItem(new Item(200, "corpse", messageClass), 10);
+                room.getInventory().addItem(new Item(600, "couch", messageClass));
+                room.getInventory().addItem(new Item(200, "table", messageClass), 2);
+                room.getInventory().addItem(new Item(600, "bookcase", messageClass));
                 room.getInventory().addItem(new Item(10, "book", "read up on "
-                    + "how to fart like a machine gun."), 100);
-                room.getInventory().addItem(new Item(600, "desk"), 2);
+                    + "how to fart like a machine gun.", messageClass), 100);
+                room.getInventory().addItem(new Item(600, "desk", messageClass), 2);
                 room.getInventory().addItem(new Item(75, "chair", "sit down on "
                     + "it to contemplate about your life choices at the moment."
-                    + " Honestly, don't you have better things to do!"), 6);
+                    + " Honestly, don't you have better things to do!", messageClass), 6);
                 break;
             // Fill physics laboratory.
             case "Physicslab":
-                room.getInventory().addItem(new AcidVial(4, 25), 7);
-                room.getInventory().addItem(new MedKit(), 10);
-                room.getInventory().addItem(new Item(5, "test-tube"), 20);
-                room.getInventory().addItem(new Item(20, "coat"), 10);
-                room.getInventory().addItem(new Item(15, "knife"), 10);
+                room.getInventory().addItem(new AcidVial(4, 25, this.messageClass), 7);
+                room.getInventory().addItem(new MedKit(messageClass), 10);
+                room.getInventory().addItem(new Item(5, "test-tube", messageClass), 20);
+                room.getInventory().addItem(new Item(20, "coat", messageClass), 10);
+                room.getInventory().addItem(new Item(15, "knife", messageClass), 10);
                 room.getInventory().addItem(new Item(5, "syringe", "stick it at"
-                    + " yourself to see, if you become one with the Matrix."),
+                    + " yourself to see, if you become one with the Matrix.", messageClass),
                     15);
-                room.getInventory().addItem(new Item(400, "desk"), 2);
+                room.getInventory().addItem(new Item(400, "desk", messageClass), 2);
                 room.getInventory().addItem(new Item(75, "chair", "sit down on "
                     + "it to contemplate about your life choices at the moment."
-                    + " Seriosly, don't you not have better things to do!"),
+                    + " Seriosly, don't you not have better things to do!", messageClass),
                     10);
-                room.getInventory().addItem(new Item(175, "computer"), 5);
-                room.getInventory().addItem(new Item(200, "table"), 4);
+                room.getInventory().addItem(new Item(175, "computer", messageClass), 5);
+                room.getInventory().addItem(new Item(200, "table", messageClass), 4);
                 room.getInventory().addItem(new Item(1000,
                     "quantum-equipment"), 29);
-                room.getInventory().addItem(new Item(5, "test-tube"), 20);
+                room.getInventory().addItem(new Item(5, "test-tube", messageClass), 20);
                 room.getInventory().addItem(new Item(10, "funny-chemical",
                     "sniff at it, then lick at it and then scream 'LEEROY "
-                    + "JENKINS'."), 25);
+                    + "JENKINS'.", messageClass), 25);
                 break;
             // Fill dock.
             case "Dock":
-                room.getInventory().addItem(new Item(1500, "crate"), 30);
-                room.getInventory().addItem(new Item(500, "fuel-station"), 1);
-                room.getInventory().addItem(new Item(400, "barrel"), 40);
-                room.getInventory().addItem(new Item(50, "baggage"), 10);
-                room.getInventory().addItem(new Item(150, "computer-moniter"),
+                room.getInventory().addItem(new Item(1500, "crate", messageClass), 30);
+                room.getInventory().addItem(new Item(500, "fuel-station", messageClass), 1);
+                room.getInventory().addItem(new Item(400, "barrel", messageClass), 40);
+                room.getInventory().addItem(new Item(50, "baggage", messageClass), 10);
+                room.getInventory().addItem(new Item(150, "computer-moniter", messageClass),
                     15);
-                room.getInventory().addItem(new Item(100, "spacesuit"), 10);
-                room.getInventory().addItem(new Item(200, "corpse"), 2);
+                room.getInventory().addItem(new Item(100, "spacesuit", messageClass), 10);
+                room.getInventory().addItem(new Item(200, "corpse", messageClass), 2);
                 room.getInventory().addItem(new Item(500, "3D-printer", "scan "
-                    + "your ass and print it for science."), 1);
+                    + "your ass and print it for science.", messageClass), 1);
                 break;
             // Fill control room.
             case "Control":
                 room.getInventory().addItem(new MedKit(), 10);
-                room.getInventory().addItem(new Item(175, "computer"), 5);
-                room.getInventory().addItem(new Item(150, "computer-monitor"),
+                room.getInventory().addItem(new Item(175, "computer", messageClass), 5);
+                room.getInventory().addItem(new Item(150, "computer-monitor", messageClass),
                     15);
                 room.getInventory().addItem(new Item(20, "keyboard",
                     "write code, but it dosen't work, so you smash it into "
-                    + "pieces."), 15);
-                room.getInventory().addItem(new Item(10, "screwdriver"), 6);
-                room.getInventory().addItem(new Item(20, "hammer"), 4);
+                    + "pieces.", messageClass), 15);
+                room.getInventory().addItem(new Item(10, "screwdriver", messageClass), 6);
+                room.getInventory().addItem(new Item(20, "hammer", messageClass), 4);
                 room.getInventory().addItem(new Item(1, "paper", "fold a paper "
-                    + "plane and make StarWars sounds."), 20);
+                    + "plane and make StarWars sounds.", messageClass), 20);
                 break;
             // Fill reactor.
             case "Reactor":
-                room.getInventory().addItem(new Item(150, "computer-monitor"),
+                room.getInventory().addItem(new Item(150, "computer-monitor", messageClass),
                     10);
-                room.getInventory().addItem(new Item(175, "computer"), 4);
-                room.getInventory().addItem(new Item(10, "screwdriver"), 8);
-                room.getInventory().addItem(new Item(1500, "crate"), 10);
-                room.getInventory().addItem(new Item(20, "Geiger-counter"), 2);
-                room.getInventory().addItem(new Item(100, "spacesuit"), 2);
+                room.getInventory().addItem(new Item(175, "computer", messageClass), 4);
+                room.getInventory().addItem(new Item(10, "screwdriver", messageClass), 8);
+                room.getInventory().addItem(new Item(1500, "crate", messageClass), 10);
+                room.getInventory().addItem(new Item(20, "Geiger-counter", messageClass), 2);
+                room.getInventory().addItem(new Item(100, "spacesuit", messageClass), 2);
                 break;
             // Fill ecape pod.
             case "Pod":
-                room.getInventory().addItem(new MedKit());
-                room.getInventory().addItem(new Item(10, "dehydrated-food"), 5);
-                room.getInventory().addItem(new Item(20, "hammer"), 2);
-                room.getInventory().addItem(new Item(10, "screwdriver"), 2);
+                room.getInventory().addItem(new MedKit(messageClass));
+                room.getInventory().addItem(new Item(10, "dehydrated-food", messageClass), 5);
+                room.getInventory().addItem(new Item(20, "hammer", messageClass), 2);
+                room.getInventory().addItem(new Item(10, "screwdriver", messageClass), 2);
                 break;
             default:
                 break;
@@ -584,14 +589,14 @@ class Game implements IGame, Serializable{
         Create instance of Hero and add this to the ArrayList of characters.
         Hero starts in the computer room.
         */
-        this.characters.add(new Hero(this.rooms.get("Computer"), "Hero"));
+        this.characters.add(new Hero(10, 100, this.rooms.get("Computer"), "Hero", messageClass));
         /*
         Create the specified number of Zuuls and add them to the ArrayList of
         characters. The Zuuls start in the dormitory, and have a speed factor of
         1.15.
         */
         for (int i = 0; i < numberOfZuul; i++) {
-            this.characters.add(new Zuul(this.rooms.get("Dorm"), "Zuul", 1.15));
+            this.characters.add(new Zuul(this.rooms.get("Dorm"), "Zuul", 1.15, messageClass));
         }
         /*
         Create an instance of TechDude and add him to the ArrayList of
@@ -599,7 +604,7 @@ class Game implements IGame, Serializable{
         of 0.5.
         */
         this.characters.add(new TechDude(this.rooms.get("Control"), "TechDude",
-            0.5));
+            0.5, messageClass));
     }
     
     /**
@@ -623,7 +628,7 @@ class Game implements IGame, Serializable{
         */
         if (this.timeSinceSpawn > this.spawnTime) {
             this.characters.add(new Zuul(this.randomZuulSpawnRoom(), "Zuul", 
-                    1.15, this.currentCharacter.getCharacterInitiative()));
+                    1.15, this.currentCharacter.getCharacterInitiative(), messageClass));
             this.timeSinceSpawn -= this.spawnTime;
         }
     }
@@ -730,7 +735,7 @@ class Game implements IGame, Serializable{
         "error" if it does not.
         */
         if (command.isUnknown()) {
-            LogicFacade.appendMessage("I don't know what you mean...\nTyping "
+            messageClass.appendMessage("I don't know what you mean...\nTyping "
                 + "'help' will give you the valid commands.");
             return false;
         }
@@ -820,7 +825,7 @@ class Game implements IGame, Serializable{
                                         Character hero = null;
                                         
                                         techDude.setFollowsHero(hero, false);
-                                        LogicFacade.appendMessage("Tech dude no longer follows you.");
+                                        messageClass.appendMessage("Tech dude no longer follows you.");
                                         
                                     }
                                     else if (isFollowingAfter && !isFollowingBefore) {
@@ -832,7 +837,7 @@ class Game implements IGame, Serializable{
                                             }
                                         }
                                         
-                                        LogicFacade.appendMessage("Tech dude is now following you");
+                                        messageClass.appendMessage("Tech dude is now following you");
                                         techDude.setFollowsHero(hero, true);
                                     }
                                     else {
@@ -845,7 +850,7 @@ class Game implements IGame, Serializable{
                     
                     
                     if (!techDudeIsThere) {
-                        LogicFacade.appendMessage("You talk to yourself as you begin to question your sanity.");
+                        messageClass.appendMessage("You talk to yourself as you begin to question your sanity.");
                     }
                     
                     if (currentCharacter instanceof Hero) {
@@ -872,14 +877,14 @@ class Game implements IGame, Serializable{
 
     // This method prints a help message, including available commands
     private void printHelp() {
-        LogicFacade.appendMessage("Your goal is to survive and reach the escape"
+        messageClass.appendMessage("Your goal is to survive and reach the escape"
                 + " pod. You may find and rescue other crew members. There will"
                 + " also be items that can help you on your way.");
-        LogicFacade.appendMessage("");
-        LogicFacade.appendMessage("The following command buttons are used to "
+        messageClass.appendMessage("");
+        messageClass.appendMessage("The following command buttons are used to "
                 + "direct your actions:");
-        LogicFacade.appendMessage("");
-                LogicFacade.appendMessage(
+        messageClass.appendMessage("");
+                messageClass.appendMessage(
                     "Pickup: select an item from the dropdown above and press Pickup to pickup the item (use the dropdown above Activate to specify the number of items to pickup).\n"
                     + "Drop: select an item from the dropdown above and press Drop to drop the item (use the dropdown above Activate to specify the number of items to drop).\n"
                     + "Use: select an item from the dropdown above and press Use to use the item.\n"
@@ -920,7 +925,7 @@ class Game implements IGame, Serializable{
     private boolean quit(Command command) {
         // If the "quit" command has a second word, print error message and exit method.
         if (command.hasSecondWord()) {
-            LogicFacade.appendMessage("Quit what?");
+            messageClass.appendMessage("Quit what?");
             return false;
         } // If the command has no second word, return "true", which causes the game to end.
         else {
@@ -949,55 +954,55 @@ class Game implements IGame, Serializable{
                 // Calculate earned points
                 double point = pointCalculation();
                 if (techDudeIsThere) {
-                    LogicFacade.appendMessage("Tech dude: Good job, mate! I knew we would make it!");
+                    messageClass.appendMessage("Tech dude: Good job, mate! I knew we would make it!");
                 }
-                LogicFacade.appendMessage("Congratulations, you escaped the space station. You won.");
+                messageClass.appendMessage("Congratulations, you escaped the space station. You won.");
                 point = ((int)(point*100))/100.0;
-                LogicFacade.appendMessage("You got " + point +" points\n");
+                messageClass.appendMessage("You got " + point +" points\n");
 
                 break;
             case "lose":    // If the player is killed by Zuul, print message
                 if (techDudeIsThere) {
-                    LogicFacade.appendMessage("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+                    messageClass.appendMessage("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
                 }
-                LogicFacade.appendMessage("The Zuul mauled you in the back while you were running away like a coward. You lost.");
+                messageClass.appendMessage("The Zuul mauled you in the back while you were running away like a coward. You lost.");
                 break;
             case "lose1": // If the player is killed by Zuul, print message
                 if (techDudeIsThere) {
-                    LogicFacade.appendMessage("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+                    messageClass.appendMessage("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
                 }
-                LogicFacade.appendMessage("The Zuul rips your head off and kicks it across the room, cheering like it just won the world cup.");
+                messageClass.appendMessage("The Zuul rips your head off and kicks it across the room, cheering like it just won the world cup.");
                 break;
             case "lose2": // If the player is killed by Zuul, print message
                 if (techDudeIsThere) {
-                    LogicFacade.appendMessage("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+                    messageClass.appendMessage("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
                 }
-                LogicFacade.appendMessage("The Zuul rips out your throat, sticks its claws up your ass, and prances you around like a ventriloquist puppet "
+                messageClass.appendMessage("The Zuul rips out your throat, sticks its claws up your ass, and prances you around like a ventriloquist puppet "
                         + "saying: \"Look at me! I'm a scared little human! I can code!\"");
                 break;
             case "lose3": // If the player is killed by Zuul, print message
                 if (techDudeIsThere) {
-                    LogicFacade.appendMessage("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
+                    messageClass.appendMessage("Tech dude: AAAARRGHGHRGHRHGRH (Death Gurgle)");
                 }
-                LogicFacade.appendMessage("The Zuul rips you in half and then starts teabagging your face that's frozen in horrer by sight of the Zuul's hairy ass.");
+                messageClass.appendMessage("The Zuul rips you in half and then starts teabagging your face that's frozen in horrer by sight of the Zuul's hairy ass.");
                 break;
             case "timer": // If player is killed by reactor, print message
                 if (techDudeIsThere) {
-                    LogicFacade.appendMessage("Tech dude: Good run, mate! See ya on the other side.");
+                    messageClass.appendMessage("Tech dude: Good run, mate! See ya on the other side.");
                 }
-                LogicFacade.appendMessage("The reactor overloaded and blew up the space station. You lost.");
+                messageClass.appendMessage("The reactor overloaded and blew up the space station. You lost.");
                 break;
             case "health": // if the player dies due to low health
                 if (techDudeIsThere) {
-                    LogicFacade.appendMessage("Tech dude: Don't go into the light!");
+                    messageClass.appendMessage("Tech dude: Don't go into the light!");
                 }
-                LogicFacade.appendMessage("You died due to extensive wounds.");
+                messageClass.appendMessage("You died due to extensive wounds.");
                 break;
             case "derp":
-                LogicFacade.appendMessage("You committed suicide because you are too weak to kill anything else.\nYou pussed out like a bitch.");
+                messageClass.appendMessage("You committed suicide because you are too weak to kill anything else.\nYou pussed out like a bitch.");
                 break;
             default: // If player exits the game without losing or winning.
-                LogicFacade.appendMessage("You committed suicide.\nYou pussed out like a bitch.");
+                messageClass.appendMessage("You committed suicide.\nYou pussed out like a bitch.");
         }
     }
 
@@ -1021,7 +1026,7 @@ class Game implements IGame, Serializable{
                 // If the specified USB has data stored on it...
                 if (usb.getDataType() != null) {
                     // Print the data type collected
-                    LogicFacade.appendMessage("You got the " + usb.getDataType() + " data.");
+                    messageClass.appendMessage("You got the " + usb.getDataType() + " data.");
                     // Add value to pointSet
                     pointSet.add(usb.getDataType());
                 }
@@ -1111,13 +1116,16 @@ class Game implements IGame, Serializable{
         return rooms;
     }
     
-    void appendMessage(String appendMessage){
-        message += appendMessage + "\n";
-    }
+//    void appendMessage(String appendMessage){
+//        message += appendMessage + "\n";
+//    }
     
     String readAndDeleteMessage(){
-        String returnMessage = message;
-        message = "";
+//        String returnMessage = message;
+//        message = "";
+//        return returnMessage;
+
+        String returnMessage = messageClass.readAndDelete();
         return returnMessage;
     }
     

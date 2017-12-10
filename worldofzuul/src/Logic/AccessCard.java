@@ -19,6 +19,13 @@ import java.io.Serializable;
  */
 
 class AccessCard extends Item implements Serializable {
+    
+    /**
+     * Data fields.
+     * messageClass: A class for storing strings for to read later.
+     */
+    private LogicMessage messageClass;
+    
     /**
      * This constructor creates an instance of AccessCard with default weight 
      * and name by calling the superclass's constructor via constructor
@@ -26,6 +33,18 @@ class AccessCard extends Item implements Serializable {
      */
     AccessCard () {
         super(5, "accesscard");
+        this.messageClass = new LogicMessage();
+    }
+    
+    /**
+     * This constructor creates an instance of AccessCard with default weight 
+     * and name by calling the it's own default constructor via constructor
+     * chaining.
+     * @param messageClass A class for storing strings for to read later.
+     */
+    AccessCard(LogicMessage messageClass) {
+        this();
+        this.messageClass = messageClass;
     }
     
     /**
@@ -42,8 +61,7 @@ class AccessCard extends Item implements Serializable {
     @Override
     double use(Hero currentCharacter) {
         // Print message that indicates use.
-        LogicFacade.appendMessage("You wave the access card around.");
-        
+        messageClass.appendMessage("You wave the access card around.");
         // Increase the character's initiaitve.
         currentCharacter.setCharacterInitiative(
             currentCharacter.getCharacterInitiative()

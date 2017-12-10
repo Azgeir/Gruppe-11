@@ -26,8 +26,10 @@ public class USB extends Item implements Serializable {
      * 
      * dataType does not have a setter method as it is only changed internally
      * from the USB class in the use() method.
+     * messageClass; A class for storing strings for to read later.
      */
     private String dataType;
+    private LogicMessage messageClass;
     
     /**
      * This constructor creates an empty USB. The USB has a default weight of 5
@@ -35,10 +37,12 @@ public class USB extends Item implements Serializable {
      * Item's constructor by constructor chaining.
      * 
      * @param number, used to name the USB by concatenating "USB" with number.
+     * @param messageClass, A class for storing strings for to read later.
      */
-    USB (int number) {
+    USB (int number, LogicMessage messageClass) {
         super(5, "USB" + number);
         this.dataType = null;
+        this.messageClass = messageClass;
     }
     
     /**
@@ -74,21 +78,21 @@ public class USB extends Item implements Serializable {
         switch (roomName) {
             case "Biolab":
                 this.dataType = "bio";
-                LogicFacade.appendMessage("Important biological experimental "
+                messageClass.appendMessage("Important biological experimental "
                     + "data was saved. The USB is now full.");
                 break;
             case "Physicslab":
                 this.dataType = "physics";
-                LogicFacade.appendMessage("Important physics experimental data "
+                messageClass.appendMessage("Important physics experimental data "
                     + "was saved. The USB is now full.");
                 break;
             case "Control":
                 this.dataType = "control" ;
-                LogicFacade.appendMessage("Surveillance records of the Zuul "
+                messageClass.appendMessage("Surveillance records of the Zuul "
                     + "infestation was optained. The USB is now full.");
                 break;
             default:
-                LogicFacade.appendMessage("There is nowhere to obtain useful "
+                messageClass.appendMessage("There is nowhere to obtain useful "
                     + "data in this room.");
                 break;
         }

@@ -24,8 +24,11 @@ public class MedKit extends Item implements Serializable {
      * 
      * healthAmount does not have getter/setter methods as the value of the
      * data field is only used within the class in the use() method.
+     * 
+     * messageClass; A class for storing strings for to read later.
      */
     private int healthAmount;
+    private LogicMessage messageClass;
     
     /**
      * This constructor creates a MedKit object with a default health amount of
@@ -49,6 +52,18 @@ public class MedKit extends Item implements Serializable {
     MedKit(int healthAmount) {
         this();
         this.healthAmount = healthAmount;
+    }
+    
+    /**
+     * This constructor creates a MedKit object with a default health amount of
+     * 5. The constructor calls the superclass's constructor via constructor
+     * chaining.
+     * 
+     * @param messageClass, A class for storing strings for to read later.
+     */
+    MedKit(LogicMessage messageClass) {
+        this();
+        this.messageClass = messageClass;
     }
     
     /**
@@ -81,7 +96,7 @@ public class MedKit extends Item implements Serializable {
         currentCharacter.getInventory().removeItem(this);
         
         // Print message to player.
-        LogicFacade.appendMessage("You healed youself with a medkit, but it is now "
+        messageClass.appendMessage("You healed youself with a medkit, but it is now "
             + "spent.");
         
         /*

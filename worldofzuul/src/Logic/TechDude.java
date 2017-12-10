@@ -46,6 +46,7 @@ class TechDude extends Character implements Serializable {
      * 
      * isTalking: boolean value that indicates whether tech dude is currently
      * talking to the hero.
+     * messageClass: A class for storing strings for to read later.
      */
     private boolean followsHero = false;
     private Character hero = null;
@@ -54,6 +55,7 @@ class TechDude extends Character implements Serializable {
     private boolean wantsToTalk = false;
     private int counter = 1;
     private boolean isTalking = false;
+    private LogicMessage messageClass;
 
     /**
      * This is an empty no-arg constructor. This is provided in case the class
@@ -85,6 +87,21 @@ class TechDude extends Character implements Serializable {
      */
     TechDude(Room currentRoom, String name, double speedFactor) {
         super(currentRoom, name, speedFactor);
+    }
+    
+    /**
+     * This constructor creates a tech dude with the specified current room,
+     * name, and speed factor. The constructor calls the constructor of the
+     * Character superclass (constructor chaining).
+     * 
+     * @param currentRoom current room of tech dude
+     * @param name name of tech dude (i.e. "TechDude")
+     * @param speedFactor speed factor of tech dude
+     * @param messageClass A class for storing strings for to read later.
+     */
+    TechDude(Room currentRoom, String name, double speedFactor, LogicMessage messageClass) {
+        super(currentRoom, name, speedFactor);
+        this.messageClass = messageClass;
     }
     
     /**
@@ -164,7 +181,7 @@ class TechDude extends Character implements Serializable {
             this.getCurrentRoom().hasCharacter("Hero") == true &&
             metHero == false) {
             // Send message to GUI
-            LogicFacade.appendMessage("You see a man in the corner of the room."
+            messageClass.appendMessage("You see a man in the corner of the room."
                 + " He notices you and comes over.");
             // Set words of command
             word1 = "talk";
@@ -264,7 +281,7 @@ class TechDude extends Character implements Serializable {
      */
     private void talk(Command command){
         // Create instance of Conversation.
-        Conversation talk = new Conversation();
+        Conversation talk = new Conversation(this.messageClass);
         /*
         Initially set validAnswer to true, as the conversation starts with the
         assumption of a valid answer.
@@ -293,7 +310,7 @@ class TechDude extends Character implements Serializable {
                     number = Integer.parseInt(command.getSecondWord());
                 }
                 catch (NumberFormatException ex) {
-                    LogicFacade.appendMessage("The input wasn't a number");
+                    messageClass.appendMessage("The input wasn't a number");
                 }
                 /*
                 Use the command's third word to update the value of isTalking.
@@ -310,7 +327,7 @@ class TechDude extends Character implements Serializable {
                         }
                     }
                     catch (NumberFormatException ex) {
-                        LogicFacade.appendMessage("The input wasn't a boolean");
+                        messageClass.appendMessage("The input wasn't a boolean");
                     }
                 }
             }
@@ -326,11 +343,11 @@ class TechDude extends Character implements Serializable {
                     case 2:
                         hostility += 1;
                         if (hostility == 3) {
-                            LogicFacade.appendMessage("The tech dude hates you and will no longer talk to you.");
+                            messageClass.appendMessage("The tech dude hates you and will no longer talk to you.");
                             followsHero = false;
                         }
                         else {
-                            LogicFacade.appendMessage("The tech dude got annoyed at you.");
+                            messageClass.appendMessage("The tech dude got annoyed at you.");
                         }
                         wantsToTalk = false;
                         isTalking = false;
@@ -341,7 +358,7 @@ class TechDude extends Character implements Serializable {
                             followsHero = true;
                         }
                         else {
-                            LogicFacade.appendMessage("Not a valid answer");
+                            messageClass.appendMessage("Not a valid answer");
                             validAnswer = false;
                         }
                         break;
@@ -362,7 +379,7 @@ class TechDude extends Character implements Serializable {
             }
             
         } else {
-            LogicFacade.appendMessage("Fuck you. I hate you");
+            messageClass.appendMessage("Fuck you. I hate you");
             wantsToTalk = false;
             followsHero = false;
         }
