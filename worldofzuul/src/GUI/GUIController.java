@@ -217,18 +217,10 @@ public class GUIController {
 
     public void initialize() {
         // TODO
-
-        // create new private method for loading the pictures and layout
-        Image buttons = new Image("Pictures/buttons.png");
-        Image stars = new Image("Pictures/Stars.jpg");
-        BackgroundImage starsBackground = new BackgroundImage(stars, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        BackgroundImage buttonsBackground = new BackgroundImage(buttons, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        BackgroundImage[] starsBackgroundArray = {starsBackground};
-
-        BackgroundImage[] buttonBackgroundArray = {buttonsBackground};
-        this.outerSpace.setBackground(new Background(buttonBackgroundArray));
-        this.innerSpace.setBackground(new Background(starsBackgroundArray));
-        this.startScreen.setBackground(new Background(starsBackgroundArray));
+        
+        this.setRoomBackground(this.outerSpace, "Pictures/buttons.png");
+        this.setRoomBackground(this.innerSpace, "Pictures/Stars.jpg");
+        this.setRoomBackground(this.startScreen, "Pictures/Stars.jpg");
 
         this.RoomComputer.setRotate(315);
 
@@ -245,28 +237,8 @@ public class GUIController {
 
         String highscoreString = this.loadAndFormatHighscore();
         this.highscoreLabel.setText(highscoreString);
-      // WORKS
-//        Image herp = new Image("Pictures/ComputerRoom.png");
-//        ImageView derp = new ImageView(herp);
-//        this.TestImageView.setImage(herp);
-//        derp.setFitHeight(200);
-//        derp.setFitWidth(200);
-//////        this.characterflowPaneComputer.getChildren().add(this.ImageViewZuul); // defined in scene builder
-//        this.TestImageView.setImage(herp); // defined in scene builder
-//        this.RoomComputer.getChildren().add(derp);
-//        this.RoomComputerStackPane.getChildren().add(derp);
-//
-
-        // WORKS END
-//        Image[] derpArray = {herp};
-//        BackgroundImage backDerp = new BackgroundImage(herp, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-
-//        BackgroundImage[] backDerpArray = {backDerp};
-
-//        this.RoomComputer.setBackg round(new Background(backDerpArray));
-//        this.characterflowPaneComputer.setStyle("-fx-background-image: derp");
+      
         this.createRooms();
-//        this.setRoomBackgrounds();
     }
     
     private void setCharactersPeek(){
@@ -320,7 +292,7 @@ public class GUIController {
         room.getCharacterLocation().getChildren().clear();
         if (GUIFacade.isRoomKnown(room)) {
             Collection<String> characters = GUIFacade.charactersInRoom(room);
-            if (characters.size() != 0) {
+            if (!characters.isEmpty()) {
                 for (String character : characters) {
                     if (character.equals("Zuul")) {
                         characterImages.add(new ImageView(new Image("Pictures/Zuul Transparant.png")));
@@ -358,11 +330,11 @@ public class GUIController {
         }
     }
     
-    private <T extends Pane> void setRoomBackground(T room, String picturePath){
+    private <T extends Pane> void setRoomBackground(T pane, String picturePath){
         Image roomImage = new Image(picturePath);
         BackgroundImage roomBackground = new BackgroundImage(roomImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         BackgroundImage[] roomBackgroundArray = {roomBackground};
-        room.setBackground(new Background(roomBackgroundArray));
+        pane.setBackground(new Background(roomBackgroundArray));
     }
     
     private void setRoomBackground(RoomGUI room){
@@ -423,7 +395,6 @@ public class GUIController {
         }
         this.setCharacterCurrentRoom();
         this.isGameFinished();
-//        game.play("use");
     }
 
     @FXML
@@ -440,8 +411,6 @@ public class GUIController {
     private void talkButtonHandler(ActionEvent event) {
         String command = "talk";
         
-//        Scanner input = new Scanner(System.in);
-        
         command += " " + this.numberBox.getValue();
         
         GUIFacade.sendCommand(command);
@@ -450,7 +419,6 @@ public class GUIController {
         this.updateAllDropdown();
         this.setCharacterCurrentRoom();
         this.isGameFinished();
-//        game.play("talk");
     }
 
     @FXML
@@ -461,7 +429,6 @@ public class GUIController {
         this.labelMessageField.setText(message);
         this.setCharacterCurrentRoom();
         this.isGameFinished();
-//        game.play("quit");
     }
 
     @FXML
@@ -472,7 +439,6 @@ public class GUIController {
         this.labelMessageField.setText(message);
         this.setCharacterCurrentRoom();
         this.isGameFinished();
-//        game.play("help");
     }
 
     @FXML
@@ -483,7 +449,6 @@ public class GUIController {
         this.labelMessageField.setText(message);
         this.setCharacterCurrentRoom();
         this.isGameFinished();
-//        game.play("stay");
     }
 
     @FXML
@@ -496,8 +461,6 @@ public class GUIController {
         this.updateAllDropdown();
         this.setCharacterCurrentRoom();
         this.isGameFinished();
-
-//        game.play(command);
     }
 
     @FXML
@@ -545,7 +508,6 @@ public class GUIController {
             this.setRoomBackgrounds();
             this.updateAllDropdown();
             this.setCharactersPeek();
-//            game.play(command);
         } else {
             this.labelMessageField.setText("choose a direction from the dropbox");
         }
@@ -566,7 +528,6 @@ public class GUIController {
             this.labelMessageField.setText(message);
             this.setRoomBackgrounds();
             this.setCharactersPeek();
-//            game.play(command);
         } else {
             this.labelMessageField.setText("choose a direction from the dropbox");
             this.setCharacterCurrentRoom();
@@ -586,7 +547,6 @@ public class GUIController {
             
             String message = GUIFacade.readAndDeleteGameMessage();
             this.labelMessageField.setText(message);
-//            game.play(command);
         } else {
             this.labelMessageField.setText("choose a direction from the dropbox");
         }
@@ -605,7 +565,6 @@ public class GUIController {
             
             String message = GUIFacade.readAndDeleteGameMessage();
             this.labelMessageField.setText(message);
-//            game.play(command);
         } else {
             this.labelMessageField.setText("choose a direction from the dropbox");
         }
@@ -615,25 +574,6 @@ public class GUIController {
 
     private void isGameFinished() {
         if (GUIFacade.isGameFinished()) {
-//            this.goButton.setDisable(true);
-//            this.goDropDown.setDisable(true);
-//            this.activateButton.setDisable(true);
-//            this.dropButton.setDisable(true);
-//            this.helpButton.setDisable(true);
-//            this.lookButton.setDisable(true);
-//            this.peekButton.setDisable(true);
-//            this.pickupButton.setDisable(true);
-//            this.pickupDropDown.setDisable(true);
-//            this.quitButton.setDisable(true);
-//            this.saveButton.setDisable(true);
-//            this.stayButton.setDisable(true);
-//            this.talkButton.setDisable(true);
-//            this.unlockButton.setDisable(true);
-//            this.useButton.setDisable(true);
-//            this.useDropDown.setDisable(true);
-//            this.lockButton.setDisable(true);
-//            this.numberBox.setDisable(true);
-
             this.bigGridPane.setDisable(true);
             
             this.backToStartScreenButton.setVisible(true);
@@ -644,7 +584,6 @@ public class GUIController {
     @FXML
     private void startButtonActionEvent(ActionEvent event) {
 
-        
         int numberOfZuulAtStart = (int)this.numberOfZuulSlider.getValue();
         double spawnTime = (int)this.spawnTimeSlider.getValue();
         String name = this.textfieldPlayerName.getText();
@@ -687,7 +626,6 @@ public class GUIController {
                     setTextFill(Color.WHITE);
                     setAlignment(Pos.CENTER);
                 }
-
             }
         });
     }
@@ -885,8 +823,6 @@ public class GUIController {
         rooms.put("Storage", new RoomGUI(roomStorage,characterPaneStorage,"Pictures/Storage.png","Pictures/Storage FoW.png","Storage"));
         rooms.put("StorageComputer", new RoomGUI(roomStorageComputer,characterPaneStorageComputer,"Pictures/HallwayHorizontal.png","Pictures/HallwayHorizontal FoW.png","StorageComputer"));
     }
-
-   
 }
     
 

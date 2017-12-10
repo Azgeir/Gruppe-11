@@ -471,7 +471,7 @@ class Hero extends Character implements Serializable {
 
         HashMap<String, Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
         String getName = this.getCurrentRoom().getName();
-        //lockedExits.put(direction, Boolean.TRUE);
+
         if (direction.equals("pod")) {
             if (this.getCurrentRoom().hasCharacter("TechDude")) {
                 if (this.getCurrentRoom().getExit(direction).getExits().containsKey(getName)) {
@@ -489,7 +489,8 @@ class Hero extends Character implements Serializable {
                 }
 
             } else {
-                LogicFacade.appendMessage("The station is under quarantine and you therefore can't open the door.\nPerhaps you could find something or someone to force it open.");
+                LogicFacade.appendMessage("The station is under quarantine and you therefore can't open the door.\n"
+                        + "Perhaps you could find something or someone to force it open.");
             }
 
         } else {
