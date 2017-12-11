@@ -99,7 +99,8 @@ class TechDude extends Character implements Serializable {
      * @param speedFactor speed factor of tech dude
      * @param messageClass A class for storing strings for to read later.
      */
-    TechDude(Room currentRoom, String name, double speedFactor, LogicMessage messageClass) {
+    TechDude(Room currentRoom, String name, double speedFactor,
+        LogicMessage messageClass) {
         super(currentRoom, name, speedFactor);
         this.messageClass = messageClass;
     }
@@ -181,8 +182,8 @@ class TechDude extends Character implements Serializable {
             this.getCurrentRoom().hasCharacter("Hero") == true &&
             metHero == false) {
             // Send message to GUI
-            messageClass.appendMessage("You see a man in the corner of the room."
-                + " He notices you and comes over.");
+            messageClass.appendMessage("You see a man in the corner of the "
+                + "room. He notices you and comes over.");
             // Set words of command
             word1 = "talk";
             // Tech dude has now met the hero and wants to talk to them.
@@ -318,7 +319,8 @@ class TechDude extends Character implements Serializable {
                 if (command.hasThirdWord()) {
                     try {
                         if (wantsToTalk) {
-                            isTalking = Boolean.parseBoolean(command.getThirdWord());
+                            isTalking = Boolean.parseBoolean(command.
+                                getThirdWord());
                         }
                         wantsToTalk = true;
 
@@ -327,7 +329,8 @@ class TechDude extends Character implements Serializable {
                         }
                     }
                     catch (NumberFormatException ex) {
-                        messageClass.appendMessage("The input wasn't a boolean");
+                        messageClass.appendMessage("The input wasn't a "
+                            + "boolean");
                     }
                 }
             }
@@ -343,11 +346,13 @@ class TechDude extends Character implements Serializable {
                     case 2:
                         hostility += 1;
                         if (hostility == 3) {
-                            messageClass.appendMessage("The tech dude hates you and will no longer talk to you.");
+                            messageClass.appendMessage("The tech dude hates you"
+                                + " and will no longer talk to you.");
                             followsHero = false;
                         }
                         else {
-                            messageClass.appendMessage("The tech dude got annoyed at you.");
+                            messageClass.appendMessage("The tech dude got "
+                                + "annoyed at you.");
                         }
                         wantsToTalk = false;
                         isTalking = false;
