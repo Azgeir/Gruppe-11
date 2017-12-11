@@ -373,7 +373,7 @@ class Game implements IGame, Serializable{
         rooms.put("ControlDock",hallwayControlDock);
         rooms.put("DockPhysicslab",hallwayDockPhysics);
         rooms.put("PhysicslabDorm",hallwayPhysicsDormitory);
-        rooms.put("DormMedBay",hallwayDormitoryMedical);
+        rooms.put("DormMedbay",hallwayDormitoryMedical);
         rooms.put("MedbayStorage",hallwayMedicalStorage);
         rooms.put("Pod", escapePod);
 
