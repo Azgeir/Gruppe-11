@@ -709,44 +709,92 @@ class Hero extends Character implements Serializable {
         // Initially, it is assumed that the exit does not exist.
         boolean directionExists = false;
 
-        
+        // Search all exits from the current rooom.
         for (String exit : this.getCurrentRoom().getExits().keySet()) {
+            /*
+            If the exit's name equals the direction String, attempt to unlock
+            door.
+            */
             if (direction.equals(exit)) {
+                // If the character has an access card, unlock the door.
                 if (this.getInventory().getItem("accesscard") != null) {
                     this.lockUnlock(direction, lock);
                     messageClass.appendMessage("You unlocked the door.");
-                } else {
-                    messageClass.appendMessage("You don't have an access card to do that with.");
                 }
+                /*
+                If the character does not have an access card, the door cannot
+                be unlocked.
+                */
+                else {
+                    messageClass.appendMessage("You don't have an access card "
+                        + "to do that with.");
+                }
+                /*
+                It has now been determined that the specified exit exists,
+                whether or not it was possible to unlock it.
+                */
                 directionExists = true;
             }
         }
-        // If there isnt any door that matches the secondWord then this is print
+        /*
+        If there is no exit corresponding to the specified direction, tell the
+        player.
+        */
         if (!directionExists) {
             messageClass.appendMessage("There isn't any exit by that name.");
         }
-        this.setCharacterInitiative(this.getCharacterInitiative() + 5 * this.getSpeedFactor());
+        
+        // Increase the character's initiative.
+        this.setCharacterInitiative(this.getCharacterInitiative()
+            + 5 * this.getSpeedFactor());
     }
 
-    //Command for using an Item in your inventory
-//    @Override
+    /**
+     * This method is used when using an item from the player's inventory.
+     * 
+     * @param command instance of Command which represents the "use" command to
+     * be executed.
+     * 
+     * @return double value if the action affects Zuul; else it returns zero.
+     */
     private double use(Command command) {
-
+        // The second word of the command specifies the item to be used.
         if (command.hasSecondWord()) {
             String itemName = command.getSecondWord();
+            // Search for the item in the character's inventory.
             Item item = this.getInventory().getItem(itemName);
+            // If the item exists in the inventory, use the item.
             if (item != null) {
+                /*
+                initiativeReduction is different from zero if the action has an
+                effect on Zuul.
+                */
                 double initiativeReduction = item.use(this);
-                this.setCharacterInitiative(this.getCharacterInitiative() + 2 * this.getSpeedFactor());
+                // Increase character initiative.
+                this.setCharacterInitiative(this.getCharacterInitiative()
+                    + 2 * this.getSpeedFactor());
                 return initiativeReduction;
-            } else {
-                this.setCharacterInitiative(this.getCharacterInitiative() + 2 * this.getSpeedFactor());
+            }
+            /*
+            If the item does not exist in the character's inventory, the item
+            cannot be used.
+            */
+            else {
+                // Increase character initiative.
+                this.setCharacterInitiative(this.getCharacterInitiative()
+                    + 2 * this.getSpeedFactor());
                 messageClass.appendMessage("You don't have any such item.");
             }
-        } else {
+        }
+        /*
+        If the command does not have a second word, the command fails, since no
+        item is specified.
+        */
+        else {
             messageClass.appendMessage("You have to select something to use.");
         }
-
+        
+        // Return 0 if the action does not affect Zuul.
         return 0;
     }
     
