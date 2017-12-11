@@ -30,7 +30,6 @@ public class LogicMessage implements Serializable {
     }
     
     void appendMessage(String message){
-        this.message += message;
+        this.message += message+"\n";
     }
-    
 }
