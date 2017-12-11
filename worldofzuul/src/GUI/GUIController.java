@@ -373,7 +373,7 @@ public class GUIController {
             this.labelMessageField.setText("choose something to pickup from the dropbox");
         }
         this.setCharacterCurrentRoom();
-        this.isGameFinished();
+        this.gameIsFinished();
     }
  
     @FXML
@@ -394,7 +394,7 @@ public class GUIController {
             this.labelMessageField.setText("choose something to use from the dropbox");
         }
         this.setCharacterCurrentRoom();
-        this.isGameFinished();
+        this.gameIsFinished();
     }
 
     @FXML
@@ -404,7 +404,7 @@ public class GUIController {
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
         this.setCharacterCurrentRoom();
-        this.isGameFinished();
+        this.gameIsFinished();
     }
 
     @FXML
@@ -418,7 +418,7 @@ public class GUIController {
         this.labelMessageField.setText(message);
         this.updateAllDropdown();
         this.setCharacterCurrentRoom();
-        this.isGameFinished();
+        this.gameIsFinished();
     }
 
     @FXML
@@ -428,7 +428,7 @@ public class GUIController {
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
         this.setCharacterCurrentRoom();
-        this.isGameFinished();
+        this.gameIsFinished();
     }
 
     @FXML
@@ -438,7 +438,7 @@ public class GUIController {
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
         this.setCharacterCurrentRoom();
-        this.isGameFinished();
+        this.gameIsFinished();
     }
 
     @FXML
@@ -448,7 +448,7 @@ public class GUIController {
         String message = GUIFacade.readAndDeleteGameMessage();
         this.labelMessageField.setText(message);
         this.setCharacterCurrentRoom();
-        this.isGameFinished();
+        this.gameIsFinished();
     }
 
     @FXML
@@ -460,7 +460,7 @@ public class GUIController {
         
         this.updateAllDropdown();
         this.setCharacterCurrentRoom();
-        this.isGameFinished();
+        this.gameIsFinished();
     }
 
     @FXML
@@ -469,7 +469,7 @@ public class GUIController {
 
         this.labelMessageField.setText("You saved the game");
         this.setCharacterCurrentRoom();
-        this.isGameFinished();
+        this.gameIsFinished();
     }
 
     @FXML
@@ -490,7 +490,7 @@ public class GUIController {
             this.labelMessageField.setText("choose something to drop from the dropbox");
         }
         this.setCharacterCurrentRoom();
-        this.isGameFinished();
+        this.gameIsFinished();
     }
 
     @FXML
@@ -511,7 +511,7 @@ public class GUIController {
         } else {
             this.labelMessageField.setText("choose a direction from the dropbox");
         }
-        this.isGameFinished();
+        this.gameIsFinished();
 
     }
 
@@ -532,7 +532,7 @@ public class GUIController {
             this.labelMessageField.setText("choose a direction from the dropbox");
             this.setCharacterCurrentRoom();
         }
-        this.isGameFinished();
+        this.gameIsFinished();
 
     }
 
@@ -551,7 +551,7 @@ public class GUIController {
             this.labelMessageField.setText("choose a direction from the dropbox");
         }
         this.setCharacterCurrentRoom();
-        this.isGameFinished();
+        this.gameIsFinished();
     }
 
     @FXML
@@ -569,10 +569,10 @@ public class GUIController {
             this.labelMessageField.setText("choose a direction from the dropbox");
         }
         this.setCharacterCurrentRoom();
-        this.isGameFinished();
+        this.gameIsFinished();
     }
 
-    private void isGameFinished() {
+    private void gameIsFinished() {
         if (GUIFacade.isGameFinished()) {
             this.bigGridPane.setDisable(true);
             

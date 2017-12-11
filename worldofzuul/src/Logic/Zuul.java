@@ -135,8 +135,6 @@ public class Zuul extends Character implements Serializable {
         this.messageClass = messageClass;
     }
     
-    
-    
     /**
      * This method is used to generate a command for Zuul. The method overrides
      * the getCommand() method from Character.

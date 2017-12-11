@@ -55,6 +55,6 @@ class LogicMessage implements Serializable {
      * @param message String to be appended to the message
      */
     void appendMessage(String message) {
-        this.message += message;
+        this.message += message+"\n";
     }
 }
