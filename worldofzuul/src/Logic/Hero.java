@@ -661,8 +661,10 @@ class Hero extends Character implements Serializable {
             door by calling the lockUnlock() method.
             */
             if (this.getInventory().getItem("accesscard") != null) {
-                this.lockUnlock(direction, lock);
-                messageClass.appendMessage("You locked the door.");
+                boolean isLocked = this.lockUnlock(direction, lock);
+                if(isLocked) {
+                    messageClass.appendMessage("You locked the door.");
+                }
             }
             /*
             If the character does not have an access card, the door cannot be
@@ -718,8 +720,10 @@ class Hero extends Character implements Serializable {
             if (direction.equals(exit)) {
                 // If the character has an access card, unlock the door.
                 if (this.getInventory().getItem("accesscard") != null) {
-                    this.lockUnlock(direction, lock);
-                    messageClass.appendMessage("You unlocked the door.");
+                    boolean isUnlocked = this.lockUnlock(direction, lock);
+                    if(isUnlocked) {
+                        messageClass.appendMessage("You unlocked the door.");
+                    }
                 }
                 /*
                 If the character does not have an access card, the door cannot
@@ -865,19 +869,32 @@ class Hero extends Character implements Serializable {
         return new Command(commands.getCommandWord(word1), word2, word3);
     }
 
-    //Method for locking and unlocking, first lockUnlock the first door(direction) you call
-    // then get the next rooms exits and lockUnlock the direction towards currentRoom of the character
-    private void lockUnlock(String direction, boolean lock) {
-
-        HashMap<String, Boolean> lockedExits = this.getCurrentRoom().getLockedExits();
+    /**
+     * This method is used for locking and unlocking exits in the game.
+     * 
+     * @param direction String that indicates the direction of the exit to be
+     * locked/unlocked.
+     * @param lock boolean value that indicates whether the exit should be
+     * locked or unlocked (true = lock, false = unlock).
+     */
+    private boolean lockUnlock(String direction, boolean lock) {
+        // Create a HashMap of the locked exits from the current room.
+        HashMap<String, Boolean> lockedExits = this.getCurrentRoom().
+            getLockedExits();
+        // Get name of current room.
         String getName = this.getCurrentRoom().getName();
 
-        if (direction.equals("pod")) {
+        // The player attempts to lock/unlock the door into the escape pod.
+        if (direction.equals("Pod")) {
+            /*
+            Check if tech dude is in the current room, as this is a condition
+            for locking/unlocking the escape pod.
+            */
             if (this.getCurrentRoom().hasCharacter("TechDude")) {
                 if (this.getCurrentRoom().getExit(direction).getExits().containsKey(getName)) {
                     lockedExits.put(direction, lock);
                     this.getCurrentRoom().getExit(direction).getLockedExits().put(getName, lock);
-
+                    return true;
                 } else {
                     lockedExits.put(direction, lock);
 
@@ -886,26 +903,41 @@ class Hero extends Character implements Serializable {
                     templockExits.remove(direction);
                     String direction2 = (String) templockExits.keySet().toArray()[0];
                     this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
+                    return true;
                 }
 
             } else {
                 messageClass.appendMessage("The station is under quarantine and you therefore can't open the door.\n"
                         + "Perhaps you could find something or someone to force it open.");
+                return false;
             }
 
-        } else {
+        }
+        /*
+        If the direction is different from "pod", lock/unlock the exit from
+        both directions.
+        */
+        else {
+            //
             if (this.getCurrentRoom().getExit(direction).getExits().containsKey(getName)) {
+                // (Un)lock exit from current room in specified direction.
                 lockedExits.put(direction, lock);
-                this.getCurrentRoom().getExit(direction).getLockedExits().put(this.getCurrentRoom().getName(), lock);
-            } else {
+                // (Un)lock exit to current room from specified direction.
+                this.getCurrentRoom().getExit(direction).getLockedExits().
+                    put(this.getCurrentRoom().getName(), lock);
+            }
+            //
+            else {
+                // (Un)lock exit from current room in the specified direction.
                 lockedExits.put(direction, lock);
 
                 HashMap<String, Boolean> templockExits = new HashMap<>();
                 templockExits.putAll(lockedExits);
                 templockExits.remove(direction);
-                String direction2 = (String) templockExits.keySet().toArray()[0];
+                String direction2 = (String)templockExits.keySet().toArray()[0];
                 this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
             }
+            return true;
         }
     }
 
