@@ -991,37 +991,82 @@ class Hero extends Character implements Serializable {
         }
     }
 
-    //use this command to start the countdown timer for bonus points (by blowing up the reactor)
-    private double activate(Command command, boolean reactorActivated) {
+    /**
+     * This method is used to activate the reactor.
+     * 
+     * @param command instance of Command which represents the "activate"
+     * command to be executed.
+     * 
+     * @return new max initiative if the reactor is activated; else it returns
+     * Double.MAX_VALUE.
+     */
+    private double activate(Command command) {
+        // The message on the character is cleared.
         this.clearMessage();
-        this.setCharacterInitiative(this.getCharacterInitiative() + 15 * this.getSpeedFactor());
+        // Increase the character initiative.
+        this.setCharacterInitiative(this.getCharacterInitiative()
+            + 15 * this.getSpeedFactor());
+        /*
+        The second word of the command specifies what is to be activated
+        (i.e. "Reactor"). Thus, if the second word is missing, the command is
+        invalid.
+        */
         if (!command.hasSecondWord()) {
             messageClass.appendMessage("Activate what?");
             return Double.MAX_VALUE;
         }
         if (command.getSecondWord().equals("Reactor")) {
-
+            // Check if the character is near the reactor.
             if (this.getCurrentRoom().getName().equals("Reactor")) {
+                /*
+                The character must have tech dude nearby to activate the
+                reactor.
+                */
                 if (this.getCurrentRoom().hasCharacter("TechDude")) {
+                    /*
+                    If the reactor has not been activated before, activate the
+                    reactor.
+                    */
                     if (!reactorActivated) {
-                        messageClass.appendMessage("You activated the reactor. The space station will self-destruct in an unspecified amount of time.");
+                        messageClass.appendMessage("You activated the reactor."
+                            + " The space station will self-destruct in an "
+                            + "unspecified amount of time.");
+                        // Set reactor as activated.
                         this.reactorActivated = true;
+                        // Set message.
                         this.setMessage("Reactor activated");
+                        // Return new max initiative.
                         return (this.getCharacterInitiative() + 80);
-                    } else {
-                        messageClass.appendMessage("The reactor is already activated.");
+                    }
+                    /*
+                    If the reactor has already been activated, it cannot be
+                    activated again.
+                    */
+                    else {
+                        messageClass.appendMessage("The reactor is already "
+                            + "activated.");
                         return Double.MAX_VALUE;
                     }
-                } else {
-                    messageClass.appendMessage("You need the tech dude to do this.");
+                }
+                // If there is not tech dude, the reactor cannot be activated.
+                else {
+                    messageClass.appendMessage("You need the tech dude to do "
+                        + "this.");
                     return Double.MAX_VALUE;
                 }
-            } else {
+            }
+            // If the character is not near the reactor, it cannot be activated.
+            else {
                 messageClass.appendMessage("There is no reactor in this room.");
                 return Double.MAX_VALUE;
             }
 
-        } else {
+        }
+        /*
+        If the command has a second word that is not "Reactor", the command is
+        invalid.
+        */
+        else {
             messageClass.appendMessage("You can't activate anything by that name.");
         }
         return Double.MAX_VALUE;
@@ -1046,29 +1091,27 @@ class Hero extends Character implements Serializable {
     }
 
     /**
+     * This method checks if the input String can be parsed to an integer.
      * 
-     * @param numberString
-     * @return 
+     * @param numberString String to be checked.
+     * 
+     * @return true if the String can be parsed to an integer; else it returns
+     * false.
      */
     private boolean canBeParsedToInt(String numberString) {
-
+        // Check all characters in the String.
         for (int i = 0; i < numberString.length(); i++) {
             char numberChar = numberString.charAt(i);
+            // If the character is a digit, check next character.
             if (java.lang.Character.isDigit(numberChar)) {
             }
+            // If the character is not a digit, return false.
             else {
                 return false;
             }
         }
+        // If all characters are digits, return true.
         return true;
-    }
-    
-    /**
-     * This method is used to
-     * @return 
-     */
-    boolean isReactorActivated() {
-        return this.reactorActivated;
     }
 
     /**
@@ -1140,7 +1183,7 @@ class Hero extends Character implements Serializable {
                 its return value.
                 */
                 case ACTIVATE:
-                    return this.activate(command, reactorActivated);
+                    return this.activate(command);
                 // If command does not match any of the options, break.
                 default:
                     break;
