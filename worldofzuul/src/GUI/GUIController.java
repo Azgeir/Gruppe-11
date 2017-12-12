@@ -5,6 +5,7 @@
  */
 package GUI;
 
+// Imports:
 import Acquaintance.IHighscore;
 import Acquaintance.IScore;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 /**
- *
+ * This is the GUI controller, which handles events from the GUI.
  * @author Aske Wulf
  */
 public class GUIController {
@@ -214,7 +215,9 @@ public class GUIController {
     @FXML
     private Label StartScreenMessageLabel;
 
-
+    /**
+     * This method is used to initialise the GUI.
+     */
     public void initialize() {
         // TODO
         
