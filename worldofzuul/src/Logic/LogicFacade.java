@@ -121,8 +121,10 @@ public class LogicFacade implements ILogicFacade {
     }
 
     /**
-     * This method returns a Set of Strings that
-     * @return 
+     * This method returns a Set of Strings that represents the inventory of
+     * the current character.
+     * 
+     * @return Set of Strings that represents the inventory.
      */
     @Override
     public Set<String> getInventorySet() {
@@ -210,25 +212,16 @@ public class LogicFacade implements ILogicFacade {
     }
 
     /**
+     * This method is used to read and delete the message.
      * 
-     * @return 
+     * @return message that has been removed.
      */
     @Override
     public String readAndDeleteMessage() {
         String message = game.readAndDeleteMessage();
         return message;
     }
-
-//    /**
-//     * This method is used to append a message. It calls the appendMessage()
-//     * method on game.
-//     * 
-//     * @param appendMessage a String to be appended.
-//     */
-//    static void appendMessage(String appendMessage) {
-//        LogicFacade.game.appendMessage(appendMessage);
-//    }
-
+    
     /**
      * This method is used to get the number of items in the specified
      * inventory (room or character).
@@ -289,17 +282,35 @@ public class LogicFacade implements ILogicFacade {
         return isKnown;
     }
     
+    /**
+     * This method is used to check whether the player is talking to tech dude.
+     * 
+     * @return true if the player is talking; else it returns false.
+     */
     @Override
     public boolean isTalking(){
         boolean talking = game.isTalking();
         return talking;
     }
     
+    /**
+     * This method is used to see what characters are in the specified room.
+     * 
+     * @param room instance of IRoom that represents the room to be searched.
+     * 
+     * @return Collection of Strings that represents the characters in the
+     * specified room.
+     */
     @Override
     public Collection<String> charactersInRoom(IRoom room){
         return game.charactersInRoom(room);
     }
-    
+  
+    /**
+     * This method returns the name of the current room.
+     * 
+     * @return String that represents the name of the current room.
+     */
     @Override
     public String getCurrentRoomName(){
         String roomName = game.getCurrentRoomName();

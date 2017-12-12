@@ -25,7 +25,8 @@ class AcidVial extends Item implements Serializable {
      * damageAmount: Damage caused to the player when the acid vial is used.
      * initiativeReduction: Added to Zuul's initiative when used against Zuul,
      * which gives the player a chance to escape.
-     * messageClass A class for storing strings for to read later.
+     * messageClass: instance of LogicMessage for storing strings to be read
+     * later.
      */
     private int damageAmount;
     private int initiativeReduction;
@@ -76,9 +77,11 @@ class AcidVial extends Item implements Serializable {
      * @param damageAmount damage caused to player by acid vial when used.
      * @param initiativeReduction added to Zuul's initiative when used against
      * Zuul.
-     * @param messageClass A class for storing strings for to read later.
+     * @param messageClass instance of LogicMessage for storing strings to be
+     * read later.
      */
-    AcidVial(int damageAmount, int initiativeReduction, LogicMessage messageClass){
+    AcidVial(int damageAmount, int initiativeReduction,
+        LogicMessage messageClass) {
         this(damageAmount, initiativeReduction);
         this.messageClass = messageClass;
     }
@@ -123,9 +126,9 @@ class AcidVial extends Item implements Serializable {
         and Zuul's initiative is increased.
         */
         if (currentCharacter.getCurrentRoom().hasCharacter("Zuul")) {
-            messageClass.appendMessage("You throw an acid vial at the terrifying"
-                + " Zuul. You hit it in the face. You were hit by a splash of "
-                + "acid, but now you have a chance to flee.");
+            messageClass.appendMessage("You throw an acid vial at the "
+                + "terrifying Zuul. You hit it in the face. You were hit by a "
+                + "splash of acid, but now you have a chance to flee.");
             return this.initiativeReduction;
         }
         /*

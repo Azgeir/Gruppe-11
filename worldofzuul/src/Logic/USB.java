@@ -26,7 +26,9 @@ public class USB extends Item implements Serializable {
      * 
      * dataType does not have a setter method as it is only changed internally
      * from the USB class in the use() method.
-     * messageClass; A class for storing strings for to read later.
+     * 
+     * messageClass: instance of LogicMessage for storing strings to be read
+     * later.
      */
     private String dataType;
     private LogicMessage messageClass;
@@ -36,8 +38,9 @@ public class USB extends Item implements Serializable {
      * and a name determined by the number parameter. The constructor calls
      * Item's constructor by constructor chaining.
      * 
-     * @param number, used to name the USB by concatenating "USB" with number.
-     * @param messageClass, A class for storing strings for to read later.
+     * @param number used to name the USB by concatenating "USB" with number.
+     * @param messageClass instance of LogicMessage for storing strings to be
+     * read later.
      */
     USB (int number, LogicMessage messageClass) {
         super(5, "USB" + number);
@@ -83,8 +86,8 @@ public class USB extends Item implements Serializable {
                 break;
             case "Physicslab":
                 this.dataType = "physics";
-                messageClass.appendMessage("Important physics experimental data "
-                    + "was saved. The USB is now full.");
+                messageClass.appendMessage("Important physics experimental data"
+                    + " was saved. The USB is now full.");
                 break;
             case "Control":
                 this.dataType = "control" ;

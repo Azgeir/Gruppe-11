@@ -46,7 +46,9 @@ class TechDude extends Character implements Serializable {
      * 
      * isTalking: boolean value that indicates whether tech dude is currently
      * talking to the hero.
-     * messageClass: A class for storing strings for to read later.
+     * 
+     * messageClass: instance of LogicMessage for storing strings to be read
+     * later.
      */
     private boolean followsHero = false;
     private Character hero = null;
@@ -97,7 +99,8 @@ class TechDude extends Character implements Serializable {
      * @param currentRoom current room of tech dude
      * @param name name of tech dude (i.e. "TechDude")
      * @param speedFactor speed factor of tech dude
-     * @param messageClass A class for storing strings for to read later.
+     * @param messageClass instance of LogicMessage for storing strings to be
+     * read later.
      */
     TechDude(Room currentRoom, String name, double speedFactor,
         LogicMessage messageClass) {
@@ -318,12 +321,22 @@ class TechDude extends Character implements Serializable {
                 */
                 if (command.hasThirdWord()) {
                     try {
+                        /*
+                        If tech dude already wants to talk, update value of
+                        isTalking.
+                        */
                         if (wantsToTalk) {
                             isTalking = Boolean.parseBoolean(command.
                                 getThirdWord());
                         }
+                        
+                        // Tech dude wants to talk.
                         wantsToTalk = true;
 
+                        /*
+                        If tech dude is not currently talking, reset the
+                        counter.
+                        */
                         if (!isTalking) {
                             counter = 1;
                         }
@@ -334,34 +347,60 @@ class TechDude extends Character implements Serializable {
                     }
                 }
             }
-            
+            // If tech dude is talking, number determines action.
             if (isTalking) {
                 switch(number){
+                    /*
+                    If number is 1 and counter is 4 (end of conversation), tech
+                    dude no longer wants to talk and now follows hero.
+                    */
                     case 1:
                         if (counter == 4) {
                             wantsToTalk = false;
                             this.followsHero = true;
                         }
                         break;
+                    /*
+                    If number is 2 (offensive response), hostility increases and
+                    the conversation ends.
+                    */
                     case 2:
+                        // Increment hostility.
                         hostility += 1;
+                        /*
+                        If hostility has reached 3, tech dude no longer follows
+                        the player.
+                        */
                         if (hostility == 3) {
                             messageClass.appendMessage("The tech dude hates you"
                                 + " and will no longer talk to you.");
                             followsHero = false;
                         }
+                        /*
+                        If hostility is less than 3, tech dude ends the
+                        conversation.
+                        */
                         else {
                             messageClass.appendMessage("The tech dude got "
                                 + "annoyed at you.");
                         }
+                        /*
+                        The conversation ends in response to an offensive
+                        response.
+                        */
                         wantsToTalk = false;
                         isTalking = false;
                         break;
+                    /*
+                    If number is 3 and counter is 3, the conversation ends, and
+                    tech dude follows the player.
+                    */
                     case 3:
                         if (counter == 3) {
                             wantsToTalk = false;
                             followsHero = true;
                         }
+                        // If counter is not 3, the answer is invalid.
                         else {
                             messageClass.appendMessage("Not a valid answer");
                             validAnswer = false;
@@ -371,24 +410,36 @@ class TechDude extends Character implements Serializable {
                     default:
                         break;
                 }
+                // If the answer was valid, increment counter.
                 if (validAnswer) {
                     counter++;
                 }
             }
-            
+            // If tech dude wants to talk, conversation is conducted.
             if (wantsToTalk){
-                String messsageChooser = this.getName()+counter;
+                // Choose message by adding counter to tech dude's name.
+                String messsageChooser = this.getName() + counter;
+                // Print talk and options.
                 talk.talk(messsageChooser);
                 talk.options(messsageChooser); 
+                // Set isTalking to true, as tech dude is now talking to player.
                 isTalking = true;
             }
             
-        } else {
-            messageClass.appendMessage("Fuck you. I hate you");
+        }
+        /*
+        If the hostility is too high, tech dude will no longer talk to the
+        player nor follow them.
+        */
+        else {
+            messageClass.appendMessage("Fuck you. I hate you.");
             wantsToTalk = false;
             followsHero = false;
         }
-        
+        /*
+        If tech dude does not want to talk, the counter is reset to 1 and
+        isTalking is set to false, as tech dude is not talking.
+        */
         if (!wantsToTalk){
             counter = 1;
             isTalking = false;

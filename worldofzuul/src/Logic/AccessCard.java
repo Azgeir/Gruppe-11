@@ -22,7 +22,8 @@ class AccessCard extends Item implements Serializable {
     
     /**
      * Data fields.
-     * messageClass: A class for storing strings for to read later.
+     * messageClass: instance of LogicMessage for storing strings to be read
+     * later.
      */
     private LogicMessage messageClass;
     
@@ -40,7 +41,9 @@ class AccessCard extends Item implements Serializable {
      * This constructor creates an instance of AccessCard with default weight 
      * and name by calling the it's own default constructor via constructor
      * chaining.
-     * @param messageClass A class for storing strings for to read later.
+     * 
+     * @param messageClass instance of LogicMessage for storing strings to be
+     * read later.
      */
     AccessCard(LogicMessage messageClass) {
         this();

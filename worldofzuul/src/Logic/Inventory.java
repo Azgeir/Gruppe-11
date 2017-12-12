@@ -30,7 +30,8 @@ class Inventory implements Serializable {
      * maxWeight: maximum weight of an inventory. This is mostly used for
      * player's whose inventory has limited capacity.
      * totalWeight: current weight of the inventory.
-     * messageClass: A class for storing strings for to read later.
+     * messageClass: instance of LogicMessage for storing strings to be read
+     * later.
      */
     private HashMap<String, ArrayList<Item>> inventory;
     private int maxWeight;
@@ -64,7 +65,8 @@ class Inventory implements Serializable {
      * This constructor creates an Inventory object with the specified 
      * LogicMessage object
      * 
-     * @param messageClass A class for storing strings for to read later.
+     * @param messageClass instance of LogicMessage for storing strings to be
+     * read later.
      */
     Inventory(LogicMessage messageClass) {
         this();
@@ -77,7 +79,8 @@ class Inventory implements Serializable {
      * player has a specified limited inventory capacity.
      * 
      * @param maxWeight maximum weight of the inventory.
-     * @param messageClass A class for storing strings for to read later.
+     * @param messageClass instance of LogicMessage for storing strings to be
+     * read later.
      */
     Inventory(int maxWeight, LogicMessage messageClass) {
         this(maxWeight);

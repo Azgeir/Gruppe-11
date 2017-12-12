@@ -30,9 +30,12 @@ public class Room implements Serializable, IRoom {
      * name: name of the room.
      * hasCharacter: HashMap indicating if the different characters are present
      * in the room.
+     * charactersInRoom: ArrayList of Strings that represents the characters in
+     * the room.
      * hasBeenLookedUpon: indicates whether the player has "looked" at the room,
      * thereby unlocking the room's inventory.
-     * messageClass: A class for storing strings for to read later.
+     * messageClass: instance of LogicMessage for storing strings to be read
+     * later.
      */
     private String description;
     private String detailedDescription;
@@ -51,7 +54,7 @@ public class Room implements Serializable, IRoom {
      * default room type. More detailed constructors are used for non-hallway
      * rooms.
      * 
-     * @param description, short description of the room indicating which
+     * @param description short description of the room indicating which
      * hallway it is.
      */
     Room(String description) {
@@ -87,8 +90,8 @@ public class Room implements Serializable, IRoom {
      * condition, it does not need a detailed description. Therefore, this is
      * left at the hallway default. The constructor uses constructor chaining.
      * 
-     * @param description, short description of the room.
-     * @param roomName, name of the room.
+     * @param description short description of the room.
+     * @param roomName name of the room.
      */
     Room(String description, String roomName) {
         this(description);
@@ -100,9 +103,9 @@ public class Room implements Serializable, IRoom {
      * detailed description. The constructor is used to create the non-hallway
      * rooms in the game. The constructor uses constructor chaining.
      * 
-     * @param description, short description of the room.
-     * @param roomName, name of the room.
-     * @param detailedDescription, longer description of the room.
+     * @param description short description of the room.
+     * @param roomName name of the room.
+     * @param detailedDescription longer description of the room.
      */
     Room(String description, String roomName, String detailedDescription) {
         this(description, roomName);
@@ -116,9 +119,10 @@ public class Room implements Serializable, IRoom {
      * condition, it does not need a detailed description. Therefore, this is
      * left at the hallway default. The constructor uses constructor chaining.
      * 
-     * @param description, short description of the room.
-     * @param roomName, name of the room.
-     * @param messageClass, A class for storing strings for to read later.
+     * @param description short description of the room.
+     * @param roomName name of the room.
+     * @param messageClass instance of LogicMessage for storing strings to be
+     * read later.
      */
     Room(String description, String roomName, LogicMessage messageClass) {
         this(description);
@@ -131,13 +135,15 @@ public class Room implements Serializable, IRoom {
      * detailed description. The constructor is used to create the non-hallway
      * rooms in the game. The constructor uses constructor chaining.
      * 
-     * @param description, short description of the room.
-     * @param roomName, name of the room.
-     * @param detailedDescription, longer description of the room.
-     * @param messageClass, A class for storing strings for to read later.
+     * @param description short description of the room.
+     * @param roomName name of the room.
+     * @param detailedDescription longer description of the room.
+     * @param messageClass an instance of LogicMessage for storing strings to
+     * be read later.
      * 
      */
-    Room(String description, String roomName, String detailedDescription, LogicMessage messageClass) {
+    Room(String description, String roomName, String detailedDescription,
+        LogicMessage messageClass) {
         this(description, roomName, messageClass);
         this.detailedDescription = detailedDescription;
     }
@@ -352,22 +358,50 @@ public class Room implements Serializable, IRoom {
         this.hasBeenLookedUpon = hasBeenLookedUpon;
     } 
     
+    /**
+     * This method is used to add a character to the room.
+     * 
+     * @param character String that represents the character to be added to
+     * the room.
+     */
     void addCharacterInRoom(String character){
+        // Add character to the ArrayList of characters.
         this.charactersInRoom.add(character);
+        // Set the character's presence as true.
         this.setHasCharacter(character, true);
     }
     
+    /**
+     * This method is used to remove a character from the room.
+     * 
+     * @param character String that represents the character to be removed.
+     */
     void removeCharacterInRoom(String character){
+        // Remove character from ArrayList of characters.
         this.charactersInRoom.remove(character);
+        /*
+        Check if the room still contains a character after the character has
+        been removed. For example, if a Zuul is removed, there might still be
+        another Zuul in the room. If this is the case, the presence of the
+        character is set to true.
+        */
         if (this.charactersInRoom.contains(character)) {
             this.setHasCharacter(character, true);
         }
+        /*
+        If no characters of this type are present, set the presence of the
+        character to false.
+        */
         else {
             this.setHasCharacter(character, false);
         }
-        
     }
     
+    /**
+     * This method returns an ArrayList of the characters in the room.
+     * 
+     * @return ArrayList of Strings that represents the characters in the room.
+     */
     ArrayList<String> getCharacterInRoom(){
         return this.charactersInRoom;
     }
