@@ -19,7 +19,8 @@ class Conversation implements Serializable {
     
     /**
      * Data fields.
-     * messageClass A class for storing strings for to read later.
+     * messageClass: instance of LogicMessage for storing strings to be read
+     * later.
      * TECHTALK1: tech dude's first statement
      * TECHTALK2: tech dude's second statement
      * TECHTALK3: tech dude's third statement
@@ -30,19 +31,22 @@ class Conversation implements Serializable {
      * FUCKOFF: negative statement that increases tech dude's hostility
      */
     private LogicMessage messageClass;
+    
     // Tech dude statements
     private final String TECHTALK1 = "Is the Zuul gone?";
-    private final String TECHTALK2 = "The arrival of Zuul has triggered the station's"
-        + " quarantine mechanism, causing the doors to all the escape pods to "
-        + "be locked.";
-    private final String TECHTALK3 = "Yes, I can override the mechanism and unlock one"
-        + " of the pods, but I will have to be in the dock to do this.";
-    private final String TECHTALK4 = "I can overload the reactor, causing it to "
-        + "self-destruct along with the whole space station. This will give you"
-        + " a short time to get off the station before it blows up. But I must"
-        + " be near the reactor to overload it.";
+    private final String TECHTALK2 = "The arrival of Zuul has triggered the "
+        + "station's quarantine mechanism, causing the doors to all the escape "
+        + "pods to be locked.";
+    private final String TECHTALK3 = "Yes, I can override the mechanism and "
+        + "unlock one of the pods, but I will have to be in the dock to do "
+        + "this.";
+    private final String TECHTALK4 = "I can overload the reactor, causing it to"
+        + " self-destruct along with the whole space station. This will give "
+        + "you a short time to get off the station before it blows up. But I "
+        + "must be near the reactor to overload it.";
     // Player responses
-    private final String TECHANSWER1 = "For now. What has happened to the station?";
+    private final String TECHANSWER1 = "For now. What has happened to the "
+        + "station?";
     private final String TECHANSWER2 = "Can you help me get off this station?";
     private final String TECHANSWER3 = "Anything else you can help with?";
     private final String LETSGO = "Let's go!";
@@ -56,7 +60,9 @@ class Conversation implements Serializable {
     
     /**
      * This constructor calls it's own no-args constructor and sets messageClass
-     * @param messageClass A class for storing strings for to read later.
+     * 
+     * @param messageClass instance of LogicMessage for storing strings for to
+     * read later.
      */
     Conversation(LogicMessage messageClass){
         this();

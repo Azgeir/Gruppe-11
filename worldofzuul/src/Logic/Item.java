@@ -24,7 +24,8 @@ class Item implements Serializable {
      * weight: the weight of the item
      * name: the name of the item
      * useDescription: describes how the item is used
-     * messageClass: A class for storing strings for to read later.
+     * messageClass: instance of LogicMessage for storing strings to be read
+     * later.
      */
     private int weight;
     private String name;
@@ -35,8 +36,8 @@ class Item implements Serializable {
      * This constructor creates an Item object with the specified weight and
      * name.
      * 
-     * @param weight, the weight of the item.
-     * @param name, the name of the item.
+     * @param weight the weight of the item.
+     * @param name the name of the item.
      */
     Item(int weight, String name) {
         this.weight = weight;
@@ -47,9 +48,9 @@ class Item implements Serializable {
      * This constructor creates an Item object with the specified weight, name,
      * and use description. The constructor uses constructor chaining. 
      * 
-     * @param weight, the weight of the item.
-     * @param name, the name of the item.
-     * @param useDescription, describes how the item is used.
+     * @param weight the weight of the item.
+     * @param name the name of the item.
+     * @param useDescription describes how the item is used.
      */
     Item(int weight, String name, String useDescription) {
         this(weight, name);
@@ -60,9 +61,10 @@ class Item implements Serializable {
      * This constructor creates an Item object with the specified weight and
      * name.
      * 
-     * @param weight, the weight of the item.
-     * @param name, the name of the item.
-     * @param messageClass, A class for storing strings for to read later.
+     * @param weight the weight of the item.
+     * @param name the name of the item.
+     * @param messageClass instance of LogicMessage for storing strings to be
+     * read later.
      */
     Item(int weight, String name, LogicMessage messageClass) {
         this.weight = weight;
@@ -79,7 +81,8 @@ class Item implements Serializable {
      * @param useDescription, describes how the item is used.
      * @param messageClass, A class for storing strings for to read later.
      */
-    Item(int weight, String name, String useDescription, LogicMessage messageClass) {
+    Item(int weight, String name, String useDescription,
+        LogicMessage messageClass) {
         this(weight, name, messageClass);
         this.useDescription = useDescription;
     }
@@ -120,11 +123,11 @@ class Item implements Serializable {
         */
         if (useDescription == null) {
             if (currentCharacter.getCurrentRoom().hasCharacter("Zuul")) {
-                messageClass.appendMessage("You throw the " + this.name + " in blind \n"
-                + "panic. It doesn't have any effect.");
+                messageClass.appendMessage("You throw the " + this.name 
+                + " in blind \npanic. It doesn't have any effect.");
             } else {
-                messageClass.appendMessage("You wave around the " + this.name + ",\n"
-                        + "seemingly with no purpose.");
+                messageClass.appendMessage("You wave around the " + this.name
+                    + ",\nseemingly with no purpose.");
             }
         } else {
             if (currentCharacter.getCurrentRoom().hasCharacter("Zuul")) {

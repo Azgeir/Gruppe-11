@@ -37,7 +37,8 @@ public class Zuul extends Character implements Serializable {
      * detects the presence of the player. It is used to allow the player to
      * escape Zuul. The value is initially set to -Double.MAX_VALUE so it always
      * fails its test in getCommand() unless it has been updated.
-     * messageClass; A class for storing strings for to read later.
+     * messageClass: instance of LogicMessage for storing strings to be read
+     * later.
      */
     private String previousRoomName;
     private ArrayList<String> triedLockedExits = new ArrayList<>();
@@ -63,7 +64,7 @@ public class Zuul extends Character implements Serializable {
     }
     
     /**
-    * This constructor creates a Zuul with the specified current room, name,
+     * This constructor creates a Zuul with the specified current room, name,
      * and speed factor. The constructor calls the constructor from the
      * superclass via constructor chaining. As part of the construction, it is
      * determined whether or not the player (hero) is in the same room as Zuul.
@@ -82,11 +83,15 @@ public class Zuul extends Character implements Serializable {
         room.
         */
         this.heroWasInSameRoom = false;
-        
+        /*
+        If the hero is in the same room, print a message describing the arrival
+        of a new Zuul.
+        */
         if (heroIsInSameRoom) {
-            messageClass.appendMessage("A boarding pod comes crashing through the wall of the space station.\n"
-                    + "Then a Zuul steps out of it and says in the voice of Little Nicky\n"
-                    + "\"I will eat your heart\"");
+            messageClass.appendMessage("A boarding pod comes crashing through "
+                + "the wall of the space station.\nThen a Zuul steps out of it "
+                + "and says in the voice of Little Nicky\n\"I will eat your "
+                + "heart\"");
         }
     }
     
@@ -99,14 +104,16 @@ public class Zuul extends Character implements Serializable {
      * @param currentRoom current room of Zuul.
      * @param name name of the character (i.e., "Zuul").
      * @param speedFactor used when updating Zuul's initiative.
-     * @param messageClass A class for storing strings for to read later.
+     * @param messageClass instance of LogicMessage for storing strings to be
+     * read later.
      */
-    Zuul(Room currentRoom, String name, double speedFactor, LogicMessage messageClass) {
+    Zuul(Room currentRoom, String name, double speedFactor, 
+        LogicMessage messageClass) {
         this(currentRoom, name, speedFactor, 0, messageClass);
     }
     
     /**
-    * This constructor creates a Zuul with the specified current room, name,
+     * This constructor creates a Zuul with the specified current room, name,
      * and speed factor. The constructor calls the constructor from the
      * superclass via constructor chaining. As part of the construction, it is
      * determined whether or not the player (hero) is in the same room as Zuul.
@@ -115,9 +122,11 @@ public class Zuul extends Character implements Serializable {
      * @param name name of the character (i.e., "Zuul").
      * @param speedFactor used when updating Zuul's initiative.
      * @param initiative used to set when the zuul gets it's turn
-     * @param messageClass, A class for storing strings for to read later.
+     * @param messageClass instance of LogicMessage for storing strings to be
+     * read later.
      */
-    Zuul (Room currentRoom, String name, double speedFactor, double initiative, LogicMessage messageClass){
+    Zuul (Room currentRoom, String name, double speedFactor, double initiative,
+        LogicMessage messageClass){
         super(currentRoom, name, speedFactor, initiative);
         // Check if the player is in the same room as Zuul.
         this.heroIsInSameRoom = currentRoom.hasCharacter("Hero");
@@ -127,10 +136,15 @@ public class Zuul extends Character implements Serializable {
         */
         this.heroWasInSameRoom = false;
         
+        /*
+        If the hero is in the same room, print a message describing the arrival
+        of a new Zuul.
+        */
         if (heroIsInSameRoom) {
-            messageClass.appendMessage("A boarding pod comes crashing through the wall of the space station.\n"
-                    + "Then a Zuul steps out of it and says in the voice of Little Nicky\n"
-                    + "\"I will eat your heart\"");
+            messageClass.appendMessage("A boarding pod comes crashing through "
+                + "the wall of the space station.\nThen a Zuul steps out of it "
+                + "and says in the voice of Little Nicky\n\"I will eat your "
+                + "heart\"");
         }
         this.messageClass = messageClass;
     }

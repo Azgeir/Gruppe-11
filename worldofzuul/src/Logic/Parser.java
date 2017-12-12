@@ -50,7 +50,8 @@ class Parser implements Serializable {
         to create a Command object which is returned and initializes
         characterCommand.
         */
-        Command characterCommand = currentCharacter.getCommand(commands, GUICommand);
+        Command characterCommand = currentCharacter.getCommand(commands, 
+            GUICommand);
         // Return the command.
         return characterCommand;
     }

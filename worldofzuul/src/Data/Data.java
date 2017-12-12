@@ -39,7 +39,8 @@ class Data {
      * stores the high score.
      */
     private static final String SAVE_GAME_FILE_NAME = "Escape pod.Zuul";
-    private static final String HIGHSCORE_FILE_NAME = "Escape pod highscore.txt";
+    private static final String HIGHSCORE_FILE_NAME =
+        "Escape pod highscore.txt";
     
     /**
      * This empty no-arg constructor creates a Data object.
