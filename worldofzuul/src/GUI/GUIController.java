@@ -40,6 +40,7 @@ import javafx.scene.paint.Color;
 
 /**
  * This is the GUI controller, which handles events from the GUI.
+ * 
  * @author Aske Wulf
  */
 public class GUIController {
@@ -244,6 +245,10 @@ public class GUIController {
         this.createRooms();
     }
     
+    /**
+     * This method is used to show characters in the rooms, when the player is
+     * peeking.
+     */
     private void setCharactersPeek(){
         
         for (RoomGUI room : rooms.values()) {
@@ -286,6 +291,9 @@ public class GUIController {
         }
     }
     
+    /**
+     * This method is used to show the characters in the current room.
+     */
     private void setCharacterCurrentRoom(){
         String roomName = GUIFacade.getCurrentRoomName();
         RoomGUI room = this.rooms.get(roomName);
@@ -327,12 +335,24 @@ public class GUIController {
         
     }
     
+    /**
+     * This method is used to set the rooms' backgrounds. This is done by
+     * repeatedly calling the setRoomBackground() method.
+     */
     private void setRoomBackgrounds(){
         for (Map.Entry<String, RoomGUI> entry : rooms.entrySet()) {
             this.setRoomBackground(entry.getValue());
         }
     }
     
+    /**
+     * This method is used to set a "room"'s background. The method is used to
+     * set the background of outer space, inner space, and start screen.
+     * 
+     * @param <T> generic type that extends Pane
+     * @param pane the pane whose background is to be set
+     * @param picturePath String that represents the path to the image
+     */
     private <T extends Pane> void setRoomBackground(T pane, String picturePath){
         Image roomImage = new Image(picturePath);
         BackgroundImage roomBackground = new BackgroundImage(roomImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -340,6 +360,13 @@ public class GUIController {
         pane.setBackground(new Background(roomBackgroundArray));
     }
     
+    /**
+     * This method is used to set the background of a room. The background of
+     * the room depends on whether or not the player knows the room.
+     * 
+     * @param room instance of RoomGUI which represents the room whose
+     * background is to be set.
+     */
     private void setRoomBackground(RoomGUI room){
         if (GUIFacade.isRoomKnown(room)) {
             Image roomImage = new Image(room.getKnownRoomFilePath());
@@ -355,6 +382,12 @@ public class GUIController {
         }
     }
 
+    /**
+     * This method is called with the pickup button is clicked. The method sends
+     * a String, representing a command, to the logic layer.
+     * 
+     * @param event 
+     */
     @FXML
     private void pickupButtonHandler(ActionEvent event) {
 
@@ -373,12 +406,18 @@ public class GUIController {
             this.labelMessageField.setText(message);
 
         } else {
-            this.labelMessageField.setText("choose something to pickup from the dropbox");
+            this.labelMessageField.setText("Choose something to pickup from the dropbox.");
         }
         this.setCharacterCurrentRoom();
         this.gameIsFinished();
     }
  
+    /**
+     * This method is called with the use button is clicked. The method sends
+     * a String, representing a command, to the logic layer.
+     * 
+     * @param event 
+     */
     @FXML
     private void useButtonAction(ActionEvent event) {
 
@@ -394,12 +433,18 @@ public class GUIController {
             this.labelMessageField.setText(message);
             
         } else {
-            this.labelMessageField.setText("choose something to use from the dropbox");
+            this.labelMessageField.setText("Choose something to use from the dropbox.");
         }
         this.setCharacterCurrentRoom();
         this.gameIsFinished();
     }
 
+    /**
+     * This method is called when the activate button is clicked. The method
+     * sends a String, representing a command, to the logic layer.
+     * 
+     * @param event 
+     */
     @FXML
     private void activateButtonHandler(ActionEvent event) {
         String command = "activate Reactor";
@@ -410,6 +455,12 @@ public class GUIController {
         this.gameIsFinished();
     }
 
+    /**
+     * This method is called when the talk button is clicked. The method sends
+     * a String, representing a command, to the logic layer.
+     * 
+     * @param event 
+     */
     @FXML
     private void talkButtonHandler(ActionEvent event) {
         String command = "talk";
@@ -424,6 +475,12 @@ public class GUIController {
         this.gameIsFinished();
     }
 
+    /**
+     * This method is called when the quit button is clicked. The method sends
+     * a String, representing a "quit" command, to the logic layer.
+     * 
+     * @param event 
+     */
     @FXML
     private void quitButtonHandler(ActionEvent event) {
         String command = "quit";
@@ -434,6 +491,12 @@ public class GUIController {
         this.gameIsFinished();
     }
 
+    /**
+     * This method is called when the help button is clicked. The method sends
+     * a String, representing a "help" command, to the logic layer.
+     * 
+     * @param event 
+     */
     @FXML
     private void helpButtonHandler(ActionEvent event) {
         String command = "help";
@@ -444,6 +507,12 @@ public class GUIController {
         this.gameIsFinished();
     }
 
+    /**
+     * This method is called when the stay button is clicked. The method sends
+     * a String, representing a "stay" command, to the logic layer.
+     * 
+     * @param event 
+     */
     @FXML
     private void stayButtonHandler(ActionEvent event) {
         String command = "stay";
@@ -454,6 +523,12 @@ public class GUIController {
         this.gameIsFinished();
     }
 
+    /**
+     * This method is called when the look button is clicked. The method sends
+     * a String, representing a "look" command to the logic layer.
+     * 
+     * @param event 
+     */
     @FXML
     private void lookButtonHandler(ActionEvent event) {
         String command = "look around";
@@ -466,6 +541,12 @@ public class GUIController {
         this.gameIsFinished();
     }
 
+    /**
+     * This method is called when the save button is clicked. This causes the
+     * game to be saved.
+     * 
+     * @param event 
+     */
     @FXML
     private void saveButtonHandler(ActionEvent event) {
         GUIFacade.saveGame();
@@ -475,6 +556,11 @@ public class GUIController {
         this.gameIsFinished();
     }
 
+    /**
+     * This method is called when the drop button is clicked. The method sends
+     * a String, representing a "drop" command to the logic layer.
+     * @param event 
+     */
     @FXML
     private void dropButtonHandler(ActionEvent event) {
         String command;
@@ -490,12 +576,18 @@ public class GUIController {
             this.updateAllDropdown();
 
         } else {
-            this.labelMessageField.setText("choose something to drop from the dropbox");
+            this.labelMessageField.setText("Choose something to drop from the dropbox.");
         }
         this.setCharacterCurrentRoom();
         this.gameIsFinished();
     }
 
+    /**
+     * This method is called when the go button is clicked. The method sends a
+     * String, representing a "go" command, to the logic layer.
+     * 
+     * @param event 
+     */
     @FXML
     private void goButtonHandler(ActionEvent event) {
 
@@ -512,12 +604,18 @@ public class GUIController {
             this.updateAllDropdown();
             this.setCharactersPeek();
         } else {
-            this.labelMessageField.setText("choose a direction from the dropbox");
+            this.labelMessageField.setText("Choose a direction from the dropbox.");
         }
         this.gameIsFinished();
 
     }
 
+    /**
+     * This method is called when the peek button is clicked. The method sends
+     * a String, representing a "peek" command, to the logic layer.
+     * 
+     * @param event 
+     */
     @FXML
     private void peekButtonHandler(ActionEvent event) {
 
@@ -532,13 +630,19 @@ public class GUIController {
             this.setRoomBackgrounds();
             this.setCharactersPeek();
         } else {
-            this.labelMessageField.setText("choose a direction from the dropbox");
+            this.labelMessageField.setText("Choose a direction from the dropbox.");
             this.setCharacterCurrentRoom();
         }
         this.gameIsFinished();
 
     }
 
+    /**
+     * This method is called when the unlock button is clicked. It sends a
+     * String, representing an "unlock" command, to the logic layer.
+     * 
+     * @param event 
+     */
     @FXML
     private void unlockButtonHandler(ActionEvent event) {
 
@@ -551,12 +655,18 @@ public class GUIController {
             String message = GUIFacade.readAndDeleteGameMessage();
             this.labelMessageField.setText(message);
         } else {
-            this.labelMessageField.setText("choose a direction from the dropbox");
+            this.labelMessageField.setText("Choose a direction from the dropbox.");
         }
         this.setCharacterCurrentRoom();
         this.gameIsFinished();
     }
 
+    /**
+     * This method is called when the lock button is clicked. The method sends a
+     * String, representing a "lock" command, to the logic layer.
+     * 
+     * @param event 
+     */
     @FXML
     private void lockButtonHandler(ActionEvent event) {
 
@@ -569,12 +679,17 @@ public class GUIController {
             String message = GUIFacade.readAndDeleteGameMessage();
             this.labelMessageField.setText(message);
         } else {
-            this.labelMessageField.setText("choose a direction from the dropbox");
+            this.labelMessageField.setText("Choose a direction from the dropbox.");
         }
         this.setCharacterCurrentRoom();
         this.gameIsFinished();
     }
 
+    /**
+     * This method is used to disable to command buttons, when the game has
+     * ended, and show the "Start new game" button, which takes the player back
+     * to the start screen.
+     */
     private void gameIsFinished() {
         if (GUIFacade.isGameFinished()) {
             this.bigGridPane.setDisable(true);
@@ -584,6 +699,13 @@ public class GUIController {
         }
     }
 
+    /**
+     * This method is called when the start button is clicked. It initializes
+     * the game, using the information provided by the player from the start
+     * screen, i.e. number of Zuuls, spawn time, and name.
+     * 
+     * @param event 
+     */
     @FXML
     private void startButtonActionEvent(ActionEvent event) {
 
@@ -611,6 +733,12 @@ public class GUIController {
         this.updateAllDropdown();
     }
 
+    /**
+     * This method is used to update the background of the drop down.
+     * 
+     * @param box ComboBox which represents the dropdown whose background is to
+     * be updated.
+     */
     private void updateDropdownBackground(ComboBox<String> box) {
         Image buttonImage = new Image("Pictures/button.png");
         
@@ -633,6 +761,12 @@ public class GUIController {
         });
     }
 
+    /**
+     * This method is called when the load button is clicked from the start
+     * screen. The method loads a saved game, if there is one.
+     * 
+     * @param event 
+     */
     @FXML
     private void loadButtonActionEvent(ActionEvent event) {
         boolean success = GUIFacade.loadGame();
@@ -640,18 +774,25 @@ public class GUIController {
         if (success) {
             this.switchScreen(startScreen, outerSpace);
             
-            this.labelMessageField.setText("You loaded the game");
+            this.labelMessageField.setText("You loaded the game.");
             
             this.updateAllDropdown();
             this.setRoomBackgrounds();
             this.setCharactersPeek();
         }
         else {
-            this.StartScreenMessageLabel.setText("There is no save file");
+            this.StartScreenMessageLabel.setText("There is no save file.");
             
         }
     }
 
+    /**
+     * This method is used switch between the start screen and the "outer space"
+     * screen.
+     * 
+     * @param from Pane, which represents the screen to be disabled.
+     * @param to Pane, which represents the screen to be enabled.
+     */
     private void switchScreen(Pane from, Pane to) {
         from.setDisable(true);
         from.setVisible(false);
@@ -659,6 +800,10 @@ public class GUIController {
         to.setVisible(true);
     }
 
+    /**
+     * This method is used to update all drop downs (i.e., pickup, use, go, and
+     * possibly talk).
+     */
     private void updateAllDropdown() {
         
         String selectedPickup = this.pickupDropDown.getValue();
@@ -709,6 +854,12 @@ public class GUIController {
         this.updateDropdownBackground(numberBox);
     }
 
+    /**
+     * This method loads and formats the high score.
+     * 
+     * @return String which represents the high score. This is used to display
+     * the high score on the start screen.
+     */
     private String loadAndFormatHighscore() {
         IHighscore highscore = GUIFacade.loadHighscore();
         IScore[] scores = highscore.getScores();
@@ -738,6 +889,11 @@ public class GUIController {
         return highscoreString;
     }
 
+    /**
+     * This method is used to set the background for all the buttons.
+     * 
+     * @param pane GridPane that contains the desired buttons.
+     */
     private void fillButtons(GridPane pane) {
         for (Node node : pane.getChildren()) {
             if (node instanceof Button) {
@@ -747,6 +903,11 @@ public class GUIController {
         }
     }
     
+    /**
+     * This method is used to set the background of the specified button.
+     * 
+     * @param button Button whose background is to be set.
+     */
     private void fillButton(Button button){
         Image buttonImage = new Image("Pictures/button.png");
         BackgroundImage buttonBackground = new BackgroundImage(buttonImage,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -754,6 +915,13 @@ public class GUIController {
         button.setTextFill(Color.WHITE);
     }
 
+    /**
+     * This method is used to update the number box. This box lets the player
+     * select the number of items to pickup, drop, or use.
+     * 
+     * @param box ComboBox which specifies the dropdown currently associated
+     * with the number box
+     */
     private void updateNumberBox(ComboBox<String> box) {
         int number = 0;
         numberBox.getItems().clear();
@@ -770,6 +938,11 @@ public class GUIController {
         this.numberBox.setValue("1");
     }
 
+    /**
+     * This method is used to update the pickup dropdown.
+     * 
+     * @param event 
+     */
     @FXML
     private void pickupDropDownEventHandler(ActionEvent event) {
         updateNumberBox(pickupDropDown);
@@ -778,6 +951,11 @@ public class GUIController {
             }
     }
 
+    /**
+     * This method is used to update to use(/drop) dropdown.
+     * 
+     * @param event 
+     */
     @FXML
     private void useDropDownEventHandler(ActionEvent event) {
         updateNumberBox(useDropDown);
@@ -786,6 +964,13 @@ public class GUIController {
             }
     }
 
+    /**
+     * This method is called when the player clicks the "Start new game" button
+     * after the game has finished. This takes the player back to the start
+     * screen.
+     * 
+     * @param event 
+     */
     @FXML
     private void backToStartScreenButtonEventHandler(ActionEvent event) {
         this.switchScreen(outerSpace, startScreen);
@@ -797,6 +982,9 @@ public class GUIController {
         this.highscoreLabel.setText(highscoreString);
     }
     
+    /**
+     * This method is used to create the rooms. It adds the rooms to a HashMap.
+     */
     private void createRooms(){
         rooms = new HashMap<>();
         rooms.put("Biolab", new RoomGUI(roomBiolab,characterPaneBiolab,"Pictures/Biolab.png","Pictures/Biolab FoW.png","Biolab"));
