@@ -891,24 +891,53 @@ class Hero extends Character implements Serializable {
             for locking/unlocking the escape pod.
             */
             if (this.getCurrentRoom().hasCharacter("TechDude")) {
-                if (this.getCurrentRoom().getExit(direction).getExits().containsKey(getName)) {
+                /*
+                If the specified neigboring room has an exit with the name of
+                the current room, lock/unlock the exit from both directions.
+                */
+                if (this.getCurrentRoom().getExit(direction).getExits().
+                    containsKey(getName)) {
+                    // (Un)lock exit from current room.
                     lockedExits.put(direction, lock);
-                    this.getCurrentRoom().getExit(direction).getLockedExits().put(getName, lock);
-                    return true;
-                } else {
-                    lockedExits.put(direction, lock);
-
-                    HashMap<String, Boolean> templockExits = new HashMap<>();
-                    templockExits.putAll(lockedExits);
-                    templockExits.remove(direction);
-                    String direction2 = (String) templockExits.keySet().toArray()[0];
-                    this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
+                    // (Un)lock exit from opposite direction.
+                    this.getCurrentRoom().getExit(direction).getLockedExits().
+                        put(getName, lock);
+                    // Return true since the exit has been locked/unlocked.
                     return true;
                 }
+                /*
+                If the specified neigboring room does not have an exit with the
+                name of the current room, the procedure for locking/unlocking
+                the door is a bit different.
+                */
+                else {
+                    // (Un)lock exit from current room.
+                    lockedExits.put(direction, lock);
 
-            } else {
-                messageClass.appendMessage("The station is under quarantine and you therefore can't open the door.\n"
-                        + "Perhaps you could find something or someone to force it open.");
+                    // Create a new HashMap with the same entries as lockedExits.
+                    HashMap<String, Boolean> templockExits = new HashMap<>();
+                    templockExits.putAll(lockedExits);
+                    // Remove the entry for the specified direction.
+                    templockExits.remove(direction);
+                    /*
+                    Determine the direction from the neigboring room to the
+                    current room.
+                    */
+                    String direction2 = (String) templockExits.keySet().
+                        toArray()[0];
+                    // (Un)lock the exit from the opposite direction.
+                    this.getCurrentRoom().getExit(direction).getLockedExits().
+                        put(direction2, lock);
+                    // Return true since the door has been locked/unlocked.
+                    return true;
+                }
+            }
+            // If tech dude is not present, the door cannot be locked/unlocked.
+            else {
+                messageClass.appendMessage("The station is under quarantine and"
+                    + " you therefore can't open the door.\nPerhaps you could "
+                    + "find something or someone to force it open.");
+                // Return false since the door has not been locked/unlokced.
                 return false;
             }
 
@@ -918,25 +947,46 @@ class Hero extends Character implements Serializable {
         both directions.
         */
         else {
-            //
-            if (this.getCurrentRoom().getExit(direction).getExits().containsKey(getName)) {
+            /*
+            If the specified neigboring room has an exit with the name of the
+            current room, lock/unlock the exit from both directions.
+            */
+            if (this.getCurrentRoom().getExit(direction).getExits().
+                containsKey(getName)) {
                 // (Un)lock exit from current room in specified direction.
                 lockedExits.put(direction, lock);
                 // (Un)lock exit to current room from specified direction.
                 this.getCurrentRoom().getExit(direction).getLockedExits().
                     put(this.getCurrentRoom().getName(), lock);
             }
-            //
+            /*
+            If the specified neigboring room does not have an exit with the name
+            of the current room (e.g. when in hallways), the procedure for
+            locking/unlocking the door is a bit different.
+            */
             else {
                 // (Un)lock exit from current room in the specified direction.
                 lockedExits.put(direction, lock);
 
+                // Create a new HashMap with the same entries as lockedExits.
                 HashMap<String, Boolean> templockExits = new HashMap<>();
                 templockExits.putAll(lockedExits);
+                /*
+                Remove the entry for the specified direction. When in a hallway,
+                there are only two exits. When the one is removed, there is only
+                one left.
+                */
                 templockExits.remove(direction);
+                /*
+                Determine the direction from the neigboring room to the current
+                room, by finding the last entry in the HashMap.
+                */
                 String direction2 = (String)templockExits.keySet().toArray()[0];
-                this.getCurrentRoom().getExit(direction).getLockedExits().put(direction2, lock);
+                // Lock/unlock the door from the opposite direction.
+                this.getCurrentRoom().getExit(direction).getLockedExits().
+                    put(direction2, lock);
             }
+            // Return true since the door has been locked/unlocked.
             return true;
         }
     }
