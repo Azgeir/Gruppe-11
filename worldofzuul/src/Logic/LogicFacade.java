@@ -30,7 +30,7 @@ public class LogicFacade implements ILogicFacade {
      * game: an instance of Game, which represents central game logic.
      */
     private static IDataFacade data;
-    private static Game game;
+    private Game game;
 
     /**
      * This method sets the "data" data field.
@@ -55,7 +55,7 @@ public class LogicFacade implements ILogicFacade {
     @Override
     public void initializeGame(int numberOfZuulAtStart, double spawnTime,
         String name) {
-        LogicFacade.game = new Game(numberOfZuulAtStart, spawnTime, name);
+        this.game = new Game(numberOfZuulAtStart, spawnTime, name);
     }
 
     /**
@@ -66,7 +66,7 @@ public class LogicFacade implements ILogicFacade {
      */
     @Override
     public void processCommand(String command) {
-        LogicFacade.game.play(command);
+        this.game.play(command);
     }
 
     /**
@@ -77,7 +77,7 @@ public class LogicFacade implements ILogicFacade {
      */
     @Override
     public Set<String> getExits() {
-        Set<String> exits = LogicFacade.game.getCurrentCharacter()
+        Set<String> exits = this.game.getCurrentCharacter()
             .getCurrentRoom().getExits().keySet();
         return exits;
     }
@@ -90,7 +90,7 @@ public class LogicFacade implements ILogicFacade {
      */
     @Override
     public Set<String> getRoomItemSet() {
-        Set<String> itemSet = LogicFacade.game.getCurrentCharacter()
+        Set<String> itemSet = this.game.getCurrentCharacter()
             .getCurrentRoom().getInventory().listItems();
         return itemSet;
     }
@@ -104,7 +104,7 @@ public class LogicFacade implements ILogicFacade {
      */
     @Override
     public boolean isRoomLookedBefore() {
-        boolean lookedBefore = LogicFacade.game.getCurrentCharacter()
+        boolean lookedBefore = this.game.getCurrentCharacter()
             .getCurrentRoom().hasBeenLookedUpon();
         return lookedBefore;
     }
@@ -116,7 +116,7 @@ public class LogicFacade implements ILogicFacade {
      */
     @Override
     public boolean isGameFinished() {
-        boolean finished = LogicFacade.game.isFinished();
+        boolean finished = this.game.isFinished();
         return finished;
     }
 
@@ -160,7 +160,7 @@ public class LogicFacade implements ILogicFacade {
     public boolean loadGame() {
         boolean success;
         try {
-            LogicFacade.game = (Game)data.loadGame();
+            this.game = (Game)data.loadGame();
             success = true;
         }
         catch (FileNotFoundException ex){
@@ -187,7 +187,7 @@ public class LogicFacade implements ILogicFacade {
      */
     @Override
     public void saveGame() {
-        LogicFacade.data.saveGame(LogicFacade.game);
+        LogicFacade.data.saveGame(this.game);
     }
 
     /**
@@ -270,7 +270,7 @@ public class LogicFacade implements ILogicFacade {
      */
     @Override
     public boolean isRoomKnown(IRoom room){
-        Character character = LogicFacade.game.getCurrentCharacter();
+        Character character = this.game.getCurrentCharacter();
         // Declare and initialize isKnown. It is set to false as default.
         boolean isKnown = false;
         // Check if current character is Hero.
