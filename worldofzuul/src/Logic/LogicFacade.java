@@ -155,6 +155,7 @@ public class LogicFacade implements ILogicFacade {
     /**
      * This method is used to load the game. The method calls the loadGame()
      * method on data.
+     * @return true if the method was successful; else it returns false.
      */
     @Override
     public boolean loadGame() {
