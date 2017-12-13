@@ -26,7 +26,7 @@ public class GUI extends Application {
     /**
      * This method is used to start the GUI.
      * 
-     * @param stage
+     * @param stage the Stage that is set to be set and shown
      * @throws Exception 
      */
     @Override

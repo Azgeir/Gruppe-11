@@ -22,6 +22,7 @@ public interface IDataFacade {
      * This method is used to load the game.
      * 
      * @return instance of IGame that represents the loaded game.
+     * @throws java.io.FileNotFoundException
      */
     public abstract IGame loadGame() throws FileNotFoundException;
  
