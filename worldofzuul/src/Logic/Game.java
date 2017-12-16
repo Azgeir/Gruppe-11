@@ -1344,7 +1344,9 @@ class Game implements IGame, Serializable{
         // Remove rooms where there already is a Zuul.
         for (Character character : characters) {
             if (character instanceof Zuul) {
-                allRooms.remove(character.getCurrentRoom().getName());
+                if (allRooms.size() > 1) {
+                    allRooms.remove(character.getCurrentRoom().getName());
+                }
             }
         }
         
