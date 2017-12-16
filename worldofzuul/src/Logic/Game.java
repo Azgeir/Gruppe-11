@@ -1271,7 +1271,7 @@ class Game implements IGame, Serializable{
      * 
      * @return true if the game is ended; else it returns false.
      */
-    boolean timerLose() {
+    private boolean timerLose() {
         /*
         If player's initiative is greater than maxInitiative, print lose message
         based on "timer" and return true.

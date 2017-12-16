@@ -85,6 +85,7 @@ public interface ILogicFacade {
 
     /**
      * This method is used to load the game.
+     * @return true if successful; else it returns false.
      */
     public abstract boolean loadGame();
 
