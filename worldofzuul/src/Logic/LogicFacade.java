@@ -23,13 +23,14 @@ import java.util.Set;
  */
 
 public class LogicFacade implements ILogicFacade {
-
+    
     /**
-     * Data fields.
      * data: an instance of IDataFacade, which represents the data layer
-     * game: an instance of Game, which represents central game logic.
      */
     private static IDataFacade data;
+    /**
+     * game: an instance of Game, which represents central game logic.
+     */
     private Game game;
 
     /**

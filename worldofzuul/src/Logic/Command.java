@@ -18,8 +18,6 @@ import java.io.Serializable;
 class Command implements Serializable {
     /**
      * commandWord: the command's command word
-     * 
-     * 
      */
     private CommandWord commandWord;
     /**

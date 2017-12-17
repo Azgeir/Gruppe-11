@@ -18,17 +18,17 @@ import java.io.Serializable;
 
 public class MedKit extends Item implements Serializable {
     /**
-     * Data field.
      * healthAmount: the number of health points added to the player's health
      * when the medical kit is used.
-     * 
+     *
      * healthAmount does not have getter/setter methods as the value of the
      * data field is only used within the class in the use() method.
-     * 
+     */
+    private int healthAmount;
+    /**
      * messageClass: instance of LogicMessage for storing strings to be read
      * later.
      */
-    private int healthAmount;
     private LogicMessage messageClass;
     
     /**

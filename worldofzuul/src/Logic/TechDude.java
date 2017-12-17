@@ -21,42 +21,48 @@ import java.io.Serializable;
 class TechDude extends Character implements Serializable {
     
     /**
-     * Data fields.
      * followsHero: boolean value that indicates whether tech dude is following
      * the hero. This is initially set to false, as the tech dude does not
      * follow the hero at the start of the game.
-     * 
+     */
+    private boolean followsHero = false;
+    /**
      * hero: instance of Character that represents the hero.
-     * 
+     */
+    private Character hero = null;
+    /**
      * hostility: integer value that represents the tech dude's hostility. This
      * is used when conversing with the hero. If the hero offends the tech dude,
      * his hostility increases. Eventually, tech dude will no longer engage in
      * conversation with the hero. The value is initially set to 0, as the hero
      * has not yet offended the tech dude.
-     * 
+     */
+    private int hostility = 0;
+    /**
      * metHero: boolean value that indicates whether tech dude has met the
      * hero. This is initially set to false, as tech dude has not met the hero
      * at the start of the game.
-     * 
+     */
+    private boolean metHero = false;
+    /**
      * wantsToTalk: boolean value that indicates whether the tech dude wants to
      * talk to the hero.
-     * 
+     */
+    private boolean wantsToTalk = false;
+    /**
      * counter: integer value that indicates how far the conversation with the
      * hero has progressed.
-     * 
+     */
+    private int counter = 1;
+    /**
      * isTalking: boolean value that indicates whether tech dude is currently
      * talking to the hero.
-     * 
+     */
+    private boolean isTalking = false;
+    /**
      * messageClass: instance of LogicMessage for storing strings to be read
      * later.
      */
-    private boolean followsHero = false;
-    private Character hero = null;
-    private int hostility = 0;
-    private boolean metHero = false;
-    private boolean wantsToTalk = false;
-    private int counter = 1;
-    private boolean isTalking = false;
     private LogicMessage messageClass;
 
     /**

@@ -21,21 +21,26 @@ import java.util.Set;
  * @author Aske Wulf
  */
 class Inventory implements Serializable {
-
+    
     /**
-     * Data fields.
      * inventory: a HashMap that represents the items in the inventory. The keys
      * are Strings that identify the item, while the values are ArrayLists of
      * Item objects.
+     */
+    private HashMap<String, ArrayList<Item>> inventory;
+    /**
      * maxWeight: maximum weight of an inventory. This is mostly used for
      * player's whose inventory has limited capacity.
+     */
+    private int maxWeight;
+    /**
      * totalWeight: current weight of the inventory.
+     */
+    private int totalWeight = 0;
+    /**
      * messageClass: instance of LogicMessage for storing strings to be read
      * later.
      */
-    private HashMap<String, ArrayList<Item>> inventory;
-    private int maxWeight;
-    private int totalWeight = 0;
     private LogicMessage messageClass;
 
     /**

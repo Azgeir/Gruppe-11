@@ -23,7 +23,6 @@ import java.io.Serializable;
 class Highscore implements IHighscore, Serializable {
 
     /**
-     * Data field.
      * highscore: an array of IScore objects that represents the high score.
      */
     private IScore[] highscore;

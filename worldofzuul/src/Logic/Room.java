@@ -21,31 +21,49 @@ import java.util.Map.Entry;
  */
 public class Room implements Serializable, IRoom {
     /**
-     * Data fields.
      * description: short description of the room.
+     */
+    private String description;
+    /**
      * detailedDescription: longer description of the room.
+     */
+    private String detailedDescription;
+    /**
      * exits: HashMap of available exits from the room.
+     */
+    private HashMap<String, Room> exits;
+    /**
      * lockedExits: HashMap indicating the status of the exits from the room.
+     */
+    private HashMap<String, Boolean> lockedExits;
+    /**
      * inventory: an instance of Inventory representing the room's inventory.
      * name: name of the room.
+     */
+    private Inventory inventory;
+    /**
+     * name: The name of the room.
+     */
+    private String name;
+    /**
      * hasCharacter: HashMap indicating if the different characters are present
      * in the room.
+     */
+    private HashMap<String,Boolean> hasCharacter = new HashMap<>();
+    /**
      * charactersInRoom: ArrayList of Strings that represents the characters in
      * the room.
+     */
+    private ArrayList<String> charactersInRoom;
+    /**
      * hasBeenLookedUpon: indicates whether the player has "looked" at the room,
      * thereby unlocking the room's inventory.
+     */
+    private boolean hasBeenLookedUpon;
+    /**
      * messageClass: instance of LogicMessage for storing strings to be read
      * later.
      */
-    private String description;
-    private String detailedDescription;
-    private HashMap<String, Room> exits;
-    private HashMap<String, Boolean> lockedExits;
-    private Inventory inventory;
-    private String name;
-    private HashMap<String,Boolean> hasCharacter = new HashMap<>();
-    private ArrayList<String> charactersInRoom;
-    private boolean hasBeenLookedUpon;
     private LogicMessage messageClass;
     
     /**

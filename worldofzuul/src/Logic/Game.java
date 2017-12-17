@@ -25,7 +25,7 @@ import java.util.Set;
  * only used within its package.
  */
 class Game implements IGame, Serializable{
-
+    
     /**
      * parser: instance of Parser which is used to get a command.
      */

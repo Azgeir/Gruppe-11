@@ -24,27 +24,38 @@ import java.util.Set;
  */
 
 class Hero extends Character implements Serializable {
-
+    
     /**
-     * Data fields.
      * health: the hero's health (default value of 10)
+     */
+    private int health = 10;
+    /**
      * inventory: an instance of Inventory that represents the hero's inventory
+     */
+    private Inventory inventory;
+    /**
      * reactorActivated: boolean value that indicates if the player has
      * activated the reactor (default value of false).
+     */
+    private boolean reactorActivated = false;
+    /**
      * knownRooms: a Set of Strings that indicate the rooms that the character
      * knows of. This is used when peeking.
+     */
+    private Set<String> knownRooms;
+    /**
      * talking: boolean value that indicates if the hero is talking to the tech
      * dude.
+     */
+    private boolean talking;
+    /**
      * previousCommand: String that represents the previous command of the hero.
+     */
+    private String previousCommand;
+    /**
      * messageClass: instance of LogicMessage used for storing Strings to be
      * read later.
      */
-    private int health = 10;
-    private Inventory inventory;
-    private boolean reactorActivated = false;
-    private Set<String> knownRooms;
-    private boolean talking;
-    private String previousCommand;
     private LogicMessage messageClass;
 
     /**

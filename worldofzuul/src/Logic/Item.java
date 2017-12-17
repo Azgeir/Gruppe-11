@@ -20,16 +20,21 @@ import java.io.Serializable;
 
 class Item implements Serializable {
     /**
-     * Data fields.
      * weight: the weight of the item
+     */
+    private int weight;
+    /**
      * name: the name of the item
+     */
+    private String name;
+    /**
      * useDescription: describes how the item is used
+     */
+    private String useDescription;
+    /**
      * messageClass: instance of LogicMessage for storing strings to be read
      * later.
      */
-    private int weight;
-    private String name;
-    private String useDescription;
     private LogicMessage messageClass;
     
     /**

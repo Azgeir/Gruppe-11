@@ -27,7 +27,7 @@ class AccessCard extends Item implements Serializable {
     private LogicMessage messageClass;
     
     /**
-     * This constructor creates an instance of AccessCard with default weight 
+     * This constructor creates an instance of AccessCard with default weight
      * and name by calling the superclass's constructor via constructor
      * chaining.
      */

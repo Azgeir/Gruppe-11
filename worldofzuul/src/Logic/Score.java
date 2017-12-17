@@ -18,14 +18,14 @@ import java.io.Serializable;
 public class Score implements IScore, Serializable {
     
     /**
-     * Data fields.
      * name: a String that indicates the name of the player whose score is
      * represented by the object.
-     * 
+     */
+    private String name;
+    /**
      * score: a double value that represents the total points obtained by the
      * player.
      */
-    private String name;
     private double score;
     
     /**

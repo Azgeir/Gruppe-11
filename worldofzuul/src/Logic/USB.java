@@ -20,17 +20,17 @@ import java.io.Serializable;
 public class USB extends Item implements Serializable {
     
     /**
-     * Data field.
-     * dataType: String that indicates the type of data (bio, physics, control, 
+     * dataType: String that indicates the type of data (bio, physics, control,
      * or null, where null indicates an empty USB).
-     * 
+     *
      * dataType does not have a setter method as it is only changed internally
      * from the USB class in the use() method.
-     * 
+     */
+    private String dataType;
+    /**
      * messageClass: instance of LogicMessage for storing strings to be read
      * later.
      */
-    private String dataType;
     private LogicMessage messageClass;
     
     /**

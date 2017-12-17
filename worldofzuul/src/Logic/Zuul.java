@@ -19,34 +19,47 @@ import java.util.ArrayList;
 public class Zuul extends Character implements Serializable {
     
     /**
-     * Data fields.
      * previousRoomName: indicates the previous room of Zuul. This is used to
      * allow Zuul to move forwards instead of backwards.
-     * triedLockedExits: ArrayList of locked exits that Zuul has tried to go
+     */
+    private String previousRoomName;
+    /**
+     *  triedLockedExits: ArrayList of locked exits that Zuul has tried to go
      * through. This is used to prevent Zuul from repeatedly trying to go
      * through a locked door.
+     */
+    private ArrayList<String> triedLockedExits = new ArrayList<>();
+    /**
      * stayCounter: counts the number of times that Zuul has stayed in the
      * current room.
+     */
+    private int stayCounter = 0;
+    /**
      * STAY_COUNTER_MAX: the maximum number of turns that Zuul can stay in the
      * same room (set to 1).
+     */
+    private final int STAY_COUNTER_MAX = 1;
+    /**
      * heroIsInSameRoom: boolean value that indicates if the player is in the
      * same room as Zuul.
+     */
+    private boolean heroIsInSameRoom;
+    /**
      * heroWasInSameRoom: boolean value that indicates if the player has just
      * left Zuul's current room.
+     */
+    private boolean heroWasInSameRoom;
+    /**
      * heroInRoomInitiative: this value is set to Zuul's initiative when it
      * detects the presence of the player. It is used to allow the player to
      * escape Zuul. The value is initially set to -Double.MAX_VALUE so it always
      * fails its test in getCommand() unless it has been updated.
+     */
+    private double heroInRoomInitiative = -Double.MAX_VALUE;
+    /**
      * messageClass: instance of LogicMessage for storing strings to be read
      * later.
      */
-    private String previousRoomName;
-    private ArrayList<String> triedLockedExits = new ArrayList<>();
-    private int stayCounter = 0;
-    private final int STAY_COUNTER_MAX = 1;
-    private boolean heroIsInSameRoom;
-    private boolean heroWasInSameRoom;
-    private double heroInRoomInitiative = -Double.MAX_VALUE;
     private LogicMessage messageClass;
     
     /**

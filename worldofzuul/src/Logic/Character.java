@@ -18,7 +18,7 @@ import java.io.Serializable;
  */
 
 abstract class Character implements Serializable {
-
+    
     /**
      * currentRoom: character's current room.
      */

@@ -16,7 +16,6 @@ import java.io.Serializable;
  */
 class LogicMessage implements Serializable {
     /**
-     * Data field.
      * message: String message
      */
     private String message;

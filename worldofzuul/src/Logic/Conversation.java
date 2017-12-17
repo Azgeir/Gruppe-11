@@ -32,27 +32,27 @@ class Conversation implements Serializable {
      * TECHTALK2: tech dude's second statement
      */
     private final String TECHTALK2 = "The arrival of Zuul has triggered the "
-        + "station's quarantine mechanism, causing the doors to all the escape "
-        + "pods to be locked.";
+            + "station's quarantine mechanism, causing the doors to all the escape "
+            + "pods to be locked.";
     /**
      * TECHTALK3: tech dude's third statement
      */
     private final String TECHTALK3 = "Yes, I can override the mechanism and "
-        + "unlock one of the pods, but I will have to be in the dock to do "
-        + "this.";
+            + "unlock one of the pods, but I will have to be in the dock to do "
+            + "this.";
     /**
      * TECHTALK4: tech dude's fourth statement
      */
     private final String TECHTALK4 = "I can overload the reactor, causing it to"
-        + " self-destruct along with the whole space station. This will give "
-        + "you a short time to get off the station before it blows up. But I "
-        + "must be near the reactor to overload it.";
+            + " self-destruct along with the whole space station. This will give "
+            + "you a short time to get off the station before it blows up. But I "
+            + "must be near the reactor to overload it.";
     // Player responses
     /**
      * TECHANSWER1: player's first statement
      */
     private final String TECHANSWER1 = "For now. What has happened to the "
-        + "station?";
+            + "station?";
     /**
      * TECHANSWER2: player's second statement
      */

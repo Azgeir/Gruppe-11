@@ -17,7 +17,6 @@ import java.io.Serializable;
 class Parser implements Serializable {
     
     /**
-     * Data field.
      * commands: a CommandWords object that represents the valid commands. The
      * data field is final as it is a constant.
      */
