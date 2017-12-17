@@ -17,7 +17,6 @@ import java.util.HashMap;
  */
 class CommandWords implements Serializable {
     /**
-     * Data field.
      * validCommands: HashMap of valid commands with a String key and
      * CommandWord value
      */

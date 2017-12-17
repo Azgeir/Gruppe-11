@@ -25,7 +25,6 @@ enum CommandWord implements Serializable {
     TALK("talk"), KILL("kill");
     
     /**
-     * Data field.
      * commandString: command string of the CommandWord object.
      */
     private String commandString;

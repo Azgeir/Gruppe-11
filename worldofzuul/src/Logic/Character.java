@@ -20,17 +20,24 @@ import java.io.Serializable;
 abstract class Character implements Serializable {
 
     /**
-     * Data fields.
      * currentRoom: character's current room.
-     * characterInitiative: used to determine whose turn it is.
-     * speedFactor: used to update character initiative.
-     * name: used to identify character type in other classes.
-     * message: used for various purposes throughout the game.
      */
     private Room currentRoom;
+    /**
+     * characterInitiative: used to determine whose turn it is.
+     */
     private double characterInitiative;
+    /**
+     * speedFactor: used to update character initiative.
+     */
     private double speedFactor;
+    /**
+     * name: used to identify character type in other classes.
+     */
     private String name;
+    /**
+     * message: used for various purposes throughout the game.
+     */
     private String message;
 
     /**

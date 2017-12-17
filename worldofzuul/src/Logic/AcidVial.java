@@ -21,15 +21,18 @@ import java.io.Serializable;
 class AcidVial extends Item implements Serializable {
     
     /**
-     * Data fields.
      * damageAmount: Damage caused to the player when the acid vial is used.
+     */
+    private int damageAmount;
+    /**
      * initiativeReduction: Added to Zuul's initiative when used against Zuul,
      * which gives the player a chance to escape.
+     */
+    private int initiativeReduction;
+    /**
      * messageClass: instance of LogicMessage for storing strings to be read
      * later.
      */
-    private int damageAmount;
-    private int initiativeReduction;
     private LogicMessage messageClass;
     
     /**

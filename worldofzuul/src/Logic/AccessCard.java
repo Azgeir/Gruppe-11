@@ -21,7 +21,6 @@ import java.io.Serializable;
 class AccessCard extends Item implements Serializable {
     
     /**
-     * Data fields.
      * messageClass: instance of LogicMessage for storing strings to be read
      * later.
      */

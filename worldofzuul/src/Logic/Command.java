@@ -17,13 +17,18 @@ import java.io.Serializable;
 
 class Command implements Serializable {
     /**
-     * Data fields.
      * commandWord: the command's command word
-     * secondWord: the second word of the command
-     * thirdWord: the third word of the command
+     * 
+     * 
      */
     private CommandWord commandWord;
+    /**
+     * secondWord: the second word of the command
+     */
     private String secondWord;
+    /**
+     * thirdWord: the third word of the command
+     */
     private String thirdWord;
 
     /**
