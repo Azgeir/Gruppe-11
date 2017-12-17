@@ -27,40 +27,61 @@ import java.util.Set;
 class Game implements IGame, Serializable{
 
     /**
-     * Data fields.
      * parser: instance of Parser which is used to get a command.
+     */
+    private Parser parser;
+    /**
      * characters: ArrayList of characters in the game. ArrayList is chosen
      * because it allows us to know which character is chosen when the
      * initiative is the same.
-     * currentCharacter: instance of Character that represents the current
+     */
+    private ArrayList<Character> characters = new ArrayList<>();
+    /**
+     *  currentCharacter: instance of Character that represents the current
      * character of the game.
-     * rooms: HashMap of Room objects that represents the rooms of the game.
+     */
+    private Character currentCharacter;
+    /**
+     *  rooms: HashMap of Room objects that represents the rooms of the game.
      * HashMap is faster than ArrayList of rooms.
-     * winConditionRoom: instance of Room which represents the win condition
+     */
+    private HashMap<String, Room> rooms;
+    /**
+     *  winConditionRoom: instance of Room which represents the win condition
      * of the game.
+     */
+    private Room winConditionRoom;
+    /**
      * maxInitiative: double value which is used to set a new max initiative
      * when the player activates the reactor.
+     */
+    private double maxInititative = Double.MAX_VALUE;
+    /**
      * reactorActivated: boolean value that indicates if the reactor has been
      * activated.
+     */
+    private boolean reactorActivated = false;
+    /**
      * finished: boolean value that indicates if the game is finished.
+     */
+    private boolean finished;
+    /**
      * timeSinceSpawn: double value that indicates the time since the last Zuul
      * spawned.
+     */
+    private double timeSinceSpawn;
+    /**
      * spawnTime: double value that indicates the time between spawns of Zuuls.
+     */
+    private double spawnTime;
+    /**
      * name: String that represents the name of the game.
+     */
+    private String name;
+    /**
      * messageClass: instance of LogicMessage which is used to send String
      * messages to the GUI to be shown to the player.
      */
-    private Parser parser;
-    private ArrayList<Character> characters = new ArrayList<>();
-    private Character currentCharacter;
-    private HashMap<String, Room> rooms;
-    private Room winConditionRoom;
-    private double maxInititative = Double.MAX_VALUE;
-    private boolean reactorActivated = false;
-    private boolean finished;
-    private double timeSinceSpawn;
-    private double spawnTime;
-    private String name;
     private LogicMessage messageClass;
 
     /**
