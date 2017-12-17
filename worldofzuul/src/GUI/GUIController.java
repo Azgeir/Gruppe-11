@@ -205,7 +205,10 @@ public class GUIController {
     private FlowPane characterPaneReactorPhysicslab;
     @FXML
     private FlowPane characterPanePod;
-    
+    /**
+     * rooms: A HashMap containing all the rooms as values and their names as
+     * key
+     */
     private HashMap<String,RoomGUI> rooms;
     @FXML
     private FlowPane characterPaneReactor;
