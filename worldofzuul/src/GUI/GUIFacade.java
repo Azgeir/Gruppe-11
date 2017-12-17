@@ -22,7 +22,6 @@ import java.util.Set;
 public class GUIFacade implements IGUIFacade {
     
     /**
-     * Data field.
      * logic: instance of ILogicFacade that represents the logic layer.
      */
     private static ILogicFacade logic;

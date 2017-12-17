@@ -22,18 +22,25 @@ import javafx.scene.layout.FlowPane;
 class RoomGUI implements IRoom {
     
     /**
-     * Data fields.
      * location: a BorderPane that specifies the room's location in the GUI.
-     * characterLocation: a FlowPane that specifies where the character images
-     * are placed in the GUI.
-     * knownRoomFilePath: file path to the picture of the room when known.
-     * unknownRoomFilePath: file path to the picture of the room when unknown.
-     * name: String that specifies the name of the room.
      */
     private BorderPane location;
+    /**
+     * characterLocation: a FlowPane that specifies where the character images
+     * are placed in the GUI.
+     */
     private FlowPane characterLocation;
+    /**
+     * knownRoomFilePath: file path to the picture of the room when known.
+     */
     private String knownRoomFilePath;
+    /**
+     * unknownRoomFilePath: file path to the picture of the room when unknown.
+     */
     private String unknownRoomFilePath;
+    /**
+     * name: String that specifies the name of the room.
+     */
     private String name;
     
     /**
