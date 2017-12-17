@@ -22,7 +22,6 @@ import Acquaintance.IScore;
 class HighscoreData implements IHighscore {
     
     /**
-     * Data field.
      * highscore: array of IScore objects which represents the high score.
      */
     private IScore[] highscore;

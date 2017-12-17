@@ -32,13 +32,15 @@ import java.util.logging.Logger;
 class Data {
     
     /**
-     * Data fields.
      * SAVE_GAME_FILE_NAME: a String that specifies the name of the file that
      * stores the saved game.
+     * 
+     */
+    private static final String SAVE_GAME_FILE_NAME = "Escape pod.Zuul";
+    /**
      * HIGHSCORE_FILE_NAME: a String that specifies the name of the file that
      * stores the high score.
      */
-    private static final String SAVE_GAME_FILE_NAME = "Escape pod.Zuul";
     private static final String HIGHSCORE_FILE_NAME =
         "Escape pod highscore.txt";
     

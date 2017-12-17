@@ -23,7 +23,6 @@ import java.io.FileNotFoundException;
 public class DataFacade implements IDataFacade {
     
     /**
-     * Data field.
      * data: instance of Data, which represents the data layer.
      */
     private Data data;

@@ -20,11 +20,12 @@ import Acquaintance.IScore;
 class ScoreData implements IScore {
     
     /**
-     * Data fields.
      * name: String name associated with score.
-     * score: double value that represents the points obtained by the player.
      */
     private String name;
+    /**
+     * score: double value that represents the points obtained by the player.
+     */
     private double score;
     
     /**
